@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_ac6z8eApEeCX5MN1rDulMw" name="Model">
+  <packageImport xmi:id="_ac7bAOApEeCX5MN1rDulMw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_KWR8YOB9EeCX5MN1rDulMw" name="Usuario Registrado"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_SmpQEOB9EeCX5MN1rDulMw" name="Entrar al sistema"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_VLd9QOB9EeCX5MN1rDulMw" name="Salir del sistema"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_bqgdQOB9EeCX5MN1rDulMw" name="Ver proyectos"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_lziiwOB9EeCX5MN1rDulMw" name="A_usuario registrado_entrar al sistema" memberEnd="_lziiweB9EeCX5MN1rDulMw _lziixOB9EeCX5MN1rDulMw">
+    <ownedEnd xmi:id="_lziiweB9EeCX5MN1rDulMw" name="usuario registrado" type="_KWR8YOB9EeCX5MN1rDulMw" association="_lziiwOB9EeCX5MN1rDulMw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lziiwuB9EeCX5MN1rDulMw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lziiw-B9EeCX5MN1rDulMw" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_lziixOB9EeCX5MN1rDulMw" name="entrar al sistema" type="_SmpQEOB9EeCX5MN1rDulMw" association="_lziiwOB9EeCX5MN1rDulMw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lziixeB9EeCX5MN1rDulMw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lziixuB9EeCX5MN1rDulMw" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_3FRJQOB9EeCX5MN1rDulMw" name="A_usuario registrado_salir del sistema" memberEnd="_3FRJQeB9EeCX5MN1rDulMw _3FRJROB9EeCX5MN1rDulMw">
+    <ownedEnd xmi:id="_3FRJQeB9EeCX5MN1rDulMw" name="usuario registrado" type="_KWR8YOB9EeCX5MN1rDulMw" association="_3FRJQOB9EeCX5MN1rDulMw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3FRJQuB9EeCX5MN1rDulMw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3FRJQ-B9EeCX5MN1rDulMw" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_3FRJROB9EeCX5MN1rDulMw" name="salir del sistema" type="_VLd9QOB9EeCX5MN1rDulMw" association="_3FRJQOB9EeCX5MN1rDulMw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3FRJReB9EeCX5MN1rDulMw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3FRJRuB9EeCX5MN1rDulMw" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_4bU9QOB9EeCX5MN1rDulMw" name="A_usuario registrado_ver proyectos" memberEnd="_4bU9QeB9EeCX5MN1rDulMw _4bU9ROB9EeCX5MN1rDulMw">
+    <ownedEnd xmi:id="_4bU9QeB9EeCX5MN1rDulMw" name="usuario registrado" type="_KWR8YOB9EeCX5MN1rDulMw" association="_4bU9QOB9EeCX5MN1rDulMw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4bU9QuB9EeCX5MN1rDulMw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4bU9Q-B9EeCX5MN1rDulMw" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_4bU9ROB9EeCX5MN1rDulMw" name="ver proyectos" type="_bqgdQOB9EeCX5MN1rDulMw" association="_4bU9QOB9EeCX5MN1rDulMw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4bU9ReB9EeCX5MN1rDulMw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4bU9RuB9EeCX5MN1rDulMw" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>
