@@ -2,7 +2,7 @@
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" modelDirectory="/proyservsocial/src/main/java"
-    modelPluginID="proyservsocial" dynamicTemplates="true" modelName="proyservsocial"
+    modelPluginID="proyservsocial" dynamicTemplates="true" modelName="mx.gearsofcode.proyservsocial"
     modelPluginClass="" suppressEMFTypes="true" codeFormatting="true" testsDirectory="/proyservsocial/src/test/java"
     importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="6.0" copyrightFields="false"
     classNamePattern="">
@@ -25,9 +25,9 @@
     <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
   </genAnnotations>
   <foreignModel>model.uml</foreignModel>
-  <genPackages xsi:type="genmodel:GenPackage" prefix="mx.gearsofcode" basePackage="proyservsocial"
+  <genPackages xsi:type="genmodel:GenPackage" prefix="mx.gearsofcode" basePackage="mx.gearsofcode"
       disposableProviderFactory="true" ecorePackage="model.ecore#/">
-    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="BasicTest" basePackage="proyservsocial.model"
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="BasicTest" basePackage="proyservsocial"
         disposableProviderFactory="true" ecorePackage="model.ecore#//basicTest">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="model.ecore#//basicTest/One">
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//basicTest/One/alive.1"/>
