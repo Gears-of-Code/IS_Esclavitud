@@ -37,4 +37,17 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4bU9RuB9EeCX5MN1rDulMw" value="1"/>
     </ownedEnd>
   </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_AyDn8ONNEeCBu8JDsMyLPQ" name="basicTest">
+    <packagedElement xmi:type="uml:Class" xmi:id="_Uz_sQONNEeCBu8JDsMyLPQ" name="One">
+      <ownedAttribute xmi:id="_chpUcONNEeCBu8JDsMyLPQ" name="alive" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_ocNpAONNEeCBu8JDsMyLPQ"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_BuSfUONQEeCBu8JDsMyLPQ" name="alive">
+        <ownedParameter xmi:id="_gxobkONQEeCBu8JDsMyLPQ" name="status" direction="return" effect="read">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+  </packagedElement>
 </uml:Model>
