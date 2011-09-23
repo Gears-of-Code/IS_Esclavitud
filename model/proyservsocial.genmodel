@@ -27,7 +27,7 @@
   <foreignModel>model.uml</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="mx.gearsofcode" basePackage="mx.gearsofcode"
       disposableProviderFactory="true" ecorePackage="model.ecore#/">
-    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="BasicTest" basePackage="proyservsocial"
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="mx.gearsofcode" basePackage="proyservsocial"
         disposableProviderFactory="true" ecorePackage="model.ecore#//basicTest">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="model.ecore#//basicTest/One">
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//basicTest/One/alive.1"/>
