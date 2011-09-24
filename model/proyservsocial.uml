@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_HO0ngOX0EeCIfY0ElZxBaw" name="model">
+  <ownedComment xmi:id="_ETpe4Ob8EeCgcebNRLanvA" annotatedElement="_DXQkkOb7EeCgcebNRLanvA">
+    <body>Navegador compatible:
+--Chrome
+--Firefox
+</body>
+  </ownedComment>
+  <ownedComment xmi:id="_ZpW4MOb8EeCgcebNRLanvA" annotatedElement="_UL_tEOb7EeCgcebNRLanvA">
+    <body>Aplicacion en Ejecucion
+Servidores operando:
+--Apache 2.x
+--Tomcat 5.x
+--MySQL 5.2</body>
+  </ownedComment>
   <packagedElement xmi:type="uml:Actor" xmi:id="_sC7BcOX0EeCIfY0ElZxBaw" name="Usuario Registrado"/>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_30CfEOX0EeCIfY0ElZxBaw" name="Entrar al Sistema"/>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_7T0_sOX0EeCIfY0ElZxBaw" name="Salir del Sistema"/>
@@ -38,15 +51,33 @@
     <ownedComment xmi:id="_lq89UOX1EeCIfY0ElZxBaw">
       <body> Consiste en toda la presentacion de los datos en un formao web.</body>
     </ownedComment>
+    <packagedElement xmi:type="uml:Package" xmi:id="_d9FrIObkEeC8c5sMDCZPLQ" name="JSP"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_hB9xYObkEeC8c5sMDCZPLQ" name="public_html"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_lPeToObkEeC8c5sMDCZPLQ" name="Estilo"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_oUOeEObkEeC8c5sMDCZPLQ" name="Imagenes"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_ZhBXEOX1EeCIfY0ElZxBaw" name="Logico">
     <ownedComment xmi:id="_t1k1YOX1EeCIfY0ElZxBaw">
-      <body>Consiste en todos los elementos que llevaran a cabo la operacion del sistema.</body>
+      <body>Elementos que llevaran a cabo la operacion del sistema.</body>
     </ownedComment>
+    <packagedElement xmi:type="uml:Package" xmi:id="_VXMo0ObjEeC8c5sMDCZPLQ" name="inicioDeSesion">
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_q-04kObjEeC8c5sMDCZPLQ" name="" supplier="_VXMo0ObjEeC8c5sMDCZPLQ" client="_cFu9YObjEeC8c5sMDCZPLQ _exG-gObjEeC8c5sMDCZPLQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_cFu9YObjEeC8c5sMDCZPLQ" name="proyectos" clientDependency="_q-04kObjEeC8c5sMDCZPLQ"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_exG-gObjEeC8c5sMDCZPLQ" name="usuarios" clientDependency="_P-9jYObkEeC8c5sMDCZPLQ _q-04kObjEeC8c5sMDCZPLQ">
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_P-9jYObkEeC8c5sMDCZPLQ" name="" visibility="package" supplier="_VXMo0ObjEeC8c5sMDCZPLQ" client="_exG-gObjEeC8c5sMDCZPLQ"/>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_g_FEEOX1EeCIfY0ElZxBaw" name="Almacenamiento">
     <ownedComment xmi:id="_0P7psOX1EeCIfY0ElZxBaw">
-      <body>Se refiere a los elementos que se encargaran de almacenar la informacion. Particularmente la base de datos.</body>
+      <body>Elementos que se encargaran de almacenar la informacion. Particularmente la base de datos y sus tablas.</body>
     </ownedComment>
+    <packagedElement xmi:type="uml:Package" xmi:id="_wY0RgebiEeC8c5sMDCZPLQ" name="BD"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Node" xmi:id="_DXQkkOb7EeCgcebNRLanvA" name="Cliente" clientDependency="_2PTaYOb7EeCgcebNRLanvA">
+    <deployment xmi:id="_2PTaYOb7EeCgcebNRLanvA" name="HTTP" supplier="_UL_tEOb7EeCgcebNRLanvA" client="_DXQkkOb7EeCgcebNRLanvA"/>
+    <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_WvbLwOb-EeCgcebNRLanvA" name=""/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Node" xmi:id="_UL_tEOb7EeCgcebNRLanvA" name="Servidor" clientDependency="_rz_SEOb7EeCgcebNRLanvA"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_rz_SEOb7EeCgcebNRLanvA" name="utilizacion" supplier="_DXQkkOb7EeCgcebNRLanvA" client="_UL_tEOb7EeCgcebNRLanvA"/>
 </uml:Model>
