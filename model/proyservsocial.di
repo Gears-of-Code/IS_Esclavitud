@@ -23,12 +23,6 @@
         <children>
           <emfPageIdentifier href="proyservsocial.notation#_pN4G8OX0EeCIfY0ElZxBaw"/>
         </children>
-        <children>
-          <emfPageIdentifier href="proyservsocial.notation#_f-2vwOb-EeCgcebNRLanvA"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="proyservsocial.notation#_AklooOb7EeCgcebNRLanvA"/>
-        </children>
       </children>
     </windows>
   </sashModel>

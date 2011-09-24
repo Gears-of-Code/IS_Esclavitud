@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" modelDirectory="/proyservsocial/src/main/java"
-    modelPluginID="proyservsocial" dynamicTemplates="true" modelName="mx.gearsofcode.proyservsocial"
-    modelPluginClass="" suppressEMFTypes="true" codeFormatting="true" testsDirectory="/proyservsocial/src/test/java"
-    importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="6.0" copyrightFields="false"
-    classNamePattern="">
+    xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" modelDirectory="/proyservsocial/src"
+    modelPluginID="proyservsocial" modelName="Proyservsocial" importerID="org.eclipse.uml2.uml.ecore.importer"
+    complianceLevel="6.0" copyrightFields="false">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
     <details key="UNION_PROPERTIES" value="REPORT"/>
@@ -24,15 +22,33 @@
     <details key="CAMEL_CASE_NAMES" value="PROCESS"/>
     <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
   </genAnnotations>
-  <foreignModel>model.uml</foreignModel>
-  <genPackages xsi:type="genmodel:GenPackage" prefix="mx.gearsofcode" basePackage="mx.gearsofcode"
-      disposableProviderFactory="true" ecorePackage="model.ecore#/">
-    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="mx.gearsofcode" basePackage="proyservsocial"
-        disposableProviderFactory="true" ecorePackage="model.ecore#//basicTest">
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="model.ecore#//basicTest/One">
-        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//basicTest/One/alive.1"/>
-        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="model.ecore#//basicTest/One/alive"/>
-      </genClasses>
+  <foreignModel>proyservsocial.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="Proyservsocial" disposableProviderFactory="true"
+      ecorePackage="proyservsocial.ecore#/">
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Presentacion" disposableProviderFactory="true"
+        ecorePackage="proyservsocial.ecore#//Presentacion">
+      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="JSP" disposableProviderFactory="true"
+          ecorePackage="proyservsocial.ecore#//Presentacion/JSP"/>
+      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Public_html" disposableProviderFactory="true"
+          ecorePackage="proyservsocial.ecore#//Presentacion/public_html"/>
+      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Estilo" disposableProviderFactory="true"
+          ecorePackage="proyservsocial.ecore#//Presentacion/Estilo"/>
+      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Imagenes" disposableProviderFactory="true"
+          ecorePackage="proyservsocial.ecore#//Presentacion/Imagenes"/>
+    </nestedGenPackages>
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Logico" disposableProviderFactory="true"
+        ecorePackage="proyservsocial.ecore#//Logico">
+      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="InicioDeSesion" disposableProviderFactory="true"
+          ecorePackage="proyservsocial.ecore#//Logico/inicioDeSesion"/>
+      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Proyectos" disposableProviderFactory="true"
+          ecorePackage="proyservsocial.ecore#//Logico/proyectos"/>
+      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Usuarios" disposableProviderFactory="true"
+          ecorePackage="proyservsocial.ecore#//Logico/usuarios"/>
+    </nestedGenPackages>
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Almacenamiento" disposableProviderFactory="true"
+        ecorePackage="proyservsocial.ecore#//Almacenamiento">
+      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="BD" disposableProviderFactory="true"
+          ecorePackage="proyservsocial.ecore#//Almacenamiento/BD"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model"
-    nsURI="http:///model.ecore" nsPrefix="model">
-  <eSubpackages name="basicTest" nsURI="http:///model/basicTest.ecore" nsPrefix="model.basicTest">
-    <eClassifiers xsi:type="ecore:EClass" name="One">
-      <eOperations name="alive" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="alive" ordered="false"
-          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="false"/>
-    </eClassifiers>
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="proyservsocial"
+    nsURI="http:///proyservsocial.ecore" nsPrefix="proyservsocial">
+  <eSubpackages name="Presentacion" nsURI="http:///proyservsocial/Presentacion.ecore"
+      nsPrefix="proyservsocial.Presentacion">
+    <eSubpackages name="JSP" nsURI="http:///proyservsocial/Presentacion/JSP.ecore"
+        nsPrefix="proyservsocial.Presentacion.JSP"/>
+    <eSubpackages name="public_html" nsURI="http:///proyservsocial/Presentacion/public_html.ecore"
+        nsPrefix="proyservsocial.Presentacion.public_html"/>
+    <eSubpackages name="Estilo" nsURI="http:///proyservsocial/Presentacion/Estilo.ecore"
+        nsPrefix="proyservsocial.Presentacion.Estilo"/>
+    <eSubpackages name="Imagenes" nsURI="http:///proyservsocial/Presentacion/Imagenes.ecore"
+        nsPrefix="proyservsocial.Presentacion.Imagenes"/>
+  </eSubpackages>
+  <eSubpackages name="Logico" nsURI="http:///proyservsocial/Logico.ecore" nsPrefix="proyservsocial.Logico">
+    <eSubpackages name="inicioDeSesion" nsURI="http:///proyservsocial/Logico/inicioDeSesion.ecore"
+        nsPrefix="proyservsocial.Logico.inicioDeSesion"/>
+    <eSubpackages name="proyectos" nsURI="http:///proyservsocial/Logico/proyectos.ecore"
+        nsPrefix="proyservsocial.Logico.proyectos"/>
+    <eSubpackages name="usuarios" nsURI="http:///proyservsocial/Logico/usuarios.ecore"
+        nsPrefix="proyservsocial.Logico.usuarios"/>
+  </eSubpackages>
+  <eSubpackages name="Almacenamiento" nsURI="http:///proyservsocial/Almacenamiento.ecore"
+      nsPrefix="proyservsocial.Almacenamiento">
+    <eSubpackages name="BD" nsURI="http:///proyservsocial/Almacenamiento/BD.ecore"
+        nsPrefix="proyservsocial.Almacenamiento.BD"/>
   </eSubpackages>
 </ecore:EPackage>
