@@ -13,6 +13,12 @@ Servidores operando:
 --Tomcat 5.x
 --MySQL 5.2</body>
   </ownedComment>
+  <packageImport xmi:id="_dhtXkOrSEeCV0Iecu87NUg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:id="_sHv-cOrTEeCV0Iecu87NUg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
   <packagedElement xmi:type="uml:Actor" xmi:id="_sC7BcOX0EeCIfY0ElZxBaw" name="Usuario Registrado"/>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_30CfEOX0EeCIfY0ElZxBaw" name="Entrar al Sistema"/>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_7T0_sOX0EeCIfY0ElZxBaw" name="Salir del Sistema"/>
@@ -55,6 +61,59 @@ Servidores operando:
     <packagedElement xmi:type="uml:Package" xmi:id="_hB9xYObkEeC8c5sMDCZPLQ" name="public_html"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_lPeToObkEeC8c5sMDCZPLQ" name="Estilo"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_oUOeEObkEeC8c5sMDCZPLQ" name="Imagenes"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qUSpcOunEeCvI8CAYKnAQQ" name="&lt;Pantalla> Autorizaciones Pendientes">
+      <generalization xmi:id="_LKKrkOuuEeCvI8CAYKnAQQ" general="_Y_Aw8OutEeCvI8CAYKnAQQ"/>
+      <ownedAttribute xmi:id="_xrKwYOunEeCvI8CAYKnAQQ" name="id" visibility="private"/>
+      <ownedOperation xmi:id="_1DYpYOunEeCvI8CAYKnAQQ" name="getPendiente"/>
+      <ownedOperation xmi:id="_4JT4gOunEeCvI8CAYKnAQQ" name="autorizar"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_7HcdkOunEeCvI8CAYKnAQQ" name="&lt;Pantalla> Bienvenida">
+      <generalization xmi:id="_MlpyIOuuEeCvI8CAYKnAQQ" general="_Y_Aw8OutEeCvI8CAYKnAQQ"/>
+      <ownedOperation xmi:id="_GfabYOuoEeCvI8CAYKnAQQ" name="autenticar"/>
+      <ownedOperation xmi:id="_Htn68OuoEeCvI8CAYKnAQQ" name="registrar"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_LcUaQOuoEeCvI8CAYKnAQQ" name="&lt;Pantalla> Detalles del Proyecto" clientDependency="_bqtFsOuuEeCvI8CAYKnAQQ">
+      <generalization xmi:id="_NxUUAOuuEeCvI8CAYKnAQQ" general="_Y_Aw8OutEeCvI8CAYKnAQQ"/>
+      <ownedAttribute xmi:id="_Ufec0OuoEeCvI8CAYKnAQQ" name="proyecto" visibility="private"/>
+      <ownedOperation xmi:id="_dLJzgOuoEeCvI8CAYKnAQQ" name="desplegarProyecto"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_gk9n8OuoEeCvI8CAYKnAQQ" name="&lt;Pantalla> Mis Proyectos">
+      <generalization xmi:id="_IGZ_oOuuEeCvI8CAYKnAQQ" general="_Y_Aw8OutEeCvI8CAYKnAQQ"/>
+      <ownedAttribute xmi:id="_kd8EoOuoEeCvI8CAYKnAQQ" name="usuario" visibility="private"/>
+      <ownedOperation xmi:id="_sRuKAOuoEeCvI8CAYKnAQQ" name="desplegarContenido"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_4CissOuoEeCvI8CAYKnAQQ" name="&lt;Pantalla> Lista de Proyectos">
+      <generalization xmi:id="_G_dlsOuuEeCvI8CAYKnAQQ" general="_Y_Aw8OutEeCvI8CAYKnAQQ"/>
+      <ownedAttribute xmi:id="__AgkYOuoEeCvI8CAYKnAQQ" name="id" visibility="private"/>
+      <ownedOperation xmi:id="_D5WioOupEeCvI8CAYKnAQQ" name="desplegarContenido"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_2l89cOupEeCvI8CAYKnAQQ" name="&lt;Forma de Entrada> Inicio de Sesion">
+      <ownedAttribute xmi:id="_Hs4pMOuqEeCvI8CAYKnAQQ" name=""/>
+      <ownedOperation xmi:id="_6ge5UOupEeCvI8CAYKnAQQ" name="autenticar"/>
+      <ownedOperation xmi:id="_78NQcOupEeCvI8CAYKnAQQ" name="crearSesion"/>
+      <ownedOperation xmi:id="_zwEDgOurEeCvI8CAYKnAQQ" name="solicitarRegistro"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_5a44UOurEeCvI8CAYKnAQQ" name="&lt;Forma de Entrada> Registro de Proyecto">
+      <generalization xmi:id="_T0y5YOuuEeCvI8CAYKnAQQ" general="_Y_Aw8OutEeCvI8CAYKnAQQ"/>
+      <ownedOperation xmi:id="_fh2oUOusEeCvI8CAYKnAQQ" name="mandarRegistro"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_5_jEkOurEeCvI8CAYKnAQQ" name="Class1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_6fLm4OurEeCvI8CAYKnAQQ" name="Class2"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_7eNa8OurEeCvI8CAYKnAQQ" name="Class3"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_8iVxcOurEeCvI8CAYKnAQQ" name="&lt;Forma de Entrada> Registro" clientDependency="_Q7H9kOuuEeCvI8CAYKnAQQ">
+      <generalization xmi:id="_ilHTEOuuEeCvI8CAYKnAQQ" general="_Y_Aw8OutEeCvI8CAYKnAQQ"/>
+      <ownedOperation xmi:id="_Qo_9sOusEeCvI8CAYKnAQQ" name="mandarRegistro"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lw_EEOusEeCvI8CAYKnAQQ" name="&lt;Pantalla> Notificacion">
+      <ownedOperation xmi:id="_DLD8cOutEeCvI8CAYKnAQQ" name="mostrarMensaje"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Y_Aw8OutEeCvI8CAYKnAQQ" name="&lt;Pantalla> General">
+      <ownedOperation xmi:id="_dm5iEOutEeCvI8CAYKnAQQ" name="despliegaMenu"/>
+      <ownedOperation xmi:id="_fP45IOutEeCvI8CAYKnAQQ" name="despliegaContenido"/>
+      <ownedOperation xmi:id="_s3DSYOutEeCvI8CAYKnAQQ" name="finalizarSesion"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_Q7H9kOuuEeCvI8CAYKnAQQ" name="Dependency0" supplier="_2l89cOupEeCvI8CAYKnAQQ" client="_8iVxcOurEeCvI8CAYKnAQQ"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_bqtFsOuuEeCvI8CAYKnAQQ" name="Dependency1" supplier="_5a44UOurEeCvI8CAYKnAQQ" client="_LcUaQOuoEeCvI8CAYKnAQQ"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_ZhBXEOX1EeCIfY0ElZxBaw" name="Logico">
     <ownedComment xmi:id="_t1k1YOX1EeCIfY0ElZxBaw">
@@ -63,9 +122,112 @@ Servidores operando:
     <packagedElement xmi:type="uml:Package" xmi:id="_VXMo0ObjEeC8c5sMDCZPLQ" name="inicioDeSesion">
       <packagedElement xmi:type="uml:Dependency" xmi:id="_q-04kObjEeC8c5sMDCZPLQ" name="" supplier="_VXMo0ObjEeC8c5sMDCZPLQ" client="_cFu9YObjEeC8c5sMDCZPLQ _exG-gObjEeC8c5sMDCZPLQ"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_cFu9YObjEeC8c5sMDCZPLQ" name="proyectos" clientDependency="_q-04kObjEeC8c5sMDCZPLQ"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_cFu9YObjEeC8c5sMDCZPLQ" name="proyectos" clientDependency="_q-04kObjEeC8c5sMDCZPLQ">
+      <packagedElement xmi:type="uml:Class" xmi:id="_hH_-QOrREeCV0Iecu87NUg" name="Proyecto" clientDependency="_61iqsOumEeCvI8CAYKnAQQ">
+        <ownedAttribute xmi:id="_lrc7UOrREeCV0Iecu87NUg" name="id" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_cAffoOrWEeCV0Iecu87NUg" name="nombre" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_gyahEOrXEeCV0Iecu87NUg" name="responsable" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_qC-GcOrXEeCV0Iecu87NUg" name="areaConocimiento" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xN7RQOrXEeCV0Iecu87NUg" name="email" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_AMuL0OrYEeCV0Iecu87NUg" name="telefono" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_VR5OwOrYEeCV0Iecu87NUg" name="direccion" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_gxcbQOrYEeCV0Iecu87NUg" name="carrera" visibility="private"/>
+        <ownedAttribute xmi:id="_783qwOrYEeCV0Iecu87NUg" name="maxParticipante" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_YUQXEOrZEeCV0Iecu87NUg" name="descripcion" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_gLPhcOrZEeCV0Iecu87NUg" name="estado" visibility="private"/>
+        <ownedAttribute xmi:id="_ABUzEOunEeCvI8CAYKnAQQ" name="alumno" type="_1DplkOubEeCvI8CAYKnAQQ" association="_ABcu4OunEeCvI8CAYKnAQQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ABUzEeunEeCvI8CAYKnAQQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ABUzEuunEeCvI8CAYKnAQQ" value="1"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_jLZfwOrZEeCV0Iecu87NUg" name="verProyectos"/>
+        <ownedOperation xmi:id="_ojmTgOrZEeCV0Iecu87NUg" name="propProyectos"/>
+        <ownedOperation xmi:id="_tL-M0OrZEeCV0Iecu87NUg" name="autorizarProyecto"/>
+        <ownedOperation xmi:id="_zCyPMOrZEeCV0Iecu87NUg" name="rechazarProyecto"/>
+        <ownedOperation xmi:id="_vRTwUOuXEeCvI8CAYKnAQQ" name="agregarAlumno"/>
+        <ownedOperation xmi:id="_yJ1coOuXEeCvI8CAYKnAQQ" name="verListaPostulados"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_61iqsOumEeCvI8CAYKnAQQ" name="Dependency0" supplier="_hOcDwOudEeCvI8CAYKnAQQ" client="_hH_-QOrREeCV0Iecu87NUg"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ABcu4OunEeCvI8CAYKnAQQ" name="proyecto_alumno_0" memberEnd="_ABcu4eunEeCvI8CAYKnAQQ _ABUzEOunEeCvI8CAYKnAQQ">
+        <ownedEnd xmi:id="_ABcu4eunEeCvI8CAYKnAQQ" name="proyecto" type="_hH_-QOrREeCV0Iecu87NUg" association="_ABcu4OunEeCvI8CAYKnAQQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ABcu4uunEeCvI8CAYKnAQQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ABcu4-unEeCvI8CAYKnAQQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+    </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_exG-gObjEeC8c5sMDCZPLQ" name="usuarios" clientDependency="_P-9jYObkEeC8c5sMDCZPLQ _q-04kObjEeC8c5sMDCZPLQ">
       <packagedElement xmi:type="uml:Dependency" xmi:id="_P-9jYObkEeC8c5sMDCZPLQ" name="" visibility="package" supplier="_VXMo0ObjEeC8c5sMDCZPLQ" client="_exG-gObjEeC8c5sMDCZPLQ"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_o37sEOuaEeCvI8CAYKnAQQ" name="UsuarioRegistrado">
+        <ownedAttribute xmi:id="_xX_ooOuaEeCvI8CAYKnAQQ" name="id" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_D3IdcOubEeCvI8CAYKnAQQ" name="username" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_JHIXcOubEeCvI8CAYKnAQQ" name="contraseña" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_SZALcOubEeCvI8CAYKnAQQ" name="tipo" visibility="private"/>
+        <ownedAttribute xmi:id="_UyBRQOubEeCvI8CAYKnAQQ" name="nombre" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_cZUZ0OubEeCvI8CAYKnAQQ" name="telefono" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_kcQ8kOubEeCvI8CAYKnAQQ" name="email" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_r7_6AOuaEeCvI8CAYKnAQQ" name="Operation0"/>
+        <ownedOperation xmi:id="_RtXPoOuqEeCvI8CAYKnAQQ" name="autenticar"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_1DplkOubEeCvI8CAYKnAQQ" name="Alumno">
+        <generalization xmi:id="_zqryEOucEeCvI8CAYKnAQQ" general="_o37sEOuaEeCvI8CAYKnAQQ"/>
+        <ownedAttribute xmi:id="_-Lpr4OubEeCvI8CAYKnAQQ" name="carrera" visibility="private"/>
+        <ownedAttribute xmi:id="_Eefi8OucEeCvI8CAYKnAQQ" name="porcentaje" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_OQ8UcOucEeCvI8CAYKnAQQ" name="estado" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_64mxUOucEeCvI8CAYKnAQQ" name="Admin">
+        <generalization xmi:id="_WWJEgOudEeCvI8CAYKnAQQ" general="_o37sEOuaEeCvI8CAYKnAQQ"/>
+        <ownedOperation xmi:id="_BhJLkOudEeCvI8CAYKnAQQ" name="aceptaResponsable"/>
+        <ownedOperation xmi:id="_Lmx-0OudEeCvI8CAYKnAQQ" name="actualizaEstadoAlumno"/>
+        <ownedOperation xmi:id="_RfEA0OudEeCvI8CAYKnAQQ" name="autorizarAlumnoProyecto"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_hOcDwOudEeCvI8CAYKnAQQ" name="Responsable" clientDependency="_uQ10AOumEeCvI8CAYKnAQQ">
+        <generalization xmi:id="_8tFUwOueEeCvI8CAYKnAQQ" general="_o37sEOuaEeCvI8CAYKnAQQ"/>
+        <ownedAttribute xmi:id="_c_rH0OueEeCvI8CAYKnAQQ" name="descripcion" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_kRw1YOueEeCvI8CAYKnAQQ" name="sitioweb" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ps62gOueEeCvI8CAYKnAQQ" name="estado" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_wST2IOueEeCvI8CAYKnAQQ" name="aceptaAlumnoProyecto"/>
+        <ownedOperation xmi:id="_yXmHoOueEeCvI8CAYKnAQQ" name="registrarse"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_uQ10AOumEeCvI8CAYKnAQQ" name="Dependency0" supplier="_hH_-QOrREeCV0Iecu87NUg" client="_hOcDwOudEeCvI8CAYKnAQQ"/>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_g_FEEOX1EeCIfY0ElZxBaw" name="Almacenamiento">
@@ -74,8 +236,9 @@ Servidores operando:
     </ownedComment>
     <packagedElement xmi:type="uml:Package" xmi:id="_wY0RgebiEeC8c5sMDCZPLQ" name="BD"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Node" xmi:id="_DXQkkOb7EeCgcebNRLanvA" name="Cliente" clientDependency="_2PTaYOb7EeCgcebNRLanvA">
+  <packagedElement xmi:type="uml:Node" xmi:id="_DXQkkOb7EeCgcebNRLanvA" name="Cliente" clientDependency="_2PTaYOb7EeCgcebNRLanvA _kLgEEOuYEeCvI8CAYKnAQQ">
     <deployment xmi:id="_2PTaYOb7EeCgcebNRLanvA" name="HTTP" supplier="_UL_tEOb7EeCgcebNRLanvA" client="_DXQkkOb7EeCgcebNRLanvA"/>
+    <deployment xmi:id="_kLgEEOuYEeCvI8CAYKnAQQ" name="HTTP" supplier="_UL_tEOb7EeCgcebNRLanvA" client="_DXQkkOb7EeCgcebNRLanvA"/>
     <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_WvbLwOb-EeCgcebNRLanvA" name=""/>
   </packagedElement>
   <packagedElement xmi:type="uml:Node" xmi:id="_UL_tEOb7EeCgcebNRLanvA" name="Servidor" clientDependency="_rz_SEOb7EeCgcebNRLanvA"/>

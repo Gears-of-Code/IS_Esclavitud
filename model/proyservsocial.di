@@ -13,12 +13,36 @@
     <availablePage>
       <emfPageIdentifier href="proyservsocial.notation#_f-2vwOb-EeCgcebNRLanvA"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="proyservsocial.notation#_LP6GEOrQEeCV0Iecu87NUg"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="proyservsocial.notation#_s-jK8OrQEeCV0Iecu87NUg"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="proyservsocial.notation#_w-GJsOrQEeCV0Iecu87NUg"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="proyservsocial.notation#_Eym2AOrREeCV0Iecu87NUg"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="proyservsocial.notation#_XWaDIOunEeCvI8CAYKnAQQ"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
       <children xsi:type="di:TabFolder">
         <children>
-          <emfPageIdentifier href="proyservsocial.notation#_kmvjwOX0EeCIfY0ElZxBaw"/>
+          <emfPageIdentifier href="proyservsocial.notation#_Eym2AOrREeCV0Iecu87NUg"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="proyservsocial.notation#_w-GJsOrQEeCV0Iecu87NUg"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="proyservsocial.notation#_s-jK8OrQEeCV0Iecu87NUg"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="proyservsocial.notation#_XWaDIOunEeCvI8CAYKnAQQ"/>
         </children>
       </children>
     </windows>
