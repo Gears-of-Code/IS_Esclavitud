@@ -2283,10 +2283,10 @@
               <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_x6rdMe2CEeCADMT9KebvXw" key="QualifiedNameDepth" value="1000"/>
             </eAnnotations>
             <element xmi:type="uml:ActionExecutionSpecification" href="proyservsocial.uml#_x4cBgO2CEeCADMT9KebvXw"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_x6l9oe2CEeCADMT9KebvXw" x="49" y="53" width="16" height="73"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_x6l9oe2CEeCADMT9KebvXw" x="53" y="53" width="16" height="73"/>
           </children>
           <element xmi:type="uml:Lifeline" href="proyservsocial.uml#_rLDLEOyTEeCADMT9KebvXw"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rMmDMeyTEeCADMT9KebvXw" x="225" y="71" width="114" height="529"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rMmDMeyTEeCADMT9KebvXw" x="225" y="71" width="121" height="529"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_341FQOyTEeCADMT9KebvXw" type="3001" fontName="Sans" fontHeight="10" lineColor="0">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_342TYOyTEeCADMT9KebvXw" source="ShadowFigure">
@@ -2377,10 +2377,10 @@
               <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9yrJAO39EeCeyJPnjR_skA" key="QualifiedNameDepth" value="1000"/>
             </eAnnotations>
             <element xmi:type="uml:ActionExecutionSpecification" href="proyservsocial.uml#_9uIAMO39EeCeyJPnjR_skA"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9ym3ke39EeCeyJPnjR_skA" x="42" y="173" width="16" height="99"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9ym3ke39EeCeyJPnjR_skA" x="45" y="173" width="16" height="99"/>
           </children>
           <element xmi:type="uml:Lifeline" href="proyservsocial.uml#_Oxl9sO39EeCeyJPnjR_skA"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_O2V60e39EeCeyJPnjR_skA" x="390" y="71" height="529"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_O2V60e39EeCeyJPnjR_skA" x="390" y="71" width="106" height="529"/>
         </children>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iQNMeuySEeCADMT9KebvXw"/>
       </children>
