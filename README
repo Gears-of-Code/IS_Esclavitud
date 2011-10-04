@@ -1,0 +1,24 @@
+Proyecto Servicio Social
+Ingenieria de Software
+--------------------------
+
+Estructura de Directorios:
+
+model - diagramas uml
+META-INF - configuración de herramienta de desarrollo
+IS_GOC-* - archivos para formateo y estilo del codigo
+pom.xml - confirguracion de maven
+src - solo source code
+    |-src/main - codigo fuente principal
+    |-src/test - codigo de pruebas
+target - se realiza compilacion, almacena javadoc y algunos otros contenidos.
+plugin.* - configuracion de herramientas de desarrollo
+build.properties - configuracion de herramientas de desarrollo
+-------------------------------------------------------------
+
+Requisitos:
+
+Programación en Java
+Base de Datos MySQL
+Servidores Tomcat y Apache
+--------------------------------------------------------------
