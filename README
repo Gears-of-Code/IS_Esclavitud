@@ -2,23 +2,39 @@ Proyecto Servicio Social
 Ingenieria de Software
 --------------------------
 
-Estructura de Directorios:
-
-model - diagramas uml
-META-INF - configuración de herramienta de desarrollo
-IS_GOC-* - archivos para formateo y estilo del codigo
-pom.xml - confirguracion de maven
-src - solo source code
-    |-src/main - codigo fuente principal
-    |-src/test - codigo de pruebas
-target - se realiza compilacion, almacena javadoc y algunos otros contenidos.
-plugin.* - configuracion de herramientas de desarrollo
-build.properties - configuracion de herramientas de desarrollo
--------------------------------------------------------------
-
 Requisitos:
 
 Programación en Java
 Base de Datos MySQL
 Servidores Tomcat y Apache
 --------------------------------------------------------------
+
+Estructura de Directorios:
+
+IS_Esclavitud
+|-- build.properties - Configuración de herramienta de desarrollo.
+|-- IS_GOc-CodeStyle.xml - Archivo de reglas de estilo del código.
+|-- IS_GOC-Format.xml - Archivo para formateo del código.
+|-- META-INF
+|   `-- MANIFEST.MF - Configuración de herramienta de desarrollo.
+|
+|-- model
+|   |-- proyservsocial.di - Archivo gráfico del modelo UML.
+|   |-- proyservsocial.ecore - Archivo de información para ecore.
+|   |-- proyservsocial.genmodel - Archivo de información para generar el código.
+|   |-- proyservsocial.notation - Notación y referencias del modelo UML.
+|   `-- proyservsocial.uml - Archivo de información del modelo UML.
+|
+|-- plugin.properties - Configuración de herramienta de desarrollo.
+|-- plugin.xml - Configuración de herramienta de desarrollo.
+|-- pom.xml - Configuración de entorno de desarrollo, dependecias y compilación.
+|-- README
+|-- src
+|   |-- main - Almacen de código fuente principal.
+|   `-- test - Almacen de código de pruebas.
+|
+`-- target
+    |-- classes - Area de compilación y ejecución de código principal.
+    `-- test-classes - Area de compilación y ejecución de casos de prueba.
+
+22 directories, 20 files
