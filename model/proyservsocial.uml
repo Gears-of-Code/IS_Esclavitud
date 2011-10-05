@@ -157,6 +157,10 @@ Servidores operando:
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ABUzEeunEeCvI8CAYKnAQQ" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ABUzEuunEeCvI8CAYKnAQQ" value="1"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_G9_lAO7uEeCD8pj1gUFxkg" name="alumno" type="_1DplkOubEeCvI8CAYKnAQQ" association="_G-CoUO7uEeCD8pj1gUFxkg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_G9_lAe7uEeCD8pj1gUFxkg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_G9_lAu7uEeCD8pj1gUFxkg" value="1"/>
+        </ownedAttribute>
         <ownedOperation xmi:id="_jLZfwOrZEeCV0Iecu87NUg" name="verProyectos"/>
         <ownedOperation xmi:id="_ojmTgOrZEeCV0Iecu87NUg" name="propProyectos"/>
         <ownedOperation xmi:id="_tL-M0OrZEeCV0Iecu87NUg" name="autorizarProyecto"/>
@@ -169,6 +173,12 @@ Servidores operando:
         <ownedEnd xmi:id="_ABcu4eunEeCvI8CAYKnAQQ" name="proyecto" type="_hH_-QOrREeCV0Iecu87NUg" association="_ABcu4OunEeCvI8CAYKnAQQ">
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ABcu4uunEeCvI8CAYKnAQQ" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ABcu4-unEeCvI8CAYKnAQQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_G-CoUO7uEeCD8pj1gUFxkg" name="proyecto_alumno_1" memberEnd="_G-CoUe7uEeCD8pj1gUFxkg _G9_lAO7uEeCD8pj1gUFxkg">
+        <ownedEnd xmi:id="_G-CoUe7uEeCD8pj1gUFxkg" name="proyecto" type="_hH_-QOrREeCV0Iecu87NUg" association="_G-CoUO7uEeCD8pj1gUFxkg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_G-CoUu7uEeCD8pj1gUFxkg" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_G-CoU-7uEeCD8pj1gUFxkg" value="1"/>
         </ownedEnd>
       </packagedElement>
     </packagedElement>
@@ -194,10 +204,14 @@ Servidores operando:
         <ownedAttribute xmi:id="_kcQ8kOubEeCvI8CAYKnAQQ" name="email" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_PL-IgO7tEeCD8pj1gUFxkg" name="inisio de Sesion" type="_FTzmAO7sEeCD8pj1gUFxkg" association="_PMH5gO7tEeCD8pj1gUFxkg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PL-Ige7tEeCD8pj1gUFxkg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PL-Igu7tEeCD8pj1gUFxkg" value="1"/>
+        </ownedAttribute>
         <ownedOperation xmi:id="_r7_6AOuaEeCvI8CAYKnAQQ" name="Operation0"/>
         <ownedOperation xmi:id="_RtXPoOuqEeCvI8CAYKnAQQ" name="autenticar"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_1DplkOubEeCvI8CAYKnAQQ" name="Alumno">
+      <packagedElement xmi:type="uml:Class" xmi:id="_1DplkOubEeCvI8CAYKnAQQ" name="Alumno" clientDependency="_KOfh4O7tEeCD8pj1gUFxkg">
         <generalization xmi:id="_zqryEOucEeCvI8CAYKnAQQ" general="_o37sEOuaEeCvI8CAYKnAQQ"/>
         <ownedAttribute xmi:id="_-Lpr4OubEeCvI8CAYKnAQQ" name="carrera" visibility="private"/>
         <ownedAttribute xmi:id="_Eefi8OucEeCvI8CAYKnAQQ" name="porcentaje" visibility="private">
@@ -206,14 +220,18 @@ Servidores operando:
         <ownedAttribute xmi:id="_OQ8UcOucEeCvI8CAYKnAQQ" name="estado" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="___JjkO7tEeCD8pj1gUFxkg" name="proyecto" type="_hH_-QOrREeCV0Iecu87NUg" association="___Mm4O7tEeCD8pj1gUFxkg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="___Jjke7tEeCD8pj1gUFxkg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="___Jjku7tEeCD8pj1gUFxkg" value="1"/>
+        </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_64mxUOucEeCvI8CAYKnAQQ" name="Admin">
+      <packagedElement xmi:type="uml:Class" xmi:id="_64mxUOucEeCvI8CAYKnAQQ" name="Admin" clientDependency="_-OX-8O7sEeCD8pj1gUFxkg _aPGM0O7vEeCD8pj1gUFxkg _dC6_UO7vEeCD8pj1gUFxkg">
         <generalization xmi:id="_WWJEgOudEeCvI8CAYKnAQQ" general="_o37sEOuaEeCvI8CAYKnAQQ"/>
         <ownedOperation xmi:id="_BhJLkOudEeCvI8CAYKnAQQ" name="aceptaResponsable"/>
         <ownedOperation xmi:id="_Lmx-0OudEeCvI8CAYKnAQQ" name="actualizaEstadoAlumno"/>
         <ownedOperation xmi:id="_RfEA0OudEeCvI8CAYKnAQQ" name="autorizarAlumnoProyecto"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_hOcDwOudEeCvI8CAYKnAQQ" name="Responsable" clientDependency="_uQ10AOumEeCvI8CAYKnAQQ">
+      <packagedElement xmi:type="uml:Class" xmi:id="_hOcDwOudEeCvI8CAYKnAQQ" name="Responsable" clientDependency="_uQ10AOumEeCvI8CAYKnAQQ _BK3lQO7tEeCD8pj1gUFxkg _Tn9gwO7vEeCD8pj1gUFxkg">
         <generalization xmi:id="_8tFUwOueEeCvI8CAYKnAQQ" general="_o37sEOuaEeCvI8CAYKnAQQ"/>
         <ownedAttribute xmi:id="_c_rH0OueEeCvI8CAYKnAQQ" name="descripcion" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
@@ -224,10 +242,38 @@ Servidores operando:
         <ownedAttribute xmi:id="_ps62gOueEeCvI8CAYKnAQQ" name="estado" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_BIq68O7vEeCD8pj1gUFxkg" name="proyecto" type="_hH_-QOrREeCV0Iecu87NUg" association="_BIt-QO7vEeCD8pj1gUFxkg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BIq68e7vEeCD8pj1gUFxkg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BIq68u7vEeCD8pj1gUFxkg" value="1"/>
+        </ownedAttribute>
         <ownedOperation xmi:id="_wST2IOueEeCvI8CAYKnAQQ" name="aceptaAlumnoProyecto"/>
         <ownedOperation xmi:id="_yXmHoOueEeCvI8CAYKnAQQ" name="registrarse"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_uQ10AOumEeCvI8CAYKnAQQ" name="Dependency0" supplier="_hH_-QOrREeCV0Iecu87NUg" client="_hOcDwOudEeCvI8CAYKnAQQ"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_-OX-8O7sEeCD8pj1gUFxkg" name="Dependency1" supplier="_o37sEOuaEeCvI8CAYKnAQQ" client="_64mxUOucEeCvI8CAYKnAQQ"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_BK3lQO7tEeCD8pj1gUFxkg" name="Dependency2" supplier="_o37sEOuaEeCvI8CAYKnAQQ" client="_hOcDwOudEeCvI8CAYKnAQQ"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_KOfh4O7tEeCD8pj1gUFxkg" name="Dependency3" supplier="_o37sEOuaEeCvI8CAYKnAQQ" client="_1DplkOubEeCvI8CAYKnAQQ"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_PMH5gO7tEeCD8pj1gUFxkg" name="usuarioRegistrado_inisio de Sesion_0" memberEnd="_PMH5ge7tEeCD8pj1gUFxkg _PL-IgO7tEeCD8pj1gUFxkg">
+        <ownedEnd xmi:id="_PMH5ge7tEeCD8pj1gUFxkg" name="usuarioRegistrado" type="_o37sEOuaEeCvI8CAYKnAQQ" aggregation="shared" association="_PMH5gO7tEeCD8pj1gUFxkg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PMH5gu7tEeCD8pj1gUFxkg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PMH5g-7tEeCD8pj1gUFxkg" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="___Mm4O7tEeCD8pj1gUFxkg" name="alumno_proyecto_0" memberEnd="___Mm4e7tEeCD8pj1gUFxkg ___JjkO7tEeCD8pj1gUFxkg">
+        <ownedEnd xmi:id="___Mm4e7tEeCD8pj1gUFxkg" name="alumno" type="_1DplkOubEeCvI8CAYKnAQQ" association="___Mm4O7tEeCD8pj1gUFxkg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="___Mm4u7tEeCD8pj1gUFxkg" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="___Mm4-7tEeCD8pj1gUFxkg" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_BIt-QO7vEeCD8pj1gUFxkg" name="responsable_proyecto_0" memberEnd="_BIt-Qe7vEeCD8pj1gUFxkg _BIq68O7vEeCD8pj1gUFxkg">
+        <ownedEnd xmi:id="_BIt-Qe7vEeCD8pj1gUFxkg" name="responsable" type="_hOcDwOudEeCvI8CAYKnAQQ" association="_BIt-QO7vEeCD8pj1gUFxkg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BIt-Qu7vEeCD8pj1gUFxkg" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BIt-Q-7vEeCD8pj1gUFxkg" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_Tn9gwO7vEeCD8pj1gUFxkg" name="Usage0" supplier="_1DplkOubEeCvI8CAYKnAQQ" client="_hOcDwOudEeCvI8CAYKnAQQ"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_aPGM0O7vEeCD8pj1gUFxkg" name="Usage1" supplier="_1DplkOubEeCvI8CAYKnAQQ" client="_64mxUOucEeCvI8CAYKnAQQ"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_dC6_UO7vEeCD8pj1gUFxkg" name="" supplier="_hOcDwOudEeCvI8CAYKnAQQ" client="_64mxUOucEeCvI8CAYKnAQQ"/>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_g_FEEOX1EeCIfY0ElZxBaw" name="Almacenamiento">
@@ -371,4 +417,9 @@ Servidores operando:
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HtESduhUEeC1IL5wA_SD1g" value="1"/>
     </ownedEnd>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_FTzmAO7sEeCD8pj1gUFxkg" name="Inisio de Sesion">
+    <ownedAttribute xmi:id="_NiwkcO7sEeCD8pj1gUFxkg" name="Usuario"/>
+    <ownedOperation xmi:id="_QUivkO7sEeCD8pj1gUFxkg" name="Autorizar"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_BmGIsO7tEeCD8pj1gUFxkg"/>
 </uml:Model>
