@@ -21,8 +21,8 @@ Servidores operando:
   </packageImport>
   <packagedElement xmi:type="uml:Actor" xmi:id="_sC7BcOX0EeCIfY0ElZxBaw" name="Usuario Registrado"/>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_30CfEOX0EeCIfY0ElZxBaw" name="Entrar al Sistema" subject="_j_kAUOyJEeCADMT9KebvXw _8pvioO8cEeC8jJQdBE_o4A"/>
-  <packagedElement xmi:type="uml:UseCase" xmi:id="_7T0_sOX0EeCIfY0ElZxBaw" name="Salir del Sistema"/>
-  <packagedElement xmi:type="uml:UseCase" xmi:id="__2Pa8OX0EeCIfY0ElZxBaw" name="Ver Proyectos"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_7T0_sOX0EeCIfY0ElZxBaw" name="Salir del Sistema" subject="_S9a14O9mEeC8jJQdBE_o4A _eeqrgO9mEeC8jJQdBE_o4A"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="__2Pa8OX0EeCIfY0ElZxBaw" name="Ver Proyectos" subject="_RJyKgO9lEeC8jJQdBE_o4A _ea7QcO9lEeC8jJQdBE_o4A"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_Hh0mkOX1EeCIfY0ElZxBaw" name="A_usuario registrado_entrar al sistema" memberEnd="_Hh0mkeX1EeCIfY0ElZxBaw _Hh0mlOX1EeCIfY0ElZxBaw">
     <ownedEnd xmi:id="_Hh0mkeX1EeCIfY0ElZxBaw" name="usuario registrado" type="_sC7BcOX0EeCIfY0ElZxBaw" association="_Hh0mkOX1EeCIfY0ElZxBaw">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Hh0mkuX1EeCIfY0ElZxBaw" value="1"/>
@@ -329,7 +329,7 @@ Servidores operando:
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JRgypuhSEeC1IL5wA_SD1g" value="1"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:UseCase" xmi:id="_UnOGoOhSEeC1IL5wA_SD1g" name="Consultar Mis Proyectos"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_UnOGoOhSEeC1IL5wA_SD1g" name="Consultar Mis Proyectos" subject="_n9RJYO9lEeC8jJQdBE_o4A _xys9cO9lEeC8jJQdBE_o4A"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_Z3vlEOhSEeC1IL5wA_SD1g" name="A_alumno_consultar mis proyectos" memberEnd="_Z3vlEehSEeC1IL5wA_SD1g _Z3vlFOhSEeC1IL5wA_SD1g">
     <ownedEnd xmi:id="_Z3vlEehSEeC1IL5wA_SD1g" name="alumno" type="_3vXxkOhREeC1IL5wA_SD1g" association="_Z3vlEOhSEeC1IL5wA_SD1g">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Z3vlEuhSEeC1IL5wA_SD1g" value="1"/>
@@ -354,7 +354,7 @@ Servidores operando:
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_19JwkOhSEeC1IL5wA_SD1g" name="Aceptar Alumno" subject="_fgbMcOySEeCADMT9KebvXw _O7fbsO8dEeC8jJQdBE_o4A"/>
-  <packagedElement xmi:type="uml:UseCase" xmi:id="_4CH5AOhSEeC1IL5wA_SD1g" name="Proponer Proyecto" subject="_9YcRIO8bEeC8jJQdBE_o4A _GgjFIO8cEeC8jJQdBE_o4A"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_4CH5AOhSEeC1IL5wA_SD1g" name="Proponer Proyecto" subject="_9YcRIO8bEeC8jJQdBE_o4A _GgjFIO8cEeC8jJQdBE_o4A _dsjkAO9kEeC8jJQdBE_o4A _pWvTMO9kEeC8jJQdBE_o4A"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_5qryQOhSEeC1IL5wA_SD1g" name="A_responsable_aceptar alumno" memberEnd="_5qryQehSEeC1IL5wA_SD1g _5qryROhSEeC1IL5wA_SD1g">
     <ownedEnd xmi:id="_5qryQehSEeC1IL5wA_SD1g" name="responsable" type="_rTRAwOhSEeC1IL5wA_SD1g" association="_5qryQOhSEeC1IL5wA_SD1g">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5qryQuhSEeC1IL5wA_SD1g" value="1"/>
@@ -400,8 +400,8 @@ Servidores operando:
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_wfxFYOhTEeC1IL5wA_SD1g" name="Autorizar Alumno en Proyecto" subject="_EXPAgO8iEeC8jJQdBE_o4A _RamwMO8iEeC8jJQdBE_o4A"/>
-  <packagedElement xmi:type="uml:UseCase" xmi:id="_6qdXwOhTEeC1IL5wA_SD1g" name="Autorizar Responsable"/>
-  <packagedElement xmi:type="uml:UseCase" xmi:id="__x2vYOhTEeC1IL5wA_SD1g" name="Autorizar Proyecto"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_6qdXwOhTEeC1IL5wA_SD1g" name="Autorizar Responsable" subject="_zume4O9kEeC8jJQdBE_o4A _B9qloO9lEeC8jJQdBE_o4A"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="__x2vYOhTEeC1IL5wA_SD1g" name="Autorizar Proyecto" subject="_9JkIAO9lEeC8jJQdBE_o4A _IEdIQO9mEeC8jJQdBE_o4A"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_FChXwOhUEeC1IL5wA_SD1g" name="A_administrador_autorizar alumno en proyecto" memberEnd="_FChXwehUEeC1IL5wA_SD1g _FChXxOhUEeC1IL5wA_SD1g">
     <ownedEnd xmi:id="_FChXwehUEeC1IL5wA_SD1g" name="administrador" type="_j2pBsOhTEeC1IL5wA_SD1g" association="_FChXwOhUEeC1IL5wA_SD1g">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FChXwuhUEeC1IL5wA_SD1g" value="1"/>
@@ -587,11 +587,34 @@ Servidores operando:
     <packagedElement xmi:type="uml:Interaction" xmi:id="_5WzOYO8gEeC8jJQdBE_o4A" name="PostularseProyectoError" useCase="_FOS00OhSEeC1IL5wA_SD1g"/>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_QvcIwO8hEeC8jJQdBE_o4A" name="VerPerfilAlumnoAdmin" useCase="_pK2tUOhTEeC1IL5wA_SD1g"/>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_f9CUUO8hEeC8jJQdBE_o4A" name="VerPerfilAlumnoAdminError" useCase="_pK2tUOhTEeC1IL5wA_SD1g"/>
-    <packagedElement xmi:type="uml:Interaction" xmi:id="_wtBfsO8hEeC8jJQdBE_o4A" name="Registrarse"/>
-    <packagedElement xmi:type="uml:Interaction" xmi:id="_7codAO8hEeC8jJQdBE_o4A" name="RegistrarseError"/>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_wtBfsO8hEeC8jJQdBE_o4A" name="Registrarse" useCase="_zs_qcO9mEeC8jJQdBE_o4A"/>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_7codAO8hEeC8jJQdBE_o4A" name="RegistrarseError" useCase="_zs_qcO9mEeC8jJQdBE_o4A"/>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_EXPAgO8iEeC8jJQdBE_o4A" name="AutorizarAlumno" useCase="_wfxFYOhTEeC1IL5wA_SD1g"/>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_RamwMO8iEeC8jJQdBE_o4A" name="AutorizarAlumnoError" useCase="_wfxFYOhTEeC1IL5wA_SD1g"/>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_dc6rgO8iEeC8jJQdBE_o4A" name="VerPerfilResponsable" useCase="_meHFIOhREeC1IL5wA_SD1g"/>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_rh0wsO8iEeC8jJQdBE_o4A" name="VerPerfilResponsableError" useCase="_meHFIOhREeC1IL5wA_SD1g"/>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_dsjkAO9kEeC8jJQdBE_o4A" name="ProponerProyecto" useCase="_4CH5AOhSEeC1IL5wA_SD1g"/>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_pWvTMO9kEeC8jJQdBE_o4A" name="ProponerProyectoError" useCase="_4CH5AOhSEeC1IL5wA_SD1g"/>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_zume4O9kEeC8jJQdBE_o4A" name="AutorizarResponsable" useCase="_6qdXwOhTEeC1IL5wA_SD1g"/>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_B9qloO9lEeC8jJQdBE_o4A" name="AutorizarResponsableError" useCase="_6qdXwOhTEeC1IL5wA_SD1g"/>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_RJyKgO9lEeC8jJQdBE_o4A" name="VerProyectos" useCase="__2Pa8OX0EeCIfY0ElZxBaw"/>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_ea7QcO9lEeC8jJQdBE_o4A" name="VerProyectosError" useCase="__2Pa8OX0EeCIfY0ElZxBaw"/>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_n9RJYO9lEeC8jJQdBE_o4A" name="consultarProyecto" useCase="_UnOGoOhSEeC1IL5wA_SD1g"/>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_xys9cO9lEeC8jJQdBE_o4A" name="ConsultarProyectoError" useCase="_UnOGoOhSEeC1IL5wA_SD1g"/>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_9JkIAO9lEeC8jJQdBE_o4A" name="AutorizarProyecto" useCase="__x2vYOhTEeC1IL5wA_SD1g"/>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_IEdIQO9mEeC8jJQdBE_o4A" name="AutorizarProyectoError" useCase="__x2vYOhTEeC1IL5wA_SD1g"/>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_S9a14O9mEeC8jJQdBE_o4A" name="FinalizarSesion" useCase="_7T0_sOX0EeCIfY0ElZxBaw"/>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_eeqrgO9mEeC8jJQdBE_o4A" name="FinalizarSesionError" useCase="_7T0_sOX0EeCIfY0ElZxBaw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_zs_qcO9mEeC8jJQdBE_o4A" name="Registrarse" subject="_wtBfsO8hEeC8jJQdBE_o4A _7codAO8hEeC8jJQdBE_o4A"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_2cldMO9mEeC8jJQdBE_o4A" name="A_responsable_registrarse" memberEnd="_2cldMe9mEeC8jJQdBE_o4A _2cldNO9mEeC8jJQdBE_o4A">
+    <ownedEnd xmi:id="_2cldMe9mEeC8jJQdBE_o4A" name="responsable" type="_rTRAwOhSEeC1IL5wA_SD1g" association="_2cldMO9mEeC8jJQdBE_o4A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2cldMu9mEeC8jJQdBE_o4A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2cldM-9mEeC8jJQdBE_o4A" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_2cldNO9mEeC8jJQdBE_o4A" name="registrarse" type="_zs_qcO9mEeC8jJQdBE_o4A" association="_2cldMO9mEeC8jJQdBE_o4A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2cldNe9mEeC8jJQdBE_o4A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2cldNu9mEeC8jJQdBE_o4A" value="1"/>
+    </ownedEnd>
   </packagedElement>
 </uml:Model>
