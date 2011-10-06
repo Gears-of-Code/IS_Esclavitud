@@ -91,12 +91,8 @@
     <availablePage>
       <emfPageIdentifier href="proyservsocial.notation#_sB7uIO9kEeC8jJQdBE_o4A"/>
     </availablePage>
-    <availablePage>
-      <emfPageIdentifier href="proyservsocial.notation#_2EqXUO9kEeC8jJQdBE_o4A"/>
-    </availablePage>
-    <availablePage>
-      <emfPageIdentifier href="proyservsocial.notation#_EqkQwO9lEeC8jJQdBE_o4A"/>
-    </availablePage>
+    <availablePage/>
+    <availablePage/>
     <availablePage>
       <emfPageIdentifier href="proyservsocial.notation#_TH_joO9lEeC8jJQdBE_o4A"/>
     </availablePage>
@@ -126,7 +122,7 @@
     <windows>
       <children xsi:type="di:TabFolder">
         <children>
-          <emfPageIdentifier href="proyservsocial.notation#_Eym2AOrREeCV0Iecu87NUg"/>
+          <emfPageIdentifier href="proyservsocial.notation#_w-GJsOrQEeCV0Iecu87NUg"/>
         </children>
       </children>
     </windows>

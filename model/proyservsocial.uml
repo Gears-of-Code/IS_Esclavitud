@@ -150,14 +150,14 @@ Servidores operando:
         <ownedAttribute xmi:id="_VR5OwOrYEeCV0Iecu87NUg" name="direccion" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_gxcbQOrYEeCV0Iecu87NUg" name="carrera" visibility="private"/>
+        <ownedAttribute xmi:id="_gxcbQOrYEeCV0Iecu87NUg" name="carrera" visibility="private" type="_1dtocO_aEeC-6cWJ3qV7SA"/>
         <ownedAttribute xmi:id="_783qwOrYEeCV0Iecu87NUg" name="maxParticipante" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_YUQXEOrZEeCV0Iecu87NUg" name="descripcion" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_gLPhcOrZEeCV0Iecu87NUg" name="estado" visibility="private"/>
+        <ownedAttribute xmi:id="_gLPhcOrZEeCV0Iecu87NUg" name="estado" visibility="private" type="_o98foO_bEeC-6cWJ3qV7SA"/>
         <ownedAttribute xmi:id="_ABUzEOunEeCvI8CAYKnAQQ" name="alumno" type="_1DplkOubEeCvI8CAYKnAQQ" association="_ABcu4OunEeCvI8CAYKnAQQ">
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ABUzEeunEeCvI8CAYKnAQQ" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ABUzEuunEeCvI8CAYKnAQQ" value="1"/>
@@ -186,6 +186,21 @@ Servidores operando:
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RqsiA-8fEeC8jJQdBE_o4A" value="1"/>
         </ownedEnd>
       </packagedElement>
+      <packagedElement xmi:type="uml:Enumeration" xmi:id="_1dtocO_aEeC-6cWJ3qV7SA" name="carreraProyecto">
+        <ownedLiteral xmi:id="_DFCZwO_bEeC-6cWJ3qV7SA" name="Matematicas"/>
+        <ownedLiteral xmi:id="_E4IIAO_bEeC-6cWJ3qV7SA" name="Actuaria"/>
+        <ownedLiteral xmi:id="_J5ODUO_bEeC-6cWJ3qV7SA" name="Ciencias_Computacionales"/>
+        <ownedLiteral xmi:id="_MEoyAO_bEeC-6cWJ3qV7SA" name="Fisica"/>
+        <ownedLiteral xmi:id="_NRjREO_bEeC-6cWJ3qV7SA" name="Ciencias_de_la_Tierra"/>
+        <ownedLiteral xmi:id="_PBSJUO_bEeC-6cWJ3qV7SA" name="Ciencias_Ambientales"/>
+        <ownedLiteral xmi:id="_QfmhcO_bEeC-6cWJ3qV7SA" name="Biologia"/>
+        <ownedLiteral xmi:id="_Tyjf8O_bEeC-6cWJ3qV7SA" name="Manejo_Sustentable_de_Zonas_Costeras"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Enumeration" xmi:id="_o98foO_bEeC-6cWJ3qV7SA" name="estadoProyecto">
+        <ownedLiteral xmi:id="_rrec4O_bEeC-6cWJ3qV7SA" name="Aceptado"/>
+        <ownedLiteral xmi:id="_u2mVEO_bEeC-6cWJ3qV7SA" name="Rechazado"/>
+        <ownedLiteral xmi:id="_x0axEO_bEeC-6cWJ3qV7SA" name="En_Autorizacion"/>
+      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_exG-gObjEeC8c5sMDCZPLQ" name="usuarios" clientDependency="_P-9jYObkEeC8c5sMDCZPLQ _q-04kObjEeC8c5sMDCZPLQ">
       <packagedElement xmi:type="uml:Dependency" xmi:id="_P-9jYObkEeC8c5sMDCZPLQ" name="" visibility="package" supplier="_VXMo0ObjEeC8c5sMDCZPLQ" client="_exG-gObjEeC8c5sMDCZPLQ"/>
@@ -200,7 +215,7 @@ Servidores operando:
         <ownedAttribute xmi:id="_JHIXcOubEeCvI8CAYKnAQQ" name="contraseña" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_SZALcOubEeCvI8CAYKnAQQ" name="tipo" visibility="private"/>
+        <ownedAttribute xmi:id="_SZALcOubEeCvI8CAYKnAQQ" name="tipo" visibility="private" type="_CK_JIO_XEeC-6cWJ3qV7SA"/>
         <ownedAttribute xmi:id="_UyBRQOubEeCvI8CAYKnAQQ" name="nombre" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedAttribute>
@@ -210,21 +225,22 @@ Servidores operando:
         <ownedAttribute xmi:id="_kcQ8kOubEeCvI8CAYKnAQQ" name="email" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_3fr5gO_VEeC-6cWJ3qV7SA" name="sesion" type="_lqmNsO8ZEeC8jJQdBE_o4A" association="_3f0cYO_VEeC-6cWJ3qV7SA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3fr5ge_VEeC-6cWJ3qV7SA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3fr5gu_VEeC-6cWJ3qV7SA" value="1"/>
+        </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_1DplkOubEeCvI8CAYKnAQQ" name="Alumno" clientDependency="_owFwQO8fEeC8jJQdBE_o4A">
+      <packagedElement xmi:type="uml:Class" xmi:id="_1DplkOubEeCvI8CAYKnAQQ" name="Alumno">
         <generalization xmi:id="_zqryEOucEeCvI8CAYKnAQQ" general="_o37sEOuaEeCvI8CAYKnAQQ"/>
-        <generalization xmi:id="_OKXEQO8eEeC8jJQdBE_o4A" general="_o37sEOuaEeCvI8CAYKnAQQ"/>
-        <ownedAttribute xmi:id="_-Lpr4OubEeCvI8CAYKnAQQ" name="carrera" visibility="private"/>
+        <ownedAttribute xmi:id="_-Lpr4OubEeCvI8CAYKnAQQ" name="carrera" visibility="private" type="_jrnxwO_YEeC-6cWJ3qV7SA">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_L_rEYO_ZEeC-6cWJ3qV7SA" value=""/>
+        </ownedAttribute>
         <ownedAttribute xmi:id="_Eefi8OucEeCvI8CAYKnAQQ" name="porcentaje" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_OQ8UcOucEeCvI8CAYKnAQQ" name="estado" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Gt_XoO3REeCADMT9KebvXw" value="false"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="_1ziN4O8eEeC8jJQdBE_o4A" name="" type="_hH_-QOrREeCV0Iecu87NUg" association="_1zpioO8eEeC8jJQdBE_o4A">
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1ziN4e8eEeC8jJQdBE_o4A" value="1"/>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1ziN4u8eEeC8jJQdBE_o4A" value="1"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_64mxUOucEeCvI8CAYKnAQQ" name="Admin" clientDependency="_l4tv8O8eEeC8jJQdBE_o4A _xT1IYO8eEeC8jJQdBE_o4A">
@@ -257,12 +273,6 @@ Servidores operando:
       <packagedElement xmi:type="uml:Usage" xmi:id="_l4tv8O8eEeC8jJQdBE_o4A" name="" supplier="_hOcDwOudEeCvI8CAYKnAQQ" client="_64mxUOucEeCvI8CAYKnAQQ"/>
       <packagedElement xmi:type="uml:Usage" xmi:id="_u3N8AO8eEeC8jJQdBE_o4A" name="" supplier="_1DplkOubEeCvI8CAYKnAQQ" client="_hOcDwOudEeCvI8CAYKnAQQ"/>
       <packagedElement xmi:type="uml:Usage" xmi:id="_xT1IYO8eEeC8jJQdBE_o4A" name="Usage0" supplier="_1DplkOubEeCvI8CAYKnAQQ" client="_64mxUOucEeCvI8CAYKnAQQ"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="_1zpioO8eEeC8jJQdBE_o4A" name="" memberEnd="_1zpioe8eEeC8jJQdBE_o4A _1ziN4O8eEeC8jJQdBE_o4A">
-        <ownedEnd xmi:id="_1zpioe8eEeC8jJQdBE_o4A" name="" type="_1DplkOubEeCvI8CAYKnAQQ" association="_1zpioO8eEeC8jJQdBE_o4A">
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1zpiou8eEeC8jJQdBE_o4A" value="*"/>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1zpio-8eEeC8jJQdBE_o4A" value="1"/>
-        </ownedEnd>
-      </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_YpkYoO8fEeC8jJQdBE_o4A" name="responsable_proyecto_0" memberEnd="_YpkYoe8fEeC8jJQdBE_o4A _YpguQO8fEeC8jJQdBE_o4A">
         <ownedEnd xmi:id="_YpkYoe8fEeC8jJQdBE_o4A" name="responsable" type="_hOcDwOudEeCvI8CAYKnAQQ" association="_YpkYoO8fEeC8jJQdBE_o4A">
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YpkYou8fEeC8jJQdBE_o4A" value="*"/>
@@ -270,7 +280,27 @@ Servidores operando:
         </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_fuHZcO8fEeC8jJQdBE_o4A" name="Dependency1" supplier="_lqmNsO8ZEeC8jJQdBE_o4A" client="_o37sEOuaEeCvI8CAYKnAQQ"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_owFwQO8fEeC8jJQdBE_o4A" name="Abstraction0" supplier="_o37sEOuaEeCvI8CAYKnAQQ" client="_1DplkOubEeCvI8CAYKnAQQ"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_3f0cYO_VEeC-6cWJ3qV7SA" name="usuarioRegistrado_sesion_0" memberEnd="_3f0cYe_VEeC-6cWJ3qV7SA _3fr5gO_VEeC-6cWJ3qV7SA">
+        <ownedEnd xmi:id="_3f0cYe_VEeC-6cWJ3qV7SA" name="usuarioRegistrado" type="_o37sEOuaEeCvI8CAYKnAQQ" aggregation="shared" association="_3f0cYO_VEeC-6cWJ3qV7SA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3f0cYu_VEeC-6cWJ3qV7SA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3f0cY-_VEeC-6cWJ3qV7SA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Enumeration" xmi:id="_CK_JIO_XEeC-6cWJ3qV7SA" name="tipoUsuario">
+        <ownedLiteral xmi:id="_LCITgO_YEeC-6cWJ3qV7SA" name="Administrador"/>
+        <ownedLiteral xmi:id="_UvOq8O_YEeC-6cWJ3qV7SA" name="Responsable"/>
+        <ownedLiteral xmi:id="_WYe9MO_XEeC-6cWJ3qV7SA" name="Alumno"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Enumeration" xmi:id="_jrnxwO_YEeC-6cWJ3qV7SA" name="carreraAlumno">
+        <ownedLiteral xmi:id="_nO0LsO_YEeC-6cWJ3qV7SA" name="Matematicas"/>
+        <ownedLiteral xmi:id="_9hMooO_YEeC-6cWJ3qV7SA" name="Actuaria"/>
+        <ownedLiteral xmi:id="_NftTwO_ZEeC-6cWJ3qV7SA" name="Ciencias_Computacionales"/>
+        <ownedLiteral xmi:id="_h4M24O_ZEeC-6cWJ3qV7SA" name="Fisica"/>
+        <ownedLiteral xmi:id="_lwNqQO_ZEeC-6cWJ3qV7SA" name="Biologia"/>
+        <ownedLiteral xmi:id="_u7a1kO_ZEeC-6cWJ3qV7SA" name="Ciencias_de_la_Tierra"/>
+        <ownedLiteral xmi:id="_195Z0O_ZEeC-6cWJ3qV7SA" name="Manejo_Sustentable_de_Zonas_Costeras"/>
+        <ownedLiteral xmi:id="_V_siYO_aEeC-6cWJ3qV7SA" name="Ciencias_Ambientales"/>
+      </packagedElement>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_g_FEEOX1EeCIfY0ElZxBaw" name="Almacenamiento">
@@ -353,7 +383,7 @@ Servidores operando:
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0HeBVuhSEeC1IL5wA_SD1g" value="1"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:UseCase" xmi:id="_19JwkOhSEeC1IL5wA_SD1g" name="Aceptar Alumno" subject="_fgbMcOySEeCADMT9KebvXw _O7fbsO8dEeC8jJQdBE_o4A"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_19JwkOhSEeC1IL5wA_SD1g" name="Aceptar Alumno" subject="_O7fbsO8dEeC8jJQdBE_o4A"/>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_4CH5AOhSEeC1IL5wA_SD1g" name="Proponer Proyecto" subject="_9YcRIO8bEeC8jJQdBE_o4A _GgjFIO8cEeC8jJQdBE_o4A _dsjkAO9kEeC8jJQdBE_o4A _pWvTMO9kEeC8jJQdBE_o4A"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_5qryQOhSEeC1IL5wA_SD1g" name="A_responsable_aceptar alumno" memberEnd="_5qryQehSEeC1IL5wA_SD1g _5qryROhSEeC1IL5wA_SD1g">
     <ownedEnd xmi:id="_5qryQehSEeC1IL5wA_SD1g" name="responsable" type="_rTRAwOhSEeC1IL5wA_SD1g" association="_5qryQOhSEeC1IL5wA_SD1g">
@@ -400,7 +430,7 @@ Servidores operando:
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_wfxFYOhTEeC1IL5wA_SD1g" name="Autorizar Alumno en Proyecto" subject="_EXPAgO8iEeC8jJQdBE_o4A _RamwMO8iEeC8jJQdBE_o4A"/>
-  <packagedElement xmi:type="uml:UseCase" xmi:id="_6qdXwOhTEeC1IL5wA_SD1g" name="Autorizar Responsable" subject="_zume4O9kEeC8jJQdBE_o4A _B9qloO9lEeC8jJQdBE_o4A"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_6qdXwOhTEeC1IL5wA_SD1g" name="Autorizar Responsable"/>
   <packagedElement xmi:type="uml:UseCase" xmi:id="__x2vYOhTEeC1IL5wA_SD1g" name="Autorizar Proyecto" subject="_9JkIAO9lEeC8jJQdBE_o4A _IEdIQO9mEeC8jJQdBE_o4A"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_FChXwOhUEeC1IL5wA_SD1g" name="A_administrador_autorizar alumno en proyecto" memberEnd="_FChXwehUEeC1IL5wA_SD1g _FChXxOhUEeC1IL5wA_SD1g">
     <ownedEnd xmi:id="_FChXwehUEeC1IL5wA_SD1g" name="administrador" type="_j2pBsOhTEeC1IL5wA_SD1g" association="_FChXwOhUEeC1IL5wA_SD1g">
@@ -505,7 +535,7 @@ Servidores operando:
     <packagedElement xmi:type="uml:ReceiveOperationEvent" xmi:id="_6ZOs0OyQEeCADMT9KebvXw" name="ReceiveOperationEvent6"/>
     <packagedElement xmi:type="uml:SendOperationEvent" xmi:id="_RdX94OyREeCADMT9KebvXw" name="SendOperationEvent7"/>
     <packagedElement xmi:type="uml:ReceiveOperationEvent" xmi:id="_Rdc2YOyREeCADMT9KebvXw" name="ReceiveOperationEvent7"/>
-    <packagedElement xmi:type="uml:Interaction" xmi:id="_fgbMcOySEeCADMT9KebvXw" name="AceptarAlumno" useCase="_19JwkOhSEeC1IL5wA_SD1g">
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_fgbMcOySEeCADMT9KebvXw" name="AceptarAlumno">
       <lifeline xmi:id="_QvLwQOyTEeCADMT9KebvXw" name="Responsable-Actor" represents="_0HeBUehSEeC1IL5wA_SD1g" coveredBy="_qJagUO2CEeCADMT9KebvXw _qJexwO2CEeCADMT9KebvXw _qJeKsO2CEeCADMT9KebvXw _xnkT8O2CEeCADMT9KebvXw"/>
       <lifeline xmi:id="_rLDLEOyTEeCADMT9KebvXw" name="Mis Proyectos IH" coveredBy="_xnvTEO2CEeCADMT9KebvXw _x4XwEO2CEeCADMT9KebvXw _x4cBge2CEeCADMT9KebvXw _x4cBgO2CEeCADMT9KebvXw _e1JhUO2DEeCADMT9KebvXw _xJr2YO2IEeCADMT9KebvXw _xJ4qsO2IEeCADMT9KebvXw _xJ0ZQO2IEeCADMT9KebvXw"/>
       <lifeline xmi:id="_33YTwOyTEeCADMT9KebvXw" name="Responsable" coveredBy="_e1VukO2DEeCADMT9KebvXw _fB6yAO2DEeCADMT9KebvXw _fCBfsO2DEeCADMT9KebvXw _fCA4oO2DEeCADMT9KebvXw _1U-u8O2EEeCADMT9KebvXw _55T1wO2EEeCADMT9KebvXw _55YHMe2EEeCADMT9KebvXw _55YHMO2EEeCADMT9KebvXw _mXQn4O2DEeCADMT9KebvXw _xYQQIO2DEeCADMT9KebvXw _LSXBQO3-EeCeyJPnjR_skA"/>
@@ -529,10 +559,10 @@ Servidores operando:
       <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_xJ0ZQO2IEeCADMT9KebvXw" name="ActionExecSpec4" covered="_rLDLEOyTEeCADMT9KebvXw" start="_xJr2YO2IEeCADMT9KebvXw" finish="_xJ4qsO2IEeCADMT9KebvXw"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_1U-u8O2EEeCADMT9KebvXw" name="Message0Send" covered="_33YTwOyTEeCADMT9KebvXw" event="_1U4oUO2EEeCADMT9KebvXw" message="_1UveYO2EEeCADMT9KebvXw"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_xJ4qsO2IEeCADMT9KebvXw" name="ActionExecSpec4Finish" covered="_rLDLEOyTEeCADMT9KebvXw" event="_xJoMAO2IEeCADMT9KebvXw" execution="_xJ0ZQO2IEeCADMT9KebvXw"/>
-      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_fCBfsO2DEeCADMT9KebvXw" name="ActionExecSpec1Finish" covered="_33YTwOyTEeCADMT9KebvXw" event="_fB480O2DEeCADMT9KebvXw" execution="_fCA4oO2DEeCADMT9KebvXw"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_1VJuEO2EEeCADMT9KebvXw" name="Message0Recv" covered="_Oxl9sO39EeCeyJPnjR_skA" event="_1VGqwO2EEeCADMT9KebvXw" message="_1UveYO2EEeCADMT9KebvXw"/>
-      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_55T1wO2EEeCADMT9KebvXw" name="ActionExecSpec3Start" covered="_33YTwOyTEeCADMT9KebvXw" event="_55I2oO2EEeCADMT9KebvXw" execution="_55YHMO2EEeCADMT9KebvXw"/>
+      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_fCBfsO2DEeCADMT9KebvXw" name="ActionExecSpec1Finish" covered="_33YTwOyTEeCADMT9KebvXw" event="_fB480O2DEeCADMT9KebvXw" execution="_fCA4oO2DEeCADMT9KebvXw"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_LSI-0O3-EeCeyJPnjR_skA" name="MessageSend3" covered="_Oxl9sO39EeCeyJPnjR_skA" event="_LR_04O3-EeCeyJPnjR_skA" message="_LR0OsO3-EeCeyJPnjR_skA"/>
+      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_55T1wO2EEeCADMT9KebvXw" name="ActionExecSpec3Start" covered="_33YTwOyTEeCADMT9KebvXw" event="_55I2oO2EEeCADMT9KebvXw" execution="_55YHMO2EEeCADMT9KebvXw"/>
       <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_55YHMO2EEeCADMT9KebvXw" name="ActionExecSpec3" covered="_33YTwOyTEeCADMT9KebvXw" start="_55T1wO2EEeCADMT9KebvXw" finish="_55YHMe2EEeCADMT9KebvXw"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_9uInQO39EeCeyJPnjR_skA" name="ActionExecSpec5Finish" covered="_Oxl9sO39EeCeyJPnjR_skA" event="_9t2TYO39EeCeyJPnjR_skA" execution="_9uIAMO39EeCeyJPnjR_skA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_LSXBQO3-EeCeyJPnjR_skA" name="MessageRecv3" covered="_33YTwOyTEeCADMT9KebvXw" event="_LSPsgO3-EeCeyJPnjR_skA" message="_LR0OsO3-EeCeyJPnjR_skA"/>
@@ -541,8 +571,8 @@ Servidores operando:
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_mkWBoO2DEeCADMT9KebvXw" name="ActionExecSpec2Start" covered="_i1TZgO2CEeCADMT9KebvXw" event="_mkSXQO2DEeCADMT9KebvXw" execution="_mkaTEO2DEeCADMT9KebvXw"/>
       <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_mkaTEO2DEeCADMT9KebvXw" name="ActionExecSpec2" covered="_i1TZgO2CEeCADMT9KebvXw" start="_mkWBoO2DEeCADMT9KebvXw" finish="_mka6IO2DEeCADMT9KebvXw"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_xYKwkO2DEeCADMT9KebvXw" name="MessageSend2" covered="_i1TZgO2CEeCADMT9KebvXw" event="_xYF4EO2DEeCADMT9KebvXw" message="_xX8HEO2DEeCADMT9KebvXw"/>
-      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_mka6IO2DEeCADMT9KebvXw" name="ActionExecSpec2Finish" covered="_i1TZgO2CEeCADMT9KebvXw" event="_mkUMcO2DEeCADMT9KebvXw" execution="_mkaTEO2DEeCADMT9KebvXw"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_xYQQIO2DEeCADMT9KebvXw" name="MessageRecv2" covered="_33YTwOyTEeCADMT9KebvXw" event="_xYNz4O2DEeCADMT9KebvXw" message="_xX8HEO2DEeCADMT9KebvXw"/>
+      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_mka6IO2DEeCADMT9KebvXw" name="ActionExecSpec2Finish" covered="_i1TZgO2CEeCADMT9KebvXw" event="_mkUMcO2DEeCADMT9KebvXw" execution="_mkaTEO2DEeCADMT9KebvXw"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_55YHMe2EEeCADMT9KebvXw" name="ActionExecSpec3Finish" covered="_33YTwOyTEeCADMT9KebvXw" event="_55NIEO2EEeCADMT9KebvXw" execution="_55YHMO2EEeCADMT9KebvXw"/>
       <message xmi:id="_xnW4kO2CEeCADMT9KebvXw" name="Selecciona Alumnos" receiveEvent="_xnvTEO2CEeCADMT9KebvXw" sendEvent="_xnkT8O2CEeCADMT9KebvXw"/>
       <message xmi:id="_e08tAO2DEeCADMT9KebvXw" name="seleccionaAlumno" receiveEvent="_e1VukO2DEeCADMT9KebvXw" sendEvent="_e1JhUO2DEeCADMT9KebvXw"/>
@@ -595,8 +625,6 @@ Servidores operando:
     <packagedElement xmi:type="uml:Interaction" xmi:id="_rh0wsO8iEeC8jJQdBE_o4A" name="VerPerfilResponsableError" useCase="_meHFIOhREeC1IL5wA_SD1g"/>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_dsjkAO9kEeC8jJQdBE_o4A" name="ProponerProyecto" useCase="_4CH5AOhSEeC1IL5wA_SD1g"/>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_pWvTMO9kEeC8jJQdBE_o4A" name="ProponerProyectoError" useCase="_4CH5AOhSEeC1IL5wA_SD1g"/>
-    <packagedElement xmi:type="uml:Interaction" xmi:id="_zume4O9kEeC8jJQdBE_o4A" name="AutorizarResponsable" useCase="_6qdXwOhTEeC1IL5wA_SD1g"/>
-    <packagedElement xmi:type="uml:Interaction" xmi:id="_B9qloO9lEeC8jJQdBE_o4A" name="AutorizarResponsableError" useCase="_6qdXwOhTEeC1IL5wA_SD1g"/>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_RJyKgO9lEeC8jJQdBE_o4A" name="VerProyectos" useCase="__2Pa8OX0EeCIfY0ElZxBaw"/>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_ea7QcO9lEeC8jJQdBE_o4A" name="VerProyectosError" useCase="__2Pa8OX0EeCIfY0ElZxBaw"/>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_n9RJYO9lEeC8jJQdBE_o4A" name="consultarProyecto" useCase="_UnOGoOhSEeC1IL5wA_SD1g"/>
