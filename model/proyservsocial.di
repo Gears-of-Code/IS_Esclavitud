@@ -120,16 +120,13 @@
     <availablePage>
       <emfPageIdentifier href="proyservsocial.notation#_onAkoPD_EeCUgtItc9pwcw"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="proyservsocial.notation#_WF3ycPEEEeCUgtItc9pwcw"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
       <children xsi:type="di:TabFolder">
-        <children>
-          <emfPageIdentifier href="proyservsocial.notation#_w-GJsOrQEeCV0Iecu87NUg"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="proyservsocial.notation#_Eym2AOrREeCV0Iecu87NUg"/>
-        </children>
         <children>
           <emfPageIdentifier href="proyservsocial.notation#_onAkoPD_EeCUgtItc9pwcw"/>
         </children>
