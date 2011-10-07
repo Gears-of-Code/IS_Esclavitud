@@ -646,11 +646,11 @@ Servidores operando:
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Interaction" xmi:id="_kgsPgPD_EeCUgtItc9pwcw" name="Finalizar Sesión: Usuario Registrado">
-    <lifeline xmi:id="_p9OJoPD_EeCUgtItc9pwcw" name="CualquierPantallaIH" coveredBy="_m4HkcPEAEeCUgtItc9pwcw _m4SjkPEAEeCUgtItc9pwcw _m4R8gPEAEeCUgtItc9pwcw _31r40PEAEeCUgtItc9pwcw _R8DkwPEBEeCUgtItc9pwcw _YlW0APEBEeCUgtItc9pwcw"/>
-    <lifeline xmi:id="_2X9zEPD_EeCUgtItc9pwcw" name="Sesion" coveredBy="_mB2DwPEAEeCUgtItc9pwcw _mB8KYfEAEeCUgtItc9pwcw _mB8KYPEAEeCUgtItc9pwcw _xqHHYPEAEeCUgtItc9pwcw _xqL_4fEAEeCUgtItc9pwcw _xqL_4PEAEeCUgtItc9pwcw _R8NVwPEBEeCUgtItc9pwcw _YldhsPEBEeCUgtItc9pwcw _dyQWsPEBEeCUgtItc9pwcw _tEgYwPEBEeCUgtItc9pwcw"/>
-    <lifeline xmi:id="_G3A_cPEAEeCUgtItc9pwcw" name="NotificacionIH" coveredBy="_oYfyEPEAEeCUgtItc9pwcw _xFpvcPEAEeCUgtItc9pwcw _xFun8PEAEeCUgtItc9pwcw _xFuA4PEAEeCUgtItc9pwcw _31zNkPEAEeCUgtItc9pwcw _dyXEYPEBEeCUgtItc9pwcw _tEnGcPEBEeCUgtItc9pwcw _MhXoQPECEeCUgtItc9pwcw"/>
+    <lifeline xmi:id="_p9OJoPD_EeCUgtItc9pwcw" name=":CualquierPantallaIH" coveredBy="_m4HkcPEAEeCUgtItc9pwcw _m4SjkPEAEeCUgtItc9pwcw _m4R8gPEAEeCUgtItc9pwcw _31r40PEAEeCUgtItc9pwcw _R8DkwPEBEeCUgtItc9pwcw _YlW0APEBEeCUgtItc9pwcw"/>
+    <lifeline xmi:id="_2X9zEPD_EeCUgtItc9pwcw" name=":Sesion" coveredBy="_mB2DwPEAEeCUgtItc9pwcw _mB8KYfEAEeCUgtItc9pwcw _mB8KYPEAEeCUgtItc9pwcw _xqHHYPEAEeCUgtItc9pwcw _xqL_4fEAEeCUgtItc9pwcw _xqL_4PEAEeCUgtItc9pwcw _R8NVwPEBEeCUgtItc9pwcw _YldhsPEBEeCUgtItc9pwcw _dyQWsPEBEeCUgtItc9pwcw _tEgYwPEBEeCUgtItc9pwcw"/>
+    <lifeline xmi:id="_G3A_cPEAEeCUgtItc9pwcw" name=":NotificacionIH" coveredBy="_oYfyEPEAEeCUgtItc9pwcw _xFpvcPEAEeCUgtItc9pwcw _xFun8PEAEeCUgtItc9pwcw _xFuA4PEAEeCUgtItc9pwcw _31zNkPEAEeCUgtItc9pwcw _dyXEYPEBEeCUgtItc9pwcw _tEnGcPEBEeCUgtItc9pwcw _MhXoQPECEeCUgtItc9pwcw"/>
     <lifeline xmi:id="_lGcygPEAEeCUgtItc9pwcw" name="Lifeline"/>
-    <lifeline xmi:id="_CAj78PECEeCUgtItc9pwcw" name="BienvenidaIH" coveredBy="_I6N7YPECEeCUgtItc9pwcw _I6Ta8fECEeCUgtItc9pwcw _I6Ta8PECEeCUgtItc9pwcw _MheV8PECEeCUgtItc9pwcw _4PsXcPEEEeCUgtItc9pwcw _4Px3APEEEeCUgtItc9pwcw _4PxP8PEEEeCUgtItc9pwcw"/>
+    <lifeline xmi:id="_CAj78PECEeCUgtItc9pwcw" name=":BienvenidaIH" coveredBy="_I6N7YPECEeCUgtItc9pwcw _I6Ta8fECEeCUgtItc9pwcw _I6Ta8PECEeCUgtItc9pwcw _MheV8PECEeCUgtItc9pwcw _4PsXcPEEEeCUgtItc9pwcw _4Px3APEEEeCUgtItc9pwcw _4PxP8PEEEeCUgtItc9pwcw"/>
     <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_I6N7YPECEeCUgtItc9pwcw" name="ActionExecSpec2Start" covered="_CAj78PECEeCUgtItc9pwcw" event="_I6Jp8PECEeCUgtItc9pwcw" execution="_I6Ta8PECEeCUgtItc9pwcw"/>
     <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_mB2DwPEAEeCUgtItc9pwcw" name="BehaviorExecSpecStart" covered="_2X9zEPD_EeCUgtItc9pwcw" event="_mBwkMPEAEeCUgtItc9pwcw" execution="_mB8KYPEAEeCUgtItc9pwcw"/>
     <fragment xmi:type="uml:StateInvariant" xmi:id="_oYfyEPEAEeCUgtItc9pwcw" name="StateInvariant" covered="_G3A_cPEAEeCUgtItc9pwcw">
