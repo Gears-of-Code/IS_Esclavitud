@@ -687,10 +687,10 @@ Servidores operando:
     <fragment xmi:type="uml:InteractionUse" xmi:id="_QvsNYPEDEeCUgtItc9pwcw" name="InteractionUse"/>
     <message xmi:id="_31jV8PEAEeCUgtItc9pwcw" name="finalizarSesion()" receiveEvent="_31zNkPEAEeCUgtItc9pwcw" sendEvent="_31r40PEAEeCUgtItc9pwcw"/>
     <message xmi:id="_R77B4PEBEeCUgtItc9pwcw" name="Message" receiveEvent="_R8NVwPEBEeCUgtItc9pwcw" sendEvent="_R8DkwPEBEeCUgtItc9pwcw"/>
-    <message xmi:id="_YlG8YPEBEeCUgtItc9pwcw" name="FinalizarSesion()" receiveEvent="_YldhsPEBEeCUgtItc9pwcw" sendEvent="_YlW0APEBEeCUgtItc9pwcw"/>
+    <message xmi:id="_YlG8YPEBEeCUgtItc9pwcw" name="1 : FinalizarSesion()" receiveEvent="_YldhsPEBEeCUgtItc9pwcw" sendEvent="_YlW0APEBEeCUgtItc9pwcw"/>
     <message xmi:id="_dyHMwPEBEeCUgtItc9pwcw" name="resultado()" receiveEvent="_dyXEYPEBEeCUgtItc9pwcw" sendEvent="_dyQWsPEBEeCUgtItc9pwcw"/>
-    <message xmi:id="_tEXO0PEBEeCUgtItc9pwcw" name="respuesta()" messageSort="reply" receiveEvent="_tEnGcPEBEeCUgtItc9pwcw" sendEvent="_tEgYwPEBEeCUgtItc9pwcw"/>
-    <message xmi:id="_MhOeUPECEeCUgtItc9pwcw" name="redirecciona()" messageSort="reply" receiveEvent="_MheV8PECEeCUgtItc9pwcw" sendEvent="_MhXoQPECEeCUgtItc9pwcw"/>
+    <message xmi:id="_tEXO0PEBEeCUgtItc9pwcw" name="2 : respuesta()" messageSort="reply" receiveEvent="_tEnGcPEBEeCUgtItc9pwcw" sendEvent="_tEgYwPEBEeCUgtItc9pwcw"/>
+    <message xmi:id="_MhOeUPECEeCUgtItc9pwcw" name="3 : redirecciona()" messageSort="reply" receiveEvent="_MheV8PECEeCUgtItc9pwcw" sendEvent="_MhXoQPECEeCUgtItc9pwcw"/>
   </packagedElement>
   <packagedElement xmi:type="uml:ExecutionEvent" xmi:id="_mBwkMPEAEeCUgtItc9pwcw" name="ExecutionEvent"/>
   <packagedElement xmi:type="uml:ExecutionEvent" xmi:id="_mBzngPEAEeCUgtItc9pwcw" name="ExecutionEvent0"/>

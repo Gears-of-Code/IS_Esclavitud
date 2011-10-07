@@ -3689,7 +3689,7 @@
     <element xmi:type="uml:Interaction" href="proyservsocial.uml#_kgsPgPD_EeCUgtItc9pwcw"/>
     <edges xmi:type="notation:Edge" xmi:id="_YmeOUPEBEeCUgtItc9pwcw" type="4003" source="_m5ju4PEAEeCUgtItc9pwcw" target="_xrQW4PEAEeCUgtItc9pwcw">
       <children xmi:type="notation:DecorationNode" xmi:id="_Yme1YPEBEeCUgtItc9pwcw" type="6001">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_Yme1YfEBEeCUgtItc9pwcw" x="-124" y="-13"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Yme1YfEBEeCUgtItc9pwcw" x="-154" y="-13"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_Yme1YvEBEeCUgtItc9pwcw" type="6008">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_Yme1Y_EBEeCUgtItc9pwcw" x="1" y="-33"/>

@@ -137,15 +137,6 @@
           <emfPageIdentifier href="proyservsocial.notation#_w-GJsOrQEeCV0Iecu87NUg"/>
         </children>
         <children>
-          <emfPageIdentifier href="proyservsocial.notation#_pN4G8OX0EeCIfY0ElZxBaw"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="proyservsocial.notation#_AklooOb7EeCgcebNRLanvA"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="proyservsocial.notation#_Eym2AOrREeCV0Iecu87NUg"/>
-        </children>
-        <children>
           <emfPageIdentifier href="proyservsocial.notation#_XWaDIOunEeCvI8CAYKnAQQ"/>
         </children>
       </children>
