@@ -124,10 +124,7 @@
     <windows>
       <children xsi:type="di:TabFolder">
         <children>
-          <emfPageIdentifier href="proyservsocial.notation#_w-GJsOrQEeCV0Iecu87NUg"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="proyservsocial.notation#_Q3NhgO8dEeC8jJQdBE_o4A"/>
+          <emfPageIdentifier href="proyservsocial.notation#_Eym2AOrREeCV0Iecu87NUg"/>
         </children>
       </children>
     </windows>
