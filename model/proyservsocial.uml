@@ -201,6 +201,10 @@ Servidores operando:
         <ownedAttribute xmi:id="_kcQ8kOubEeCvI8CAYKnAQQ" name="email" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_xMKWMPXZEeCgIbvB6rUcgQ" name="sesion" type="_lqmNsO8ZEeC8jJQdBE_o4A" association="_xMS5EPXZEeCgIbvB6rUcgQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xMK9QPXZEeCgIbvB6rUcgQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xMK9QfXZEeCgIbvB6rUcgQ" value="1"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_1DplkOubEeCvI8CAYKnAQQ" name="Alumno">
         <generalization xmi:id="_zqryEOucEeCvI8CAYKnAQQ" general="_o37sEOuaEeCvI8CAYKnAQQ"/>
@@ -214,6 +218,7 @@ Servidores operando:
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Gt_XoO3REeCADMT9KebvXw" value="false"/>
         </ownedAttribute>
+        <ownedOperation xmi:id="_t8y-kPXWEeCgIbvB6rUcgQ" name="postularseAProyecto"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_64mxUOucEeCvI8CAYKnAQQ" name="Admin" clientDependency="_l4tv8O8eEeC8jJQdBE_o4A _xT1IYO8eEeC8jJQdBE_o4A">
         <generalization xmi:id="_WWJEgOudEeCvI8CAYKnAQQ" general="_o37sEOuaEeCvI8CAYKnAQQ"/>
@@ -257,7 +262,24 @@ Servidores operando:
         <ownedLiteral xmi:id="_195Z0O_ZEeC-6cWJ3qV7SA" name="Manejo_Sustentable_de_Zonas_Costeras"/>
         <ownedLiteral xmi:id="_V_siYO_aEeC-6cWJ3qV7SA" name="Ciencias_Ambientales"/>
       </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ucv_EPXYEeCgIbvB6rUcgQ" name="alumno_proyecto_0" memberEnd="_ucv_EfXYEeCgIbvB6rUcgQ _uck_8PXYEeCgIbvB6rUcgQ">
+        <ownedEnd xmi:id="_ucv_EfXYEeCgIbvB6rUcgQ" name="alumno" type="_1DplkOubEeCvI8CAYKnAQQ" association="_ucv_EPXYEeCgIbvB6rUcgQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ucv_EvXYEeCgIbvB6rUcgQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ucv_E_XYEeCgIbvB6rUcgQ" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_uck_8PXYEeCgIbvB6rUcgQ" name="proyecto" type="_hH_-QOrREeCV0Iecu87NUg" association="_ucv_EPXYEeCgIbvB6rUcgQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uck_8fXYEeCgIbvB6rUcgQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uck_8vXYEeCgIbvB6rUcgQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_xMS5EPXZEeCgIbvB6rUcgQ" name="usuarioRegistrado_sesion_0" memberEnd="_xMTgIPXZEeCgIbvB6rUcgQ _xMKWMPXZEeCgIbvB6rUcgQ">
+        <ownedEnd xmi:id="_xMTgIPXZEeCgIbvB6rUcgQ" name="usuarioRegistrado" type="_o37sEOuaEeCvI8CAYKnAQQ" aggregation="shared" association="_xMS5EPXZEeCgIbvB6rUcgQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xMTgIfXZEeCgIbvB6rUcgQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xMTgIvXZEeCgIbvB6rUcgQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tB8DYPXXEeCgIbvB6rUcgQ" name="conectaDB"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_g_FEEOX1EeCIfY0ElZxBaw" name="Almacenamiento">
     <ownedComment xmi:id="_0P7psOX1EeCIfY0ElZxBaw">
