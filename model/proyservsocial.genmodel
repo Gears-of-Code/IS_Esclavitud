@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" modelDirectory="/proyservsocial/src"
-    modelPluginID="proyservsocial" modelName="Proyservsocial" importerID="org.eclipse.uml2.uml.ecore.importer"
-    complianceLevel="6.0" copyrightFields="false">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" modelDirectory="IS_Esclavitud/src/main/java"
+    editDirectory="/src/main/java" modelPluginID="proyservsocial" modelName="Proyservsocial"
+    suppressEMFTypes="true" codeFormatting="true" testsDirectory="/IS_Esclavitud/src/test/java"
+    importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="6.0" copyrightFields="false"
+    factoryMethods="true">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
     <details key="UNION_PROPERTIES" value="REPORT"/>
@@ -23,32 +25,105 @@
     <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
   </genAnnotations>
   <foreignModel>proyservsocial.uml</foreignModel>
-  <genPackages xsi:type="genmodel:GenPackage" prefix="Proyservsocial" disposableProviderFactory="true"
-      ecorePackage="proyservsocial.ecore#/">
-    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Presentacion" disposableProviderFactory="true"
-        ecorePackage="proyservsocial.ecore#//Presentacion">
-      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="JSP" disposableProviderFactory="true"
-          ecorePackage="proyservsocial.ecore#//Presentacion/JSP"/>
-      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Public_html" disposableProviderFactory="true"
-          ecorePackage="proyservsocial.ecore#//Presentacion/public_html"/>
-      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Estilo" disposableProviderFactory="true"
-          ecorePackage="proyservsocial.ecore#//Presentacion/Estilo"/>
-      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Imagenes" disposableProviderFactory="true"
-          ecorePackage="proyservsocial.ecore#//Presentacion/Imagenes"/>
-    </nestedGenPackages>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="Proyservsocial" basePackage="mx.gearsofcode"
+      disposableProviderFactory="true" ecorePackage="proyservsocial.ecore#/">
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Logico" disposableProviderFactory="true"
-        ecorePackage="proyservsocial.ecore#//Logico">
+        ecorePackage="proyservsocial.ecore#//logico">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="proyservsocial.ecore#//logico/ConectaDb"/>
       <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="InicioDeSesion" disposableProviderFactory="true"
-          ecorePackage="proyservsocial.ecore#//Logico/inicioDeSesion"/>
-      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Proyectos" disposableProviderFactory="true"
-          ecorePackage="proyservsocial.ecore#//Logico/proyectos"/>
+          ecorePackage="proyservsocial.ecore#//logico/inicioDeSesion">
+        <genClasses xsi:type="genmodel:GenClass" ecoreClass="proyservsocial.ecore#//logico/inicioDeSesion/Sesion">
+          <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+              propertySortChoices="true" ecoreFeature="ecore:EReference proyservsocial.ecore#//logico/inicioDeSesion/Sesion/usuario"/>
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/inicioDeSesion/Sesion/autenticar"/>
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/inicioDeSesion/Sesion/cerrarSesion"/>
+        </genClasses>
+      </nestedGenPackages>
       <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Usuarios" disposableProviderFactory="true"
-          ecorePackage="proyservsocial.ecore#//Logico/usuarios"/>
-    </nestedGenPackages>
-    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Almacenamiento" disposableProviderFactory="true"
-        ecorePackage="proyservsocial.ecore#//Almacenamiento">
-      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="BD" disposableProviderFactory="true"
-          ecorePackage="proyservsocial.ecore#//Almacenamiento/BD"/>
+          ecorePackage="proyservsocial.ecore#//logico/usuarios">
+        <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="proyservsocial.ecore#//logico/usuarios/CarreraAlumno">
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/usuarios/CarreraAlumno/matematicas"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/usuarios/CarreraAlumno/actuaria"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/usuarios/CarreraAlumno/cienciasComputacionales"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/usuarios/CarreraAlumno/fisica"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/usuarios/CarreraAlumno/biologia"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/usuarios/CarreraAlumno/cienciasDeLaTierra"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/usuarios/CarreraAlumno/manejoSustentableDeZonasCosteras"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/usuarios/CarreraAlumno/cienciasAmbientales"/>
+        </genEnums>
+        <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="proyservsocial.ecore#//logico/usuarios/TipoUsuario">
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/usuarios/TipoUsuario/administrador"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/usuarios/TipoUsuario/responsable"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/usuarios/TipoUsuario/alumno"/>
+        </genEnums>
+        <genClasses xsi:type="genmodel:GenClass" ecoreClass="proyservsocial.ecore#//logico/usuarios/Alumno">
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/usuarios/Alumno/carrera"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/usuarios/Alumno/porcentaje"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/usuarios/Alumno/estado"/>
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/usuarios/Alumno/postularseAProyecto"/>
+        </genClasses>
+        <genClasses xsi:type="genmodel:GenClass" ecoreClass="proyservsocial.ecore#//logico/usuarios/Admin">
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/usuarios/Admin/aceptaResponsable"/>
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/usuarios/Admin/actualizaEstadoAlumno"/>
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/usuarios/Admin/autorizarAlumnoProyecto"/>
+        </genClasses>
+        <genClasses xsi:type="genmodel:GenClass" ecoreClass="proyservsocial.ecore#//logico/usuarios/Responsable">
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/usuarios/Responsable/descripcion"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/usuarios/Responsable/sitioweb"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/usuarios/Responsable/estado"/>
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/usuarios/Responsable/aceptaAlumnoProyecto"/>
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/usuarios/Responsable/registrarse"/>
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/usuarios/Responsable/seleccionarAlumnos"/>
+        </genClasses>
+        <genClasses xsi:type="genmodel:GenClass" ecoreClass="proyservsocial.ecore#//logico/usuarios/UsuarioRegistrado">
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/usuarios/UsuarioRegistrado/id"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/usuarios/UsuarioRegistrado/username"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/usuarios/UsuarioRegistrado/contraseña"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/usuarios/UsuarioRegistrado/tipo"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/usuarios/UsuarioRegistrado/nombre"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/usuarios/UsuarioRegistrado/telefono"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/usuarios/UsuarioRegistrado/email"/>
+          <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+              propertySortChoices="true" ecoreFeature="ecore:EReference proyservsocial.ecore#//logico/usuarios/UsuarioRegistrado/sesion"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Proyectos" disposableProviderFactory="true"
+          ecorePackage="proyservsocial.ecore#//logico/proyectos">
+        <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="proyservsocial.ecore#//logico/proyectos/CarreraProyecto">
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/proyectos/CarreraProyecto/matematicas"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/proyectos/CarreraProyecto/actuaria"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/proyectos/CarreraProyecto/cienciasComputacionales"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/proyectos/CarreraProyecto/fisica"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/proyectos/CarreraProyecto/cienciasDeLaTierra"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/proyectos/CarreraProyecto/cienciasAmbientales"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/proyectos/CarreraProyecto/biologia"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/proyectos/CarreraProyecto/manejoSustentableDeZonasCosteras"/>
+        </genEnums>
+        <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="proyservsocial.ecore#//logico/proyectos/EstadoProyecto">
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/proyectos/EstadoProyecto/aceptado"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/proyectos/EstadoProyecto/rechazado"/>
+          <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/proyectos/EstadoProyecto/enAutorizacion"/>
+        </genEnums>
+        <genClasses xsi:type="genmodel:GenClass" ecoreClass="proyservsocial.ecore#//logico/proyectos/Proyecto">
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/proyectos/Proyecto/id"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/proyectos/Proyecto/nombre"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/proyectos/Proyecto/responsable"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/proyectos/Proyecto/areaConocimiento"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/proyectos/Proyecto/email"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/proyectos/Proyecto/telefono"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/proyectos/Proyecto/direccion"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/proyectos/Proyecto/carrera"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/proyectos/Proyecto/maxParticipante"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/proyectos/Proyecto/descripcion"/>
+          <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute proyservsocial.ecore#//logico/proyectos/Proyecto/estado"/>
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/proyectos/Proyecto/verProyectos"/>
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/proyectos/Proyecto/propProyectos"/>
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/proyectos/Proyecto/autorizarProyecto"/>
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/proyectos/Proyecto/rechazarProyecto"/>
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/proyectos/Proyecto/agregarAlumno"/>
+          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/proyectos/Proyecto/verListaPostulados"/>
+        </genClasses>
+      </nestedGenPackages>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

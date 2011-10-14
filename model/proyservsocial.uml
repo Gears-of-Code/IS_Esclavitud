@@ -158,7 +158,6 @@ Servidores operando:
         <ownedOperation xmi:id="_ojmTgOrZEeCV0Iecu87NUg" name="propProyectos"/>
         <ownedOperation xmi:id="_tL-M0OrZEeCV0Iecu87NUg" name="autorizarProyecto"/>
         <ownedOperation xmi:id="_zCyPMOrZEeCV0Iecu87NUg" name="rechazarProyecto"/>
-        <ownedOperation xmi:id="_vRTwUOuXEeCvI8CAYKnAQQ" name="agregarAlumno"/>
         <ownedOperation xmi:id="_yJ1coOuXEeCvI8CAYKnAQQ" name="verListaPostulados"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_61iqsOumEeCvI8CAYKnAQQ" name="Dependency0" supplier="_hOcDwOudEeCvI8CAYKnAQQ" client="_hH_-QOrREeCV0Iecu87NUg"/>
@@ -279,7 +278,20 @@ Servidores operando:
         </ownedEnd>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_tB8DYPXXEeCgIbvB6rUcgQ" name="conectaDB"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tB8DYPXXEeCgIbvB6rUcgQ" name="conectaDB">
+      <ownedOperation xmi:id="_mI47UPawEeCRbPZfful2CQ" name="verProyectosDB"/>
+      <ownedOperation xmi:id="_2nvTYPawEeCRbPZfful2CQ" name="proponerProyectoDBb"/>
+      <ownedOperation xmi:id="_Z6DxgPaxEeCRbPZfful2CQ" name="autorizarProyectoDB"/>
+      <ownedOperation xmi:id="_rz_ngPaxEeCRbPZfful2CQ" name="rechazarProyectoDB"/>
+      <ownedOperation xmi:id="_u1zLoPaxEeCRbPZfful2CQ" name="verPostuladosDB"/>
+      <ownedOperation xmi:id="_nAfm0PayEeCRbPZfful2CQ" name="aceptarAlumnoProyectoDB"/>
+      <ownedOperation xmi:id="_jQ8y8PayEeCRbPZfful2CQ" name="registrarDB"/>
+      <ownedOperation xmi:id="_2EMPgPayEeCRbPZfful2CQ" name="aceptarResponsableDB"/>
+      <ownedOperation xmi:id="_LdZMQPa0EeCRbPZfful2CQ" name="rechazaAlumnoProyectoDB"/>
+      <ownedOperation xmi:id="_PYYbIPa0EeCRbPZfful2CQ" name="rechazaResponsableDB"/>
+      <ownedOperation xmi:id="_fjv2gPa0EeCRbPZfful2CQ" name="postularAProyectoDB"/>
+      <ownedOperation xmi:id="_vdad4Pa0EeCRbPZfful2CQ" name="validaUsuarioDB"/>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_g_FEEOX1EeCIfY0ElZxBaw" name="Almacenamiento">
     <ownedComment xmi:id="_0P7psOX1EeCIfY0ElZxBaw">
