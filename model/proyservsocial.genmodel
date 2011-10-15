@@ -27,11 +27,24 @@
   <foreignModel>proyservsocial.uml</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="Proyservsocial" basePackage="mx.gearsofcode"
       disposableProviderFactory="true" ecorePackage="proyservsocial.ecore#/">
-    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Logico" disposableProviderFactory="true"
-        ecorePackage="proyservsocial.ecore#//logico">
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="proyservsocial.ecore#//logico/ConectaDb"/>
-      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="InicioDeSesion" disposableProviderFactory="true"
-          ecorePackage="proyservsocial.ecore#//logico/inicioDeSesion">
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Logico" basePackage="mx.gearsofcode.proyservsocial"
+        disposableProviderFactory="true" ecorePackage="proyservsocial.ecore#//logico">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="proyservsocial.ecore#//logico/ConectaDb">
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/ConectaDb/verProyectosDb"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/ConectaDb/proponerProyectoDBb"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/ConectaDb/autorizarProyectoDb"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/ConectaDb/rechazarProyectoDb"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/ConectaDb/verPostuladosDb"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/ConectaDb/aceptarAlumnoProyectoDb"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/ConectaDb/registrarDb"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/ConectaDb/aceptarResponsableDb"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/ConectaDb/rechazaAlumnoProyectoDb"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/ConectaDb/rechazaResponsableDb"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/ConectaDb/postularAProyectoDb"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/ConectaDb/validaUsuarioDb"/>
+      </genClasses>
+      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="InicioDeSesion" basePackage="mx.gearsofcode.proyservsocial.logico"
+          disposableProviderFactory="true" ecorePackage="proyservsocial.ecore#//logico/inicioDeSesion">
         <genClasses xsi:type="genmodel:GenClass" ecoreClass="proyservsocial.ecore#//logico/inicioDeSesion/Sesion">
           <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
               propertySortChoices="true" ecoreFeature="ecore:EReference proyservsocial.ecore#//logico/inicioDeSesion/Sesion/usuario"/>
@@ -39,8 +52,8 @@
           <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/inicioDeSesion/Sesion/cerrarSesion"/>
         </genClasses>
       </nestedGenPackages>
-      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Usuarios" disposableProviderFactory="true"
-          ecorePackage="proyservsocial.ecore#//logico/usuarios">
+      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Usuarios" basePackage="mx.gearsofcode.proyservsocial.logico"
+          disposableProviderFactory="true" ecorePackage="proyservsocial.ecore#//logico/usuarios">
         <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="proyservsocial.ecore#//logico/usuarios/CarreraAlumno">
           <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/usuarios/CarreraAlumno/matematicas"/>
           <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/usuarios/CarreraAlumno/actuaria"/>
@@ -87,8 +100,8 @@
               propertySortChoices="true" ecoreFeature="ecore:EReference proyservsocial.ecore#//logico/usuarios/UsuarioRegistrado/sesion"/>
         </genClasses>
       </nestedGenPackages>
-      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Proyectos" disposableProviderFactory="true"
-          ecorePackage="proyservsocial.ecore#//logico/proyectos">
+      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Proyectos" basePackage="mx.gearsofcode.proyservsocial.logico"
+          disposableProviderFactory="true" ecorePackage="proyservsocial.ecore#//logico/proyectos">
         <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="proyservsocial.ecore#//logico/proyectos/CarreraProyecto">
           <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/proyectos/CarreraProyecto/matematicas"/>
           <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="proyservsocial.ecore#//logico/proyectos/CarreraProyecto/actuaria"/>
@@ -120,7 +133,6 @@
           <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/proyectos/Proyecto/propProyectos"/>
           <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/proyectos/Proyecto/autorizarProyecto"/>
           <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/proyectos/Proyecto/rechazarProyecto"/>
-          <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/proyectos/Proyecto/agregarAlumno"/>
           <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="proyservsocial.ecore#//logico/proyectos/Proyecto/verListaPostulados"/>
         </genClasses>
       </nestedGenPackages>

@@ -70,7 +70,20 @@
         nsPrefix="proyservsocial.presentacion.imagenes"/>
   </eSubpackages>
   <eSubpackages name="logico" nsURI="http:///proyservsocial/logico.ecore" nsPrefix="proyservsocial.logico">
-    <eClassifiers xsi:type="ecore:EClass" name="ConectaDb"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConectaDb">
+      <eOperations name="verProyectosDb" ordered="false" lowerBound="1"/>
+      <eOperations name="proponerProyectoDBb" ordered="false" lowerBound="1"/>
+      <eOperations name="autorizarProyectoDb" ordered="false" lowerBound="1"/>
+      <eOperations name="rechazarProyectoDb" ordered="false" lowerBound="1"/>
+      <eOperations name="verPostuladosDb" ordered="false" lowerBound="1"/>
+      <eOperations name="aceptarAlumnoProyectoDb" ordered="false" lowerBound="1"/>
+      <eOperations name="registrarDb" ordered="false" lowerBound="1"/>
+      <eOperations name="aceptarResponsableDb" ordered="false" lowerBound="1"/>
+      <eOperations name="rechazaAlumnoProyectoDb" ordered="false" lowerBound="1"/>
+      <eOperations name="rechazaResponsableDb" ordered="false" lowerBound="1"/>
+      <eOperations name="postularAProyectoDb" ordered="false" lowerBound="1"/>
+      <eOperations name="validaUsuarioDb" ordered="false" lowerBound="1"/>
+    </eClassifiers>
     <eSubpackages name="inicioDeSesion" nsURI="http:///proyservsocial/logico/inicioDeSesion.ecore"
         nsPrefix="proyservsocial.logico.inicioDeSesion">
       <eClassifiers xsi:type="ecore:EClass" name="Sesion">
@@ -151,7 +164,6 @@
         <eOperations name="propProyectos" ordered="false" lowerBound="1"/>
         <eOperations name="autorizarProyecto" ordered="false" lowerBound="1"/>
         <eOperations name="rechazarProyecto" ordered="false" lowerBound="1"/>
-        <eOperations name="agregarAlumno" ordered="false" lowerBound="1"/>
         <eOperations name="verListaPostulados" ordered="false" lowerBound="1"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" ordered="false"
             lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
