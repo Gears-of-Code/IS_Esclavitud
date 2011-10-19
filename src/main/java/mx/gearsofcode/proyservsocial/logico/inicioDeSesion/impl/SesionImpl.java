@@ -11,6 +11,9 @@ import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.Sesion;
 
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
 
+import mx.gearsofcode.proyservsocial.logico.LogicoPackage;
+import mx.gearsofcode.proyservsocial.logico.ConectaDB;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -45,6 +48,10 @@ public class SesionImpl extends EObjectImpl implements Sesion {
      * @ordered
      */
     protected UsuarioRegistrado usuario;
+
+    private LogicoFactory fabrica = new LogicoFactory();
+
+    private ConectaDB conexion = new fabrica.createConectaDb();
 
     /**
      * <!-- begin-user-doc -->
@@ -109,12 +116,17 @@ public class SesionImpl extends EObjectImpl implements Sesion {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
      */
-    public void autenticar() {
-        // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
+    public void autenticar(final String nombreUsuario, final String passwd) {
+	try { 
+	    
+	    int tipoUsuario = conexion.validaUsuarioDb(nombreUsuario, passwd);
+	    // TODO: implement this method
+	    // Ensure that you remove @generated or mark it @generated NOT
+	}
+	catch {
+	}
+	    throw new UnsupportedOperationException();
     }
 
     /**
