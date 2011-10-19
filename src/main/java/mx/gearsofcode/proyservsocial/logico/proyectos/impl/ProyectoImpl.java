@@ -46,19 +46,17 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class ProyectoImpl extends EObjectImpl implements Proyecto {
     /**
-     * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Valor por defecto del atributo '{@link #getId() <em>Id</em>}'.
+     * 
      * @see #getId()
      * @generated
      * @ordered
      */
-    protected static final int ID_EDEFAULT = 0;
+    protected static final int ID_EDEFAULT = -1;
 
     /**
-     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Valor por almacenado del atributo '{@link #getId() <em>Id</em>}'.
+     *
      * @see #getId()
      * @generated
      * @ordered
@@ -66,9 +64,8 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected int id = ID_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Valor por defecto del atributo '{@link #getNombre() <em>Nombre</em>}'.
+     *
      * @see #getNombre()
      * @generated
      * @ordered
@@ -86,14 +83,15 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected String nombre = NOMBRE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getResponsable() <em>Responsable</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Valor por defecto del atributo '{@link #getResponsable() <em>Responsable</em>}'.
+     * Id del responsable del proyecto, -1 en un proyecto vacio, se coloca el id del 
+     * responsable que crea el proyecto.
+     * 
      * @see #getResponsable()
      * @generated
      * @ordered
      */
-    protected static final int RESPONSABLE_EDEFAULT = 0;
+    protected static final int RESPONSABLE_EDEFAULT = -1;
 
     /**
      * The cached value of the '{@link #getResponsable() <em>Responsable</em>}' attribute.
@@ -106,9 +104,9 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected int responsable = RESPONSABLE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getAreaConocimiento() <em>Area Conocimiento</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Valor por defecto del atributo '{@link #getAreaConocimiento() <em>Area Conocimiento</em>}'.
+     * No existe en un proyecto nuevo.
+     * 
      * @see #getAreaConocimiento()
      * @generated
      * @ordered
@@ -126,9 +124,9 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected String areaConocimiento = AREA_CONOCIMIENTO_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getEmail() <em>Email</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Valor por defecto del atributo '{@link #getEmail() <em>Email</em>}'.
+     * No hay direccion de correo en un proyecto vacio.
+     *
      * @see #getEmail()
      * @generated
      * @ordered
@@ -146,9 +144,9 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected String email = EMAIL_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getTelefono() <em>Telefono</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Valor por defecto del atributo '{@link #getTelefono() <em>Telefono</em>}'.
+     * No hay telefono en un proyecto nuevo.
+     *
      * @see #getTelefono()
      * @generated
      * @ordered
@@ -206,9 +204,9 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected CarreraProyecto carrera = CARRERA_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getMaxParticipante() <em>Max Participante</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Valor por defecto del atributo '{@link #getMaxParticipante() <em>Max Participante</em>}'.
+     * Numero maximo de alumnos que acepta un proyecto vacio.
+     *
      * @see #getMaxParticipante()
      * @generated
      * @ordered
@@ -226,9 +224,9 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected int maxParticipante = MAX_PARTICIPANTE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getDescripcion() <em>Descripcion</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Valor por defecto del atributo '{@link #getDescripcion() <em>Descripcion</em>}'.
+     * Descripcion del proyecto a realizar.
+     *
      * @see #getDescripcion()
      * @generated
      * @ordered
@@ -246,14 +244,14 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected String descripcion = DESCRIPCION_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getEstado() <em>Estado</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Valor por defecto del atributo '{@link #getEstado() <em>Estado</em}'.
+     * Falso implica que aun no ha sido autorizado por el administrador.
+     *
      * @see #getEstado()
      * @generated
      * @ordered
      */
-    protected static final EstadoProyecto ESTADO_EDEFAULT = EstadoProyecto.ACEPTADO;
+    protected static final boolean ESTADO_EDEFAULT = false;
 
     /**
      * The cached value of the '{@link #getEstado() <em>Estado</em>}' attribute.
@@ -263,7 +261,20 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * @generated
      * @ordered
      */
-    protected EstadoProyecto estado = ESTADO_EDEFAULT;
+    protected boolean  estado = ESTADO_EDEFAULT;
+
+    /**
+     * Crea la fabrica de clases del paquete Logico.
+     * Es necesaria para poder crear la clase de conectaDB y 
+     * acceder a esos recursos.
+     **/
+    private LogicoFactory fabrica = new LogicoFactory();
+
+    /**
+     * Clase que contiene los metodos de conexion a la base de datos.
+     * Aqui se realizan los queries directamente a la base de datos.
+     **/
+    private ConectaDB conexion = new fabrica.createConectaDb();
 
     /**
      * <!-- begin-user-doc -->
@@ -532,13 +543,15 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * Llama a la base de datos para obtener y listar todos los proyectos
+     * que se encuentran disponibles para el usuario.
+     * Debe de regresar un bloque de proyectos.
      */
     public void verProyectos() {
-        // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
+	try {
+	    conexion.verProyectosDB()
+		
+		}
         throw new UnsupportedOperationException();
     }
 

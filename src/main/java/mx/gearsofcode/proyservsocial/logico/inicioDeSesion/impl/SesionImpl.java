@@ -49,8 +49,17 @@ public class SesionImpl extends EObjectImpl implements Sesion {
      */
     protected UsuarioRegistrado usuario;
 
+    /**
+     * Crea la fabrica de clases del paquete Logico.
+     * Es necesaria para poder crear la clase de conectaDB y 
+     * acceder a esos recursos.
+     **/
     private LogicoFactory fabrica = new LogicoFactory();
 
+    /**
+     * Clase que contiene los metodos de conexion a la base de datos.
+     * Aqui se realizan los queries directamente a la base de datos.
+     **/
     private ConectaDB conexion = new fabrica.createConectaDb();
 
     /**
