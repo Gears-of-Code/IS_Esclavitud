@@ -8,6 +8,9 @@ package mx.gearsofcode.proyservsocial.logico;
 
 import org.eclipse.emf.ecore.EObject;
 
+import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
+import mx.gearsofcode.proyservsocial.logico.usuarios.Responsable;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Conecta Db</b></em>'.
@@ -26,7 +29,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void verProyectosDb();
+    void verProyectosDb(final int tipoUsuario);
 
     /**
      * <!-- begin-user-doc -->
@@ -34,7 +37,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void proponerProyectoDBb();
+    void proponerProyectoDBb(final Proyecto unProyecto);
 
     /**
      * <!-- begin-user-doc -->
@@ -42,7 +45,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void autorizarProyectoDb();
+    void autorizarProyectoDb(final int idProy);
 
     /**
      * <!-- begin-user-doc -->
@@ -50,7 +53,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void rechazarProyectoDb();
+    void rechazarProyectoDb(final int idProy);
 
     /**
      * <!-- begin-user-doc -->
@@ -58,7 +61,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void verPostuladosDb();
+    void verPostuladosDb(final int idProy);
 
     /**
      * <!-- begin-user-doc -->
@@ -66,7 +69,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void aceptarAlumnoProyectoDb();
+    void aceptarAlumnoProyectoDb(final int idProy, final int idAlum);
 
     /**
      * <!-- begin-user-doc -->
@@ -74,7 +77,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void registrarDb();
+    void registrarDb(final Responsable unResponsable);
 
     /**
      * <!-- begin-user-doc -->
@@ -82,7 +85,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void aceptarResponsableDb();
+    void aceptarResponsableDb(final int idResp);
 
     /**
      * <!-- begin-user-doc -->
@@ -90,7 +93,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void rechazaAlumnoProyectoDb();
+    void rechazaAlumnoProyectoDb(final int idProy, final int idAlum);
 
     /**
      * <!-- begin-user-doc -->
@@ -98,7 +101,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void rechazaResponsableDb();
+    void rechazaResponsableDb(final int idResp);
 
     /**
      * <!-- begin-user-doc -->
@@ -106,7 +109,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void postularAProyectoDb();
+    void postularAProyectoDb(final int idProy, final int idAlum);
 
     /**
      * <!-- begin-user-doc -->

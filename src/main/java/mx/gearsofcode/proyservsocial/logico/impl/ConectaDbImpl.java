@@ -8,6 +8,10 @@ package mx.gearsofcode.proyservsocial.logico.impl;
 
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 import mx.gearsofcode.proyservsocial.logico.LogicoPackage;
+
+import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
+import mx.gearsofcode.proyservsocial.logico.usuarios.Responsable;
+
 import com.mysql.jdbc.exceptions.*;
 import com.mysql.jdbc.util.*;
 import com.mysql.jdbc.*;

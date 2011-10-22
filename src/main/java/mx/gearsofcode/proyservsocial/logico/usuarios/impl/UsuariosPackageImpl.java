@@ -10,9 +10,8 @@ import mx.gearsofcode.proyservsocial.logico.LogicoPackage;
 
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoPackageImpl;
 
-import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.InicioDeSesionPackage;
-
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.impl.InicioDeSesionPackageImpl;
+import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.InicioDeSesionPackage;
 
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage;
 
@@ -22,7 +21,6 @@ import mx.gearsofcode.proyservsocial.logico.usuarios.Admin;
 import mx.gearsofcode.proyservsocial.logico.usuarios.Alumno;
 import mx.gearsofcode.proyservsocial.logico.usuarios.CarreraAlumno;
 import mx.gearsofcode.proyservsocial.logico.usuarios.Responsable;
-import mx.gearsofcode.proyservsocial.logico.usuarios.TipoUsuario;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosFactory;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
@@ -78,12 +76,7 @@ public class UsuariosPackageImpl extends EPackageImpl implements
      */
     private EEnum carreraAlumnoEEnum = null;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EEnum tipoUsuarioEEnum = null;
+
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -353,15 +346,6 @@ public class UsuariosPackageImpl extends EPackageImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public EEnum getTipoUsuario() {
-        return tipoUsuarioEEnum;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public UsuariosFactory getUsuariosFactory() {
         return (UsuariosFactory) getEFactoryInstance();
     }
@@ -411,7 +395,7 @@ public class UsuariosPackageImpl extends EPackageImpl implements
 
         // Create enums
         carreraAlumnoEEnum = createEEnum(CARRERA_ALUMNO);
-        tipoUsuarioEEnum = createEEnum(TIPO_USUARIO);
+
     }
 
     /**
@@ -523,10 +507,7 @@ public class UsuariosPackageImpl extends EPackageImpl implements
                 UsuarioRegistrado.class, !IS_TRANSIENT, !IS_VOLATILE,
                 IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
                 !IS_ORDERED);
-        initEAttribute(getUsuarioRegistrado_Tipo(), this.getTipoUsuario(),
-                "tipo", null, 1, 1, UsuarioRegistrado.class, !IS_TRANSIENT,
-                !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-                !IS_DERIVED, !IS_ORDERED);
+
         initEAttribute(getUsuarioRegistrado_Nombre(),
                 ecorePackage.getEString(), "nombre", null, 1, 1,
                 UsuarioRegistrado.class, !IS_TRANSIENT, !IS_VOLATILE,
@@ -560,10 +541,7 @@ public class UsuariosPackageImpl extends EPackageImpl implements
                 CarreraAlumno.MANEJO_SUSTENTABLE_DE_ZONAS_COSTERAS);
         addEEnumLiteral(carreraAlumnoEEnum, CarreraAlumno.CIENCIAS_AMBIENTALES);
 
-        initEEnum(tipoUsuarioEEnum, TipoUsuario.class, "TipoUsuario");
-        addEEnumLiteral(tipoUsuarioEEnum, TipoUsuario.ADMINISTRADOR);
-        addEEnumLiteral(tipoUsuarioEEnum, TipoUsuario.RESPONSABLE);
-        addEEnumLiteral(tipoUsuarioEEnum, TipoUsuario.ALUMNO);
+
     }
 
 } //UsuariosPackageImpl

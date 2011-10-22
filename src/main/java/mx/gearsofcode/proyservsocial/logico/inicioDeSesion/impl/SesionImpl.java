@@ -8,8 +8,10 @@ package mx.gearsofcode.proyservsocial.logico.inicioDeSesion.impl;
 
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.InicioDeSesionPackage;
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.Sesion;
+import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario;
 
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
+import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
 
 import mx.gearsofcode.proyservsocial.logico.LogicoFactory;
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
@@ -59,6 +61,26 @@ public class SesionImpl extends EObjectImpl implements Sesion {
      **/
     private ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
 
+    /**
+     * The default value of the '{@link #getTipo() <em>Tipo</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTipo()
+     * @generated
+     * @ordered
+     */
+    protected static final TipoUsuario TIPO_EDEFAULT = TipoUsuario.ALUMNO;
+
+    /**
+     * The cached value of the '{@link #getTipo() <em>Tipo</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTipo()
+     * @generated
+     * @ordered
+     */
+    protected TipoUsuario tipo = TIPO_EDEFAULT;
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -125,7 +147,7 @@ public class SesionImpl extends EObjectImpl implements Sesion {
      * datos. Si existen en la base de datos, se accede al sistema sino se manda
      * un mensaje de error.
      * @param nombreUsuario Nombre del usuario.
-     * @param passwd Contraseña del usuario, en texto plano.
+     * @param passwd Contrasena del usuario, en texto plano.
      */
     public void autenticar(final String nombreUsuario, final String passwd) {
         byte[] bytesPasswd = passwd.getBytes("UTF-8");
@@ -133,15 +155,19 @@ public class SesionImpl extends EObjectImpl implements Sesion {
         cifrado.reset();
         byte[] md5bytePass = cifrado.digest(bytesPasswd);
         String md5passwd = cifrado.toString();
-	try { 
-	    conexion.validaUsuarioDb(nombreUsuario, md5passwd);
-	    // TODO: implement this method
-	    // Ensure that you remove @generated or mark it @generated NOT
-	}
-	catch {
-	}
-	    throw new UnsupportedOperationException();
+
+        try { 
+	        conexion.validaUsuarioDb(nombreUsuario, md5passwd);
+	        // TODO: implement this method
+	        // Ensure that you remove @generated or mark it @generated NOT
+        }
+	     catch {
+	    
+	    } finally {
+	        throw new UnsupportedOperationException();
+	    }
     }
+
 
     /**
      * <!-- begin-user-doc -->
@@ -154,6 +180,29 @@ public class SesionImpl extends EObjectImpl implements Sesion {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TipoUsuario getTipo() {
+        return tipo;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTipo(TipoUsuario newTipo) {
+        TipoUsuario oldTipo = tipo;
+        tipo = newTipo == null ? TIPO_EDEFAULT : newTipo;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    UsuariosPackage.USUARIO_REGISTRADO__TIPO, oldTipo, tipo));
+    }
+
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

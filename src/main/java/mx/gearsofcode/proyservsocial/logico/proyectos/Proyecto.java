@@ -314,7 +314,7 @@ public interface Proyecto extends EObject {
      * @model required="true" ordered="false"
      * @generated
      */
-    EstadoProyecto getEstado();
+    String getEstado();
 
     /**
      * Sets the value of the '{@link mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto#getEstado <em>Estado</em>}' attribute.
@@ -325,23 +325,7 @@ public interface Proyecto extends EObject {
      * @see #getEstado()
      * @generated
      */
-    void setEstado(EstadoProyecto value);
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @model
-     * @generated
-     */
-    void verProyectos();
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @model
-     * @generated
-     */
-    void propProyectos();
+    void setEstado(boolean value);
 
     /**
      * <!-- begin-user-doc -->

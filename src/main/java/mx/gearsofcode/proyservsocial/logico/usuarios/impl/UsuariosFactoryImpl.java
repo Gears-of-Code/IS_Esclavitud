@@ -6,6 +6,7 @@
  */
 package mx.gearsofcode.proyservsocial.logico.usuarios.impl;
 
+
 import mx.gearsofcode.proyservsocial.logico.usuarios.*;
 
 import org.eclipse.emf.ecore.EClass;
@@ -86,8 +87,6 @@ public class UsuariosFactoryImpl extends EFactoryImpl implements
         switch (eDataType.getClassifierID()) {
         case UsuariosPackage.CARRERA_ALUMNO:
             return createCarreraAlumnoFromString(eDataType, initialValue);
-        case UsuariosPackage.TIPO_USUARIO:
-            return createTipoUsuarioFromString(eDataType, initialValue);
         default:
             throw new IllegalArgumentException("The datatype '"
                     + eDataType.getName() + "' is not a valid classifier");
@@ -104,8 +103,6 @@ public class UsuariosFactoryImpl extends EFactoryImpl implements
         switch (eDataType.getClassifierID()) {
         case UsuariosPackage.CARRERA_ALUMNO:
             return convertCarreraAlumnoToString(eDataType, instanceValue);
-        case UsuariosPackage.TIPO_USUARIO:
-            return convertTipoUsuarioToString(eDataType, instanceValue);
         default:
             throw new IllegalArgumentException("The datatype '"
                     + eDataType.getName() + "' is not a valid classifier");
@@ -173,31 +170,6 @@ public class UsuariosFactoryImpl extends EFactoryImpl implements
      * @generated
      */
     public String convertCarreraAlumnoToString(EDataType eDataType,
-            Object instanceValue) {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TipoUsuario createTipoUsuarioFromString(EDataType eDataType,
-            String initialValue) {
-        TipoUsuario result = TipoUsuario.get(initialValue);
-        if (result == null)
-            throw new IllegalArgumentException("The value '" + initialValue
-                    + "' is not a valid enumerator of '" + eDataType.getName()
-                    + "'");
-        return result;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String convertTipoUsuarioToString(EDataType eDataType,
             Object instanceValue) {
         return instanceValue == null ? null : instanceValue.toString();
     }

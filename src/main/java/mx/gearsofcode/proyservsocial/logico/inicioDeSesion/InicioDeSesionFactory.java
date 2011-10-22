@@ -6,7 +6,9 @@
  */
 package mx.gearsofcode.proyservsocial.logico.inicioDeSesion;
 
+
 import org.eclipse.emf.ecore.EFactory;
+
 
 /**
  * <!-- begin-user-doc -->

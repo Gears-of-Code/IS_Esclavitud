@@ -15,7 +15,6 @@ import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.InicioDeSesionPackage
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.impl.InicioDeSesionPackageImpl;
 
 import mx.gearsofcode.proyservsocial.logico.proyectos.CarreraProyecto;
-import mx.gearsofcode.proyservsocial.logico.proyectos.EstadoProyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosFactory;
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage;
@@ -425,10 +424,6 @@ public class ProyectosPackageImpl extends EPackageImpl implements
         addEEnumLiteral(carreraProyectoEEnum,
                 CarreraProyecto.MANEJO_SUSTENTABLE_DE_ZONAS_COSTERAS);
 
-        initEEnum(estadoProyectoEEnum, EstadoProyecto.class, "EstadoProyecto");
-        addEEnumLiteral(estadoProyectoEEnum, EstadoProyecto.ACEPTADO);
-        addEEnumLiteral(estadoProyectoEEnum, EstadoProyecto.RECHAZADO);
-        addEEnumLiteral(estadoProyectoEEnum, EstadoProyecto.EN_AUTORIZACION);
     }
 
 } //ProyectosPackageImpl

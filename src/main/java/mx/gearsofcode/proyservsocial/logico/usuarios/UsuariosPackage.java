@@ -489,15 +489,7 @@ public interface UsuariosPackage extends EPackage {
      */
     int CARRERA_ALUMNO = 4;
 
-    /**
-     * The meta object id for the '{@link mx.gearsofcode.proyservsocial.logico.usuarios.TipoUsuario <em>Tipo Usuario</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see mx.gearsofcode.proyservsocial.logico.usuarios.TipoUsuario
-     * @see mx.gearsofcode.proyservsocial.logico.usuarios.impl.UsuariosPackageImpl#getTipoUsuario()
-     * @generated
-     */
-    int TIPO_USUARIO = 5;
+
 
     /**
      * Returns the meta object for class '{@link mx.gearsofcode.proyservsocial.logico.usuarios.Alumno <em>Alumno</em>}'.
@@ -703,15 +695,6 @@ public interface UsuariosPackage extends EPackage {
      */
     EEnum getCarreraAlumno();
 
-    /**
-     * Returns the meta object for enum '{@link mx.gearsofcode.proyservsocial.logico.usuarios.TipoUsuario <em>Tipo Usuario</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for enum '<em>Tipo Usuario</em>'.
-     * @see mx.gearsofcode.proyservsocial.logico.usuarios.TipoUsuario
-     * @generated
-     */
-    EEnum getTipoUsuario();
 
     /**
      * Returns the factory that creates the instances of the model.
@@ -904,16 +887,6 @@ public interface UsuariosPackage extends EPackage {
          * @generated
          */
         EEnum CARRERA_ALUMNO = eINSTANCE.getCarreraAlumno();
-
-        /**
-         * The meta object literal for the '{@link mx.gearsofcode.proyservsocial.logico.usuarios.TipoUsuario <em>Tipo Usuario</em>}' enum.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see mx.gearsofcode.proyservsocial.logico.usuarios.TipoUsuario
-         * @see mx.gearsofcode.proyservsocial.logico.usuarios.impl.UsuariosPackageImpl#getTipoUsuario()
-         * @generated
-         */
-        EEnum TIPO_USUARIO = eINSTANCE.getTipoUsuario();
 
     }
 

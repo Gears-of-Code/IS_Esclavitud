@@ -80,8 +80,6 @@ public class ProyectosFactoryImpl extends EFactoryImpl implements
         switch (eDataType.getClassifierID()) {
         case ProyectosPackage.CARRERA_PROYECTO:
             return createCarreraProyectoFromString(eDataType, initialValue);
-        case ProyectosPackage.ESTADO_PROYECTO:
-            return createEstadoProyectoFromString(eDataType, initialValue);
         default:
             throw new IllegalArgumentException("The datatype '"
                     + eDataType.getName() + "' is not a valid classifier");
@@ -139,21 +137,6 @@ public class ProyectosFactoryImpl extends EFactoryImpl implements
     public String convertCarreraProyectoToString(EDataType eDataType,
             Object instanceValue) {
         return instanceValue == null ? null : instanceValue.toString();
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EstadoProyecto createEstadoProyectoFromString(EDataType eDataType,
-            String initialValue) {
-        EstadoProyecto result = EstadoProyecto.get(initialValue);
-        if (result == null)
-            throw new IllegalArgumentException("The value '" + initialValue
-                    + "' is not a valid enumerator of '" + eDataType.getName()
-                    + "'");
-        return result;
     }
 
     /**

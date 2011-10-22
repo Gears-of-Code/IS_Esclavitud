@@ -7,7 +7,6 @@
 package mx.gearsofcode.proyservsocial.logico.proyectos.impl;
 
 import mx.gearsofcode.proyservsocial.logico.proyectos.CarreraProyecto;
-import mx.gearsofcode.proyservsocial.logico.proyectos.EstadoProyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage;
 
@@ -521,8 +520,14 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EstadoProyecto getEstado() {
-        return estado;
+    public String getEstado() {
+        String status = "";
+        if (estado) {
+            status = "Aprobado";
+        } else {
+            status = "En autorizacion";
+        }
+        return status;
     }
 
     /**
@@ -530,37 +535,15 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setEstado(EstadoProyecto newEstado) {
-        EstadoProyecto oldEstado = estado;
-        estado = newEstado == null ? ESTADO_EDEFAULT : newEstado;
+    public void setEstado(final boolean newEstado) {
+        boolean oldEstado = estado;
+        estado = newEstado ? ESTADO_EDEFAULT : newEstado;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
                     ProyectosPackage.PROYECTO__ESTADO, oldEstado, estado));
     }
 
-    /**
-     * Llama a la base de datos para obtener y listar todos los proyectos
-     * que se encuentran disponibles para el usuario.
-     * Debe de regresar un bloque de proyectos.
-     */
-    public void verProyectos() {
-	try {
-	    conexion.verProyectosDB()
-		
-		}
-        throw new UnsupportedOperationException();
-    }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void propProyectos() {
-        // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
-    }
 
     /**
      * <!-- begin-user-doc -->
@@ -668,7 +651,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
             setDescripcion((String) newValue);
             return;
         case ProyectosPackage.PROYECTO__ESTADO:
-            setEstado((EstadoProyecto) newValue);
+            setEstado((Boolean) newValue);
             return;
         }
         super.eSet(featureID, newValue);

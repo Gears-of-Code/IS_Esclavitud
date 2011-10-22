@@ -8,21 +8,26 @@ package mx.gearsofcode.proyservsocial.logico.inicioDeSesion.impl;
 
 import mx.gearsofcode.proyservsocial.logico.LogicoPackage;
 
+
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoPackageImpl;
 
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.InicioDeSesionFactory;
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.InicioDeSesionPackage;
+
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.Sesion;
+import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario;
 
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage;
 
 import mx.gearsofcode.proyservsocial.logico.proyectos.impl.ProyectosPackageImpl;
 
+import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
 
 import mx.gearsofcode.proyservsocial.logico.usuarios.impl.UsuariosPackageImpl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -42,6 +47,13 @@ public class InicioDeSesionPackageImpl extends EPackageImpl implements
      * @generated
      */
     private EClass sesionEClass = null;
+    
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum tipoUsuarioEEnum = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -150,6 +162,15 @@ public class InicioDeSesionPackageImpl extends EPackageImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    public EEnum getTipoUsuario() {
+        return tipoUsuarioEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public InicioDeSesionFactory getInicioDeSesionFactory() {
         return (InicioDeSesionFactory) getEFactoryInstance();
     }
@@ -176,6 +197,8 @@ public class InicioDeSesionPackageImpl extends EPackageImpl implements
         // Create classes and their features
         sesionEClass = createEClass(SESION);
         createEReference(sesionEClass, SESION__USUARIO);
+        
+        tipoUsuarioEEnum = createEEnum(TIPO_USUARIO);
     }
 
     /**
@@ -226,6 +249,16 @@ public class InicioDeSesionPackageImpl extends EPackageImpl implements
 
         addEOperation(sesionEClass, null, "cerrarSesion", 1, 1, IS_UNIQUE,
                 !IS_ORDERED);
+        
+        initEAttribute(theUsuariosPackage.getUsuarioRegistrado_Tipo(), this.getTipoUsuario(),
+                "tipo", null, 1, 1, UsuarioRegistrado.class, !IS_TRANSIENT,
+                !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+                !IS_DERIVED, !IS_ORDERED);
+        
+        initEEnum(tipoUsuarioEEnum, TipoUsuario.class, "TipoUsuario");
+        addEEnumLiteral(tipoUsuarioEEnum, TipoUsuario.ADMINISTRADOR);
+        addEEnumLiteral(tipoUsuarioEEnum, TipoUsuario.RESPONSABLE);
+        addEEnumLiteral(tipoUsuarioEEnum, TipoUsuario.ALUMNO);
     }
 
 } //InicioDeSesionPackageImpl

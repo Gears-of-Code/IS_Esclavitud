@@ -7,6 +7,7 @@
 package mx.gearsofcode.proyservsocial.logico.usuarios;
 
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.Sesion;
+import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -115,7 +116,7 @@ public interface UsuarioRegistrado extends EObject {
 
     /**
      * Returns the value of the '<em><b>Tipo</b></em>' attribute.
-     * The literals are from the enumeration {@link mx.gearsofcode.proyservsocial.logico.usuarios.TipoUsuario}.
+     * The literals are from the enumeration {@link mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Tipo</em>' attribute isn't clear,
@@ -123,24 +124,24 @@ public interface UsuarioRegistrado extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Tipo</em>' attribute.
-     * @see mx.gearsofcode.proyservsocial.logico.usuarios.TipoUsuario
+     * @see mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario
      * @see #setTipo(TipoUsuario)
      * @see mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage#getUsuarioRegistrado_Tipo()
      * @model required="true" ordered="false"
      * @generated
      */
-    TipoUsuario getTipo();
+    int getTipo();
 
     /**
      * Sets the value of the '{@link mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado#getTipo <em>Tipo</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Tipo</em>' attribute.
-     * @see mx.gearsofcode.proyservsocial.logico.usuarios.TipoUsuario
+     * @see mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario
      * @see #getTipo()
      * @generated
      */
-    void setTipo(TipoUsuario value);
+    void setTipo(final int value);
 
     /**
      * Returns the value of the '<em><b>Nombre</b></em>' attribute.
@@ -245,5 +246,11 @@ public interface UsuarioRegistrado extends EObject {
      * @generated
      */
     void setSesion(Sesion value);
+    
+    /**
+     * Consulta todos los proyectos a los que un usuario puede acceder.
+     * Dependiendo del tipo de usuario los proyectos que se le muestran.
+     */
+    void verProyectos();
 
 } // UsuarioRegistrado

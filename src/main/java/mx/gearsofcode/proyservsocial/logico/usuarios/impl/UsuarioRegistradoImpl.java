@@ -7,10 +7,13 @@
 package mx.gearsofcode.proyservsocial.logico.usuarios.impl;
 
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.Sesion;
+import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario;
 
-import mx.gearsofcode.proyservsocial.logico.usuarios.TipoUsuario;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
+
+import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
+import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -45,6 +48,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class UsuarioRegistradoImpl extends EObjectImpl implements
         UsuarioRegistrado {
+    
+    protected ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
+    
     /**
      * The default value of the '{@link #getId() <em>Id</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -113,7 +119,7 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected static final TipoUsuario TIPO_EDEFAULT = TipoUsuario.ADMINISTRADOR;
+    protected static final int TIPO_EDEFAULT = -1;
 
     /**
      * The cached value of the '{@link #getTipo() <em>Tipo</em>}' attribute.
@@ -123,7 +129,7 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected TipoUsuario tipo = TIPO_EDEFAULT;
+    protected int tipo = TIPO_EDEFAULT;
 
     /**
      * The default value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
@@ -287,7 +293,7 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public TipoUsuario getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
@@ -296,8 +302,8 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTipo(TipoUsuario newTipo) {
-        TipoUsuario oldTipo = tipo;
+    public void setTipo(final int newTipo) {
+        int oldTipo = tipo;
         tipo = newTipo == null ? TIPO_EDEFAULT : newTipo;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
@@ -462,7 +468,7 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
             setContraseña((String) newValue);
             return;
         case UsuariosPackage.USUARIO_REGISTRADO__TIPO:
-            setTipo((TipoUsuario) newValue);
+            setTipo((Integer) newValue);
             return;
         case UsuariosPackage.USUARIO_REGISTRADO__NOMBRE:
             setNombre((String) newValue);
@@ -588,6 +594,19 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      */
     protected EObject create(EClass eClass) {
         return EcoreUtil.create(eClass);
+    }
+
+    /**
+     * Llama a la base de datos para obtener y listar todos los proyectos
+     * que se encuentran disponibles para el usuario.
+     * Debe de regresar un array de proyectos.
+     */
+    public void verProyectos() {
+    try {
+        conexion.verProyectosDb(tipo);
+
+        }
+        throw new UnsupportedOperationException();
     }
 
 } //UsuarioRegistradoImpl

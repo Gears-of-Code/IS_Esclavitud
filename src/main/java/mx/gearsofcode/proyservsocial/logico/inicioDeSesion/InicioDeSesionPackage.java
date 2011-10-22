@@ -7,6 +7,7 @@
 package mx.gearsofcode.proyservsocial.logico.inicioDeSesion;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -49,6 +50,16 @@ public interface InicioDeSesionPackage extends EPackage {
      * @generated
      */
     String eNS_PREFIX = "proyservsocial.logico.inicioDeSesion";
+    
+    /**
+     * The meta object id for the '{@link mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario <em>Tipo Usuario</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario
+     * @see mx.gearsofcode.proyservsocial.logico.usuarios.impl.UsuariosPackageImpl#getTipoUsuario()
+     * @generated
+     */
+    int TIPO_USUARIO = 5;
 
     /**
      * The singleton instance of the package.
@@ -116,6 +127,17 @@ public interface InicioDeSesionPackage extends EPackage {
      * @generated
      */
     InicioDeSesionFactory getInicioDeSesionFactory();
+    
+    /**
+     * Returns the meta object for enum '{@link mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario <em>Tipo Usuario</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for enum '<em>Tipo Usuario</em>'.
+     * @see mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario
+     * @generated
+     */
+    EEnum getTipoUsuario();
+
 
     /**
      * <!-- begin-user-doc -->
@@ -147,6 +169,16 @@ public interface InicioDeSesionPackage extends EPackage {
          * @generated
          */
         EReference SESION__USUARIO = eINSTANCE.getSesion_Usuario();
+        
+        /**
+         * The meta object literal for the '{@link mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario <em>Tipo Usuario</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario
+         * @see mx.gearsofcode.proyservsocial.logico.usuarios.impl.UsuariosPackageImpl#getTipoUsuario()
+         * @generated
+         */
+        EEnum TIPO_USUARIO = eINSTANCE.getTipoUsuario();
 
     }
 

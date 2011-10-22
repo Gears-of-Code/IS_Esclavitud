@@ -4,126 +4,128 @@
  *
  * $Id$
  */
-package mx.gearsofcode.proyservsocial.logico.proyectos;
+package mx.gearsofcode.proyservsocial.logico.inicioDeSesion;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
+
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Estado Proyecto</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Tipo Usuario</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage#getEstadoProyecto()
+ * @see mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage#getTipoUsuario()
  * @model
  * @generated
  */
-public enum EstadoProyecto implements Enumerator {
+public enum TipoUsuario implements Enumerator {
     /**
-     * The '<em><b>Aceptado</b></em>' literal object.
+     * The '<em><b>Administrador</b></em>' literal object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #ACEPTADO_VALUE
+     * @see #ADMINISTRADOR_VALUE
      * @generated
      * @ordered
      */
-    ACEPTADO(0, "aceptado", "aceptado"),
+    ADMINISTRADOR(0, "administrador", "administrador"),
 
     /**
-     * The '<em><b>Rechazado</b></em>' literal object.
+     * The '<em><b>Responsable</b></em>' literal object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #RECHAZADO_VALUE
+     * @see #RESPONSABLE_VALUE
      * @generated
      * @ordered
      */
-    RECHAZADO(1, "rechazado", "rechazado"),
+    RESPONSABLE(1, "responsable", "responsable"),
 
     /**
-     * The '<em><b>En Autorizacion</b></em>' literal object.
+     * The '<em><b>Alumno</b></em>' literal object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #EN_AUTORIZACION_VALUE
+     * @see #ALUMNO_VALUE
      * @generated
      * @ordered
      */
-    EN_AUTORIZACION(2, "enAutorizacion", "enAutorizacion");
+    ALUMNO(2, "alumno", "alumno");
 
     /**
-     * The '<em><b>Aceptado</b></em>' literal value.
+     * The '<em><b>Administrador</b></em>' literal value.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of '<em><b>Aceptado</b></em>' literal object isn't clear,
+     * If the meaning of '<em><b>Administrador</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #ACEPTADO
-     * @model name="aceptado"
+     * @see #ADMINISTRADOR
+     * @model name="administrador"
      * @generated
      * @ordered
      */
-    public static final int ACEPTADO_VALUE = 0;
+    public static final int ADMINISTRADOR_VALUE = 0;
 
     /**
-     * The '<em><b>Rechazado</b></em>' literal value.
+     * The '<em><b>Responsable</b></em>' literal value.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of '<em><b>Rechazado</b></em>' literal object isn't clear,
+     * If the meaning of '<em><b>Responsable</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #RECHAZADO
-     * @model name="rechazado"
+     * @see #RESPONSABLE
+     * @model name="responsable"
      * @generated
      * @ordered
      */
-    public static final int RECHAZADO_VALUE = 1;
+    public static final int RESPONSABLE_VALUE = 1;
 
     /**
-     * The '<em><b>En Autorizacion</b></em>' literal value.
+     * The '<em><b>Alumno</b></em>' literal value.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of '<em><b>En Autorizacion</b></em>' literal object isn't clear,
+     * If the meaning of '<em><b>Alumno</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #EN_AUTORIZACION
-     * @model name="enAutorizacion"
+     * @see #ALUMNO
+     * @model name="alumno"
      * @generated
      * @ordered
      */
-    public static final int EN_AUTORIZACION_VALUE = 2;
+    public static final int ALUMNO_VALUE = 2;
 
     /**
-     * An array of all the '<em><b>Estado Proyecto</b></em>' enumerators.
+     * An array of all the '<em><b>Tipo Usuario</b></em>' enumerators.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    private static final EstadoProyecto[] VALUES_ARRAY = new EstadoProyecto[] {
-            ACEPTADO, RECHAZADO, EN_AUTORIZACION, };
+    private static final TipoUsuario[] VALUES_ARRAY = new TipoUsuario[] {
+            ADMINISTRADOR, RESPONSABLE, ALUMNO, };
 
     /**
-     * A public read-only list of all the '<em><b>Estado Proyecto</b></em>' enumerators.
+     * A public read-only list of all the '<em><b>Tipo Usuario</b></em>' enumerators.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final List<EstadoProyecto> VALUES = Collections
+    public static final List<TipoUsuario> VALUES = Collections
             .unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
     /**
-     * Returns the '<em><b>Estado Proyecto</b></em>' literal with the specified literal value.
+     * Returns the '<em><b>Tipo Usuario</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static EstadoProyecto get(String literal) {
+    public static TipoUsuario get(String literal) {
         for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            EstadoProyecto result = VALUES_ARRAY[i];
+            TipoUsuario result = VALUES_ARRAY[i];
             if (result.toString().equals(literal)) {
                 return result;
             }
@@ -132,14 +134,14 @@ public enum EstadoProyecto implements Enumerator {
     }
 
     /**
-     * Returns the '<em><b>Estado Proyecto</b></em>' literal with the specified name.
+     * Returns the '<em><b>Tipo Usuario</b></em>' literal with the specified name.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static EstadoProyecto getByName(String name) {
+    public static TipoUsuario getByName(String name) {
         for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            EstadoProyecto result = VALUES_ARRAY[i];
+            TipoUsuario result = VALUES_ARRAY[i];
             if (result.getName().equals(name)) {
                 return result;
             }
@@ -148,19 +150,19 @@ public enum EstadoProyecto implements Enumerator {
     }
 
     /**
-     * Returns the '<em><b>Estado Proyecto</b></em>' literal with the specified integer value.
+     * Returns the '<em><b>Tipo Usuario</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static EstadoProyecto get(int value) {
+    public static TipoUsuario get(int value) {
         switch (value) {
-        case ACEPTADO_VALUE:
-            return ACEPTADO;
-        case RECHAZADO_VALUE:
-            return RECHAZADO;
-        case EN_AUTORIZACION_VALUE:
-            return EN_AUTORIZACION;
+        case ADMINISTRADOR_VALUE:
+            return ADMINISTRADOR;
+        case RESPONSABLE_VALUE:
+            return RESPONSABLE;
+        case ALUMNO_VALUE:
+            return ALUMNO;
         }
         return null;
     }
@@ -192,7 +194,7 @@ public enum EstadoProyecto implements Enumerator {
      * <!-- end-user-doc -->
      * @generated
      */
-    private EstadoProyecto(int value, String name, String literal) {
+    private TipoUsuario(int value, String name, String literal) {
         this.value = value;
         this.name = name;
         this.literal = literal;
@@ -236,4 +238,4 @@ public enum EstadoProyecto implements Enumerator {
         return literal;
     }
 
-} //EstadoProyecto
+} //TipoUsuario

@@ -9,6 +9,9 @@ package mx.gearsofcode.proyservsocial.logico.usuarios.impl;
 import mx.gearsofcode.proyservsocial.logico.usuarios.Responsable;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
 
+import mx.gearsofcode.proyservsocial.logico.proyectos.impl.ProyectosFactoryImpl;
+import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -207,6 +210,39 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
      * @generated
      */
     public void seleccionarAlumnos() {
+        // TODO: implement this method
+        // Ensure that you remove @generated or mark it @generated NOT
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Metodo que dara de alta un nuevo proyecto en la base
+     * de datos. Este proyecto siempre esta en estado false 
+     * que implica que esta en "proceso de autorizacion".
+     * @param nomProy Nombre del proyecto.
+     * @param carreraProy A que carrera pertenece o prefiere este servicio social.
+     * @param descrProy Descripcion de lo que se hara en el proyecto.
+     * @param dirProy Direccion del sitio donde se realizara el proyecto.
+     * @param mailProy Direccion de correo electronico del proyecto.
+     * @param telProy Telefono de contacto.
+     * @param capMax Numero maximo de participantes para este proyecto.
+     * 
+     */
+    public void propProyectos(final String nomProy, final String carreraProy,
+            final String descrProy, final String dirProy, final String mailProy, 
+            final int telProy, final int capMax) {
+        Proyecto nuevoProyecto = new ProyectosFactoryImpl().createProyecto();
+        nuevoProyecto.setNombre(nomProy);
+        nuevoProyecto.setCarrera();   // <-Falta Valor, de donde lo obtengo?
+        nuevoProyecto.setDescripcion(descrProy);
+        nuevoProyecto.setDireccion(dirProy);
+        nuevoProyecto.setEmail(mailProy);
+        nuevoProyecto.setTelefono(telProy);
+        nuevoProyecto.setMaxParticipante(capMax);
+        nuevoProyecto.setResponsable(id);
+        nuevoProyecto.setAreaConocimiento();  // <-Falta Valor, de donde lo obtengo?
+        
+        conexion.proponerProyectoDBb(nuevoProyecto);
         // TODO: implement this method
         // Ensure that you remove @generated or mark it @generated NOT
         throw new UnsupportedOperationException();
