@@ -174,7 +174,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void validaUsuarioDb(final string nombreUsuario, final string password) {
+    public void validaUsuarioDb(final String nombreUsuario, final String password) {
         // TODO: implement this method
         // Ensure that you remove @generated or mark it @generated NOT
         throw new UnsupportedOperationException();

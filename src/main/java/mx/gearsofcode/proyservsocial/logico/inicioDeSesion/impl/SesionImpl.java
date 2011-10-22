@@ -11,8 +11,11 @@ import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.Sesion;
 
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
 
-import mx.gearsofcode.proyservsocial.logico.LogicoPackage;
-import mx.gearsofcode.proyservsocial.logico.ConectaDB;
+import mx.gearsofcode.proyservsocial.logico.LogicoFactory;
+import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
+import mx.gearsofcode.proyservsocial.logico.ConectaDb;
+
+import java.security.MessageDigest;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -26,9 +29,10 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Sesion</b></em>'.
- * <!-- end-user-doc -->
+ * La clase '<em><b>Sesion</b></em>' se encarga de manejar
+ * parte del inicio de sesion del usuario en el sistema.
+ * Acepta o rechaza usuarios y les genera su respectiva clase
+ * de trabajo.
  * <p>
  * The following features are implemented:
  * <ul>
@@ -36,7 +40,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * </ul>
  * </p>
  *
- * @generated
  */
 public class SesionImpl extends EObjectImpl implements Sesion {
     /**
@@ -50,17 +53,11 @@ public class SesionImpl extends EObjectImpl implements Sesion {
     protected UsuarioRegistrado usuario;
 
     /**
-     * Crea la fabrica de clases del paquete Logico.
-     * Es necesaria para poder crear la clase de conectaDB y 
-     * acceder a esos recursos.
-     **/
-    private LogicoFactory fabrica = new LogicoFactory();
-
-    /**
-     * Clase que contiene los metodos de conexion a la base de datos.
+     * Se crea un elemento tipo ConectaDb.
+     * Clase ConectaDb contiene los metodos de conexion a la base de datos.
      * Aqui se realizan los queries directamente a la base de datos.
      **/
-    private ConectaDB conexion = new fabrica.createConectaDb();
+    private ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
 
     /**
      * <!-- begin-user-doc -->
@@ -123,13 +120,21 @@ public class SesionImpl extends EObjectImpl implements Sesion {
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Autenticar va a recibir los valores de un usuario, tras aplicar una función
+     * md5 o similar pasara los datos a un metodo que los validara en la base de 
+     * datos. Si existen en la base de datos, se accede al sistema sino se manda
+     * un mensaje de error.
+     * @param nombreUsuario Nombre del usuario.
+     * @param passwd Contraseña del usuario, en texto plano.
      */
     public void autenticar(final String nombreUsuario, final String passwd) {
+        byte[] bytesPasswd = passwd.getBytes("UTF-8");
+        MessageDigest cifrado = MessageDigest.getInstance("MD5");
+        cifrado.reset();
+        byte[] md5bytePass = cifrado.digest(bytesPasswd);
+        String md5passwd = cifrado.toString();
 	try { 
-	    
-	    int tipoUsuario = conexion.validaUsuarioDb(nombreUsuario, passwd);
+	    conexion.validaUsuarioDb(nombreUsuario, md5passwd);
 	    // TODO: implement this method
 	    // Ensure that you remove @generated or mark it @generated NOT
 	}

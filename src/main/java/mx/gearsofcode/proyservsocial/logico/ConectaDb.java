@@ -114,5 +114,5 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void validaUsuarioDb();
+    void validaUsuarioDb(final String nombreUsuario, final String passwd);
 } // ConectaDb

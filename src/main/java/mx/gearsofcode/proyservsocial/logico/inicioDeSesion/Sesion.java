@@ -59,7 +59,7 @@ public interface Sesion extends EObject {
      * @model
      * @generated
      */
-    void autenticar();
+    void autenticar(final String nombreUsuario, final String password);
 
     /**
      * <!-- begin-user-doc -->

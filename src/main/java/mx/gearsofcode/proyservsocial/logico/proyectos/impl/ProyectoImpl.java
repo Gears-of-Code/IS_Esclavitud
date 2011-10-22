@@ -11,6 +11,9 @@ import mx.gearsofcode.proyservsocial.logico.proyectos.EstadoProyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage;
 
+import mx.gearsofcode.proyservsocial.logico.ConectaDb;
+import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -264,17 +267,10 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected boolean  estado = ESTADO_EDEFAULT;
 
     /**
-     * Crea la fabrica de clases del paquete Logico.
-     * Es necesaria para poder crear la clase de conectaDB y 
-     * acceder a esos recursos.
-     **/
-    private LogicoFactory fabrica = new LogicoFactory();
-
-    /**
      * Clase que contiene los metodos de conexion a la base de datos.
      * Aqui se realizan los queries directamente a la base de datos.
      **/
-    private ConectaDB conexion = new fabrica.createConectaDb();
+    private ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
 
     /**
      * <!-- begin-user-doc -->
