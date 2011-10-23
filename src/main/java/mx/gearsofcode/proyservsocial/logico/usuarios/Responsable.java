@@ -6,6 +6,7 @@
  */
 package mx.gearsofcode.proyservsocial.logico.usuarios;
 
+import mx.gearsofcode.proyservsocial.logico.util.DBCreationException;
 import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 /**
@@ -118,10 +119,11 @@ public interface Responsable extends UsuarioRegistrado {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @throws DBCreationException 
      * @model
      * @generated
      */
-    void registrarse();
+    void registrarse() throws DBCreationException;
 
     /**
      * <!-- begin-user-doc -->
@@ -129,6 +131,6 @@ public interface Responsable extends UsuarioRegistrado {
      * @model
      * @generated
      */
-    void seleccionarAlumnos();
+    void seleccionarAlumnos(); //This method's functionality is mirrored in aceptaAlumnoProyecto. We should delete this.
 
 } // Responsable

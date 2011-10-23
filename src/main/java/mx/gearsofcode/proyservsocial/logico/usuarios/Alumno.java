@@ -6,6 +6,8 @@
  */
 package mx.gearsofcode.proyservsocial.logico.usuarios;
 
+import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Alumno</b></em>'.
@@ -109,11 +111,12 @@ public interface Alumno extends UsuarioRegistrado {
     void setEstado(boolean value);
 
     /**
-     * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->a
      * <!-- end-user-doc -->
+     * @throws DBModificationException 
      * @model
      * @generated
      */
-    void postularseAProyecto();
+    void postularseAProyecto(int proyectID) throws DBModificationException ;
 
 } // Alumno

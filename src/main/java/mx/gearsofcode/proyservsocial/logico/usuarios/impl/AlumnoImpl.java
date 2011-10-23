@@ -6,9 +6,12 @@
  */
 package mx.gearsofcode.proyservsocial.logico.usuarios.impl;
 
+import mx.gearsofcode.proyservsocial.logico.ConectaDb;
+import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.usuarios.Alumno;
 import mx.gearsofcode.proyservsocial.logico.usuarios.CarreraAlumno;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
+import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -180,13 +183,16 @@ public class AlumnoImpl extends UsuarioRegistradoImpl implements Alumno {
 
     /**
      * <!-- begin-user-doc -->
+     * Metodo que usa la conexion del alumno para registrar que queda postulado.
+     * No debe ser usado si el alumno ya esta autorizado.
      * <!-- end-user-doc -->
-     * @generated
+     * @param proyectID ID del proyecto donde se postula el alumno.
+     * @throws DBModificationException 
+     * @generated NOT
      */
-    public void postularseAProyecto() {
-        // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
+    public void postularseAProyecto(int proyectID) throws DBModificationException {
+        ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
+        conexion.postularAProyectoDb(proyectID, this.id);
     }
 
     /**

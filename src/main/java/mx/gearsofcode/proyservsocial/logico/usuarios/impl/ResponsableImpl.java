@@ -200,24 +200,20 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
     public void aceptaAlumnoProyecto(final int proyectID, int [] studentIDs) throws DBModificationException{
         for (int i = 0; i < studentIDs.length; i++) {
             int studentID = studentIDs[i];
-            try{
-                this.conexion.aceptarAlumnoProyectoDb(proyectID, studentID);
-            }catch(DBModificationException e){
-                //We could maybe do something about/with the exception here.
-                throw e;
-            }
+            this.conexion.aceptarAlumnoProyectoDb(proyectID, studentID);
         }
     }
 
     /**
      * <!-- begin-user-doc -->
+     * Metodo con el que el objeto que llama se registra en la base de datos
+     * usando la Conexion de ConectaDB
      * <!-- end-user-doc -->
-     * @generated
+     * @throws DBCreationException 
+     * @generated NOT
      */
-    public void registrarse() {
-        // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
+    public void registrarse() throws DBCreationException {
+        this.conexion.registrarDb(this);
     }
 
     /**
