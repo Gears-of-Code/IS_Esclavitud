@@ -537,7 +537,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      */
     public void setEstado(final boolean newEstado) {
         boolean oldEstado = estado;
-        estado = newEstado ? ESTADO_EDEFAULT : newEstado;
+        estado = newEstado;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
                     ProyectosPackage.PROYECTO__ESTADO, oldEstado, estado));
@@ -546,35 +546,45 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * Este metodo solo lo ejecuta el administrador. Sirve para autorizar
+     * un proyecto, lo cual hace que pase el estado de false -> true.
+     * Al cambiar este valor el proceso queda "Aceptado".
      */
     public void autorizarProyecto() {
+        if (!estado) {   // Revisa que el proyecto no este autorizado.
+            setEstado(true);
+            conexion.autorizarProyectoDb(id);
+        }
         // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
         throw new UnsupportedOperationException();
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * Este metodo solo lo ejecuta el administrador. Sirve para rechazar
+     * un proyecto, lo cual hace que el proyecto sea eliminado de la base
+     * de datos directamente.
      */
     public void rechazarProyecto() {
-        // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
+       if (!estado) {    // Revisa que el proyecto no este autorizado.
+           try {
+           conexion.rechazarProyectoDb(id);
+           } finally {
+               throw new UnsupportedOperationException();   
+           }
+       // TODO: implement this method
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * Este metodo solo lo ejecutan el administrador y el responsable.
+     * Nos muestra la lista de los alumnos que estan postulados a uno de
+     * los proyectos.
      */
     public void verListaPostulados() {
+        try {
+            conexion.verPostuladosDb(id);
+        }
+    
         // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
         throw new UnsupportedOperationException();
     }
 
