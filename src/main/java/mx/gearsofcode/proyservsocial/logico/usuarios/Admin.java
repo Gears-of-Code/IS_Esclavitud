@@ -6,6 +6,8 @@
  */
 package mx.gearsofcode.proyservsocial.logico.usuarios;
 
+import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Admin</b></em>'.
@@ -20,25 +22,28 @@ public interface Admin extends UsuarioRegistrado {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @throws DBModificationException 
      * @model
      * @generated
      */
-    void aceptaResponsable();
+    void aceptaResponsable(final int respID) throws DBModificationException;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @throws DBModificationException 
      * @model
      * @generated
      */
-    void actualizaEstadoAlumno();
+    void actualizaEstadoAlumno(final int studentID, boolean studentState) throws DBModificationException;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @throws DBModificationException 
      * @model
      * @generated
      */
-    void autorizarAlumnoProyecto();
+    void autorizarAlumnoProyecto(final int studentID, final int proyectID) throws DBModificationException;
 
 } // Admin

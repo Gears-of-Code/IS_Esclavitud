@@ -1,4 +1,5 @@
 /**
+
  * <copyright>
  * </copyright>
  *
@@ -121,4 +122,8 @@ public interface ConectaDb extends EObject {
      * @generated
      */
     void validaUsuarioDb(final String nombreUsuario, final String passwd) throws DBConsultException;
+
+    void modificarEstadoAlumno(int studentID, boolean studentState) throws DBModificationException;
+
+    void autorizarAlumnoProyecto(int studentID, int proyectID) throws DBModificationException;
 } // ConectaDb

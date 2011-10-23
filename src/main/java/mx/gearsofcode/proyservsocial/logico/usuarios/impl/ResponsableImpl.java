@@ -40,7 +40,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class ResponsableImpl extends UsuarioRegistradoImpl implements
         Responsable {
     
-    private ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
+    
     
     /**
      * The default value of the '{@link #getDescripcion() <em>Descripcion</em>}' attribute.
@@ -198,9 +198,10 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
      * @generated NOT
      */
     public void aceptaAlumnoProyecto(final int proyectID, int [] studentIDs) throws DBModificationException{
+        ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
         for (int i = 0; i < studentIDs.length; i++) {
             int studentID = studentIDs[i];
-            this.conexion.aceptarAlumnoProyectoDb(proyectID, studentID);
+            conexion.aceptarAlumnoProyectoDb(proyectID, studentID);
         }
     }
 
@@ -213,7 +214,8 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
      * @generated NOT
      */
     public void registrarse() throws DBCreationException {
-        this.conexion.registrarDb(this);
+        ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();       
+        conexion.registrarDb(this);
     }
 
     /**
@@ -253,6 +255,7 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
         nuevoProyecto.setMaxParticipante(capMax);
         nuevoProyecto.setResponsable(id);
 //        nuevoProyecto.setAreaConocimiento();  // <-Falta Valor, de donde lo obtengo?
+        ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
         
         try {
             conexion.proponerProyectoDBb(nuevoProyecto);

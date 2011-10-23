@@ -88,6 +88,7 @@ public class AlumnoImpl extends UsuarioRegistradoImpl implements Alumno {
     /**
      * The cached value of the '{@link #isEstado() <em>Estado</em>}' attribute.
      * <!-- begin-user-doc -->
+     * Si el estado del alumno es true, entonces el alumno ya esta autorizado en algun proyecto.
      * <!-- end-user-doc -->
      * @see #isEstado()
      * @generated

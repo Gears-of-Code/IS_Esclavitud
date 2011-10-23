@@ -49,7 +49,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 public class UsuarioRegistradoImpl extends EObjectImpl implements
         UsuarioRegistrado {
     
-    protected ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
     
     /**
      * The default value of the '{@link #getId() <em>Id</em>}' attribute.
