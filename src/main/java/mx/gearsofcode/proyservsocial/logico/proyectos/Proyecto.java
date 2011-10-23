@@ -287,31 +287,25 @@ public interface Proyecto extends EObject {
     void setCarrera(CarreraProyecto value);
 
     /**
-     * Returns the value of the '<em><b>Max Participante</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Max Participante</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
+     * Obtiene el valor del atributo '<em><b>Max Participante</b></em>'.
      * 
-     * @return the value of the '<em>Max Participante</em>' attribute.
+     * <p>
+     * Nos regresa el numero maximo de participantes que puede haber en el proyecto.
+     * </p>
+     * 
+     * @return El numero maximo de participantes.
      * @see #setMaxParticipante(int)
      * @see mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage#getProyecto_MaxParticipante()
-     * @model required="true" ordered="false"
-     * @generated
      */
     int getMaxParticipante();
 
     /**
-     * Sets the value of the '
+     * Cambia o coloca el numero maximo de paricipantes en un proyecto. Coloca el valor del atributo '
      * {@link mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto#getMaxParticipante
-     * <em>Max Participante</em>}' attribute. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * <em>Max Participante</em>}' 
      * 
-     * @param value the new value of the '<em>Max Participante</em>' attribute.
+     * @param value El numero maximo de participantes permitido.
      * @see #getMaxParticipante()
-     * @generated
      */
     void setMaxParticipante(int value);
 
@@ -353,7 +347,7 @@ public interface Proyecto extends EObject {
      * @see #setEstado(EstadoProyecto)
      * @see mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage#getProyecto_Estado()
      */
-    String getEstado();
+    boolean getEstado();
 
     /**
      * Marca un proyecto como Aceptado por un administrador. Solo puede usar un

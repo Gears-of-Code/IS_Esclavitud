@@ -24,10 +24,9 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Proyecto</b></em>'. <!-- end-user-doc -->
+ * Modela el contenido de un '* <em><b>Proyecto</b></em>'con sus elementos.
  * <p>
- * The following features are implemented:
+ * Las siguientes funciones estan implementadas:
  * <ul>
  * <li>
  * {@link mx.gearsofcode.proyservsocial.logico.proyectos.impl.ProyectoImpl#getId
@@ -64,25 +63,19 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <em>Estado</em>}</li>
  * </ul>
  * </p>
- * 
- * @generated
  */
 public class ProyectoImpl extends EObjectImpl implements Proyecto {
     /**
      * Valor por defecto del atributo '{@link #getId() <em>Id</em>}'.
      * 
      * @see #getId()
-     * @generated
-     * @ordered
      */
     protected static final int ID_EDEFAULT = -1;
 
     /**
-     * Valor por almacenado del atributo '{@link #getId() <em>Id</em>}'.
+     * Valor almacenado del atributo '{@link #getId() <em>Id</em>}'.
      * 
      * @see #getId()
-     * @generated
-     * @ordered
      */
     protected int id = ID_EDEFAULT;
 
@@ -90,39 +83,30 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * Valor por defecto del atributo '{@link #getNombre() <em>Nombre</em>}'.
      * 
      * @see #getNombre()
-     * @generated
-     * @ordered
      */
     protected static final String NOMBRE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * Valor almacenado del atributo '{@link #getNombre() <em>Nombre</em>}'.
      * 
      * @see #getNombre()
-     * @generated
-     * @ordered
      */
     protected String nombre = NOMBRE_EDEFAULT;
 
     /**
      * Valor por defecto del atributo '{@link #getResponsable()
-     * <em>Responsable</em>}'. Id del responsable del proyecto, -1 en un
-     * proyecto vacio, se coloca el id del responsable que crea el proyecto.
+     * <em>Id Responsable</em>}'. 
+     * Sera responsable del proyecto, -1 en un proyecto vacio, 
+     * se coloca el id del responsable que crea el proyecto.
      * 
      * @see #getResponsable()
-     * @generated
-     * @ordered
      */
     protected static final int RESPONSABLE_EDEFAULT = -1;
 
     /**
-     * The cached value of the '{@link #getResponsable() <em>Responsable</em>}'
-     * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * Valor almacenado del atributo '{@link #getResponsable() <em>Responsable</em>}'.
      * 
      * @see #getResponsable()
-     * @generated
-     * @ordered
      */
     protected int responsable = RESPONSABLE_EDEFAULT;
 
@@ -131,19 +115,13 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * <em>Area Conocimiento</em>}'. No existe en un proyecto nuevo.
      * 
      * @see #getAreaConocimiento()
-     * @generated
-     * @ordered
      */
     protected static final String AREA_CONOCIMIENTO_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getAreaConocimiento()
-     * <em>Area Conocimiento</em>}' attribute. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * Valor almacenado del atributo '{@link #getAreaConocimiento() <em>Area Conocimiento</em>}' .
      * 
      * @see #getAreaConocimiento()
-     * @generated
-     * @ordered
      */
     protected String areaConocimiento = AREA_CONOCIMIENTO_EDEFAULT;
 
@@ -290,8 +268,8 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected boolean estado = ESTADO_EDEFAULT;
 
     /**
-     * Clase que contiene los metodos de conexion a la base de datos. Aqui se
-     * realizan los queries directamente a la base de datos.
+     * Clase que contiene los metodos de conexion a la base de datos. 
+     * Aqui se realizan los queries directamente a la base de datos.
      **/
     private ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
 
@@ -494,18 +472,14 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
+     * {@inheritDoc}
      */
     public int getMaxParticipante() {
         return maxParticipante;
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
+     * {@inheritDoc}
      */
     public void setMaxParticipante(int newMaxParticipante) {
         int oldMaxParticipante = maxParticipante;
@@ -617,7 +591,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * @param idUsuario Valor tipo de usuario, debe coincidir con el de un
      *            administrador o un responsabl.
      */
-    public void verListaPostulados(final int idUsuario) {
+    public void verListaPostulados(final int idUsuario) { //TODO: Revisar lo que regresa-
         if (idUsuario != 2) { // <------------Esto no me gusta, se aceptan cambios.
             try {
                 conexion.verPostuladosDb(id);

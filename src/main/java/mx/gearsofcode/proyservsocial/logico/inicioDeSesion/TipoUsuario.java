@@ -10,118 +10,91 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
+import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.InicioDeSesionPackage;
 
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Tipo Usuario</b></em>',
- * and utility methods for working with them.
- * <!-- end-user-doc -->
- * @see mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage#getTipoUsuario()
- * @model
- * @generated
+ * Representa los tipos de usuario que tiene el sistema'<em><b>Tipo Usuario</b></em>'.
+ * Contiene una serie de metodos para acceder estos valores con facilidad.
  */
 public enum TipoUsuario implements Enumerator {
     /**
-     * The '<em><b>Administrador</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Representacion del objeto '<em><b>Administrador</b></em>'.
+     * 
      * @see #ADMINISTRADOR_VALUE
-     * @generated
-     * @ordered
      */
     ADMINISTRADOR(0, "administrador", "administrador"),
 
     /**
-     * The '<em><b>Responsable</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Representacion del objeto '<em><b>Responsable</b></em>'.
+     * 
      * @see #RESPONSABLE_VALUE
-     * @generated
-     * @ordered
      */
     RESPONSABLE(1, "responsable", "responsable"),
 
     /**
-     * The '<em><b>Alumno</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Representacion del objeto '<em><b>Alumno</b></em>'.
+     * 
      * @see #ALUMNO_VALUE
-     * @generated
-     * @ordered
      */
     ALUMNO(2, "alumno", "alumno");
 
     /**
-     * The '<em><b>Administrador</b></em>' literal value.
-     * <!-- begin-user-doc -->
+     * Valor que representa '<em><b>Administrador</b></em>'.
+     * 
      * <p>
-     * If the meaning of '<em><b>Administrador</b></em>' literal object isn't clear,
-     * there really should be more of a description here...
+     * Representacion numerica del '<em><b>Administrador</b></em>'.
      * </p>
-     * <!-- end-user-doc -->
+     * 
      * @see #ADMINISTRADOR
      * @model name="administrador"
-     * @generated
-     * @ordered
      */
     public static final int ADMINISTRADOR_VALUE = 0;
 
     /**
-     * The '<em><b>Responsable</b></em>' literal value.
-     * <!-- begin-user-doc -->
+     * Valor que representa'<em><b>Responsable</b></em>'.
+     * 
      * <p>
-     * If the meaning of '<em><b>Responsable</b></em>' literal object isn't clear,
-     * there really should be more of a description here...
+     * Representacion numerica del '<em><b>Responsable</b></em>'.
      * </p>
-     * <!-- end-user-doc -->
+     * 
      * @see #RESPONSABLE
      * @model name="responsable"
-     * @generated
-     * @ordered
      */
     public static final int RESPONSABLE_VALUE = 1;
 
     /**
-     * The '<em><b>Alumno</b></em>' literal value.
-     * <!-- begin-user-doc -->
+     * Valor que representa'<em><b>Alumno</b></em>'.
+     * 
      * <p>
-     * If the meaning of '<em><b>Alumno</b></em>' literal object isn't clear,
-     * there really should be more of a description here...
+     * Representacion numerica del '<em><b>Alumno</b></em>'.
      * </p>
-     * <!-- end-user-doc -->
+     * 
      * @see #ALUMNO
      * @model name="alumno"
-     * @generated
-     * @ordered
      */
     public static final int ALUMNO_VALUE = 2;
 
     /**
-     * An array of all the '<em><b>Tipo Usuario</b></em>' enumerators.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * Arreglo que contiene los elementos de '<em><b>Tipo Usuario</b></em>'.
+     * Una pequeña tabla que contiene todos los elementos aqui definidos.
      */
     private static final TipoUsuario[] VALUES_ARRAY = new TipoUsuario[] {
             ADMINISTRADOR, RESPONSABLE, ALUMNO, };
 
     /**
-     * A public read-only list of all the '<em><b>Tipo Usuario</b></em>' enumerators.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * Una lista de solo lectura que contiene a los arreglos de elementos de 
+     * '<em><b>Tipo Usuario</b></em>' que hemos definido.
      */
     public static final List<TipoUsuario> VALUES = Collections
             .unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
     /**
-     * Returns the '<em><b>Tipo Usuario</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * Regresa el objeto '<em><b>Tipo Usuario</b></em>' que corresponde a la cadena
+     * que recibe.
+     * @param literal Una cadena para evaluar contra los elementos definidos.
+     * @return Regresa un objeto TipoUsuario, si la cadena corresponde a algun elemento.
      */
     public static TipoUsuario get(String literal) {
         for (int i = 0; i < VALUES_ARRAY.length; ++i) {
@@ -134,10 +107,10 @@ public enum TipoUsuario implements Enumerator {
     }
 
     /**
-     * Returns the '<em><b>Tipo Usuario</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * Regresa el objeto '<em><b>Tipo Usuario</b></em>' que corresponde al nombre
+     * del elemento definido.
+     * @param nombre Una cadena con el nombre de un elemento definido en el enum.
+     * @return Regresa un objeto TipoUsuario correspondiente a la cadena solicitada.
      */
     public static TipoUsuario getByName(String name) {
         for (int i = 0; i < VALUES_ARRAY.length; ++i) {
@@ -150,10 +123,10 @@ public enum TipoUsuario implements Enumerator {
     }
 
     /**
-     * Returns the '<em><b>Tipo Usuario</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * Regresa el objeto '<em><b>Tipo Usuario</b></em>' que corresponde al valor
+     * numerico de un elemento definido.
+     * @param valor Entero correspondiente a un elemento definido en el enum.
+     * @return Regresa un objeto TipoUsuario correspondiente al entero solicitad0.
      */
     public static TipoUsuario get(int value) {
         switch (value) {
