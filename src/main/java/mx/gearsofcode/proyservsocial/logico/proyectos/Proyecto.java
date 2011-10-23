@@ -53,30 +53,25 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Proyecto extends EObject {
     /**
-     * Returns the value of the '<em><b>Id</b></em>' attribute. <!--
-     * begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Id</em>' attribute isn't clear, there really
-     * should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
+     * Regresa el valor del '<em><b>Id</b></em>' del proyecto.
      * 
-     * @return the value of the '<em>Id</em>' attribute.
+     * <p>
+     * El '<em>Id</em>' es la referencia unica de un proyecto por medio de esta
+     * se le puede referenciar de manera directa.
+     * </p>
+     * 
+     * @return Un entero que identifica al proyecto.
      * @see #setId(int)
      * @see mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage#getProyecto_Id()
-     * @model required="true" ordered="false"
-     * @generated
      */
     int getId();
 
     /**
-     * Sets the value of the '
-     * {@link mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto#getId
-     * <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * Coloca el '{@link mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto#getId <em>Id</em>}'
+     * del proyecto, esto lo debe hacer la base de datos cuando lo almacena.
      * 
      * @param value the new value of the '<em>Id</em>' attribute.
      * @see #getId()
-     * @generated
      */
     void setId(int value);
 

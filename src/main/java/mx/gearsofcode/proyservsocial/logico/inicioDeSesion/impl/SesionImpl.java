@@ -10,8 +10,12 @@ import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.InicioDeSesionPackage
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.Sesion;
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario;
 
+import mx.gearsofcode.proyservsocial.logico.usuarios.Responsable;
+import mx.gearsofcode.proyservsocial.logico.usuarios.Admin;
+import mx.gearsofcode.proyservsocial.logico.usuarios.Alumno;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
+import mx.gearsofcode.proyservsocial.logico.usuarios.impl.UsuariosFactoryImpl;
 
 import mx.gearsofcode.proyservsocial.logico.LogicoFactory;
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
@@ -155,11 +159,26 @@ public class SesionImpl extends EObjectImpl implements Sesion {
         cifrado.reset();
         byte[] md5bytePass = cifrado.digest(bytesPasswd);
         String md5passwd = cifrado.toString();
-
+        TipoUsuario activo;
         try { 
 	        conexion.validaUsuarioDb(nombreUsuario, md5passwd);
 	        // TODO: implement this method
-	        // Ensure that you remove @generated or mark it @generated NOT
+	        // Regresa un algo la base de datos, que incluye el idUsuario.
+	        activo = TipoUsuario().get(idUsuario);
+	        String elUsuario = activo.getName();
+	        switch (elUsuario)
+	        case ADMINISTRADOR :
+	            Admin admin = new UsuariosFactoryImpl().createAdmin();
+	            admin.setNombre(nombreUsuario);
+	            admin.setId(idUsuario);
+	        case RESPONSABLE :
+	            Responsable resp = new UsuariosFactoryImpl().createResponsable();
+	            resp.setNombre(nombreUsuario);
+	            resp.setId(idUsuario);
+	        case ALUMNO :
+	            Alumno alum = new UsuariosFactoryImpl().createAlumno();
+	            alum.setNombre(nombreUsuario);
+	            alum.setId(idUsuario);
         }
 	     catch {
 	    
