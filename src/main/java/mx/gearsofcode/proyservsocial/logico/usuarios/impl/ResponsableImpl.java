@@ -6,9 +6,13 @@
  */
 package mx.gearsofcode.proyservsocial.logico.usuarios.impl;
 
+import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 import mx.gearsofcode.proyservsocial.logico.usuarios.Responsable;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
+import mx.gearsofcode.proyservsocial.logico.util.DBCreationException;
+import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
+import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.proyectos.impl.ProyectosFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 
@@ -35,6 +39,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class ResponsableImpl extends UsuarioRegistradoImpl implements
         Responsable {
+    
+    private ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
+    
     /**
      * The default value of the '{@link #getDescripcion() <em>Descripcion</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -184,13 +191,22 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
 
     /**
      * <!-- begin-user-doc -->
+     * Se apoya de la conexion a la BD para aceptar a un alumno.
+     * @param proyectID El ID del proyecto donde se aceptaran los alumnos.
+     * @param studentIDs La lista con IDs de los estudiantes a ser aceptados.
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
-    public void aceptaAlumnoProyecto() {
-        // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
+    public void aceptaAlumnoProyecto(final int proyectID, int [] studentIDs) throws DBModificationException{
+        for (int i = 0; i < studentIDs.length; i++) {
+            int studentID = studentIDs[i];
+            try{
+                this.conexion.aceptarAlumnoProyectoDb(proyectID, studentID);
+            }catch(DBModificationException e){
+                //We could maybe do something about/with the exception here.
+                throw e;
+            }
+        }
     }
 
     /**
@@ -233,16 +249,21 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
             final int telProy, final int capMax) {
         Proyecto nuevoProyecto = new ProyectosFactoryImpl().createProyecto();
         nuevoProyecto.setNombre(nomProy);
-        nuevoProyecto.setCarrera();   // <-Falta Valor, de donde lo obtengo?
+//        nuevoProyecto.setCarrera();   // <-Falta Valor, de donde lo obtengo?
         nuevoProyecto.setDescripcion(descrProy);
         nuevoProyecto.setDireccion(dirProy);
         nuevoProyecto.setEmail(mailProy);
         nuevoProyecto.setTelefono(telProy);
         nuevoProyecto.setMaxParticipante(capMax);
         nuevoProyecto.setResponsable(id);
-        nuevoProyecto.setAreaConocimiento();  // <-Falta Valor, de donde lo obtengo?
+//        nuevoProyecto.setAreaConocimiento();  // <-Falta Valor, de donde lo obtengo?
         
-        conexion.proponerProyectoDBb(nuevoProyecto);
+        try {
+            conexion.proponerProyectoDBb(nuevoProyecto);
+        } catch (DBCreationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         // TODO: implement this method
         // Ensure that you remove @generated or mark it @generated NOT
         throw new UnsupportedOperationException();

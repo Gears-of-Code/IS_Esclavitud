@@ -304,7 +304,7 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      */
     public void setTipo(final int newTipo) {
         int oldTipo = tipo;
-        tipo = newTipo == null ? TIPO_EDEFAULT : newTipo;
+        tipo = (newTipo == -1 )? TIPO_EDEFAULT : newTipo;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
                     UsuariosPackage.USUARIO_REGISTRADO__TIPO, oldTipo, tipo));
@@ -602,10 +602,10 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      * Debe de regresar un array de proyectos.
      */
     public void verProyectos() {
-    try {
-        conexion.verProyectosDb(tipo);
-
-        }
+//    try {
+//        conexion.verProyectosDb(tipo);
+//
+//        }
         throw new UnsupportedOperationException();
     }
 

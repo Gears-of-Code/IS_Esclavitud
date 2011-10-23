@@ -6,6 +6,8 @@
  */
 package mx.gearsofcode.proyservsocial.logico.usuarios;
 
+import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Responsable</b></em>'.
@@ -107,10 +109,11 @@ public interface Responsable extends UsuarioRegistrado {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @throws DBModificationException 
      * @model
      * @generated
      */
-    void aceptaAlumnoProyecto();
+    void aceptaAlumnoProyecto(int proyectID, int [] studentIDs) throws DBModificationException;
 
     /**
      * <!-- begin-user-doc -->

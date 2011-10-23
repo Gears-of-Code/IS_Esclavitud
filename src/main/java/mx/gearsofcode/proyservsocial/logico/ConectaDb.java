@@ -10,6 +10,9 @@ import org.eclipse.emf.ecore.EObject;
 
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.usuarios.Responsable;
+import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
+import mx.gearsofcode.proyservsocial.logico.util.DBCreationException;
+import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +32,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void verProyectosDb(final int tipoUsuario);
+    void verProyectosDb(final int tipoUsuario) throws DBConsultException;
 
     /**
      * <!-- begin-user-doc -->
@@ -37,7 +40,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void proponerProyectoDBb(final Proyecto unProyecto);
+    void proponerProyectoDBb(final Proyecto unProyecto) throws DBCreationException;
 
     /**
      * <!-- begin-user-doc -->
@@ -45,7 +48,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void autorizarProyectoDb(final int idProy);
+    void autorizarProyectoDb(final int idProy) throws DBModificationException;
 
     /**
      * <!-- begin-user-doc -->
@@ -53,7 +56,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void rechazarProyectoDb(final int idProy);
+    void rechazarProyectoDb(final int idProy) throws DBModificationException;
 
     /**
      * <!-- begin-user-doc -->
@@ -61,7 +64,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void verPostuladosDb(final int idProy);
+    void verPostuladosDb(final int idProy) throws DBConsultException;
 
     /**
      * <!-- begin-user-doc -->
@@ -69,7 +72,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void aceptarAlumnoProyectoDb(final int idProy, final int idAlum);
+    void aceptarAlumnoProyectoDb(final int idProy, final int idAlum) throws DBModificationException;
 
     /**
      * <!-- begin-user-doc -->
@@ -77,7 +80,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void registrarDb(final Responsable unResponsable);
+    void registrarDb(final Responsable unResponsable) throws DBCreationException;
 
     /**
      * <!-- begin-user-doc -->
@@ -85,7 +88,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void aceptarResponsableDb(final int idResp);
+    void aceptarResponsableDb(final int idResp) throws DBModificationException;
 
     /**
      * <!-- begin-user-doc -->
@@ -93,7 +96,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void rechazaAlumnoProyectoDb(final int idProy, final int idAlum);
+    void rechazaAlumnoProyectoDb(final int idProy, final int idAlum) throws DBModificationException;
 
     /**
      * <!-- begin-user-doc -->
@@ -101,7 +104,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void rechazaResponsableDb(final int idResp);
+    void rechazaResponsableDb(final int idResp) throws DBModificationException;
 
     /**
      * <!-- begin-user-doc -->
@@ -109,7 +112,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void postularAProyectoDb(final int idProy, final int idAlum);
+    void postularAProyectoDb(final int idProy, final int idAlum) throws DBModificationException;
 
     /**
      * <!-- begin-user-doc -->
@@ -117,5 +120,5 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void validaUsuarioDb(final String nombreUsuario, final String passwd);
+    void validaUsuarioDb(final String nombreUsuario, final String passwd) throws DBConsultException;
 } // ConectaDb
