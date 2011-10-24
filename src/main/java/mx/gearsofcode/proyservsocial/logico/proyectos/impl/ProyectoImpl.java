@@ -9,11 +9,13 @@ package mx.gearsofcode.proyservsocial.logico.proyectos.impl;
 import mx.gearsofcode.proyservsocial.logico.proyectos.CarreraProyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage;
-import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
-import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
+import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
+import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
+
+import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -551,7 +553,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * @throws DBModificationException 
      */
     public void autorizarProyecto(final int idAdmin) throws DBModificationException {
-        if (idAdmin == 0) { // <------------Esto no me gusta, se aceptan cambios.
+        if (idAdmin == TipoUsuario.ADMINISTRADOR_VALUE) { 
             if (!estado) { // Revisa que el proyecto no este autorizado.
                 conexion = new LogicoFactoryImpl().createConectaDb();
                 setEstado(true);
@@ -571,7 +573,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * @throws DBModificationException 
      */
     public void rechazarProyecto(final int idAdmin) throws DBModificationException {
-        if (idAdmin == 0) { // <------------Esto no me gusta, se aceptan cambios.
+        if (idAdmin == TipoUsuario.ADMINISTRADOR_VALUE) { 
             if (!estado) { // Revisa que el proyecto no este autorizado.
                 conexion = new LogicoFactoryImpl().createConectaDb();
                 conexion.rechazarProyectoDb(id);
@@ -590,7 +592,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * @throws DBConsultException 
      */
     public void verListaPostulados(final int idUsuario) throws DBConsultException { //TODO: Revisar lo que regresa-
-        if (idUsuario != 2) { // <------------Esto no me gusta, se aceptan cambios.
+        if (idUsuario != TipoUsuario.ALUMNO_VALUE) { 
             conexion = new LogicoFactoryImpl().createConectaDb();
             conexion.verPostuladosDb(id);
         }
