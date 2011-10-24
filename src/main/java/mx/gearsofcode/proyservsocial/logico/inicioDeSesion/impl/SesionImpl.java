@@ -161,8 +161,9 @@ public class SesionImpl extends EObjectImpl implements Sesion {
 
         // TODO: Finish this method
         
-	    // Regresa un algo la base de datos, que incluye el idUsuario.
-	    switch (idUsuario) {
+	    // Regresa un algo la base de datos, que incluye el idUsuario y el tipo.
+        // Dependiendo del tipo la clase que se crea pero que ¿entrega el enum de la BD?
+	    switch (tipoUsuario) {
 	        case TipoUsuario.ADMINISTRADOR_VALUE :
 	            UsuarioRegistrado admin = new UsuariosFactoryImpl().createAdmin();
 	            admin.setNombre(nombreUsuario);
@@ -171,7 +172,7 @@ public class SesionImpl extends EObjectImpl implements Sesion {
 	        case TipoUsuario.RESPONSABLE_VALUE :
 	            UsuarioRegistrado resp = new UsuariosFactoryImpl().createResponsable();
 	            resp.setNombre(nombreUsuario);
-	            resp.setId(idUsuario);
+	            resp.setTipo(tipoUsuario)
 	            inicioUsuario = resp;
 	        case TipoUsuario.ALUMNO_VALUE :
 	            UsuarioRegistrado alum = new UsuariosFactoryImpl().createAlumno();
