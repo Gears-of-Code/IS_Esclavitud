@@ -200,7 +200,12 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      */
     protected Sesion sesion;
     
-    private ConectaDb conexion;
+    /**
+     * Se declara un elemento tipo ConectaDb.
+     * Clase ConectaDb contiene los metodos de conexion a la base de datos.
+     * Aqui se realizan los queries directamente a la base de datos.
+     **/
+    private ConectaDb conexion = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -600,7 +605,7 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
     /**
      * Llama a la base de datos para obtener y listar todos los proyectos
      * que se encuentran disponibles para el usuario.
-     * Debe de regresar un array de proyectos.
+     *
      * @throws DBConsultException 
      */
     public void verProyectos() throws DBConsultException {
@@ -609,8 +614,21 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
     }
     
     /**
+     * Llama a la base de datos y obtiene una vista reducida o filtada de
+     * los proyectos dependiendo del caso de usuario que este realizando
+     * la consulta.
+     * 
+     * @throws DBConsultException
+     */
+    public void verMisProyectos() throws DBConsultException {
+        conexion = new LogicoFactoryImpl().createConectaDb();
+        conexion.verMisProyectosDb(tipo, id);
+    }
+    
+    /**
      * Llama a la base de datos para obtener los datos detallados de un
      * proyecto y se los despliega al usuario.
+     * 
      * @param idProyecto Un identificador de algun proyecto.
      */
     public void verDetallesProyecto(final int idProyect) throws DBConsultException {

@@ -254,5 +254,9 @@ public interface UsuarioRegistrado extends EObject {
      * @throws DBConsultException 
      */
     void verProyectos() throws DBConsultException;
+    
+    void verMisProyectos() throws DBConsultException;
+    
+    void verDetallesProyecto(final int idProyect) throws DBConsultException;
 
 } // UsuarioRegistrado

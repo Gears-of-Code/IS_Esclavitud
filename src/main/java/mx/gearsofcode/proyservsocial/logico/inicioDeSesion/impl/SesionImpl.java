@@ -59,11 +59,11 @@ public class SesionImpl extends EObjectImpl implements Sesion {
     protected UsuarioRegistrado usuario;
 
     /**
-     * Se crea un elemento tipo ConectaDb.
+     * Se declara un elemento tipo ConectaDb.
      * Clase ConectaDb contiene los metodos de conexion a la base de datos.
      * Aqui se realizan los queries directamente a la base de datos.
      **/
-    private ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
+    private ConectaDb conexion = null;
 
     /**
      * The default value of the '{@link #getTipo() <em>Tipo</em>}' attribute.
@@ -153,32 +153,35 @@ public class SesionImpl extends EObjectImpl implements Sesion {
      * @param nombreUsuario Nombre del usuario.
      * @param passwd Contrasena del usuario, en texto plano.
      */
-    public void autenticar(final String nombreUsuario, final String passwd) {
-        byte[] bytesPasswd = passwd.getBytes("UTF-8");
-        MessageDigest cifrado = MessageDigest.getInstance("MD5");
-        cifrado.reset();
-        byte[] md5bytePass = cifrado.digest(bytesPasswd);
-        String md5passwd = cifrado.toString();
-        TipoUsuario activo;
+    public UsuarioRegistrado autenticar(final String nombreUsuario, final String md5passwd) {
+        UsuarioRegistrado inicioUsuario = null;
         
+        conexion = new LogicoFactoryImpl().createConectaDb();
         conexion.validaUsuarioDb(nombreUsuario, md5passwd);
-	    // TODO: implement this method
+
+        // TODO: Finish this method
         
 	    // Regresa un algo la base de datos, que incluye el idUsuario.
 	    switch (idUsuario) {
 	        case TipoUsuario.ADMINISTRADOR_VALUE :
-	            Admin admin = new UsuariosFactoryImpl().createAdmin();
+	            UsuarioRegistrado admin = new UsuariosFactoryImpl().createAdmin();
 	            admin.setNombre(nombreUsuario);
 	            admin.setId(idUsuario);
+	            inicioUsuario = admin;
 	        case TipoUsuario.RESPONSABLE_VALUE :
-	            Responsable resp = new UsuariosFactoryImpl().createResponsable();
+	            UsuarioRegistrado resp = new UsuariosFactoryImpl().createResponsable();
 	            resp.setNombre(nombreUsuario);
 	            resp.setId(idUsuario);
+	            inicioUsuario = resp;
 	        case TipoUsuario.ALUMNO_VALUE :
-	            Alumno alum = new UsuariosFactoryImpl().createAlumno();
+	            UsuarioRegistrado alum = new UsuariosFactoryImpl().createAlumno();
 	            alum.setNombre(nombreUsuario);
 	            alum.setId(idUsuario);
+	            inicioUsuario = alum;
+	        default :
+	            // El usuario tiene un tipo no valido.
 	    }
+	    return inicioUsuario;
     }
 
 

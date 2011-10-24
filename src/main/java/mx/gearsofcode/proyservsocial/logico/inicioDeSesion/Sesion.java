@@ -56,10 +56,11 @@ public interface Sesion extends EObject {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @return 
      * @model
      * @generated
      */
-    void autenticar(final String nombreUsuario, final String password);
+    UsuarioRegistrado autenticar(final String nombreUsuario, final String password);
 
     /**
      * <!-- begin-user-doc -->
