@@ -126,4 +126,6 @@ public interface ConectaDb extends EObject {
     void modificarEstadoAlumno(int studentID, boolean studentState) throws DBModificationException;
 
     void autorizarAlumnoProyecto(int studentID, int proyectID) throws DBModificationException;
+
+    void verDetallesProyectosDb(int idProyect)throws DBConsultException;
 } // ConectaDb

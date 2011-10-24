@@ -7,6 +7,7 @@
 package mx.gearsofcode.proyservsocial.logico.impl;
 
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
+
 import mx.gearsofcode.proyservsocial.logico.LogicoPackage;
 
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;

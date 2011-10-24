@@ -7,10 +7,10 @@
 package mx.gearsofcode.proyservsocial.logico.usuarios.impl;
 
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.Sesion;
-import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario;
 
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
+import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
 
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
@@ -199,6 +199,8 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      * @ordered
      */
     protected Sesion sesion;
+    
+    private ConectaDb conexion;
 
     /**
      * <!-- begin-user-doc -->
@@ -599,13 +601,21 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      * Llama a la base de datos para obtener y listar todos los proyectos
      * que se encuentran disponibles para el usuario.
      * Debe de regresar un array de proyectos.
+     * @throws DBConsultException 
      */
-    public void verProyectos() {
-//    try {
-//        conexion.verProyectosDb(tipo);
-//
-//        }
-        throw new UnsupportedOperationException();
+    public void verProyectos() throws DBConsultException {
+        conexion = new LogicoFactoryImpl().createConectaDb();
+        conexion.verProyectosDb(tipo);
+    }
+    
+    /**
+     * Llama a la base de datos para obtener los datos detallados de un
+     * proyecto y se los despliega al usuario.
+     * @param idProyecto Un identificador de algun proyecto.
+     */
+    public void verDetallesProyecto(final int idProyect) throws DBConsultException {
+        conexion = new LogicoFactoryImpl().createConectaDb();
+        conexion.verDetallesProyectosDb(idProyect);
     }
 
 } //UsuarioRegistradoImpl

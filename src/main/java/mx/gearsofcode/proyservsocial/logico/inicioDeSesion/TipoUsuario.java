@@ -10,8 +10,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.InicioDeSesionPackage;
-
 import org.eclipse.emf.common.util.Enumerator;
 
 /**

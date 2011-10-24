@@ -8,6 +8,7 @@ package mx.gearsofcode.proyservsocial.logico.usuarios;
 
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.Sesion;
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario;
+import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -250,7 +251,8 @@ public interface UsuarioRegistrado extends EObject {
     /**
      * Consulta todos los proyectos a los que un usuario puede acceder.
      * Dependiendo del tipo de usuario los proyectos que se le muestran.
+     * @throws DBConsultException 
      */
-    void verProyectos();
+    void verProyectos() throws DBConsultException;
 
 } // UsuarioRegistrado

@@ -160,30 +160,24 @@ public class SesionImpl extends EObjectImpl implements Sesion {
         byte[] md5bytePass = cifrado.digest(bytesPasswd);
         String md5passwd = cifrado.toString();
         TipoUsuario activo;
-        try { 
-	        conexion.validaUsuarioDb(nombreUsuario, md5passwd);
-	        // TODO: implement this method
-	        // Regresa un algo la base de datos, que incluye el idUsuario.
-	        activo = TipoUsuario().get(idUsuario);
-	        String elUsuario = activo.getName();
-	        switch (elUsuario)
-	        case ADMINISTRADOR :
+        
+        conexion.validaUsuarioDb(nombreUsuario, md5passwd);
+	    // TODO: implement this method
+        
+	    // Regresa un algo la base de datos, que incluye el idUsuario.
+	    switch (idUsuario) {
+	        case TipoUsuario.ADMINISTRADOR_VALUE :
 	            Admin admin = new UsuariosFactoryImpl().createAdmin();
 	            admin.setNombre(nombreUsuario);
 	            admin.setId(idUsuario);
-	        case RESPONSABLE :
+	        case TipoUsuario.RESPONSABLE_VALUE :
 	            Responsable resp = new UsuariosFactoryImpl().createResponsable();
 	            resp.setNombre(nombreUsuario);
 	            resp.setId(idUsuario);
-	        case ALUMNO :
+	        case TipoUsuario.ALUMNO_VALUE :
 	            Alumno alum = new UsuariosFactoryImpl().createAlumno();
 	            alum.setNombre(nombreUsuario);
 	            alum.setId(idUsuario);
-        }
-	     catch {
-	    
-	    } finally {
-	        throw new UnsupportedOperationException();
 	    }
     }
 

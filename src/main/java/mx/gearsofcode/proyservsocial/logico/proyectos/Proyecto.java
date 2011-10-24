@@ -6,6 +6,9 @@
  */
 package mx.gearsofcode.proyservsocial.logico.proyectos;
 
+import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
+import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -349,23 +352,26 @@ public interface Proyecto extends EObject {
      * administrador.
      * 
      * @param idAdmin Solo un administrador lo puede ejecutar.
+     * @throws DBModificationException 
      */
-    void autorizarProyecto(final int idAdmin);
+    void autorizarProyecto(final int idAdmin) throws DBModificationException;
 
     /**
      * Marca un proyecto como Rechazado y se elimina de la base de datos. Solo
      * lo puede usar un administrador.
      * 
      * @param idAdmin Solo un Administrador lo puede ejecutar.
+     * @throws DBModificationException 
      */
-    void rechazarProyecto(final int idAdmin);
+    void rechazarProyecto(final int idAdmin) throws DBModificationException;
 
     /**
      * Muestra el bloque de usuarios que se han postulado a un proyecto.
      * 
      * @param idUsuario Solo los ids de responsable y administrador pueden usar
      *            este metodo.
+     * @throws DBConsultException 
      */
-    void verListaPostulados(final int idUsuario);
+    void verListaPostulados(final int idUsuario) throws DBConsultException;
 
 } // Proyecto

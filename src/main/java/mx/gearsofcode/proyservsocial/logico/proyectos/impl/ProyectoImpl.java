@@ -9,6 +9,8 @@ package mx.gearsofcode.proyservsocial.logico.proyectos.impl;
 import mx.gearsofcode.proyservsocial.logico.proyectos.CarreraProyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage;
+import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
+import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
@@ -271,7 +273,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * Clase que contiene los metodos de conexion a la base de datos. 
      * Aqui se realizan los queries directamente a la base de datos.
      **/
-    private ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
+    private ConectaDb conexion = null;
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -546,18 +548,17 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @param idAdmin El tipo del usuario que llama este metodo, debe coincidir
      *            con el tipo del administrador.
+     * @throws DBModificationException 
      */
-    public void autorizarProyecto(final int idAdmin) {
+    public void autorizarProyecto(final int idAdmin) throws DBModificationException {
         if (idAdmin == 0) { // <------------Esto no me gusta, se aceptan cambios.
             if (!estado) { // Revisa que el proyecto no este autorizado.
+                conexion = new LogicoFactoryImpl().createConectaDb();
                 setEstado(true);
                 conexion.autorizarProyectoDb(id);
             }
-        } else {
-
         }
         // TODO: implement this method
-        throw new UnsupportedOperationException();
     }
 
     /**
@@ -567,17 +568,13 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @param idAdmin El tipo del usuario que llama este metodo, debe coincidir
      *            con el tipo del administrador.
+     * @throws DBModificationException 
      */
-    public void rechazarProyecto(final int idAdmin) {
+    public void rechazarProyecto(final int idAdmin) throws DBModificationException {
         if (idAdmin == 0) { // <------------Esto no me gusta, se aceptan cambios.
             if (!estado) { // Revisa que el proyecto no este autorizado.
-                try {
-                    conexion.rechazarProyectoDb(id);
-                } finally {
-                    throw new UnsupportedOperationException();
-                }
-            } else {
-
+                conexion = new LogicoFactoryImpl().createConectaDb();
+                conexion.rechazarProyectoDb(id);
             }
         }
         // TODO: implement this method
@@ -590,15 +587,12 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @param idUsuario Valor tipo de usuario, debe coincidir con el de un
      *            administrador o un responsabl.
+     * @throws DBConsultException 
      */
-    public void verListaPostulados(final int idUsuario) { //TODO: Revisar lo que regresa-
+    public void verListaPostulados(final int idUsuario) throws DBConsultException { //TODO: Revisar lo que regresa-
         if (idUsuario != 2) { // <------------Esto no me gusta, se aceptan cambios.
-            try {
-                conexion.verPostuladosDb(id);
-            }
-    
-            // TODO: implement this method
-            throw new UnsupportedOperationException();
+            conexion = new LogicoFactoryImpl().createConectaDb();
+            conexion.verPostuladosDb(id);
         }
     }
 
