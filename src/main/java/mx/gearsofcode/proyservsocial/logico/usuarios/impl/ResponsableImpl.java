@@ -103,6 +103,13 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
     protected boolean estado = ESTADO_EDEFAULT;
 
     /**
+     * Se declara un elemento tipo ConectaDb.
+     * Clase ConectaDb contiene los metodos de conexion a la base de datos.
+     * Aqui se realizan los queries directamente a la base de datos.
+     **/
+    private ConectaDb conexion = null;
+    
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -225,7 +232,7 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
      */
     public void seleccionarAlumnos() {
         // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
+        // Este metodo tal vez no se requiera.
         throw new UnsupportedOperationException();
     }
 
@@ -234,31 +241,39 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
      * de datos. Este proyecto siempre esta en estado false 
      * que implica que esta en "proceso de autorizacion".
      * @param nomProy Nombre del proyecto.
-     * @param carreraProy A que carrera pertenece o prefiere este servicio social.
      * @param descrProy Descripcion de lo que se hara en el proyecto.
      * @param dirProy Direccion del sitio donde se realizara el proyecto.
      * @param mailProy Direccion de correo electronico del proyecto.
      * @param telProy Telefono de contacto.
      * @param capMax Numero maximo de participantes para este proyecto.
-     * 
+     * @param carreraProy A que carreras esta dirigido o se prefieren para este servicio social.
+     * @param areaDeConocimiento A que areas de conocimiento esta dirigido el proyecto.
      */
-    public void propProyectos(final String nomProy, final String carreraProy,
-            final String descrProy, final String dirProy, final String mailProy, 
-            final int telProy, final int capMax) {
+    public void propProyectos(final String nomProy, final String descrProy, 
+            final String dirProy, final String mailProy, final int telProy, 
+            final int capMax, final int[] carreraProy, final int[] areaDeConocimiento) {
         Proyecto nuevoProyecto = new ProyectosFactoryImpl().createProyecto();
         nuevoProyecto.setNombre(nomProy);
-//        nuevoProyecto.setCarrera();   // <-Falta Valor, de donde lo obtengo?
         nuevoProyecto.setDescripcion(descrProy);
         nuevoProyecto.setDireccion(dirProy);
         nuevoProyecto.setEmail(mailProy);
         nuevoProyecto.setTelefono(telProy);
         nuevoProyecto.setMaxParticipante(capMax);
         nuevoProyecto.setResponsable(id);
-//        nuevoProyecto.setAreaConocimiento();  // <-Falta Valor, de donde lo obtengo?
-        ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
-        
+        conexion = new LogicoFactoryImpl().createConectaDb();
         try {
             conexion.proponerProyectoDBb(nuevoProyecto);
+            //TODO: Resolver que chingados hay que hacer con esta cuestion.
+            for (int carrera : carreraProy) {
+                // Nota de donde saco idProyecto si se supone que eso lo pone
+                // la base de datos a la hora de crear el proyecto??
+                conexion.ponCarreraAProyectoDb(idProyecto, carrera);
+            }
+            for (int areaCon : areaDeConocimiento) {
+                // Nota de donde saco idProyecto si se supone que eso lo pone
+                // la base de datos a la hora de crear el proyecto??
+                conexion.ponAreaConocimientoAProyectoDb(idProyecto, areaCon);
+            }
         } catch (DBCreationException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

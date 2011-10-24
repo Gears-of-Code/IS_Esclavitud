@@ -255,8 +255,23 @@ public interface UsuarioRegistrado extends EObject {
      */
     void verProyectos() throws DBConsultException;
     
+    /**
+     * Muestra una lista reducida de los proyectos dependiendo de que id y tipo
+     * de usuario se este usando.
+     * El admin debe de ver los proyectos que esten pendientes de autorizar.
+     * El responsable sus propios proyectos.
+     * El alumno los proyectos a los que se ha psotulado.
+     * 
+     * @throws DBConsultException
+     */
     void verMisProyectos() throws DBConsultException;
     
+    /**
+     * Muestra la informacion detallada de un proyecto en particular.
+     * 
+     * @param idProyect
+     * @throws DBConsultException
+     */
     void verDetallesProyecto(final int idProyect) throws DBConsultException;
 
 } // UsuarioRegistrado

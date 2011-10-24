@@ -622,7 +622,7 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      */
     public void verMisProyectos() throws DBConsultException {
         conexion = new LogicoFactoryImpl().createConectaDb();
-        conexion.verMisProyectosDb(tipo, id);
+        conexion.verMisProyectosDb(tipo, id); //Tipo de usuario y id de usuario.
     }
     
     /**
@@ -633,7 +633,7 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      */
     public void verDetallesProyecto(final int idProyect) throws DBConsultException {
         conexion = new LogicoFactoryImpl().createConectaDb();
-        conexion.verDetallesProyectosDb(idProyect);
+        conexion.verDetallesProyectosDb(idProyect); 
     }
 
 } //UsuarioRegistradoImpl
