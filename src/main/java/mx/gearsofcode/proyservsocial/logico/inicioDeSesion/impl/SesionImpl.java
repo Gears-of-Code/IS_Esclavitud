@@ -180,11 +180,12 @@ public class SesionImpl extends EObjectImpl implements Sesion {
 	            if (data.getBoolean("resposables.estado")) {
 	                UsuarioRegistrado resp = new UsuariosFactoryImpl().createResponsable();
 	                resp.setNombre(nombreUsuario);
+	                ((Responsable) resp).setIdResp(data.getInt("responsables.id_r")); //Revisar este cast
 	                resp.setTipo(tipoUsuario);
 	                inicioUsuario = resp;
 	            } else {
 	                //TODO: Hacer este pedazo.
-	                // El responsable aun no se autoriza
+	                // El responsable aun no se autoriza por lo tanto no entra al sistema.
 	            }
 	            break;
 	        case TipoUsuario.ALUMNO_VALUE :

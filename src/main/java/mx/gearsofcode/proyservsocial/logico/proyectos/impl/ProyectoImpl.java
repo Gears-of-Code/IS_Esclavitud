@@ -6,7 +6,6 @@
  */
 package mx.gearsofcode.proyservsocial.logico.proyectos.impl;
 
-import mx.gearsofcode.proyservsocial.logico.proyectos.CarreraProyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage;
 
@@ -120,14 +119,14 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @see #getAreaConocimiento()
      */
-    protected static final String AREA_CONOCIMIENTO_EDEFAULT = null;
+    protected static final int[] AREA_CONOCIMIENTO_EDEFAULT = null;
 
     /**
      * Valor almacenado del atributo '{@link #getAreaConocimiento() <em>Area Conocimiento</em>}' .
      * 
      * @see #getAreaConocimiento()
      */
-    protected String areaConocimiento = AREA_CONOCIMIENTO_EDEFAULT;
+    protected int[] areaConocimiento = AREA_CONOCIMIENTO_EDEFAULT;
 
     /**
      * Valor por defecto del atributo '{@link #getEmail() <em>Email</em>}'. No
@@ -197,7 +196,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * @generated
      * @ordered
      */
-    protected static final CarreraProyecto CARRERA_EDEFAULT = CarreraProyecto.MATEMATICAS;
+    protected static final int[] CARRERA_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getCarrera() <em>Carrera</em>}'
@@ -207,7 +206,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * @generated
      * @ordered
      */
-    protected CarreraProyecto carrera = CARRERA_EDEFAULT;
+    protected int[] carrera = CARRERA_EDEFAULT;
 
     /**
      * Valor por defecto del atributo '{@link #getMaxParticipante()
@@ -368,7 +367,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @generated
      */
-    public String getAreaConocimiento() {
+    public int[] getAreaConocimiento() {
         return areaConocimiento;
     }
 
@@ -377,13 +376,13 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @generated
      */
-    public void setAreaConocimiento(String newAreaConocimiento) {
-        String oldAreaConocimiento = areaConocimiento;
-        areaConocimiento = newAreaConocimiento;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET,
-                    ProyectosPackage.PROYECTO__AREA_CONOCIMIENTO,
-                    oldAreaConocimiento, areaConocimiento));
+    public void setAreaConocimiento(final int[] newareasDeConocimiento) {
+        int[] oldAreaConocimiento = areaConocimiento;
+        if (newareasDeConocimiento != null) {
+            areaConocimiento = newareasDeConocimiento;
+        } else {
+            areaConocimiento = oldAreaConocimiento;
+        }
     }
 
     /**
@@ -458,7 +457,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @generated
      */
-    public CarreraProyecto getCarrera() {
+    public int[] getCarrera() {
         return carrera;
     }
 
@@ -467,12 +466,13 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @generated
      */
-    public void setCarrera(CarreraProyecto newCarrera) {
-        CarreraProyecto oldCarrera = carrera;
-        carrera = newCarrera == null ? CARRERA_EDEFAULT : newCarrera;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET,
-                    ProyectosPackage.PROYECTO__CARRERA, oldCarrera, carrera));
+    public void setCarrera(final int[] newCarrera) {
+        int[] oldCarrera = carrera;
+        if (newCarrera != null) {
+            carrera = newCarrera;
+        } else {
+            carrera = oldCarrera;
+        }
     }
 
     /**
@@ -649,9 +649,6 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
         case ProyectosPackage.PROYECTO__RESPONSABLE:
             setResponsable((Integer) newValue);
             return;
-        case ProyectosPackage.PROYECTO__AREA_CONOCIMIENTO:
-            setAreaConocimiento((String) newValue);
-            return;
         case ProyectosPackage.PROYECTO__EMAIL:
             setEmail((String) newValue);
             return;
@@ -660,9 +657,6 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
             return;
         case ProyectosPackage.PROYECTO__DIRECCION:
             setDireccion((String) newValue);
-            return;
-        case ProyectosPackage.PROYECTO__CARRERA:
-            setCarrera((CarreraProyecto) newValue);
             return;
         case ProyectosPackage.PROYECTO__MAX_PARTICIPANTE:
             setMaxParticipante((Integer) newValue);

@@ -151,7 +151,7 @@ public interface Proyecto extends EObject {
      * @model required="true" ordered="false"
      * @generated
      */
-    String getAreaConocimiento();
+    int[] getAreaConocimiento();
 
     /**
      * Sets the value of the '
@@ -163,7 +163,7 @@ public interface Proyecto extends EObject {
      * @see #getAreaConocimiento()
      * @generated
      */
-    void setAreaConocimiento(String value);
+    void setAreaConocimiento(final int[] value);
 
     /**
      * Returns the value of the '<em><b>Email</b></em>' attribute. <!--
@@ -269,7 +269,7 @@ public interface Proyecto extends EObject {
      * @model required="true" ordered="false"
      * @generated
      */
-    CarreraProyecto getCarrera();
+    int[] getCarrera();
 
     /**
      * Sets the value of the '
@@ -282,7 +282,7 @@ public interface Proyecto extends EObject {
      * @see #getCarrera()
      * @generated
      */
-    void setCarrera(CarreraProyecto value);
+    void setCarrera(final int[] value);
 
     /**
      * Obtiene el valor del atributo '<em><b>Max Participante</b></em>'.

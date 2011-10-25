@@ -41,7 +41,9 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
         Responsable {
     
     
-    
+    protected static final int ID_RESP = -1;
+    protected int id_resp = ID_RESP;
+            
     /**
      * The default value of the '{@link #getDescripcion() <em>Descripcion</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -151,6 +153,14 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
                     descripcion));
     }
 
+    public int getIdResp() {
+        return id_resp;
+    }
+    
+    public void setIdResp(final int idresponsable) {
+        id_resp = idresponsable;
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -259,26 +269,18 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
         nuevoProyecto.setEmail(mailProy);
         nuevoProyecto.setTelefono(telProy);
         nuevoProyecto.setMaxParticipante(capMax);
-        nuevoProyecto.setResponsable(id);
+        nuevoProyecto.setResponsable(this.id_resp);
+        nuevoProyecto.setAreaConocimiento(areaDeConocimiento);
+        nuevoProyecto.setCarrera(carreraProy);
         conexion = new LogicoFactoryImpl().createConectaDb();
         try {
             conexion.proponerProyectoDBb(nuevoProyecto);
             //TODO: Resolver que chingados hay que hacer con esta cuestion.
-            for (int carrera : carreraProy) {
-                // Nota de donde saco idProyecto si se supone que eso lo pone
-                // la base de datos a la hora de crear el proyecto??
-                conexion.ponCarreraAProyectoDb(idProyecto, carrera);
-            }
-            for (int areaCon : areaDeConocimiento) {
-                // Nota de donde saco idProyecto si se supone que eso lo pone
-                // la base de datos a la hora de crear el proyecto??
-                conexion.ponAreaConocimientoAProyectoDb(idProyecto, areaCon);
             }
         } catch (DBCreationException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        // TODO: implement this method
      }
 
     /**

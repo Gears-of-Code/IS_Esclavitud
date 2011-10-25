@@ -107,6 +107,10 @@ public interface Responsable extends UsuarioRegistrado {
      */
     void setEstado(boolean value);
 
+    void setIdResp(final int idresponsable);
+    
+    int getIdResp();
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

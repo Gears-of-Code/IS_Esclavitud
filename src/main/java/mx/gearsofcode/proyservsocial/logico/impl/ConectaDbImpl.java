@@ -632,64 +632,22 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         Connection dbConnect = null ;
         Statement dbStatement = null;
         ResultSet dbRS = null;
-//        Integer  result[];
-//        result = new Integer[3];
         String query = "SELECT * " +
                        "FROM usuarios, alumnos,responsables " +
                        "WHERE username = '" + nombreUsuario+ "' " +
-                       "AND contrasena='" + password + "';";   
-//        String adm = "adminitrador";
-//        String res = "responsable";
-//        String alu = "alumno";
-//        Integer id_u = null;
-//        String tipo = null;
-   
-            try {
-                    dbConnect = cargarBase();
-                    dbStatement = dbConnect.createStatement();
-                    dbRS = dbStatement.executeQuery(query);
+                       "AND contrasena='" + password + "';";
+        try {
+            dbConnect = cargarBase();
+            dbStatement = dbConnect.createStatement();
+            dbRS = dbStatement.executeQuery(query);
             }
-                    
-//                    if(!dbRS.next()) {
-//                        result[0] = new Integer(-1);
-//                        result[1] = new Integer(0);
-//                        result[2] = new Integer(0);                 
-//                    }
-//                    else{
-//                        id_u = dbRS.getInt("id_u");
-//                        tipo = dbRS.getString("tipo");          
-//            
-//                        
-//                            if (adm.equals(tipo)){
-//                                result[0] = new Integer(0);
-//                                result[1] = new Integer(id_u);
-//                                result[2] = new Integer(1);
-//                                }
-//                            
-//                            if(res.equals(tipo)){
-//                                int estRes = dbRS.getInt("responsables.estado");
-//                                result[0] = new Integer(1);
-//                                result[1] = new Integer(id_u);
-//                                result[2] = new Integer(estRes);
-//                                }
-//                            
-//                            if(alu.equals(tipo)){
-//                                int esAlu = dbRS.getInt("alumnos.estado");
-//                                result[0] = new Integer(2);
-//                                result[1] = new Integer(id_u);
-//                                result[2] = new Integer(esAlu);
-//                            }   
-//                    }
-//            }   
-                
-                catch (SQLException sqlex){
-                    System.out.println(sqlex.getMessage()); 
-                }
-                finally{
-                    cerrarBase(dbConnect, dbStatement);
-                }
-                return dbRS;
-//            return result;
+        catch (SQLException sqlex){
+            System.out.println(sqlex.getMessage()); 
+            }
+        finally{
+            cerrarBase(dbConnect, dbStatement);
+            }
+        return dbRS;
     }
     
      
