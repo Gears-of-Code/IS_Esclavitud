@@ -793,13 +793,13 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
       * [8] -> maximo Participantes 
       * [9] -> Descripcion del problema
       */
-     public static String [] verDetalleProyectoDb(final int idProyecto) {
+     public static LinkedList<Object> verDetalleProyectoDb(final int idProyecto) {
             
             Connection dbConnect = null ;
                Statement dbStatement = null;
                ResultSet dbRS = null;
                String   result[];
-               result = new String[10];
+               result = new LinkedList();
                String query =  "SELECT * " +
                        "FROM proyectos, areasconocimiento, carreras, usuarios " +
                        "WHERE id_p = '" + idProyecto + "';";
@@ -819,8 +819,8 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                        result[0] = new String(aS);                                             //id proyecto 
                        result[1] = new String(dbRS.getString("usuarios.nombre"));              //nombre  responsable
                        result[2] = new String(dbRS.getString("proyectos.nombre"));             //nombre  proyectos
-                       result[3] = new String("campo en proceso por correcciones en db");      //nombre  area de conocimiento
-                       result[4] = new String("campo en proceso por correcciones en db");       //nombre  carreras
+                       result[3] = getIdsAreasConocimiento(idProyecto);//regresa una arreglo id de areas     //nombre  area de conocimiento
+                       result[4] = getIdsCarreras(idProyecto);      //nombre  carreras
                        result[5] = new String(dbRS.getString("proyectos.email"));              //email del poyecto 
                        result[6] = new String(dbRS.getString("proyectos.telefono"));           //telefono del poyecto 
                        result[7] = new String(dbRS.getString("proyectos.direccion"));          //direccion del poyecto
@@ -829,6 +829,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                        result[8] = new String(amax);                                           //maximo Participantes                                      
                        result[9] = new String(dbRS.getString("proyectos.descripcion"));        //DEscripcion del problema  
                    }
+                   
            }       
                catch (SQLException sqlex){
                    System.out.println(sqlex.getMessage()); 
