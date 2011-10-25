@@ -49,7 +49,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    static void autorizarProyectoDb(final int idProy) throws DBModificationException;
+    void autorizarProyectoDb(final int idProy) throws DBModificationException;
 
     /**
      * <!-- begin-user-doc -->

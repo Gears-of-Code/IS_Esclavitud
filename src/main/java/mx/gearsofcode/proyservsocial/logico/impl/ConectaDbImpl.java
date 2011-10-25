@@ -714,7 +714,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * <!-- regresa arreglo de tres enteros  |tipo Usu|id_u|estado| de no existir tipo Usu = "-1"-->
      * @generated
      */
-     public static Integer[] validaUsuarioDb(final String nombreUsuario, final String password) {
+     public Integer[] validaUsuarioDb(final String nombreUsuario, final String password) {
             
         Connection dbConnect = null ;
         Statement dbStatement = null;
