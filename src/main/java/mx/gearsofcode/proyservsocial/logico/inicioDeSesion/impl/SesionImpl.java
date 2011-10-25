@@ -167,7 +167,6 @@ public class SesionImpl extends EObjectImpl implements Sesion {
         int tipoUsuario = TipoUsuario.valueOf(usuarioTipo).getValue(); // Mapea el tipo de usuario a int.
         // TODO: Finish this method
         
-	    // Regresa un algo la base de datos, que incluye el idUsuario y el tipo.
         // Dependiendo del tipo la clase que se crea pero que ¿entrega el enum de la BD?
 	    switch (tipoUsuario) {
 	        case TipoUsuario.ADMINISTRADOR_VALUE :
@@ -180,7 +179,7 @@ public class SesionImpl extends EObjectImpl implements Sesion {
 	            if (data.getBoolean("resposables.estado")) {
 	                UsuarioRegistrado resp = new UsuariosFactoryImpl().createResponsable();
 	                resp.setNombre(nombreUsuario);
-	                ((Responsable) resp).setIdResp(data.getInt("responsables.id_r")); //Revisar este cast
+	                ((Responsable) resp).setIdResp(data.getInt("responsables.id_r"));
 	                resp.setTipo(tipoUsuario);
 	                inicioUsuario = resp;
 	            } else {

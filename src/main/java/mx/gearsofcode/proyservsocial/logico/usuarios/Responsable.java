@@ -135,6 +135,8 @@ public interface Responsable extends UsuarioRegistrado {
      * @model
      * @generated
      */
-    void seleccionarAlumnos(); //This method's functionality is mirrored in aceptaAlumnoProyecto. We should delete this.
+    void proponerProyecto(final String nomProy, final String descrProy, 
+            final String dirProy, final String mailProy, final int telProy, 
+            final int capMax, final int[] carreraProy, final int[] areaDeConocimiento);
 
 } // Responsable

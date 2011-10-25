@@ -241,8 +241,7 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
      * @generated
      */
     public void seleccionarAlumnos() {
-        // TODO: implement this method
-        // Este metodo tal vez no se requiera.
+        // TODO: delete this method
         throw new UnsupportedOperationException();
     }
 
@@ -259,7 +258,7 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
      * @param carreraProy A que carreras esta dirigido o se prefieren para este servicio social.
      * @param areaDeConocimiento A que areas de conocimiento esta dirigido el proyecto.
      */
-    public void propProyectos(final String nomProy, final String descrProy, 
+    public void proponerProyecto(final String nomProy, final String descrProy, 
             final String dirProy, final String mailProy, final int telProy, 
             final int capMax, final int[] carreraProy, final int[] areaDeConocimiento) {
         Proyecto nuevoProyecto = new ProyectosFactoryImpl().createProyecto();
@@ -275,11 +274,12 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
         conexion = new LogicoFactoryImpl().createConectaDb();
         try {
             conexion.proponerProyectoDBb(nuevoProyecto);
-            //TODO: Resolver que chingados hay que hacer con esta cuestion.
             }
-        } catch (DBCreationException e) {
+        catch (DBCreationException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } finally {
+ //        throw ProyectCreationError e   
         }
      }
 
