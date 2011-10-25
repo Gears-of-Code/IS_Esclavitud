@@ -7,6 +7,7 @@
 package mx.gearsofcode.proyservsocial.logico.inicioDeSesion;
 
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
+import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -57,10 +58,9 @@ public interface Sesion extends EObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return 
-     * @model
-     * @generated
+     * @throws DBConsultException 
      */
-    UsuarioRegistrado autenticar(final String nombreUsuario, final String password);
+    UsuarioRegistrado autenticar(final String nombreUsuario, final String password) throws DBConsultException;
 
     /**
      * <!-- begin-user-doc -->

@@ -9,6 +9,8 @@ package mx.gearsofcode.proyservsocial.logico;
 
 import org.eclipse.emf.ecore.EObject;
 
+import java.sql.ResultSet;
+
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.usuarios.Responsable;
 import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
@@ -121,7 +123,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void validaUsuarioDb(final String nombreUsuario, final String passwd) throws DBConsultException;
+    ResultSet validaUsuarioDb(final String nombreUsuario, final String passwd) throws DBConsultException;
 
     void modificarEstadoAlumno(int studentID, boolean studentState) throws DBModificationException;
 
