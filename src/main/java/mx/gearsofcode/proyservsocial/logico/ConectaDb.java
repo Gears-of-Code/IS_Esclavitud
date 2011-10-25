@@ -49,7 +49,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void autorizarProyectoDb(final int idProy) throws DBModificationException;
+    static void autorizarProyectoDb(final int idProy) throws DBModificationException;
 
     /**
      * <!-- begin-user-doc -->
@@ -121,7 +121,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void validaUsuarioDb(final String nombreUsuario, final String passwd) throws DBConsultException;
+    Integer[] validaUsuarioDb(final String nombreUsuario, final String passwd) throws DBConsultException;
 
     void modificarEstadoAlumno(int studentID, boolean studentState) throws DBModificationException;
 

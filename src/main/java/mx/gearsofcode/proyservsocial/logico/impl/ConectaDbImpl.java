@@ -19,6 +19,8 @@ import mx.gearsofcode.proyservsocial.logico.LogicoPackage;
 
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.usuarios.Responsable;
+import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
+import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 import com.mysql.jdbc.exceptions.*;
 import com.mysql.jdbc.util.*;
@@ -133,7 +135,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                     int a = dbRS.getInt("id_p");
                     String aS = Integer.toString(a);
                     vector[0] = aS;
-                    vector[0] = dbRS.getString("nombre");
+                    vector[10] = dbRS.getString("nombre");
                     
                     listaDeProyectos.add(vector);    
                 }
@@ -168,9 +170,9 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                         int a = dbRS1.getInt("id_p");
                         String aS = Integer.toString(a);
                         vector[0] = aS;
-                        vector[0] = dbRS1.getString("nombre");
+                        vector[1] = dbRS1.getString("nombre");
                         
-                        listaDeProyectos.add(vector);    
+                        listaDeProyectos.add(cadena);    
                     }
                     
                 }catch (SQLException sqlex){
@@ -202,7 +204,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                             int a = dbRS2.getInt("id_p");
                             String aS = Integer.toString(a);
                             vector[0] = aS;
-                            vector[0] = dbRS2.getString("nombre");
+                            vector[10] = dbRS2.getString("nombre");
                             
                             listaDeProyectos.add(vector);    
                         }
@@ -257,7 +259,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                     int a = dbRS.getInt("id_p");
                     String aS = Integer.toString(a);
                     vector[0] = aS;
-                    vector[0] = dbRS.getString("nombre");
+                    vector[10] = dbRS.getString("nombre");
                     
                     listaDeProyectos.add(vector);    
                 }
@@ -292,7 +294,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                         int a = dbRS1.getInt("id_p");
                         String aS = Integer.toString(a);
                         vector[0] = aS;
-                        vector[0] = dbRS1.getString("nombre");
+                        vector[10] = dbRS1.getString("nombre");
                         
                         listaDeProyectos.add(vector);    
                     }
@@ -328,7 +330,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                             int a = dbRS2.getInt("proyectos.id_p");
                             String aS = Integer.toString(a);
                             vector[0] = aS;
-                            vector[0] = dbRS2.getString("nombre");
+                            vector[10] = dbRS2.getString("nombre");
                             
                             listaDeProyectos.add(vector);    
                         }
@@ -354,16 +356,81 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void proponerProyectoDBb(final Proyecto nuevoProyecto) {
+    public void proponerProyectoDBb(final Proyecto proy) {
         // TODO: implement this method
         // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
+        try
+        {
+        Connection con = cargarBase();
+        Statement statement = con.createStatement();
+        ResultSet resultset = null;
+        
+        int id_p = 0;
+        int id_u = proy.getId();
+        int telefono = proy.getTelefono();
+        int maxParticipantes = proy.getMaxParticipantes();
+        int[] id_ac = proy.getAreaConocimiento();
+        int[] carreras = proy.getCarreras();    
+        String descripcion = proy.getDescripcion();
+        String estado = "0"; //noaurorizado.
+        String direccion = proy.getDireccion();
+        String nombre = proy.getNombre();
+        String email = proy.getEmail();
+        
+        String update = "";
+        
+        
+        update = "INSERT INTO proyectos (id_u,nombre,email,telefono,direccion,"+
+                "maxParticipantes,descripcion,estado) VALUES ("+
+                id_u + "," +
+                nombre + "," +
+                email + "," +
+                telefono + "," +
+                direccion + "," +
+                maxParticipantes + "," +
+                descripcion + "," +
+                estado + ");";
+        
+        System.out.println("Agregando el proyecto \"" + nombre + "\"...");  
+        statement.executeUpdate(update);
+        System.out.println("El proyecto \"" + nombre + "\" se agrego con exito.");
+        
+        id_p = statement.executeQuery("LAST_INSERT_ID()").getInt(1);
+        
+        //Areas
+        update = "INSERT INTO proyac (id_p,id_ac) VALUES";
+        update += getPairValues(id_p,id_ac); // Regresa el par de valores a agregar al la talba proyac
+
+        System.out.println("Agregando areas asociadas con el proyecto \"" +
+                            nombre + "\"");
+        statement.executeQuery(update);
+        System.out.println("Areas asociadas al proyecto \"" + nombre + " '" +
+                            "agragadas");
+        
+        //Carreras                  
+        update = "INSERT INTO proycarr (id_p,id_c) VALUES ";
+        update += getPairValues(id_p,carreras);
+        
+        System.out.println("Agregando carreras asociadas con el proyecto \"" +
+                            nombre + "\"");
+        statement.executeQuery(update);
+        System.out.println("Areas carreras al proyecto \"" + nombre + " '" +
+                            "agragadas");
+                            
+        }
+        catch (SQLException sqlex)
+        {
+            System.out.println(sqlex.getMessage()); 
+        }
+        finally{
+            cerrarBase(con,statement);
+        }
     }
 
     /**
      *el administrador autoriza un proyecto
      */
-    public static void autorizarProyectoDb(final int idProyecto) {
+    public void autorizarProyectoDb(final int idProyecto){
         
         Connection dbConnect = null ;
             Statement dbStatement = null;
@@ -384,8 +451,6 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
             finally{
                 cerrarBase(dbConnect, dbStatement);
             }
-     
-        throw new UnsupportedOperationException();
     }
 
     /**
@@ -441,7 +506,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                 int a = dbRS.getInt("postulados.id_u");
                 String aS = Integer.toString(a);
                 vector[0] = aS;
-                vector[0] = dbRS.getString("usuarios.nombre");
+                vector[10] = dbRS.getString("usuarios.nombre");
                 
                 listaPos.add(vector);    
             }
@@ -525,10 +590,32 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void registrarDb(final Responsable nuevoResponsable) {
+    public void registrarDb(final Responsable repo) {
         // TODO: implement this method
         // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
+        
+        int id_u = 0;
+        try
+        {
+        Connection con = cargarBase();
+        Statement statement = con.createStatement();
+        ResultSet resultset = null;
+        
+        update = insertaUsuario(repo);
+        
+        statement.executeUpdate(update);
+        id_u = statment.executeUpdat("LAST_INSERT_ID()").getInt(1);
+        
+        update = insertaResponsable(repo, id_u);
+        statment.executeUpdate(update);
+        }
+        catch (SQLException sqlex)
+        {
+            System.out.println(sqlex.getMessage()); 
+        }
+        finally{
+            cerrarBase(con,statement);
+        }
     }
 
     /**
@@ -723,9 +810,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                    
                    if(!dbRS.next()) {
                        //int aInt = 1;
-                       //String aString = Integer.toString(aInt);
-                       
-                       
+                       //String aString = Integer.toString(aInt);         
                        result[0] = new String("-1");                   
                    }
                    else{
@@ -770,4 +855,55 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         return EcoreUtil.create(eClass);
     }
 
+    private String getPairValues(int id, int[] a){
+    
+        String coma = ",";
+        String result = "";
+        for (int i = 0; i< a.length; i++){
+            if ( (i+1) == a.length)
+                coma = ";";
+            result += "(" +id + "," + a[i] +")" + coma;
+        }
+        
+        return result;
+    }
+    
+
+
+    private String insertaUsuario(final UsuarioRegistrado usuario)
+    {
+        String nombreUsuario = usuario.getUsername();
+        String contrasena = usuario.getContraseña();
+        String tipo = Integer.toString(usuario.getTipo());
+        String nombre = usuario.getNombre();
+        String telefono = usuario.getTelefono();
+        String email = usuario.getEmail(); 
+        String activado = "0"; //noAutorizado.
+        String update = "INSERT INTO usuarios (username,contrasena,tipo,nombre,"+
+                            "telefono,email,activado) VALUES ("+
+                            nombreUsuario + "," +
+                            contrasena + "," +
+                            tipo + "," +
+                            nombre + "," +
+                            telefono + "," +
+                            email + "," +
+                            activado + ");";
+        return update;
+    }
+
+    private String insertaResponsable(final Responsable resp, final int idUsuario)
+    {
+        String descripcion = resp.getDescripcion();
+        String sitioweb = resp.getSitioweb();
+        String estado = "0"; //noAutorizado
+        
+        String update = "INSERT INTO responsables (id_u,descripcion,sitioweb,"+
+                    "estado) VALUES (" + idUsuario + "," +
+                                        descripcion + ","+
+                                        sitioweb + ","+
+                                        estado + ");";
+        return update;
+    }
+
 } //ConectaDbImpl
+
