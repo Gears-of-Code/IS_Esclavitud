@@ -11,14 +11,11 @@ import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.Sesion;
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario;
 
 import mx.gearsofcode.proyservsocial.logico.usuarios.Responsable;
-import mx.gearsofcode.proyservsocial.logico.usuarios.Admin;
-import mx.gearsofcode.proyservsocial.logico.usuarios.Alumno;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
 import mx.gearsofcode.proyservsocial.logico.usuarios.impl.UsuariosFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
 
-import mx.gearsofcode.proyservsocial.logico.LogicoFactory;
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 
@@ -175,10 +172,8 @@ public class SesionImpl extends EObjectImpl implements Sesion {
 
         int tipoUsuario = TipoUsuario.valueOf(usuarioTipo).getValue(); // Mapea el tipo de usuario a int.
 
-        // TODO: Finish this method
-
-
-        // Dependiendo del tipo la clase que se crea pero que ¿entrega el enum de la BD?
+        // Dependiendo del tipo almacenado en la base de datos 
+        // mapeando a un int se ve que clase se debe generar.
         switch (tipoUsuario) {
             case TipoUsuario.ADMINISTRADOR_VALUE :
                 UsuarioRegistrado admin = new UsuariosFactoryImpl().createAdmin();
@@ -227,7 +222,6 @@ public class SesionImpl extends EObjectImpl implements Sesion {
      */
     public void cerrarSesion(final UsuarioRegistrado usuarioActivo) {
         
-  //      conexion = null;
   //      usuarioActivo.finalize();
         // TODO: implement this method
         // Ensure that you remove @generated or mark it @generated NOT

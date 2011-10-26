@@ -570,12 +570,11 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
 
             while(dbRS.next()) {
                 vector = new String[2];
-                // ¿Es necesario que el responsable vea el id del alumno?
-                //                int a = dbRS.getInt("postulados.id_u");
-                //                String aS = Integer.toString(a);
-                //                vector[0] = aS;
-                vector[0] = dbRS.getString("usuarios.nombre");
-                vector[1] = dbRS.getString("usuarios.carrera");
+                int a = dbRS.getInt("postulados.id_u");
+                String aS = Integer.toString(a);
+                vector[0] = aS;
+                vector[1] = dbRS.getString("usuarios.nombre");
+                vector[2] = dbRS.getString("usuarios.carrera");
                 //vector[10] = dbRS.getString("usuarios.nombre"); ¿¿El indice del arreglo es correcto??
                 listaPos.add(vector);    
             }

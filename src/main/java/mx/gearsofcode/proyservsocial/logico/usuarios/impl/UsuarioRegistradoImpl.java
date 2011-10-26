@@ -15,6 +15,8 @@ import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 
+import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -608,9 +610,12 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      *
      * @throws DBConsultException 
      */
-    public void verProyectos() throws DBConsultException {
+    public String[][] verProyectos() throws DBConsultException {
+        String[][] bloqueProyectos = null;
         conexion = new LogicoFactoryImpl().createConectaDb();
         conexion.verProyectosDb(tipo);
+        
+        return bloqueProyectos;
     }
     
     /**
@@ -620,9 +625,12 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      * 
      * @throws DBConsultException
      */
-    public void verMisProyectos() throws DBConsultException {
+    public String[][] verMisProyectos() throws DBConsultException {
+        String[][] bloqueProyectos = null;
         conexion = new LogicoFactoryImpl().createConectaDb();
         conexion.verMisProyectosDb(tipo, id); //Tipo de usuario y id de usuario.
+        
+        return bloqueProyectos;
     }
     
     /**
@@ -631,9 +639,12 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      * 
      * @param idProyecto Un identificador de algun proyecto.
      */
-    public void verDetallesProyecto(final int idProyect) throws DBConsultException {
+    public Proyecto verDetallesProyecto(final int idProyect) throws DBConsultException {
+        Proyecto unProyecto = null;
         conexion = new LogicoFactoryImpl().createConectaDb();
-        conexion.verDetallesProyectosDb(idProyect); 
+        conexion.verDetallesProyectosDb(idProyect);
+        
+        return unProyecto;
     }
 
 } //UsuarioRegistradoImpl
