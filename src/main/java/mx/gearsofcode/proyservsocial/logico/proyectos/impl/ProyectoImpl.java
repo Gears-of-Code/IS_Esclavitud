@@ -189,42 +189,42 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected String direccion = DIRECCION_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getCarrera() <em>Carrera</em>}'
+     * The default value of the '{@link #getCarreras() <em>Carrera</em>}'
      * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
-     * @see #getCarrera()
+     * @see #getCarreras()
      * @generated
      * @ordered
      */
     protected static final int[] CARRERA_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getCarrera() <em>Carrera</em>}'
+     * The cached value of the '{@link #getCarreras() <em>Carrera</em>}'
      * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
-     * @see #getCarrera()
+     * @see #getCarreras()
      * @generated
      * @ordered
      */
     protected int[] carrera = CARRERA_EDEFAULT;
 
     /**
-     * Valor por defecto del atributo '{@link #getMaxParticipante()
+     * Valor por defecto del atributo '{@link #getMaxParticipantes()
      * <em>Max Participante</em>}'. Numero maximo de alumnos que acepta un
      * proyecto vacio.
      * 
-     * @see #getMaxParticipante()
+     * @see #getMaxParticipantes()
      * @generated
      * @ordered
      */
     protected static final int MAX_PARTICIPANTE_EDEFAULT = 0;
 
     /**
-     * The cached value of the '{@link #getMaxParticipante()
+     * The cached value of the '{@link #getMaxParticipantes()
      * <em>Max Participante</em>}' attribute. <!-- begin-user-doc --> <!--
      * end-user-doc -->
      * 
-     * @see #getMaxParticipante()
+     * @see #getMaxParticipantes()
      * @generated
      * @ordered
      */
@@ -457,7 +457,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @generated
      */
-    public int[] getCarrera() {
+    public int[] getCarreras() {
         return carrera;
     }
 
@@ -478,14 +478,14 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     /**
      * {@inheritDoc}
      */
-    public int getMaxParticipante() {
+    public int getMaxParticipantes() {
         return maxParticipante;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void setMaxParticipante(int newMaxParticipante) {
+    public void setMaxParticipantes(int newMaxParticipante) {
         int oldMaxParticipante = maxParticipante;
         maxParticipante = newMaxParticipante;
         if (eNotificationRequired())
@@ -621,9 +621,9 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
         case ProyectosPackage.PROYECTO__DIRECCION:
             return getDireccion();
         case ProyectosPackage.PROYECTO__CARRERA:
-            return getCarrera();
+            return getCarreras();
         case ProyectosPackage.PROYECTO__MAX_PARTICIPANTE:
-            return getMaxParticipante();
+            return getMaxParticipantes();
         case ProyectosPackage.PROYECTO__DESCRIPCION:
             return getDescripcion();
         case ProyectosPackage.PROYECTO__ESTADO:
@@ -659,7 +659,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
             setDireccion((String) newValue);
             return;
         case ProyectosPackage.PROYECTO__MAX_PARTICIPANTE:
-            setMaxParticipante((Integer) newValue);
+            setMaxParticipantes((Integer) newValue);
             return;
         case ProyectosPackage.PROYECTO__DESCRIPCION:
             setDescripcion((String) newValue);
@@ -704,7 +704,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
             setCarrera(CARRERA_EDEFAULT);
             return;
         case ProyectosPackage.PROYECTO__MAX_PARTICIPANTE:
-            setMaxParticipante(MAX_PARTICIPANTE_EDEFAULT);
+            setMaxParticipantes(MAX_PARTICIPANTE_EDEFAULT);
             return;
         case ProyectosPackage.PROYECTO__DESCRIPCION:
             setDescripcion(DESCRIPCION_EDEFAULT);

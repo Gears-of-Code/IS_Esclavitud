@@ -23,6 +23,7 @@ import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -161,10 +162,19 @@ public class SesionImpl extends EObjectImpl implements Sesion {
         
         conexion = new LogicoFactoryImpl().createConectaDb();
         data = conexion.validaUsuarioDb(nombreUsuario, md5passwd); // Resultados del query.
-
-        int idUsuario = data.getInt("id_u");
-        String usuarioTipo = data.getString("tipo"); // Obtengo el tipo de usuario del query.
+        String usuarioTipo = "";
+        int idUsuario;
+        try {
+            idUsuario = data.getInt("id_u");
+            usuarioTipo = data.getString("tipo"); // Obtengo el tipo de usuario del query.
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
+        
         int tipoUsuario = TipoUsuario.valueOf(usuarioTipo).getValue(); // Mapea el tipo de usuario a int.
+        
         // TODO: Finish this method
         
 	    // Regresa un algo la base de datos, que incluye el idUsuario y el tipo.
@@ -177,16 +187,24 @@ public class SesionImpl extends EObjectImpl implements Sesion {
 	            inicioUsuario = admin;
 	            break;
 	        case TipoUsuario.RESPONSABLE_VALUE :
-	            if (data.getBoolean("resposables.estado")) {
-	                UsuarioRegistrado resp = new UsuariosFactoryImpl().createResponsable();
-	                resp.setNombre(nombreUsuario);
-	                ((Responsable) resp).setIdResp(data.getInt("responsables.id_r")); //Revisar este cast
-	                resp.setTipo(tipoUsuario);
-	                inicioUsuario = resp;
-	            } else {
-	                //TODO: Hacer este pedazo.
-	                // El responsable aun no se autoriza por lo tanto no entra al sistema.
+	            try {
+	                if (data.getBoolean("resposables.estado")) {
+	                    UsuarioRegistrado resp = new UsuariosFactoryImpl().createResponsable();
+	                    resp.setNombre(nombreUsuario);
+	                    ((Responsable) resp).setIdResp(data.getInt("responsables.id_r")); //Revisar este cast
+	                    resp.setTipo(tipoUsuario);
+	                    inicioUsuario = resp;
+	                } else {
+    	                //TODO: Hacer este pedazo.
+    	                // El responsable aun no se autoriza por lo tanto no entra al sistema.
+    	                // Probablemente sería bueno lanzar una excepción aquí.
+    	            }
+	            } catch (SQLException e) {
+	             // TODO Auto-generated catch block
+	                e.printStackTrace();
+	                return null;
 	            }
+	            
 	            break;
 	        case TipoUsuario.ALUMNO_VALUE :
 	            UsuarioRegistrado alum = new UsuariosFactoryImpl().createAlumno();

@@ -290,7 +290,7 @@ public interface ProyectosPackage extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Carrera</em>'.
-     * @see mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto#getCarrera()
+     * @see mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto#getCarreras()
      * @see #getProyecto()
      * @generated
      */
@@ -301,7 +301,7 @@ public interface ProyectosPackage extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Max Participante</em>'.
-     * @see mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto#getMaxParticipante()
+     * @see mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto#getMaxParticipantes()
      * @see #getProyecto()
      * @generated
      */

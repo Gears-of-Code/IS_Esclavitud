@@ -284,7 +284,7 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
         nuevoProyecto.setDireccion(dirProy);
         nuevoProyecto.setEmail(mailProy);
         nuevoProyecto.setTelefono(telProy);
-        nuevoProyecto.setMaxParticipante(capMax);
+        nuevoProyecto.setMaxParticipantes(capMax);
         nuevoProyecto.setResponsable(this.id_resp);
         nuevoProyecto.setAreaConocimiento(areaDeConocimiento);
         nuevoProyecto.setCarrera(carreraProy);

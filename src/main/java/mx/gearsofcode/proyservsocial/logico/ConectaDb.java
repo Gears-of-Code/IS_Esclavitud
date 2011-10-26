@@ -10,6 +10,7 @@ package mx.gearsofcode.proyservsocial.logico;
 import org.eclipse.emf.ecore.EObject;
 
 import java.sql.ResultSet;
+import java.util.LinkedList;
 
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.usuarios.Responsable;
@@ -64,10 +65,11 @@ public interface ConectaDb extends EObject {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @return 
      * @model
      * @generated
      */
-    void verPostuladosDb(final int idProy) throws DBConsultException;
+    LinkedList<String[]> verPostuladosDb(final int idProy) throws DBConsultException;
 
     /**
      * <!-- begin-user-doc -->
@@ -131,5 +133,5 @@ public interface ConectaDb extends EObject {
 
     void verDetallesProyectosDb(int idProyect)throws DBConsultException;
 
-    void verMisProyectosDb(final int tipoUsuario, final int idUsuario);
+    LinkedList<String[]> verMisProyectosDb(final int tipoUsuario, final int idUsuario);
 } // ConectaDb
