@@ -235,50 +235,17 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * [8] -> maximo Participantes 
      * [9] -> Descripcion del problema
      */
-    public LinkedList<String> verDetalleProyectoDb(final int idProyecto) {
-
-        Connection connect = null ;
-        Statement statement = null;
-        ResultSet resultset = null;
-        String result[] = null;
+    public ResultSet verDetalleProyectoDb(final int idProyecto) {
         
-        String query = "SELECT * "
-                + "FROM proyectos, areasconocimiento, carreras, usuarios "
+        String query = "SELECT DISTINCT *"
+                + "FROM proyectos, areasconocimiento, proyac, carreras, proycarr, usuarios "
                 + "WHERE id_p = '" + idProyecto + "';";
-        
-        try {
-            connect = cargarBase();
-            statement = connect.createStatement();
+        try{
             resultset = statement.executeQuery(query);
-
-            if (!resultset.next()) {
-                //int aInt = 1;
-                //String aString = Integer.toString(aInt);         
-                result[0] = new String("-1");                   
-            } else {
-                int a = resultset.getInt("id_p");
-                String aS = Integer.toString(a);
-                result[0] = new String(aS);                                             //id proyecto 
-                result[1] = new String(resultset.getString("usuarios.nombre"));              //nombre  responsable
-                result[2] = new String(resultset.getString("proyectos.nombre"));             //nombre  proyectos
-                result[3] = getIdsAreasConocimiento(idProyecto);//regresa una arreglo id de areas     //nombre  area de conocimiento
-                result[4] = getIdsCarreras(idProyecto);      //nombre  carreras
-                result[5] = new String(resultset.getString("proyectos.email"));              //email del poyecto 
-                result[6] = new String(resultset.getString("proyectos.telefono"));           //telefono del poyecto 
-                result[7] = new String(resultset.getString("proyectos.direccion"));          //direccion del poyecto
-                int max = resultset.getInt("proyectos.maxParticipantes");
-                String amax = Integer.toString(max);
-                result[8] = new String(amax);                                           //maximo Participantes                                      
-                result[9] = new String(resultset.getString("proyectos.descripcion"));        //DEscripcion del problema  
-            }
-
-        } catch (SQLException sqlex) {
-            System.out.println(sqlex.getMessage()); 
-        } finally {
-            cerrarBase(connect, statement);
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
         }
-
-        return result;
+        return resultset;
     } 
 
     /**
@@ -603,17 +570,6 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         return resultset;
     }
 
-
-    private String getIdsCarreras(int idProyecto) throws DBConsultException{
-
-        return null;
-    }
-
-    private String getIdsAreasConocimiento(int idProyecto) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
     /**
      * 
      */
@@ -691,6 +647,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     protected EObject create(EClass eClass) {
         return EcoreUtil.create(eClass);
     }
+
 
 } // ConectaDbImpl
 

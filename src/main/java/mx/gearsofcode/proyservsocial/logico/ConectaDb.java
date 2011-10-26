@@ -132,7 +132,7 @@ public interface ConectaDb extends EObject {
 
     void autorizarAlumnoProyecto(int studentID, int proyectID) throws DBModificationException;
 
-    String[] verDetallesProyectoDb(int idProyect)throws DBConsultException;
+    ResultSet verDetallesProyectoDb(int idProyect);
 
     LinkedList<String[]> verMisProyectosDb(final int tipoUsuario, final int idUsuario);
 } // ConectaDb
