@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import mx.gearsofcode.proyservsocial.logico.proyectos.CarreraProyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage;
+import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
@@ -548,8 +549,9 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @param idAdmin El tipo del usuario que llama este metodo, debe coincidir
      *            con el tipo del administrador.
+     * @throws DBModificationException 
      */
-    public void autorizarProyecto(final int idAdmin) {
+    public void autorizarProyecto(final int idAdmin) throws DBModificationException {
         if (idAdmin == 0) { // <------------Esto no me gusta, se aceptan cambios.
             if (!estado) { // Revisa que el proyecto no este autorizado.
                 setEstado(true);
@@ -607,7 +609,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
         // TODO: implement this method
         throw new UnsupportedOperationException();
     }
-}
+
 
 /**
  * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -661,7 +663,7 @@ public void eSet(int featureID, Object newValue) {
             setResponsable((Integer) newValue);
             return;
         case ProyectosPackage.PROYECTO__AREA_CONOCIMIENTO:
-            setAreaConocimiento((String) newValue);
+            setAreaConocimiento((int[]) newValue);
             return;
         case ProyectosPackage.PROYECTO__EMAIL:
             setEmail((String) newValue);
@@ -706,7 +708,7 @@ public void eUnset(int featureID) {
             setResponsable(RESPONSABLE_EDEFAULT);
             return;
         case ProyectosPackage.PROYECTO__AREA_CONOCIMIENTO:
-            setAreaConocimiento(AREA_CONOCIMIENTO_EDEFAULT);
+            setAreaConocimiento(null);
             return;
         case ProyectosPackage.PROYECTO__EMAIL:
             setEmail(EMAIL_EDEFAULT);
