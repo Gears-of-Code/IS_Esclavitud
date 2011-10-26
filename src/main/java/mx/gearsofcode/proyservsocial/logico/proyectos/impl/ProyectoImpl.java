@@ -597,16 +597,19 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      */
     public String[][] verListaPostulados(final int idUsuario) throws DBConsultException { //TODO: Revisar lo que regresa
         
-        String [][] bloqueResultado;
+        String [][] bloqueResultado = null;
         if (idUsuario != TipoUsuario.ALUMNO_VALUE) { 
             
             conexion = new LogicoFactoryImpl().createConectaDb();
             LinkedList<String[]> queryResult = conexion.verPostuladosDb(id);
             
-            //String[] unbloque = queryResult.toArray(); // No estoy del todo seguro de eso.
-            String[] encabezado = {"Nombre", "Carrera"};
-            bloqueResultado[0] = encabezado;
+            // String[] unbloque = queryResult.toArray(); // No estoy del todo seguro de que eso funcione.
             int pos = 1;
+            int filas = queryResult.size() + pos;
+            bloqueResultado = new String[filas][3]; 
+            String[] encabezado = {"id","Nombre", "Carrera"};
+            bloqueResultado[0] = encabezado;
+            
             for (String[] tupla : queryResult) {
                 bloqueResultado[pos] = tupla;
                 pos++;

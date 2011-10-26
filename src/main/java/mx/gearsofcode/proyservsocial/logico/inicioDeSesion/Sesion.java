@@ -65,9 +65,7 @@ public interface Sesion extends EObject {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model
-     * @generated
      */
-    void cerrarSesion();
+    void cerrarSesion(final UsuarioRegistrado unUsuario);
 
 } // Sesion

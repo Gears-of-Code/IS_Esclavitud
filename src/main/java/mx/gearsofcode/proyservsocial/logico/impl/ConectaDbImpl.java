@@ -6,6 +6,7 @@
  */
 package mx.gearsofcode.proyservsocial.logico.impl;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -20,8 +21,7 @@ import mx.gearsofcode.proyservsocial.logico.LogicoPackage;
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.usuarios.Responsable;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
-import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
-import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
+import mx.gearsofcode.proyservsocial.logico.util.*;
 
 import com.mysql.jdbc.exceptions.*;
 import com.mysql.jdbc.util.*;
@@ -52,14 +52,24 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     // variables para conexion
 
     private static Connection connect;
+    private static Statement statement;
     private static String driver = "com.mysql.jdbc.Driver";
     private static String url = "jdbc:mysql://localhost:3306/";
     private static String dbName = "gearsofc_ssocial";
     private static String user = "root";
     private static String password = "enrique";
+    
+    private static ResultSet resultset = null;
 
-    protected ConectaDbImpl() {
+    protected ConectaDbImpl() throws DBCreationException {
         super();
+        try{
+        connect = cargarBase();
+        statement = connect.createStatement();
+        }catch(Exception e){
+            throw new DBCreationException();
+        }
+
     }
 
     /**
@@ -74,7 +84,6 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
 
     /**
      * Metodo que abre la conexion a la Db  
-
      */
     private static Connection cargarBase() {
         try {
@@ -109,24 +118,19 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * Metodo que muestra proyectos autorizados dependiendo del usuario
      */
 
-    public static LinkedList<String[]> 
-    verProyectosDb(final int tipoUsuario, final int idUsuario) {
+    public LinkedList<String[]> 
+        verProyectosDb(final int tipoUsuario,  int idUsuario)
+    {
 
         final int ADMI = 0;
         final int RESP = 1;
         final int ALUM = 2;
         LinkedList<String[]> listaDeProyectos = new LinkedList<String[]>();
 
-        Connection connect = null ;
-        Statement statement = null;
-        ResultSet resultset = null;
         String query = "";
         
         
         try{
-            
-            connect = cargarBase();
-            statement = connect.createStatement();
             
             switch(tipoUsuario) {
     
@@ -168,20 +172,20 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
 
     /**
      * Metodo que muestra proyectos no autorizados dependiendo del usuario
+     * No se lanza ninguna excepcion porque el usuario no puede tener ningun proyecto.
      */
-    public static LinkedList<String[]> verMisProyectosDb(final int tipoUsuario,final int idUsuario) {
+    public LinkedList<String[]> verMisProyectosDb(final int tipoUsuario,final int idUsuario) {
 
         final int ADMI = 0;
         final int RESP = 1;
         final int ALUM = 2;
         
         LinkedList<String[]> listaDeProyectos = new LinkedList<String[]>();
-        String idxnombre[];
         String query = "";
 
         Connection connect = null;
         Statement statement = null;
-        ResultSet resultset = null;       
+        ResultSet resultset = null;
         
         try{
             connect = cargarBase();
@@ -232,17 +236,12 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * [8] -> maximo Participantes 
      * [9] -> Descripcion del problema
      */
-    public String[] verDetalleProyectoDb(final int idProyecto) {
+    public LinkedList<String> verDetalleProyectoDb(final int idProyecto) {
 
         Connection connect = null ;
         Statement statement = null;
         ResultSet resultset = null;
         String result[] = null;
-        // result = new LinkedList();
-        // Se debe inicializar el arreglo como result = new String [n]; 
-        // Pero no pude determinar el número de cadenas que se iban a necesitar.
-        // Si dicho número no es fijo, debemos entonces cambiar todo por una lista ligada.
-        // TODO: Check option a LinkedList<String[]> might be what is needed
         
         String query = "SELECT * "
                 + "FROM proyectos, areasconocimiento, carreras, usuarios "
@@ -288,16 +287,10 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      */
-    public void proponerProyectoDBb(final Proyecto proy) {
-        // TODO: implement this method
-        // 
-        
-        Connection con = null;
-        Statement statement = null;
+    public void proponerProyectoDb(final Proyecto proy) 
+            throws DBCreationException{
         
         try {
-            con = cargarBase();
-            statement = con.createStatement();
 
             int id_u = proy.getId();
             int telefono = proy.getTelefono();
@@ -309,7 +302,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
             String direccion = proy.getDireccion();
             String nombre = proy.getNombre();
             String email = proy.getEmail();
-
+            
             String update = "";
 
             update = "INSERT INTO proyectos (id_u,nombre,email,telefono,direccion,"
@@ -329,10 +322,9 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                     + descripcion
                     + "," + estado + ");";
 
-            System.out.println("Agregando el proyecto \"" + nombre + "\"...");
-            statement.executeUpdate(update);
-            System.out.println("El proyecto \"" + nombre
-                    + "\" se agrego con exito.");
+            if (statement.executeUpdate(update) == 0)
+                throw new DBCreationException();
+             
 
             int id_p = statement.executeQuery("LAST_INSERT_ID()").getInt(1);
 
@@ -341,51 +333,35 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
             update += getPairValues(id_p, id_ac); // Regresa el par de valores a
                                                   // agregar al la talba proyac
 
-            System.out.println("Agregando areas asociadas con el proyecto \""
-                    + nombre + "\"");
-            statement.executeQuery(update);
-            System.out.println("Areas asociadas al proyecto \"" + nombre + " '"
-                    + "agragadas");
+            if (statement.executeUpdate(update) == 0)
+                throw new DBCreationException();
 
             // Careers
             update = "INSERT INTO proycarr (id_p,id_c) VALUES ";
             update += getPairValues(id_p, carreras);
 
-            System.out
-                    .println("Agregando carreras asociadas con el proyecto \""
-                            + nombre + "\"");
-            statement.executeQuery(update);
-            System.out.println("Areas carreras al proyecto \"" + nombre + " '"
-                    + "agragadas");
+            if (statement.executeUpdate(update) == 0)
+                throw new DBCreationException();
 
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
-        } finally {
-            // La exception se levanta porque no se pueden crear esos objetos.
-            // Así pues, no se deben cerrar (porque nunca se abrieron)
-            // cerrarBase(con, statement); 
         }
     }
 
     /**
      * el administrador autoriza un proyecto
      */
-    public void autorizarProyectoDb(final int idProyecto){
+    public void autorizarProyectoDb(final int idProyecto) 
+            throws DBModificationException{
+        
+        final int AUTO = 1;
 
-        Connection connect = null ;
-        Statement statement = null;
-
-        String query = "UPDATE proyectos " + "SET estado = 1 "
+        String query = "UPDATE proyectos SET estado = " + AUTO
                 + "WHERE id_p = '" + idProyecto + "';";
 
         try {
-            connect = cargarBase();
-            statement = connect.createStatement();
-            statement.executeUpdate(query);
-            // int resultset = statement.executeUpdate(query);
-            // Ese int seria util para garantizar que solo un proyecto
-            // se vio afectado, ¿ese es el objetivo del int?
-
+            if (statement.executeUpdate(query) == 0)
+                throw new DBModificationException();
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         } finally {
@@ -396,29 +372,18 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     /**
      * el administrador rechaza un proyecto y es eliminado de la db
      */
-    public void rechazarProyectoDb(final int idProyecto) {
+    public void rechazarProyectoDb(final int idProyecto) 
+            throws DBModificationException{
 
-        Connection connect = null ;
-        Statement statement = null;
-         
-
-        String query = "DELETE FROM proyectos " 
-               + "WHERE id_p = '"+ idProyecto + "';";
-
-        try {
-            connect = cargarBase();
-            statement = connect.createStatement();
-            statement.executeUpdate(query);
-            // int resultset = statement.executeUpdate(query);
-            // Ese int seria util para garantizar que solo un proyecto
-            // se vio afectado, ¿ese es el objetivo del int?
-
-        } catch (SQLException sqlex) {
-            System.out.println(sqlex.getMessage());
-        } finally {
-            cerrarBase(connect, statement);
+        String query = "DELETE FROM proyectos "+ 
+                "WHERE id_p = '" + idProyecto + "';";
+        
+        try{
+            if (statement.executeUpdate(query)==0) ;
+                throw new DBModificationException();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
         }
-        throw new UnsupportedOperationException();
     }
     
     /**
@@ -426,10 +391,23 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * 
      * @generated
      */
-    public void postularAProyectoDb(final int idProyecto, final int idAlumno) {
-        // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
+    public void postularAProyectoDb(final int idProyecto, final int idAlumno) 
+            throws DBModificationException{
+        
+        final int NOAUTO = 0;
+
+        
+        String query = "INSERT INTO postulados (id_p, id_u, estado) VALUES ("+
+                    idProyecto +"," + idAlumno + "," + NOAUTO +");";
+        
+        try{
+            if(statement.executeUpdate(query) == 0)
+                throw new DBModificationException();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+
+            
     }
 
 
@@ -437,10 +415,6 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * Lista de alumnos postulados a un proyecto
      */
     public LinkedList<String[]> verPostuladosDb(final int idProyecto) throws DBConsultException {
-
-        Connection connect = null ;
-        Statement statement = null;
-        ResultSet resultset = null;
 
         String query = "SELECT postulados.id_u,usuarios.nombre "
                 + "FROM  postulados, usuarios, alumnos "
@@ -482,14 +456,12 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * Acepta a un alumno a un proyecto dependiendo del tipo de usuario
      */
     public void aceptarAlumnoProyectoDb(final int tipoUsuario ,
-            final int idProyecto, final int idAlumno) {
+            final int idProyecto, final int idAlumno)
+            throws DBModificationException{
 
         final int ADMI = 0;
         final int RESP = 1;
 
-        Connection connect = null;
-        Statement statement = null;
-        int resultset;
         String query = "";
         switch(tipoUsuario){
 
@@ -498,9 +470,8 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                         + "WHERE id_u = '" + idAlumno + "';";
 
                 try {
-                    connect = cargarBase();
-                    statement = connect.createStatement();
-                    resultset = statement.executeUpdate(query);
+                    if (statement.executeUpdate(query) == 0)
+                        throw new DBModificationException();
                 } catch (SQLException sqlex) {
                     System.out.println(sqlex.getMessage());
                 } finally {
