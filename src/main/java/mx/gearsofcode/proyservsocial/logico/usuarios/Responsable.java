@@ -127,7 +127,7 @@ public interface Responsable extends UsuarioRegistrado {
      * @model
      * @generated
      */
-    void registrarse() throws DBCreationException;
+    void registrarse(String password, String description, String mail, String phone, String name, String website, int type, String login) throws DBCreationException;
 
     /**
      * <!-- begin-user-doc -->

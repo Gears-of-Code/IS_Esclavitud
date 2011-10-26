@@ -227,10 +227,26 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
      * Metodo con el que el objeto que llama se registra en la base de datos
      * usando la Conexion de ConectaDB
      * <!-- end-user-doc -->
+     * @param password 
+     * @param description 
+     * @param mail 
+     * @param phone 
+     * @param name 
+     * @param website 
+     * @param type 
+     * @param login 
      * @throws DBCreationException 
      * @generated NOT
      */
-    public void registrarse() throws DBCreationException {
+    public void registrarse(String password, String description, String mail, String phone, String name, String website, int type, String login) throws DBCreationException {
+        this.contraseña = password;
+        this.descripcion = description;
+        this.email = mail;
+        this.telefono = phone;
+        this.nombre = name;
+        this.sitioweb = website;
+        this.tipo = type;
+        this.username = login;
         ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();       
         conexion.registrarDb(this);
     }
@@ -276,7 +292,7 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
         try {
             conexion.proponerProyectoDBb(nuevoProyecto);
             //TODO: Resolver que chingados hay que hacer con esta cuestion.
-            }
+            
         } catch (DBCreationException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
