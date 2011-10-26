@@ -51,7 +51,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
 
     // variables para conexion
 
-    private static Connection dbConnect;
+    private static Connection connect;
     private static String driver = "com.mysql.jdbc.Driver";
     private static String url = "jdbc:mysql://localhost:3306/";
     private static String dbName = "gearsofc_ssocial";
@@ -79,7 +79,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     private static Connection cargarBase() {
         try {
             Class.forName(driver);
-            dbConnect = DriverManager.getConnection(url + dbName, user,
+            connect = DriverManager.getConnection(url + dbName, user,
                     password);
             System.out.println("Conexión a base de datos OK");
 
@@ -88,7 +88,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         } catch (SQLException ex) {
             System.out.println("Imposible realizar conexion con " + url);
         }
-        return dbConnect;
+        return connect;
     }
 
     /**
@@ -109,112 +109,59 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * Metodo que muestra proyectos autorizados dependiendo del usuario
      */
 
-    public LinkedList<String[]> verProyectosDb(final int tipoUsuario,
-            final int idUsuario) {
+    public static LinkedList<String[]> 
+    verProyectosDb(final int tipoUsuario, final int idUsuario) {
 
         final int ADMI = 0;
         final int RESP = 1;
         final int ALUM = 2;
         LinkedList<String[]> listaDeProyectos = new LinkedList<String[]>();
 
-        Connection dbConnect = null ;
-        Statement dbStatement = null;
-        ResultSet dbRS = null;
+        Connection connect = null ;
+        Statement statement = null;
+        ResultSet resultset = null;
         String query = "";
-
-        switch(tipoUsuario) {
-
-            case ADMI:
-                query = "SELECT nombre, id_p " +
-                        "FROM  proyectos " +
-                        "WHERE estado = '1';";
-
-                try {
-                    dbConnect = cargarBase();
-                    dbStatement = dbConnect.createStatement();
-                    dbRS = dbStatement.executeQuery(query);
-
-                    String vector[];
-
-                    while (dbRS.next()) {
-
-                        vector = new String[2];
-                        int a = dbRS.getInt("id_p");
-                        String aS = Integer.toString(a);
-                        vector[0] = aS;
-                        vector[10] = dbRS.getString("nombre");
-
-                        listaDeProyectos.add(vector);    
-                    }
-
-                } catch (SQLException sqlex) {
-                    System.out.println(sqlex.getMessage()); 
-                }
-                finally {
-                    cerrarBase(dbConnect, dbStatement);
-                }
-                break;
-
-            case RESP:
-                query = "SELECT nombre, id_p " +
-                        "FROM  proyectos " +
-                        "WHERE estado = '1' AND" +
-                        " id_r ='" + idUsuario + "';";
-                try {
-                    dbConnect = cargarBase();
-                    dbStatement = dbConnect.createStatement();
-                    dbRS = dbStatement.executeQuery(query);
-
-                    String vector[];
-
-                    while(dbRS.next()) {
-
-                        vector = new String[2];
-                        int a = dbRS.getInt("id_p");
-                        String aS = Integer.toString(a);
-                        vector[0] = aS;
-                        vector[1] = dbRS.getString("nombre");
-                        listaDeProyectos.add(vector);    
-                    }
-
-                } catch (SQLException sqlex) {
-                    System.out.println(sqlex.getMessage()); 
-                } finally{
-                    cerrarBase(dbConnect, dbStatement);
-                }
-                break;
-
-            case ALUM:
-                query = "SELECT nombre, id_p " +
-                        "FROM  proyectos " +
-                        "WHERE estado = '1';";
-
-                try {
-                    dbConnect = cargarBase();
-                    dbStatement = dbConnect.createStatement();
-                    dbRS = dbStatement.executeQuery(query);
-
-                    String vector[];
-
-                    while(dbRS.next()) {
-                        vector = new String[2];
-                        int a = dbRS.getInt("id_p");
-                        String aS = Integer.toString(a);
-                        vector[0] = aS;
-                        vector[1] = dbRS.getString("nombre");
-                        listaDeProyectos.add(vector);    
-                    }
-
-                } catch (SQLException sqlex){
-                    System.out.println(sqlex.getMessage()); 
-                } finally{
-                    cerrarBase(dbConnect, dbStatement);
-                }
-                break;
-
-            default:      
-                System.out.println("Tipo de usuario no valido");            
-                break;
+        
+        
+        try{
+            
+            connect = cargarBase();
+            statement = connect.createStatement();
+            
+            switch(tipoUsuario) {
+    
+                case ADMI:
+                    query = "SELECT nombre, id_p " +
+                            "FROM  proyectos " +
+                            "WHERE estado = '1';";
+                    resultset = statement.executeQuery(query);
+                    break;
+    
+                case RESP:
+                    query = "SELECT nombre, id_p " +
+                            "FROM  proyectos " +
+                            "WHERE estado = '1' AND" +
+                            " id_r ='" + idUsuario + "';";
+                    resultset = statement.executeQuery(query);
+                    break;
+    
+                case ALUM:
+                    query = "SELECT nombre, id_p " +
+                            "FROM  proyectos " +
+                            "WHERE estado = '1';";
+                    resultset = statement.executeQuery(query);
+                    break;
+    
+                default:      
+                    System.out.println("Tipo de usuario no valido");            
+                    break;
+            }
+            
+            listaDeProyectos = getIdxNombre (resultset);
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            cerrarBase(connect,statement);
         }
         return listaDeProyectos;
     }
@@ -222,111 +169,52 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     /**
      * Metodo que muestra proyectos no autorizados dependiendo del usuario
      */
-    public LinkedList<String[]> verMisProyectosDb(final int tipoUsuario,
-            final int idUsuario) {
+    public static LinkedList<String[]> verMisProyectosDb(final int tipoUsuario,final int idUsuario) {
 
         final int ADMI = 0;
         final int RESP = 1;
         final int ALUM = 2;
-        LinkedList<String[]> listaDeProyectos = new LinkedList<String[]>();
-
-        Connection dbConnect = null;
-        Statement dbStatement = null;
-        ResultSet dbRS = null;
-        String query = "";
         
-        switch (tipoUsuario) {
+        LinkedList<String[]> listaDeProyectos = new LinkedList<String[]>();
+        String idxnombre[];
+        String query = "";
 
-            case ADMI:
-                query = "SELECT nombre, id_p " + "FROM  proyectos " +
-                        "WHERE estado = '0';";
-
-                try {
-                    dbConnect = cargarBase();
-                    dbStatement = dbConnect.createStatement();
-                    dbRS = dbStatement.executeQuery(query);
-
-                    String vector[];
-
-                    while (dbRS.next()) {
-
-                        vector = new String[2];
-                        int a = dbRS.getInt("id_p");
-                        String aS = Integer.toString(a);
-                        vector[0] = aS;
-                        vector[10] = dbRS.getString("nombre");
-                        listaDeProyectos.add(vector);
-                    }
-
-                } catch (SQLException sqlex) {
-                    System.out.println(sqlex.getMessage());
-                } finally {
-                    cerrarBase(dbConnect, dbStatement);
-                }
-                break;
-
-            case RESP:
-                query = "SELECT nombre, id_p " + "FROM  proyectos "
-                        + "WHERE estado = '0' AND" + " id_r ='" + idUsuario
-                        + "';";
-
-                try {
-                    dbConnect = cargarBase();
-                    dbStatement = dbConnect.createStatement();
-                    dbRS = dbStatement.executeQuery(query);
-
-                    String vector[];
-
-                    while (dbRS.next()) {
-
-                        vector = new String[2];
-                        int a = dbRS.getInt("id_p");
-                        String aS = Integer.toString(a);
-                        vector[0] = aS;
-                        vector[1] = dbRS.getString("nombre");
-                        listaDeProyectos.add(vector);
-                    }
-
-                } catch (SQLException sqlex) {
-                    System.out.println(sqlex.getMessage());
-                } finally {
-                    cerrarBase(dbConnect, dbStatement);
-                }
-                break;
-
-            case ALUM:
-                query = "SELECT nombre, proyectos.id_p "
-                        + "FROM  proyectos, postulados "
-                        + "WHERE postulados.estado = '0' " + "AND id_u = '"
-                        + idUsuario + "';";
-                try {
-                    dbConnect = cargarBase();
-                    dbStatement = dbConnect.createStatement();
-                    dbRS = dbStatement.executeQuery(query);
-
-                    String vector[];
-
-
-                    while (dbRS.next()) {
-                        vector = new String[2];
-                        int a = dbRS.getInt("proyectos.id_p");
-                        String aS = Integer.toString(a);
-                        vector[0] = aS;
-                        vector[10] = dbRS.getString("nombre");
-                        listaDeProyectos.add(vector);    
-                    }
-                    
-                } catch (SQLException sqlex) {
-                    System.out.println(sqlex.getMessage());
-                } finally {
-                    cerrarBase(dbConnect, dbStatement);
-                }
-                break;
-
-            default:
-                System.out.println("Tipo de usuario no valido");
-                break;
+        Connection connect = null;
+        Statement statement = null;
+        ResultSet resultset = null;       
+        
+        try{
+            connect = cargarBase();
+            statement = connect.createStatement();
+            
+            switch (tipoUsuario) {
+                case ADMI:
+                    query = "SELECT nombre, id_p FROM  proyectos WHERE estado = 0;";
+                    resultset = statement.executeQuery(query);
+                    break;
+    
+                case RESP:
+                    query = "SELECT nombre, id_p " + "FROM  proyectos "
+                            + "WHERE estado = '0' AND" + " id_u ='" + idUsuario
+                            + "';";
+                    resultset= statement.executeQuery(query);
+                    break;
+    
+                case ALUM:
+                    query = "SELECT nombre, proyectos.id_p "
+                            + "FROM  proyectos, postulados "
+                            + "WHERE postulados.estado = '0' " + "AND id_u = '"
+                            + idUsuario + "';";
+                    resultset = statement.executeQuery(query);
+                    break;
+            }
+            listaDeProyectos = getIdxNombre(resultset);
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            cerrarBase(connect, statement);
         }
+        
         return listaDeProyectos;
     }
 
@@ -346,9 +234,9 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      */
     public String[] verDetalleProyectoDb(final int idProyecto) {
 
-        Connection dbConnect = null ;
-        Statement dbStatement = null;
-        ResultSet dbRS = null;
+        Connection connect = null ;
+        Statement statement = null;
+        ResultSet resultset = null;
         String result[] = null;
         // result = new LinkedList();
         // Se debe inicializar el arreglo como result = new String [n]; 
@@ -361,35 +249,35 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                 + "WHERE id_p = '" + idProyecto + "';";
         
         try {
-            dbConnect = cargarBase();
-            dbStatement = dbConnect.createStatement();
-            dbRS = dbStatement.executeQuery(query);
+            connect = cargarBase();
+            statement = connect.createStatement();
+            resultset = statement.executeQuery(query);
 
-            if (!dbRS.next()) {
+            if (!resultset.next()) {
                 //int aInt = 1;
                 //String aString = Integer.toString(aInt);         
                 result[0] = new String("-1");                   
             } else {
-                int a = dbRS.getInt("id_p");
+                int a = resultset.getInt("id_p");
                 String aS = Integer.toString(a);
                 result[0] = new String(aS);                                             //id proyecto 
-                result[1] = new String(dbRS.getString("usuarios.nombre"));              //nombre  responsable
-                result[2] = new String(dbRS.getString("proyectos.nombre"));             //nombre  proyectos
+                result[1] = new String(resultset.getString("usuarios.nombre"));              //nombre  responsable
+                result[2] = new String(resultset.getString("proyectos.nombre"));             //nombre  proyectos
                 result[3] = getIdsAreasConocimiento(idProyecto);//regresa una arreglo id de areas     //nombre  area de conocimiento
                 result[4] = getIdsCarreras(idProyecto);      //nombre  carreras
-                result[5] = new String(dbRS.getString("proyectos.email"));              //email del poyecto 
-                result[6] = new String(dbRS.getString("proyectos.telefono"));           //telefono del poyecto 
-                result[7] = new String(dbRS.getString("proyectos.direccion"));          //direccion del poyecto
-                int max = dbRS.getInt("proyectos.maxParticipantes");
+                result[5] = new String(resultset.getString("proyectos.email"));              //email del poyecto 
+                result[6] = new String(resultset.getString("proyectos.telefono"));           //telefono del poyecto 
+                result[7] = new String(resultset.getString("proyectos.direccion"));          //direccion del poyecto
+                int max = resultset.getInt("proyectos.maxParticipantes");
                 String amax = Integer.toString(max);
                 result[8] = new String(amax);                                           //maximo Participantes                                      
-                result[9] = new String(dbRS.getString("proyectos.descripcion"));        //DEscripcion del problema  
+                result[9] = new String(resultset.getString("proyectos.descripcion"));        //DEscripcion del problema  
             }
 
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage()); 
         } finally {
-            cerrarBase(dbConnect, dbStatement);
+            cerrarBase(connect, statement);
         }
 
         return result;
@@ -484,24 +372,24 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      */
     public void autorizarProyectoDb(final int idProyecto){
 
-        Connection dbConnect = null ;
-        Statement dbStatement = null;
+        Connection connect = null ;
+        Statement statement = null;
 
         String query = "UPDATE proyectos " + "SET estado = 1 "
                 + "WHERE id_p = '" + idProyecto + "';";
 
         try {
-            dbConnect = cargarBase();
-            dbStatement = dbConnect.createStatement();
-            dbStatement.executeUpdate(query);
-            // int dbRS = dbStatement.executeUpdate(query);
+            connect = cargarBase();
+            statement = connect.createStatement();
+            statement.executeUpdate(query);
+            // int resultset = statement.executeUpdate(query);
             // Ese int seria util para garantizar que solo un proyecto
             // se vio afectado, ¿ese es el objetivo del int?
 
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         } finally {
-            cerrarBase(dbConnect, dbStatement);
+            cerrarBase(connect, statement);
         }
     }
 
@@ -510,25 +398,25 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      */
     public void rechazarProyectoDb(final int idProyecto) {
 
-        Connection dbConnect = null ;
-        Statement dbStatement = null;
+        Connection connect = null ;
+        Statement statement = null;
          
 
         String query = "DELETE FROM proyectos " 
                + "WHERE id_p = '"+ idProyecto + "';";
 
         try {
-            dbConnect = cargarBase();
-            dbStatement = dbConnect.createStatement();
-            dbStatement.executeUpdate(query);
-            // int dbRS = dbStatement.executeUpdate(query);
+            connect = cargarBase();
+            statement = connect.createStatement();
+            statement.executeUpdate(query);
+            // int resultset = statement.executeUpdate(query);
             // Ese int seria util para garantizar que solo un proyecto
             // se vio afectado, ¿ese es el objetivo del int?
 
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         } finally {
-            cerrarBase(dbConnect, dbStatement);
+            cerrarBase(connect, statement);
         }
         throw new UnsupportedOperationException();
     }
@@ -550,9 +438,9 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      */
     public LinkedList<String[]> verPostuladosDb(final int idProyecto) throws DBConsultException {
 
-        Connection dbConnect = null ;
-        Statement dbStatement = null;
-        ResultSet dbRS = null;
+        Connection connect = null ;
+        Statement statement = null;
+        ResultSet resultset = null;
 
         String query = "SELECT postulados.id_u,usuarios.nombre "
                 + "FROM  postulados, usuarios, alumnos "
@@ -562,28 +450,28 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         LinkedList<String[]> listaPos = new LinkedList<String[]>();
 
         try {
-            dbConnect = cargarBase();
-            dbStatement = dbConnect.createStatement();
-            dbRS = dbStatement.executeQuery(query);
+            connect = cargarBase();
+            statement = connect.createStatement();
+            resultset = statement.executeQuery(query);
 
             String vector[];
 
-            while(dbRS.next()) {
+            while(resultset.next()) {
                 vector = new String[2];
                 // ¿Es necesario que el responsable vea el id del alumno?
-                //                int a = dbRS.getInt("postulados.id_u");
+                //                int a = resultset.getInt("postulados.id_u");
                 //                String aS = Integer.toString(a);
                 //                vector[0] = aS;
-                vector[0] = dbRS.getString("usuarios.nombre");
-                vector[1] = dbRS.getString("usuarios.carrera");
-                //vector[10] = dbRS.getString("usuarios.nombre"); ¿¿El indice del arreglo es correcto??
+                vector[0] = resultset.getString("usuarios.nombre");
+                vector[1] = resultset.getString("usuarios.carrera");
+                //vector[10] = resultset.getString("usuarios.nombre"); ¿¿El indice del arreglo es correcto??
                 listaPos.add(vector);    
             }
             
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage()); 
         } finally {
-            cerrarBase(dbConnect, dbStatement);
+            cerrarBase(connect, statement);
         }
         return listaPos;
 
@@ -599,9 +487,9 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         final int ADMI = 0;
         final int RESP = 1;
 
-        Connection dbConnect = null;
-        Statement dbStatement = null;
-        int dbRS;
+        Connection connect = null;
+        Statement statement = null;
+        int resultset;
         String query = "";
         switch(tipoUsuario){
 
@@ -610,13 +498,13 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                         + "WHERE id_u = '" + idAlumno + "';";
 
                 try {
-                    dbConnect = cargarBase();
-                    dbStatement = dbConnect.createStatement();
-                    dbRS = dbStatement.executeUpdate(query);
+                    connect = cargarBase();
+                    statement = connect.createStatement();
+                    resultset = statement.executeUpdate(query);
                 } catch (SQLException sqlex) {
                     System.out.println(sqlex.getMessage());
                 } finally {
-                    cerrarBase(dbConnect, dbStatement);
+                    cerrarBase(connect, statement);
                 }
                 break;
 
@@ -626,13 +514,13 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                         + idAlumno + "';";
 
                 try {
-                    dbConnect = cargarBase();
-                    dbStatement = dbConnect.createStatement();
-                    dbRS = dbStatement.executeUpdate(query);
+                    connect = cargarBase();
+                    statement = connect.createStatement();
+                    resultset = statement.executeUpdate(query);
                 } catch (SQLException sqlex) {
                     System.out.println(sqlex.getMessage());
                 } finally {
-                    cerrarBase(dbConnect, dbStatement);
+                    cerrarBase(connect, statement);
                 }
                 break;
 
@@ -647,21 +535,21 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * 
      */
     public void rechazaAlumnoProyectoDb(final int idProyecto, final int idAlumno) {
-        Connection dbConnect = null;
-        Statement dbStatement = null;
-        int dbRS;
+        Connection connect = null;
+        Statement statement = null;
+        int resultset;
         String query = "DELETE FROM postulados " + "WHERE id_p = '"
                 + idProyecto + "' AND id_u = '" + idAlumno + "';";
         
         try {
-            dbConnect = cargarBase();
-            dbStatement = dbConnect.createStatement();
-            dbRS = dbStatement.executeUpdate(query);
+            connect = cargarBase();
+            statement = connect.createStatement();
+            resultset = statement.executeUpdate(query);
 
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         } finally {
-            cerrarBase(dbConnect, dbStatement);
+            cerrarBase(connect, statement);
         }
     }
 
@@ -706,21 +594,21 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * acepta a un responsable
      */
     public void aceptarResponsableDb(final int idResponsable) {
-        Connection dbConnect = null;
-        Statement dbStatement = null;
-        int dbRS;
+        Connection connect = null;
+        Statement statement = null;
+        int resultset;
 
         String query = "UPDATE responsables " + "SET estado = 1"
                 + " WHERE id_u = '" + idResponsable + "';";
 
         try {
-            dbConnect = cargarBase();
-            dbStatement = dbConnect.createStatement();
-            dbRS = dbStatement.executeUpdate(query);
+            connect = cargarBase();
+            statement = connect.createStatement();
+            resultset = statement.executeUpdate(query);
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         } finally {
-            cerrarBase(dbConnect, dbStatement);
+            cerrarBase(connect, statement);
         }
         throw new UnsupportedOperationException();
     }
@@ -732,21 +620,21 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * @generated
      */
     public void rechazaResponsableDb(final int idResponsable) {
-        Connection dbConnect = null;
-        Statement dbStatement = null;
-        int dbRS;
+        Connection connect = null;
+        Statement statement = null;
+        int resultset;
         String query = "DELETE FROM responsables " + "WHERE id_u  = '"
                 + idResponsable + "';";
 
         try {
-            dbConnect = cargarBase();
-            dbStatement = dbConnect.createStatement();
-            dbRS = dbStatement.executeUpdate(query);
+            connect = cargarBase();
+            statement = connect.createStatement();
+            resultset = statement.executeUpdate(query);
             
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         } finally {
-            cerrarBase(dbConnect, dbStatement);
+            cerrarBase(connect, statement);
         }
     }
 
@@ -759,24 +647,24 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     public ResultSet validaUsuarioDb(final String nombreUsuario,
             final String password) {
 
-        Connection dbConnect = null;
-        Statement dbStatement = null;
-        ResultSet dbRS = null;
+        Connection connect = null;
+        Statement statement = null;
+        ResultSet resultset = null;
         String query = "SELECT * " + "FROM usuarios, alumnos,responsables "
                 + "WHERE username = '" + nombreUsuario + "' "
                 + "AND contrasena='" + password + "';";
 
         try {
-            dbConnect = cargarBase();
-            dbStatement = dbConnect.createStatement();
-            dbRS = dbStatement.executeQuery(query);
+            connect = cargarBase();
+            statement = connect.createStatement();
+            resultset = statement.executeQuery(query);
 
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         } finally {
-            cerrarBase(dbConnect, dbStatement);
+            cerrarBase(connect, statement);
         }
-        return dbRS;
+        return resultset;
     }
 
 
@@ -840,6 +728,21 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                 + idUsuario + "," + descripcion + "," 
                 + sitioweb + "," + estado + ");";
         return update;
+    }
+    
+    private static LinkedList<String[]> getIdxNombre(ResultSet rs) throws SQLException {
+        
+        LinkedList<String[]> lista = new LinkedList<String[]>();
+        String[] idxnombre = null;
+        
+        while (rs.next()) {
+            idxnombre = new String[2];
+            idxnombre[0] = Integer.toString(rs.getInt("id_p"));
+            idxnombre[10] = rs.getString("nombre");
+            lista.add(idxnombre);
+        }
+        
+        return lista;
     }
 
     /**

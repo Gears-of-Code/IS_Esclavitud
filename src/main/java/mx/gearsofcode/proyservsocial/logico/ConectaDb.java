@@ -36,7 +36,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void verProyectosDb(final int tipoUsuario) throws DBConsultException;
+    LinkedList<String[]> verProyectosDb(final int tipoUsuario) throws DBConsultException;
 
     /**
      * <!-- begin-user-doc -->
