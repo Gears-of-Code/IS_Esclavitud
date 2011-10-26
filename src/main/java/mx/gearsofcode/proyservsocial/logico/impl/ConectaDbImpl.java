@@ -523,16 +523,19 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     public void registrarDb(final Responsable repo) 
     throws DBCreationException{
         
-        final int RESP = 1;
         int id_u = 0;
         
         try {
             String update = insertaUsuario(repo);
 
-            statement.executeUpdate(update);
-            id_u = statement.executeQuery("LAST_INSERT_ID()").getInt(1); 
+            if (statement.executeUpdate(update) == 0)
+                throw new DBCreationException();
+            
+            id_u = statement.executeQuery("LAST_INSERT_ID()").getInt(1);
+            
             update = insertaResponsable(repo, id_u);
-            statement.executeUpdate(update);
+            if (statement.executeUpdate(update) == 0)
+                throw new DBCreationException();
             
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
@@ -544,24 +547,18 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     /**
      * acepta a un responsable
      */
-    public void aceptarResponsableDb(final int idResponsable) {
-        Connection connect = null;
-        Statement statement = null;
-        int resultset;
+    public void aceptarResponsableDb(final int idResponsable) 
+            throws DBModificationException{
 
-        String query = "UPDATE responsables " + "SET estado = 1"
+        String query = "UPDATE responsables SET estado = 1"
                 + " WHERE id_u = '" + idResponsable + "';";
 
         try {
-            connect = cargarBase();
-            statement = connect.createStatement();
-            resultset = statement.executeUpdate(query);
+            if (statement.executeUpdate(query) == 0)
+                throw new DBModificationException();
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
-        } finally {
-            cerrarBase(connect, statement);
         }
-        throw new UnsupportedOperationException();
     }
 
 
@@ -570,22 +567,18 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * 
      * @generated
      */
-    public void rechazaResponsableDb(final int idResponsable) {
-        Connection connect = null;
-        Statement statement = null;
-        int resultset;
+    public void rechazaResponsableDb(final int idResponsable)
+        throws DBModificationException{
+        
         String query = "DELETE FROM responsables " + "WHERE id_u  = '"
                 + idResponsable + "';";
 
         try {
-            connect = cargarBase();
-            statement = connect.createStatement();
-            resultset = statement.executeUpdate(query);
+            if (statement.executeUpdate(query) == 0)
+                throw new DBModificationException();
             
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
-        } finally {
-            cerrarBase(connect, statement);
         }
     }
 
@@ -596,31 +589,23 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * 
      */
     public ResultSet validaUsuarioDb(final String nombreUsuario,
-            final String password) {
-
-        Connection connect = null;
-        Statement statement = null;
-        ResultSet resultset = null;
+            final String password){
         String query = "SELECT * " + "FROM usuarios, alumnos,responsables "
                 + "WHERE username = '" + nombreUsuario + "' "
                 + "AND contrasena='" + password + "';";
 
         try {
-            connect = cargarBase();
-            statement = connect.createStatement();
             resultset = statement.executeQuery(query);
 
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
-        } finally {
-            cerrarBase(connect, statement);
         }
         return resultset;
     }
 
 
-    private String getIdsCarreras(int idProyecto) {
-        // TODO Auto-generated method stub
+    private String getIdsCarreras(int idProyecto) throws DBConsultException{
+
         return null;
     }
 

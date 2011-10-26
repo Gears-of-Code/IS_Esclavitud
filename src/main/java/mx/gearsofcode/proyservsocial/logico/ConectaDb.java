@@ -126,7 +126,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    ResultSet validaUsuarioDb(final String nombreUsuario, final String passwd) throws DBConsultException;
+    ResultSet validaUsuarioDb(final String nombreUsuario, final String passwd);
 
     void modificarEstadoAlumno(int studentID, boolean studentState) throws DBModificationException;
 
