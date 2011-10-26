@@ -604,12 +604,13 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
             LinkedList<String[]> queryResult = conexion.verPostuladosDb(id);
             
             // String[] unbloque = queryResult.toArray(); // No estoy del todo seguro de que eso funcione.
-            int pos = 1;
+            int pos = 0;
             int filas = queryResult.size() + pos;
             bloqueResultado = new String[filas][3]; 
-            String[] encabezado = {"id","Nombre", "Carrera"};
-            bloqueResultado[0] = encabezado;
             
+            // String[] bloqueResultado contiene ["id","Nombre", "Carrera"]
+            // Nota anterior para saber en que orden esta la informacion (Capa de Interfaz)
+                        
             for (String[] tupla : queryResult) {
                 bloqueResultado[pos] = tupla;
                 pos++;

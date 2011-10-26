@@ -142,7 +142,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                         int a = dbRS.getInt("id_p");
                         String aS = Integer.toString(a);
                         vector[0] = aS;
-                        vector[10] = dbRS.getString("nombre");
+                        vector[1] = dbRS.getString("nombre");
 
                         listaDeProyectos.add(vector);    
                     }

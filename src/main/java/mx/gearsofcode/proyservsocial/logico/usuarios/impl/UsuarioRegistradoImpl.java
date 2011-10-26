@@ -613,10 +613,24 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      * @throws DBConsultException 
      */
     public String[][] verProyectos() throws DBConsultException {
-        String[][] bloqueProyectos = null;
-        conexion = new LogicoFactoryImpl().createConectaDb();
-        conexion.verProyectosDb(tipo, id);
         
+        String[][] bloqueProyectos = null;        
+        conexion = new LogicoFactoryImpl().createConectaDb();
+        LinkedList<String[]> queryResult = conexion.verProyectosDb(tipo, id);
+        
+        int pos = 0;
+        int numProy = queryResult.size();
+            
+        // String[] bloqueproyectos contiene ["id","Nombre"]
+        // Nota anterior para saber en que orden esta la informacion (Capa de Interfaz)
+
+        bloqueProyectos = new String[numProy][2];
+        
+        for (String[] proy : queryResult) {
+            bloqueProyectos[pos] = proy;
+            pos++;
+        }
+
         return bloqueProyectos;
     }
     
@@ -628,9 +642,23 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      * @throws DBConsultException
      */
     public String[][] verMisProyectos() throws DBConsultException {
+        
         String[][] bloqueProyectos = null;
         conexion = new LogicoFactoryImpl().createConectaDb();
         LinkedList<String[]> queryResult = conexion.verMisProyectosDb(tipo, id); //Tipo de usuario y id de usuario.
+        
+        int pos = 0;
+        int misProy = queryResult.size();        
+            
+        // String[] bloqueproyectos contiene ["id","Nombre"]
+        // Nota anterior para saber en que orden esta la informacion (Capa de Interfaz)
+        
+        bloqueProyectos = new String[misProy][2];
+        
+        for (String[] unProy : bloqueProyectos) {
+            bloqueProyectos[pos] = unProy;
+            pos++;
+        }
         
         return bloqueProyectos;
     }
@@ -645,6 +673,9 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
         Proyecto unProyecto = null;
         conexion = new LogicoFactoryImpl().createConectaDb();
         String[] queryResult = conexion.verDetallesProyectoDb(idProyect);
+        
+        //TODO: Check return from ConectaDb might be a ResultSet instead of String[]
+        // Check documentation of ResultSet in that case else pass the object or do something.
         
         return unProyecto;
     }
