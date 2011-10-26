@@ -6,6 +6,8 @@
  */
 package mx.gearsofcode.proyservsocial.logico.proyectos;
 
+import java.util.LinkedList;
+
 import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
 import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
@@ -151,6 +153,7 @@ public interface Proyecto extends EObject {
      * @model required="true" ordered="false"
      * @generated
      */
+    
     int[] getAreaConocimiento();
 
     /**
@@ -373,6 +376,6 @@ public interface Proyecto extends EObject {
      * @return int[][] 
      * @throws DBConsultException 
      */
-    String[][] verListaPostulados(final int idUsuario) throws DBConsultException;
+    LinkedList<String> verListaPostulados(final int idUsuario) throws DBConsultException;
 
 } // Proyecto

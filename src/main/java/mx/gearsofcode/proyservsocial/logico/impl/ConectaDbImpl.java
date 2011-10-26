@@ -414,7 +414,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
             int id_u = proy.getId();
             int telefono = proy.getTelefono();
             int maxParticipantes = proy.getMaxParticipantes();
-            int[] id_ac = proy.getAreaConocimiento();
+            int [] id_ac = proy.getAreaConocimiento();
             int[] carreras = proy.getCarreras();    
             String descripcion = proy.getDescripcion();
             String estado = "0"; // No autorizado.

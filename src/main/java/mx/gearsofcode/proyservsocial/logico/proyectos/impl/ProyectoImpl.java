@@ -6,17 +6,15 @@
  */
 package mx.gearsofcode.proyservsocial.logico.proyectos.impl;
 
+import java.util.LinkedList;
+
+import mx.gearsofcode.proyservsocial.logico.proyectos.CarreraProyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage;
+import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
-import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
-import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
-
-import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario;
-
-import java.util.LinkedList;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -121,14 +119,14 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @see #getAreaConocimiento()
      */
-    protected static final int[] AREA_CONOCIMIENTO_EDEFAULT = null;
+    protected static final String AREA_CONOCIMIENTO_EDEFAULT = null;
 
     /**
      * Valor almacenado del atributo '{@link #getAreaConocimiento() <em>Area Conocimiento</em>}' .
      * 
      * @see #getAreaConocimiento()
      */
-    protected int[] areaConocimiento = AREA_CONOCIMIENTO_EDEFAULT;
+    protected int[] areaConocimiento = null;//AREA_CONOCIMIENTO_EDEFAULT;
 
     /**
      * Valor por defecto del atributo '{@link #getEmail() <em>Email</em>}'. No
@@ -191,46 +189,46 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected String direccion = DIRECCION_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getCarreras() <em>Carrera</em>}'
+     * The default value of the '{@link #getCarrera() <em>Carrera</em>}'
      * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
-     * @see #getCarreras()
+     * @see #getCarrera()
      * @generated
      * @ordered
      */
-    protected static final int[] CARRERA_EDEFAULT = null;
+    protected static final CarreraProyecto CARRERA_EDEFAULT = CarreraProyecto.MATEMATICAS;
 
     /**
-     * The cached value of the '{@link #getCarreras() <em>Carrera</em>}'
+     * The cached value of the '{@link #getCarrera() <em>Carrera</em>}'
      * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
-     * @see #getCarreras()
+     * @see #getCarrera()
      * @generated
      * @ordered
      */
-    protected int[] carreras = CARRERA_EDEFAULT;
+    protected CarreraProyecto carrera = CARRERA_EDEFAULT;
 
     /**
-     * Valor por defecto del atributo '{@link #getMaxParticipantes()
+     * Valor por defecto del atributo '{@link #getMaxParticipante()
      * <em>Max Participante</em>}'. Numero maximo de alumnos que acepta un
      * proyecto vacio.
      * 
-     * @see #getMaxParticipantes()
+     * @see #getMaxParticipante()
      * @generated
      * @ordered
      */
-    protected static final int MAX_PARTICIPANTES_EDEFAULT = 0;
+    protected static final int MAX_PARTICIPANTE_EDEFAULT = 0;
 
     /**
-     * The cached value of the '{@link #getMaxParticipantes()
+     * The cached value of the '{@link #getMaxParticipante()
      * <em>Max Participante</em>}' attribute. <!-- begin-user-doc --> <!--
      * end-user-doc -->
      * 
-     * @see #getMaxParticipantes()
+     * @see #getMaxParticipante()
      * @generated
      * @ordered
      */
-    protected int maxParticipantes = MAX_PARTICIPANTES_EDEFAULT;
+    protected int maxParticipante = MAX_PARTICIPANTE_EDEFAULT;
 
     /**
      * Valor por defecto del atributo '{@link #getDescripcion()
@@ -276,7 +274,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * Clase que contiene los metodos de conexion a la base de datos. 
      * Aqui se realizan los queries directamente a la base de datos.
      **/
-    private ConectaDb conexion = null;
+    private ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -378,13 +376,13 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @generated
      */
-    public void setAreaConocimiento(final int[] newareasDeConocimiento) {
-        int[] oldAreaConocimiento = areaConocimiento;
-        if (newareasDeConocimiento != null) {
-            areaConocimiento = newareasDeConocimiento;
-        } else {
-            areaConocimiento = oldAreaConocimiento;
-        }
+    public void setAreaConocimiento(int [] newAreaConocimiento) {
+        int [] oldAreaConocimiento = areaConocimiento;
+        areaConocimiento = newAreaConocimiento;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    ProyectosPackage.PROYECTO__AREA_CONOCIMIENTO,
+                    oldAreaConocimiento, areaConocimiento));
     }
 
     /**
@@ -459,9 +457,8 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @generated
      */
-    public int[] getCarreras() {
-        return carreras;
-
+    public CarreraProyecto getCarrera() {
+        return carrera;
     }
 
     /**
@@ -469,33 +466,31 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @generated
      */
-    public void setCarreras(final int[] newCarrera) {
-        int[] oldCarrera = carreras;
-        if (newCarrera != null) {
-            carreras = newCarrera;
-        } else {
-            carreras = oldCarrera;
-        }
+    public void setCarrera(CarreraProyecto newCarrera) {
+        CarreraProyecto oldCarrera = carrera;
+        carrera = newCarrera == null ? CARRERA_EDEFAULT : newCarrera;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    ProyectosPackage.PROYECTO__CARRERA, oldCarrera, carrera));
     }
 
     /**
      * {@inheritDoc}
      */
-    public int getMaxParticipantes() {
-        return maxParticipantes;
+    public int getMaxParticipante() {
+        return maxParticipante;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void setMaxParticipantes(int newMaxParticipante) {
-        int oldMaxParticipante = maxParticipantes;
-        maxParticipantes = newMaxParticipante;
-
+    public void setMaxParticipante(int newMaxParticipante) {
+        int oldMaxParticipante = maxParticipante;
+        maxParticipante = newMaxParticipante;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
                     ProyectosPackage.PROYECTO__MAX_PARTICIPANTE,
-                    oldMaxParticipante, maxParticipantes));
+                    oldMaxParticipante, maxParticipante));
     }
 
     /**
@@ -557,14 +552,16 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * @throws DBModificationException 
      */
     public void autorizarProyecto(final int idAdmin) throws DBModificationException {
-        if (idAdmin == TipoUsuario.ADMINISTRADOR_VALUE) { 
+        if (idAdmin == 0) { // <------------Esto no me gusta, se aceptan cambios.
             if (!estado) { // Revisa que el proyecto no este autorizado.
-                conexion = new LogicoFactoryImpl().createConectaDb();
                 setEstado(true);
                 conexion.autorizarProyectoDb(id);
             }
+        } else {
+
         }
         // TODO: implement this method
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -574,13 +571,17 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @param idAdmin El tipo del usuario que llama este metodo, debe coincidir
      *            con el tipo del administrador.
-     * @throws DBModificationException 
      */
-    public void rechazarProyecto(final int idAdmin) throws DBModificationException {
-        if (idAdmin == TipoUsuario.ADMINISTRADOR_VALUE) { 
+    public void rechazarProyecto(final int idAdmin) {
+        if (idAdmin == 0) { // <------------Esto no me gusta, se aceptan cambios.
             if (!estado) { // Revisa que el proyecto no este autorizado.
-                conexion = new LogicoFactoryImpl().createConectaDb();
-                conexion.rechazarProyectoDb(id);
+                try {
+                    conexion.rechazarProyectoDb(id);
+                } finally {
+                    throw new UnsupportedOperationException();
+                }
+            } else {
+
             }
         }
         // TODO: implement this method
@@ -595,7 +596,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      *            administrador o un responsabl.
      * @throws DBConsultException 
      */
-    public String[][] verListaPostulados(final int idUsuario) throws DBConsultException { //TODO: Revisar lo que regresa
+    public String[][] verListaPostulados(final int idUsuario) throws DBConsultException { //TODO: Revisar lo que regresa y que si este armando el array correcto.
         
         String [][] bloqueResultado = null;
         if (idUsuario != TipoUsuario.ALUMNO_VALUE) { 
@@ -619,14 +620,15 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
         return bloqueResultado;
     }
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
+
+/**
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
+ * @generated
+ */
+@Override
+public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    switch (featureID) {
         case ProyectosPackage.PROYECTO__ID:
             return getId();
         case ProyectosPackage.PROYECTO__NOMBRE:
@@ -642,25 +644,25 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
         case ProyectosPackage.PROYECTO__DIRECCION:
             return getDireccion();
         case ProyectosPackage.PROYECTO__CARRERA:
-            return getCarreras();
+            return getCarrera();
         case ProyectosPackage.PROYECTO__MAX_PARTICIPANTE:
-            return getMaxParticipantes();
+            return getMaxParticipante();
         case ProyectosPackage.PROYECTO__DESCRIPCION:
             return getDescripcion();
         case ProyectosPackage.PROYECTO__ESTADO:
             return getEstado();
-        }
-        return super.eGet(featureID, resolve, coreType);
     }
+    return super.eGet(featureID, resolve, coreType);
+}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
+/**
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
+ * @generated
+ */
+@Override
+public void eSet(int featureID, Object newValue) {
+    switch (featureID) {
         case ProyectosPackage.PROYECTO__ID:
             setId((Integer) newValue);
             return;
@@ -669,6 +671,9 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
             return;
         case ProyectosPackage.PROYECTO__RESPONSABLE:
             setResponsable((Integer) newValue);
+            return;
+        case ProyectosPackage.PROYECTO__AREA_CONOCIMIENTO:
+            setAreaConocimiento((int[]) newValue);
             return;
         case ProyectosPackage.PROYECTO__EMAIL:
             setEmail((String) newValue);
@@ -679,8 +684,11 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
         case ProyectosPackage.PROYECTO__DIRECCION:
             setDireccion((String) newValue);
             return;
+        case ProyectosPackage.PROYECTO__CARRERA:
+            setCarrera((CarreraProyecto) newValue);
+            return;
         case ProyectosPackage.PROYECTO__MAX_PARTICIPANTE:
-            setMaxParticipantes((Integer) newValue);
+            setMaxParticipante((Integer) newValue);
             return;
         case ProyectosPackage.PROYECTO__DESCRIPCION:
             setDescripcion((String) newValue);
@@ -688,18 +696,18 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
         case ProyectosPackage.PROYECTO__ESTADO:
             setEstado((Boolean) newValue);
             return;
-        }
-        super.eSet(featureID, newValue);
     }
+    super.eSet(featureID, newValue);
+}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
+/**
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
+ * @generated
+ */
+@Override
+public void eUnset(int featureID) {
+    switch (featureID) {
         case ProyectosPackage.PROYECTO__ID:
             setId(ID_EDEFAULT);
             return;
@@ -710,7 +718,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
             setResponsable(RESPONSABLE_EDEFAULT);
             return;
         case ProyectosPackage.PROYECTO__AREA_CONOCIMIENTO:
-            setAreaConocimiento(AREA_CONOCIMIENTO_EDEFAULT);
+            setAreaConocimiento(null);
             return;
         case ProyectosPackage.PROYECTO__EMAIL:
             setEmail(EMAIL_EDEFAULT);
@@ -722,10 +730,10 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
             setDireccion(DIRECCION_EDEFAULT);
             return;
         case ProyectosPackage.PROYECTO__CARRERA:
-            setCarreras(CARRERA_EDEFAULT);
+            setCarrera(CARRERA_EDEFAULT);
             return;
         case ProyectosPackage.PROYECTO__MAX_PARTICIPANTE:
-            setMaxParticipantes(MAX_PARTICIPANTES_EDEFAULT);
+            setMaxParticipante(MAX_PARTICIPANTE_EDEFAULT);
             return;
         case ProyectosPackage.PROYECTO__DESCRIPCION:
             setDescripcion(DESCRIPCION_EDEFAULT);
@@ -733,96 +741,96 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
         case ProyectosPackage.PROYECTO__ESTADO:
             setEstado(ESTADO_EDEFAULT);
             return;
-        }
-        super.eUnset(featureID);
     }
+    super.eUnset(featureID);
+}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
+/**
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
+ * @generated
+ */
+@Override
+public boolean eIsSet(int featureID) {
+    switch (featureID) {
         case ProyectosPackage.PROYECTO__ID:
             return id != ID_EDEFAULT;
         case ProyectosPackage.PROYECTO__NOMBRE:
             return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT
-                    .equals(nombre);
+            .equals(nombre);
         case ProyectosPackage.PROYECTO__RESPONSABLE:
             return responsable != RESPONSABLE_EDEFAULT;
         case ProyectosPackage.PROYECTO__AREA_CONOCIMIENTO:
             return AREA_CONOCIMIENTO_EDEFAULT == null ? areaConocimiento != null
-                    : !AREA_CONOCIMIENTO_EDEFAULT.equals(areaConocimiento);
+            : !AREA_CONOCIMIENTO_EDEFAULT.equals(areaConocimiento);
         case ProyectosPackage.PROYECTO__EMAIL:
             return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT
-                    .equals(email);
+            .equals(email);
         case ProyectosPackage.PROYECTO__TELEFONO:
             return telefono != TELEFONO_EDEFAULT;
         case ProyectosPackage.PROYECTO__DIRECCION:
             return DIRECCION_EDEFAULT == null ? direccion != null
-                    : !DIRECCION_EDEFAULT.equals(direccion);
+            : !DIRECCION_EDEFAULT.equals(direccion);
         case ProyectosPackage.PROYECTO__CARRERA:
-            return carreras != CARRERA_EDEFAULT;
+            return carrera != CARRERA_EDEFAULT;
         case ProyectosPackage.PROYECTO__MAX_PARTICIPANTE:
-            return maxParticipantes != MAX_PARTICIPANTES_EDEFAULT;
+            return maxParticipante != MAX_PARTICIPANTE_EDEFAULT;
         case ProyectosPackage.PROYECTO__DESCRIPCION:
             return DESCRIPCION_EDEFAULT == null ? descripcion != null
-                    : !DESCRIPCION_EDEFAULT.equals(descripcion);
+            : !DESCRIPCION_EDEFAULT.equals(descripcion);
         case ProyectosPackage.PROYECTO__ESTADO:
             return estado != ESTADO_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
     }
+    return super.eIsSet(featureID);
+}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy())
-            return super.toString();
+/**
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
+ * @generated
+ */
+@Override
+public String toString() {
+    if (eIsProxy())
+        return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (id: ");
-        result.append(id);
-        result.append(", nombre: ");
-        result.append(nombre);
-        result.append(", responsable: ");
-        result.append(responsable);
-        result.append(", areaConocimiento: ");
-        result.append(areaConocimiento);
-        result.append(", email: ");
-        result.append(email);
-        result.append(", telefono: ");
-        result.append(telefono);
-        result.append(", direccion: ");
-        result.append(direccion);
-        result.append(", carrera: ");
-        result.append(carreras);
-        result.append(", maxParticipante: ");
-        result.append(maxParticipantes);
-        result.append(", descripcion: ");
-        result.append(descripcion);
-        result.append(", estado: ");
-        result.append(estado);
-        result.append(')');
-        return result.toString();
-    }
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (id: ");
+    result.append(id);
+    result.append(", nombre: ");
+    result.append(nombre);
+    result.append(", responsable: ");
+    result.append(responsable);
+    result.append(", areaConocimiento: ");
+    result.append(areaConocimiento);
+    result.append(", email: ");
+    result.append(email);
+    result.append(", telefono: ");
+    result.append(telefono);
+    result.append(", direccion: ");
+    result.append(direccion);
+    result.append(", carrera: ");
+    result.append(carrera);
+    result.append(", maxParticipante: ");
+    result.append(maxParticipante);
+    result.append(", descripcion: ");
+    result.append(descripcion);
+    result.append(", estado: ");
+    result.append(estado);
+    result.append(')');
+    return result.toString();
+}
 
-    /**
-     * Creates a new instance of the specified Ecore class. <!-- begin-user-doc
-     * --> <!-- end-user-doc -->
-     * 
-     * @param eClass The Ecore class of the instance to create.
-     * @return The new instance.
-     * @generated
-     */
-    protected EObject create(EClass eClass) {
-        return EcoreUtil.create(eClass);
-    }
+/**
+ * Creates a new instance of the specified Ecore class. <!-- begin-user-doc
+ * --> <!-- end-user-doc -->
+ * 
+ * @param eClass The Ecore class of the instance to create.
+ * @return The new instance.
+ * @generated
+ */
+protected EObject create(EClass eClass) {
+    return EcoreUtil.create(eClass);
+}
 
 } // ProyectoImpl
