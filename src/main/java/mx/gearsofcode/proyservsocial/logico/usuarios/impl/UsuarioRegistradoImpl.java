@@ -17,6 +17,8 @@ import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 
+import java.util.LinkedList;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -613,7 +615,7 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
     public String[][] verProyectos() throws DBConsultException {
         String[][] bloqueProyectos = null;
         conexion = new LogicoFactoryImpl().createConectaDb();
-        conexion.verProyectosDb(tipo);
+        conexion.verProyectosDb(tipo, id);
         
         return bloqueProyectos;
     }
@@ -628,7 +630,7 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
     public String[][] verMisProyectos() throws DBConsultException {
         String[][] bloqueProyectos = null;
         conexion = new LogicoFactoryImpl().createConectaDb();
-        conexion.verMisProyectosDb(tipo, id); //Tipo de usuario y id de usuario.
+        LinkedList<String[]> queryResult = conexion.verMisProyectosDb(tipo, id); //Tipo de usuario y id de usuario.
         
         return bloqueProyectos;
     }
@@ -642,7 +644,7 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
     public Proyecto verDetallesProyecto(final int idProyect) throws DBConsultException {
         Proyecto unProyecto = null;
         conexion = new LogicoFactoryImpl().createConectaDb();
-        conexion.verDetallesProyectosDb(idProyect);
+        String[] queryResult = conexion.verDetallesProyectoDb(idProyect);
         
         return unProyecto;
     }

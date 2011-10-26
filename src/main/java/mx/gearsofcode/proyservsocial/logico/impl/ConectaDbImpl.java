@@ -344,7 +344,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * [8] -> maximo Participantes 
      * [9] -> Descripcion del problema
      */
-    public String[] verDetalleProyectoDb(final int idProyecto) {
+    public String[] verDetallesProyectoDb(final int idProyecto) {
 
         Connection dbConnect = null ;
         Statement dbStatement = null;
