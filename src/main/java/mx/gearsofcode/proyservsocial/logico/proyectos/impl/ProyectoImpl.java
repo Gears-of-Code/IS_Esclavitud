@@ -191,42 +191,42 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected String direccion = DIRECCION_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getCarrera() <em>Carrera</em>}'
+     * The default value of the '{@link #getCarreras() <em>Carrera</em>}'
      * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
-     * @see #getCarrera()
+     * @see #getCarreras()
      * @generated
      * @ordered
      */
     protected static final int[] CARRERA_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getCarrera() <em>Carrera</em>}'
+     * The cached value of the '{@link #getCarreras() <em>Carrera</em>}'
      * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
-     * @see #getCarrera()
+     * @see #getCarreras()
      * @generated
      * @ordered
      */
     protected int[] carreras = CARRERA_EDEFAULT;
 
     /**
-     * Valor por defecto del atributo '{@link #getMaxParticipante()
+     * Valor por defecto del atributo '{@link #getMaxParticipantes()
      * <em>Max Participante</em>}'. Numero maximo de alumnos que acepta un
      * proyecto vacio.
      * 
-     * @see #getMaxParticipante()
+     * @see #getMaxParticipantes()
      * @generated
      * @ordered
      */
     protected static final int MAX_PARTICIPANTES_EDEFAULT = 0;
 
     /**
-     * The cached value of the '{@link #getMaxParticipante()
+     * The cached value of the '{@link #getMaxParticipantes()
      * <em>Max Participante</em>}' attribute. <!-- begin-user-doc --> <!--
      * end-user-doc -->
      * 
-     * @see #getMaxParticipante()
+     * @see #getMaxParticipantes()
      * @generated
      * @ordered
      */
@@ -461,6 +461,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      */
     public int[] getCarreras() {
         return carreras;
+
     }
 
     /**
@@ -490,6 +491,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     public void setMaxParticipantes(int newMaxParticipante) {
         int oldMaxParticipante = maxParticipantes;
         maxParticipantes = newMaxParticipante;
+
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
                     ProyectosPackage.PROYECTO__MAX_PARTICIPANTE,

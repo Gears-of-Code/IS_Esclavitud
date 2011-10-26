@@ -23,6 +23,7 @@ import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -159,51 +160,68 @@ public class SesionImpl extends EObjectImpl implements Sesion {
         UsuarioRegistrado inicioUsuario = null;
         ResultSet data = null;
 
+        conexion = new LogicoFactoryImpl().createConectaDb();
+        data = conexion.validaUsuarioDb(nombreUsuario, md5passwd); // Resultados del query.
+        String usuarioTipo = "";
+        int idUsuario;
         try {
-            conexion = new LogicoFactoryImpl().createConectaDb();
-            data = conexion.validaUsuarioDb(nombreUsuario, md5passwd); // Resultados del query.
+            idUsuario = data.getInt("id_u");
+            usuarioTipo = data.getString("tipo"); // Obtengo el tipo de usuario del query.
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
 
-            int idUsuario = data.getInt("id_u");
-            String usuarioTipo = data.getString("tipo"); // Obtengo el tipo de usuario del query.
-            int tipoUsuario = TipoUsuario.valueOf(usuarioTipo).getValue(); // Mapea el tipo de usuario a int.
-            // TODO: Finish this method
+        int tipoUsuario = TipoUsuario.valueOf(usuarioTipo).getValue(); // Mapea el tipo de usuario a int.
 
-            // Dependiendo del tipo la clase que se crea pero que ¿entrega el enum de la BD?
-            switch (tipoUsuario) {
-                case TipoUsuario.ADMINISTRADOR_VALUE :
-                    UsuarioRegistrado admin = new UsuariosFactoryImpl().createAdmin();
-                    admin.setNombre(nombreUsuario);
-                    admin.setId(idUsuario);
-                    inicioUsuario = admin;
-                    break;
-                case TipoUsuario.RESPONSABLE_VALUE :
+        // TODO: Finish this method
+
+
+        // Dependiendo del tipo la clase que se crea pero que ¿entrega el enum de la BD?
+        switch (tipoUsuario) {
+            case TipoUsuario.ADMINISTRADOR_VALUE :
+                UsuarioRegistrado admin = new UsuariosFactoryImpl().createAdmin();
+                admin.setNombre(nombreUsuario);
+                admin.setId(idUsuario);
+                inicioUsuario = admin;
+                break;
+            case TipoUsuario.RESPONSABLE_VALUE :
+                try {
                     if (data.getBoolean("resposables.estado")) {
                         UsuarioRegistrado resp = new UsuariosFactoryImpl().createResponsable();
                         resp.setNombre(nombreUsuario);
-                        ((Responsable) resp).setIdResp(data.getInt("responsables.id_r"));
+                        ((Responsable) resp).setIdResp(data.getInt("responsables.id_r")); //Revisar este cast
                         resp.setTipo(tipoUsuario);
                         inicioUsuario = resp;
                     } else {
                         //TODO: Hacer este pedazo.
                         // El responsable aun no se autoriza por lo tanto no entra al sistema.
+                        // Probablemente sería bueno lanzar una excepción aquí.
                     }
-                    break;
-                case TipoUsuario.ALUMNO_VALUE :
-                    UsuarioRegistrado alum = new UsuariosFactoryImpl().createAlumno();
-                    alum.setNombre(nombreUsuario);
-                    alum.setId(idUsuario);
-                    inicioUsuario = alum;
-                    break;
-                default :
-                    // El usuario tiene un tipo no valido.
-            }
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    return null;
+                }
+
+                break;
+            case TipoUsuario.ALUMNO_VALUE :
+                UsuarioRegistrado alum = new UsuariosFactoryImpl().createAlumno();
+                alum.setNombre(nombreUsuario);
+                alum.setId(idUsuario);
+                inicioUsuario = alum;
+                break;
+            default :
+                // El usuario tiene un tipo no valido.
         }
+
         return inicioUsuario;
     }
 
 
-    /**
-     * <!-- begin-user-doc -->
+/**
+ * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */

@@ -279,7 +279,7 @@ public interface Proyecto extends EObject {
      * 
      * @param value the new value of the '<em>Carrera</em>' attribute.
      * @see mx.gearsofcode.proyservsocial.logico.proyectos.CarreraProyecto
-     * @see #getCarrera()
+     * @see #getCarreras()
      * @generated
      */
     void setCarreras(final int[] value);
@@ -292,7 +292,7 @@ public interface Proyecto extends EObject {
      * </p>
      * 
      * @return El numero maximo de participantes.
-     * @see #setMaxParticipante(int)
+     * @see #setMaxParticipantes(int)
      * @see mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage#getProyecto_MaxParticipante()
      */
     int getMaxParticipantes();
@@ -303,7 +303,7 @@ public interface Proyecto extends EObject {
      * <em>Max Participante</em>}' 
      * 
      * @param value El numero maximo de participantes permitido.
-     * @see #getMaxParticipante()
+     * @see #getMaxParticipantes()
      */
     void setMaxParticipantes(int value);
 
