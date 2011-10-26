@@ -147,10 +147,10 @@ public class SesionImpl extends EObjectImpl implements Sesion {
     }
 
     /**
-     * Autenticar va a recibir los valores de un usuario, tras aplicar una función
-     * md5 o similar pasara los datos a un metodo que los validara en la base de 
-     * datos. Si existen en la base de datos, se accede al sistema sino se manda
-     * un mensaje de error.
+     * Autenticar va a recibir los valores de un usuario y pasara los datos a un 
+     * metodo que los validara en la base de  datos. Si existen en la base de datos,
+     *  se accede al sistema sino se manda un mensaje de error.
+     *  
      * @param nombreUsuario Nombre del usuario.
      * @param passwd Contrasena del usuario, en texto plano.
      * @throws DBConsultException 
@@ -158,45 +158,47 @@ public class SesionImpl extends EObjectImpl implements Sesion {
     public UsuarioRegistrado autenticar(final String nombreUsuario, final String md5passwd) throws DBConsultException {
         UsuarioRegistrado inicioUsuario = null;
         ResultSet data = null;
-        
-        conexion = new LogicoFactoryImpl().createConectaDb();
-        data = conexion.validaUsuarioDb(nombreUsuario, md5passwd); // Resultados del query.
 
-        int idUsuario = data.getInt("id_u");
-        String usuarioTipo = data.getString("tipo"); // Obtengo el tipo de usuario del query.
-        int tipoUsuario = TipoUsuario.valueOf(usuarioTipo).getValue(); // Mapea el tipo de usuario a int.
-        // TODO: Finish this method
-        
-        // Dependiendo del tipo la clase que se crea pero que ¿entrega el enum de la BD?
-	    switch (tipoUsuario) {
-	        case TipoUsuario.ADMINISTRADOR_VALUE :
-	            UsuarioRegistrado admin = new UsuariosFactoryImpl().createAdmin();
-	            admin.setNombre(nombreUsuario);
-	            admin.setId(idUsuario);
-	            inicioUsuario = admin;
-	            break;
-	        case TipoUsuario.RESPONSABLE_VALUE :
-	            if (data.getBoolean("resposables.estado")) {
-	                UsuarioRegistrado resp = new UsuariosFactoryImpl().createResponsable();
-	                resp.setNombre(nombreUsuario);
-	                ((Responsable) resp).setIdResp(data.getInt("responsables.id_r"));
-	                resp.setTipo(tipoUsuario);
-	                inicioUsuario = resp;
-	            } else {
-	                //TODO: Hacer este pedazo.
-	                // El responsable aun no se autoriza por lo tanto no entra al sistema.
-	            }
-	            break;
-	        case TipoUsuario.ALUMNO_VALUE :
-	            UsuarioRegistrado alum = new UsuariosFactoryImpl().createAlumno();
-	            alum.setNombre(nombreUsuario);
-	            alum.setId(idUsuario);
-	            inicioUsuario = alum;
-	            break;
-	        default :
-	            // El usuario tiene un tipo no valido.
-	    }
-	    return inicioUsuario;
+        try {
+            conexion = new LogicoFactoryImpl().createConectaDb();
+            data = conexion.validaUsuarioDb(nombreUsuario, md5passwd); // Resultados del query.
+
+            int idUsuario = data.getInt("id_u");
+            String usuarioTipo = data.getString("tipo"); // Obtengo el tipo de usuario del query.
+            int tipoUsuario = TipoUsuario.valueOf(usuarioTipo).getValue(); // Mapea el tipo de usuario a int.
+            // TODO: Finish this method
+
+            // Dependiendo del tipo la clase que se crea pero que ¿entrega el enum de la BD?
+            switch (tipoUsuario) {
+                case TipoUsuario.ADMINISTRADOR_VALUE :
+                    UsuarioRegistrado admin = new UsuariosFactoryImpl().createAdmin();
+                    admin.setNombre(nombreUsuario);
+                    admin.setId(idUsuario);
+                    inicioUsuario = admin;
+                    break;
+                case TipoUsuario.RESPONSABLE_VALUE :
+                    if (data.getBoolean("resposables.estado")) {
+                        UsuarioRegistrado resp = new UsuariosFactoryImpl().createResponsable();
+                        resp.setNombre(nombreUsuario);
+                        ((Responsable) resp).setIdResp(data.getInt("responsables.id_r"));
+                        resp.setTipo(tipoUsuario);
+                        inicioUsuario = resp;
+                    } else {
+                        //TODO: Hacer este pedazo.
+                        // El responsable aun no se autoriza por lo tanto no entra al sistema.
+                    }
+                    break;
+                case TipoUsuario.ALUMNO_VALUE :
+                    UsuarioRegistrado alum = new UsuariosFactoryImpl().createAlumno();
+                    alum.setNombre(nombreUsuario);
+                    alum.setId(idUsuario);
+                    inicioUsuario = alum;
+                    break;
+                default :
+                    // El usuario tiene un tipo no valido.
+            }
+        }
+        return inicioUsuario;
     }
 
 
@@ -205,7 +207,10 @@ public class SesionImpl extends EObjectImpl implements Sesion {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void cerrarSesion() {
+    public void cerrarSesion(final UsuarioRegistrado usuarioActivo) {
+        
+  //      conexion = null;
+  //      usuarioActivo.finalize();
         // TODO: implement this method
         // Ensure that you remove @generated or mark it @generated NOT
         throw new UnsupportedOperationException();

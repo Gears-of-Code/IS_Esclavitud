@@ -65,10 +65,11 @@ public interface ConectaDb extends EObject {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @return 
      * @model
      * @generated
      */
-    void verPostuladosDb(final int idProy) throws DBConsultException;
+    LinkedList<String[]> verPostuladosDb(final int idProy) throws DBConsultException;
 
     /**
      * <!-- begin-user-doc -->

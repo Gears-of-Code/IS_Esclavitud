@@ -16,6 +16,8 @@ import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario;
 
+import java.util.LinkedList;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -591,11 +593,24 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      *            administrador o un responsabl.
      * @throws DBConsultException 
      */
-    public void verListaPostulados(final int idUsuario) throws DBConsultException { //TODO: Revisar lo que regresa-
+    public String[][] verListaPostulados(final int idUsuario) throws DBConsultException { //TODO: Revisar lo que regresa
+        
+        String [][] bloqueResultado;
         if (idUsuario != TipoUsuario.ALUMNO_VALUE) { 
+            
             conexion = new LogicoFactoryImpl().createConectaDb();
-            conexion.verPostuladosDb(id);
+            LinkedList<String[]> queryResult = conexion.verPostuladosDb(id);
+            
+            //String[] unbloque = queryResult.toArray(); // No estoy del todo seguro de eso.
+            String[] encabezado = {"Nombre", "Carrera"};
+            bloqueResultado[0] = encabezado;
+            int pos = 1;
+            for (String[] tupla : queryResult) {
+                bloqueResultado[pos] = tupla;
+                pos++;
+            }
         }
+        return bloqueResultado;
     }
 
     /**

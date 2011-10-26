@@ -370,8 +370,9 @@ public interface Proyecto extends EObject {
      * 
      * @param idUsuario Solo los ids de responsable y administrador pueden usar
      *            este metodo.
+     * @return int[][] 
      * @throws DBConsultException 
      */
-    void verListaPostulados(final int idUsuario) throws DBConsultException;
+    String[][] verListaPostulados(final int idUsuario) throws DBConsultException;
 
 } // Proyecto
