@@ -411,9 +411,11 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
 
 
     /**
+     * Re-escribir.
      * Lista de alumnos postulados a un proyecto
      */
-    public LinkedList<String[]> verPostuladosDb(final int idProyecto) throws DBConsultException {
+    public LinkedList<String[]> verPostuladosDb(final int idProyecto) 
+            throws DBConsultException {
 
         String query = "SELECT postulados.id_u,usuarios.nombre "
                 + "FROM  postulados, usuarios, alumnos "
@@ -426,18 +428,16 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
             connect = cargarBase();
             statement = connect.createStatement();
             resultset = statement.executeQuery(query);
-
+            
+            
+            
+            //Posible optimizacion.
             String vector[];
 
             while(resultset.next()) {
                 vector = new String[2];
-                // ¿Es necesario que el responsable vea el id del alumno?
-                //                int a = resultset.getInt("postulados.id_u");
-                //                String aS = Integer.toString(a);
-                //                vector[0] = aS;
-                vector[0] = resultset.getString("usuarios.nombre");
-                vector[1] = resultset.getString("usuarios.carrera");
-                //vector[10] = resultset.getString("usuarios.nombre"); ¿¿El indice del arreglo es correcto??
+                vector[0] = resultset.getString("postulados.id_u");
+                vector[1] = resultset.getString("usuarios.nombre");
                 listaPos.add(vector);    
             }
             
@@ -462,41 +462,36 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         final int RESP = 1;
 
         String query = "";
-        switch(tipoUsuario){
-
-            case ADMI:
-                query = "UPDATE alumnos " + "SET estado = 1 "
-                        + "WHERE id_u = '" + idAlumno + "';";
-
-                try {
+        
+        try{
+            switch(tipoUsuario){
+    
+                case ADMI:
+                    query = "UPDATE postulados SET estadoa = 1"
+                            + "WHERE id_u = '" + idAlumno + "'"
+                            + "AND id_p = '"+ idProyecto +";";             
                     if (statement.executeUpdate(query) == 0)
                         throw new DBModificationException();
-                } catch (SQLException sqlex) {
-                    System.out.println(sqlex.getMessage());
-                } finally {
-                    cerrarBase(connect, statement);
-                }
-                break;
-
-            case RESP:
-                query = "UPDATE postulados " + "SET estado = 1 "
-                        + "WHERE id_p = '" + idProyecto + "'" + "AND id_u = '"
-                        + idAlumno + "';";
-
-                try {
-                    connect = cargarBase();
-                    statement = connect.createStatement();
-                    resultset = statement.executeUpdate(query);
-                } catch (SQLException sqlex) {
-                    System.out.println(sqlex.getMessage());
-                } finally {
-                    cerrarBase(connect, statement);
-                }
-                break;
-
-            default:
-                System.out.println("Tipo de usuario no valido");
-                break;
+                    if (estadoR(idAlumno) == 1)
+                        borraPostulaciones(idAlumno);
+                    break;
+    
+                case RESP:
+                    query = "UPDATE postulados " + "SET estador = 1 "
+                            + "WHERE id_u = '" + idAlumno + "'"
+                            + "AND id_p = '"+ idProyecto +";";  
+                    if ( statement.executeUpdate(query) ==  0)
+                            throw new DBModificationException();
+                    if (estadoA(idAlumno) == 1)
+                        borraPostulaciones(idAlumno);
+                    break;
+    
+                default:
+                    System.out.println("Tipo de usuario no valido");
+                    break;
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
         }
     }
     
@@ -504,22 +499,18 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * <!-- rechaza Alumno de un Proyecto --> <!-- end-user-doc -->
      * 
      */
-    public void rechazaAlumnoProyectoDb(final int idProyecto, final int idAlumno) {
-        Connection connect = null;
-        Statement statement = null;
-        int resultset;
+    public void rechazaAlumnoProyectoDb(final int idProyecto, final int idAlumno) 
+        throws DBModificationException
+        {
+        
         String query = "DELETE FROM postulados " + "WHERE id_p = '"
                 + idProyecto + "' AND id_u = '" + idAlumno + "';";
         
         try {
-            connect = cargarBase();
-            statement = connect.createStatement();
-            resultset = statement.executeUpdate(query);
-
+            if ( statement.executeUpdate(query) == 0)
+                throw new DBModificationException();
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
-        } finally {
-            cerrarBase(connect, statement);
         }
     }
 
@@ -529,32 +520,22 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * 
      * @generated
      */
-    public void registrarDb(final Responsable repo) {
-        // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
-
-        Connection con =null;
-        Statement statement = null;
+    public void registrarDb(final Responsable repo) 
+    throws DBCreationException{
         
+        final int RESP = 1;
         int id_u = 0;
         
         try {
-            con = cargarBase();
-            statement = con.createStatement();
-
             String update = insertaUsuario(repo);
 
             statement.executeUpdate(update);
-            //id_u = statement.executeUpdate("LAST_INSERT_ID()").getInt(1); Esta operación genera error, pero no logré entender qué querían hacer con ella.
-
+            id_u = statement.executeQuery("LAST_INSERT_ID()").getInt(1); 
             update = insertaResponsable(repo, id_u);
             statement.executeUpdate(update);
+            
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
-        } finally {
-            // La exception se levanta porque no se pueden crear esos objetos.
-            // Así pues, no se deben cerrar (porque nunca se abrieron)
-            // cerrarBase(con, statement);
         }
     }
     
