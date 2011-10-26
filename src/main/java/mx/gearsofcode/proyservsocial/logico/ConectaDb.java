@@ -45,7 +45,7 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    void proponerProyectoDBb(final Proyecto unProyecto) throws DBCreationException;
+    void proponerProyectoDb(final Proyecto unProyecto) throws DBCreationException;
 
     /**
      * <!-- begin-user-doc -->
