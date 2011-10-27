@@ -61,14 +61,15 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     
     private static ResultSet resultset = null;
 
-    protected ConectaDbImpl() throws DBCreationException {
+    protected ConectaDbImpl() {
+//    protected ConectaDbImpl() throws DBCreationException {
         super();
-        try{
-        connect = cargarBase();
-        statement = connect.createStatement();
-        }catch(Exception e){
-            throw new DBCreationException();
-        }
+//        try{
+//        connect = cargarBase();
+//        statement = connect.createStatement();
+//        }catch(Exception e){
+//            throw new DBCreationException();
+//        }
 
     }
 
