@@ -286,7 +286,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                 throw new DBCreationException();
              
 
-            int id_p = statement.executeQuery("LAST_INSERT_ID()").getInt(1);
+            int id_p = statement.executeQuery("SELESCT LAST_INSERT_ID();").getInt(1);
 
             // Areas
             update = "INSERT INTO proyac (id_p,id_ac) VALUES";
@@ -442,21 +442,13 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         try{
             if ( statement.executeUpdate(query) ==  0)
                     throw new DBModificationException();
-            if (estadoA(idAlumno) == 1)
+            if (estadoR(idAlumno) == 1)
                 borraPostulaciones(idAlumno);
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
     }
     
-    private int estadoA(int idAlumno) {
-      
-        return 0;
-    }
-
-    private int estadoR(int idAlumno) {
-        return 0;
-    }
 
     private void borraPostulaciones(int idAlumno) {
         
@@ -656,6 +648,29 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         }
         
         return lista;
+    }
+    
+    private int estadoA(int idAlumno) {
+        return estadoAR (idAlumno, "estadoa");
+    }
+
+    private int estadoR(int idAlumno) {
+        return estadoAR(idAlumno, "estador");
+    }
+    
+    private int estadoAR(int idAlumno, String AR){
+        
+        String query = "SELECT postulados ("+ AR +") WHERE id_u=" +idAlumno +");";
+        int estado = -1;
+        
+        try{
+            resultset = statement.executeQuery(query);
+            estado = resultset.getInt("estadoa");
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return estado;
+    
     }
 
     /**
