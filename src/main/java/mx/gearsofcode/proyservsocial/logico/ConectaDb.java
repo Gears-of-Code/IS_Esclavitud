@@ -73,8 +73,6 @@ public interface ConectaDb extends EObject {
     LinkedList<String[]> verPostuladosDb(final int idProy) throws DBConsultException;
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
      * @model
      * @generated
      */
@@ -126,13 +124,13 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    ResultSet validaUsuarioDb(final String nombreUsuario, final String passwd);
+    ResultSet validaUsuarioDb(final String nombreUsuario, final String contrasena);
 
-    void modificarEstadoAlumno(int studentID, boolean studentState) throws DBModificationException;
+    void modificarEstadoAlumno(final int idAlumno, final boolean estadoAlumno) throws DBModificationException;
 
-    void autorizarAlumnoProyecto(int studentID, int proyectID) throws DBModificationException;
+    void autorizarAlumnoProyecto(final int idAlumno,final int idProyecto) throws DBModificationException;
 
-    ResultSet verDetallesProyectoDb(int idProyect);
+    ResultSet verDetallesProyectoDb(int idProyecto);
 
     LinkedList<String[]> verMisProyectosDb(final int tipoUsuario, final int idUsuario);
 } // ConectaDb

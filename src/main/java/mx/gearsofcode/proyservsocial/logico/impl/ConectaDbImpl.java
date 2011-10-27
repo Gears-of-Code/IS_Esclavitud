@@ -136,14 +136,14 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                 case ADMI:
                     query = "SELECT nombre, id_p " +
                             "FROM  proyectos " +
-                            "WHERE estado = '1';";
+                            "WHERE estado = 1;";
                     resultset = statement.executeQuery(query);
                     break;
     
                 case RESP:
                     query = "SELECT nombre, id_p " +
                             "FROM  proyectos " +
-                            "WHERE estado = '1' AND" +
+                            "WHERE estado = 1 AND" +
                             " id_r ='" + idUsuario + "';";
                     resultset = statement.executeQuery(query);
                     break;
@@ -151,7 +151,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                 case ALUM:
                     query = "SELECT nombre, id_p " +
                             "FROM  proyectos " +
-                            "WHERE estado = '1';";
+                            "WHERE estado = 1;";
                     resultset = statement.executeQuery(query);
                     break;
     
@@ -197,17 +197,17 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                     break;
     
                 case RESP:
-                    query = "SELECT nombre, id_p " + "FROM  proyectos "
-                            + "WHERE estado = '0' AND" + " id_u ='" + idUsuario
-                            + "';";
+                    query = "SELECT nombre, id_p FROM  proyectos "
+                            + "WHERE estado = 0 AND" + " id_u =" + idUsuario
+                            + ";";
                     resultset= statement.executeQuery(query);
                     break;
     
                 case ALUM:
                     query = "SELECT nombre, proyectos.id_p "
                             + "FROM  proyectos, postulados "
-                            + "WHERE postulados.estado = '0' " + "AND id_u = '"
-                            + idUsuario + "';";
+                            + "WHERE postulados.estado = 0 " + "AND id_u = "
+                            + idUsuario + ";";
                     resultset = statement.executeQuery(query);
                     break;
             }
@@ -239,7 +239,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         
         String query = "SELECT DISTINCT *"
                 + "FROM proyectos, areasconocimiento, proyac, carreras, proycarr, usuarios "
-                + "WHERE id_p = '" + idProyecto + "';";
+                + "WHERE id_p = " + idProyecto + ";";
         try{
             resultset = statement.executeQuery(query);
         }catch(SQLException e){
@@ -273,20 +273,14 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
 
             update = "INSERT INTO proyectos (id_u,nombre,email,telefono,direccion,"
                     + "maxParticipantes,descripcion,estado) VALUES ("
-                    + id_u
-                    + ","
-                    + nombre
-                    + ","
-                    + email
-                    + ","
-                    + telefono
-                    + ","
-                    + direccion
-                    + ","
-                    + maxParticipantes
-                    + ","
+                    + id_u+ ",'"
+                    + nombre+ "','"
+                    + email+ "',"
+                    + telefono+ ",'"
+                    + direccion+ "',"
+                    + maxParticipantes + ",'"
                     + descripcion
-                    + "," + estado + ");";
+                    + "'," + estado + ");";
 
             if (statement.executeUpdate(update) == 0)
                 throw new DBCreationException();
@@ -421,47 +415,54 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     /**
      * Acepta a un alumno a un proyecto dependiendo del tipo de usuario
      */
-    public void aceptarAlumnoProyectoDb(final int tipoUsuario ,
-            final int idProyecto, final int idAlumno)
+    public void aceptarAlumnoProyectoDb(final int idProyecto, final int idAlumno)
             throws DBModificationException{
 
-        final int ADMI = 0;
-        final int RESP = 1;
-
-        String query = "";
+        String query = "UPDATE postulados " + "SET estador = 1 "
+                + "WHERE id_u = '" + idAlumno + "'"
+                + "AND id_p = '"+ idProyecto +";";
         
         try{
-            switch(tipoUsuario){
-    
-                case ADMI:
-                    query = "UPDATE postulados SET estadoa = 1"
-                            + "WHERE id_u = '" + idAlumno + "'"
-                            + "AND id_p = '"+ idProyecto +";";             
-                    if (statement.executeUpdate(query) == 0)
-                        throw new DBModificationException();
-                    if (estadoR(idAlumno) == 1)
-                        borraPostulaciones(idAlumno);
-                    break;
-    
-                case RESP:
-                    query = "UPDATE postulados " + "SET estador = 1 "
-                            + "WHERE id_u = '" + idAlumno + "'"
-                            + "AND id_p = '"+ idProyecto +";";  
-                    if ( statement.executeUpdate(query) ==  0)
-                            throw new DBModificationException();
-                    if (estadoA(idAlumno) == 1)
-                        borraPostulaciones(idAlumno);
-                    break;
-    
-                default:
-                    System.out.println("Tipo de usuario no valido");
-                    break;
-            }
+            if ( statement.executeUpdate(query) ==  0)
+                    throw new DBModificationException();
+            if (estadoA(idAlumno) == 1)
+                borraPostulaciones(idAlumno);
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
     }
     
+    public void autorizarAlumnoProyecto(final int idAlumno, final int idProyecto) 
+            throws DBModificationException{
+        
+        String query = "UPDATE postulados " + "SET estadoa = 1 "
+                + "WHERE id_u = " + idAlumno 
+                + "AND id_p = '"+ idProyecto +";";
+        
+        try{
+            if ( statement.executeUpdate(query) ==  0)
+                    throw new DBModificationException();
+            if (estadoA(idAlumno) == 1)
+                borraPostulaciones(idAlumno);
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    private int estadoA(int idAlumno) {
+      
+        return 0;
+    }
+
+    private int estadoR(int idAlumno) {
+        return 0;
+    }
+
+    private void borraPostulaciones(int idAlumno) {
+        
+        
+    }
+
     /**
      * <!-- rechaza Alumno de un Proyecto --> <!-- end-user-doc -->
      * 
@@ -582,6 +583,8 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                 coma = ";";
             result += "(" +id + "," + dataArray[i] +")" + coma;
         }
+        // Hay que separar cada (id,idcar) por una coma
+        // por eso no se puede usar esta iteración.
         //        for (int idCar : dataArray) {
         //            result = result + "(" + id + "," + idCar + ")";
         //        }
@@ -594,16 +597,16 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     private String insertaUsuario(final UsuarioRegistrado usuario) {
         String nombreUsuario = usuario.getUsername();
         String contrasena = usuario.getContraseña();
-        String tipo = Integer.toString(usuario.getTipo());
+        int tipo = usuario.getTipo();
         String nombre = usuario.getNombre();
         String telefono = usuario.getTelefono();
         String email = usuario.getEmail();
-        String activado = "0"; // No autorizado.
+        int activado = 0; // No autorizado.
         String update = "INSERT INTO usuarios (username,contrasena,tipo,nombre,"
                 + "telefono,email,activado) VALUES ("
-                + nombreUsuario + "," + contrasena + ","
-                + tipo + "," + nombre + ","
-                + telefono + "," + email + "," 
+                + "'" +nombreUsuario + "','" + contrasena + "',"
+                + tipo + ",'" + nombre + "',"
+                + telefono + ",'" + email + "'," 
                 + activado + ");";
 
         return update;
@@ -613,16 +616,16 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
             final int idUsuario) {
         String descripcion = resp.getDescripcion();
         String sitioweb = resp.getSitioweb();
-        String estado = "0"; // No autorizado
+        int estado = 0; // No autorizado
 
         String update = "INSERT INTO responsables (id_u,descripcion,sitioweb,"+
                 "estado) VALUES (" 
-                + idUsuario + "," + descripcion + "," 
-                + sitioweb + "," + estado + ");";
+                + idUsuario + ",'" + descripcion + "','" 
+                + sitioweb + "'," + estado + ");";
         return update;
     }
     
-    private static LinkedList<String[]> getIdxNombre(ResultSet rs) throws SQLException {
+    private LinkedList<String[]> getIdxNombre(ResultSet rs) throws SQLException {
         
         LinkedList<String[]> lista = new LinkedList<String[]>();
         String[] idxnombre = null;
@@ -647,7 +650,6 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     protected EObject create(EClass eClass) {
         return EcoreUtil.create(eClass);
     }
-
 
 } // ConectaDbImpl
 
