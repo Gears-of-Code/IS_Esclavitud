@@ -6,8 +6,6 @@
  */
 package mx.gearsofcode.proyservsocial.logico.proyectos;
 
-import java.util.LinkedList;
-
 import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
 import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 

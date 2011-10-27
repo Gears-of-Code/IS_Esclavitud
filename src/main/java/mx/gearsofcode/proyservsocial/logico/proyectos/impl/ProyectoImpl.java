@@ -8,7 +8,6 @@ package mx.gearsofcode.proyservsocial.logico.proyectos.impl;
 
 import java.util.LinkedList;
 
-import mx.gearsofcode.proyservsocial.logico.proyectos.CarreraProyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage;
 import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
@@ -558,7 +557,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * @throws DBModificationException 
      */
     public void autorizarProyecto(final int idAdmin) throws DBModificationException {
-        if (idAdmin == ADMINISTRADOR_ID) { // <------------Esto no me gusta, se aceptan cambios.
+        if (idAdmin == ADMINISTRADOR_ID) {
             if (!estado) { // Revisa que el proyecto no este autorizado.
                 setEstado(true);
                 conexion.autorizarProyectoDb(id);
@@ -579,7 +578,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      *            con el tipo del administrador.
      */
     public void rechazarProyecto(final int idAdmin) {
-        if (idAdmin == ADMINISTRADOR_ID) { // <------------Esto no me gusta, se aceptan cambios.
+        if (idAdmin == ADMINISTRADOR_ID) {
             if (!estado) { // Revisa que el proyecto no este autorizado.
                 try {
                     conexion.rechazarProyectoDb(id);
@@ -610,7 +609,6 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
             conexion = new LogicoFactoryImpl().createConectaDb();
             LinkedList<String[]> queryResult = conexion.verPostuladosDb(id);
             
-            // String[] unbloque = queryResult.toArray(); // No estoy del todo seguro de que eso funcione.
             int pos = 0;
             int filas = queryResult.size() + pos;
             bloqueResultado = new String[filas][3]; 
