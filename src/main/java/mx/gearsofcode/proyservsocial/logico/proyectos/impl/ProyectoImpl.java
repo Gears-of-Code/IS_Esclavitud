@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import mx.gearsofcode.proyservsocial.logico.proyectos.CarreraProyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage;
+import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
 import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
@@ -599,7 +600,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     public String[][] verListaPostulados(final int idUsuario) throws DBConsultException { //TODO: Revisar lo que regresa y que si este armando el array correcto.
         
         String [][] bloqueResultado = null;
-        if (idUsuario != TipoUsuario.ALUMNO_VALUE) { 
+        if (idUsuario != TipoUsuario.ALUMNO_VALUE) {//esto supongo es un dos o algo asi. 
             
             conexion = new LogicoFactoryImpl().createConectaDb();
             LinkedList<String[]> queryResult = conexion.verPostuladosDb(id);

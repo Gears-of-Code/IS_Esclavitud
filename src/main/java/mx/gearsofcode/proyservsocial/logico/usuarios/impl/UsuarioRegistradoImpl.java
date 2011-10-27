@@ -712,6 +712,8 @@ UsuarioRegistrado {
             nuevoProyecto.setCarreras(carreraProy);
         }catch(SQLException dbException){
             //TODO: do something meaningful with this exception
+            DBConsultException e = new DBConsultException();
+            throw e ;
         }
         //TODO: Check return from ConectaDb might be a ResultSet instead of String[]
         // Check documentation of ResultSet in that case else pass the object or do something.

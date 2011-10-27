@@ -376,6 +376,6 @@ public interface Proyecto extends EObject {
      * @return int[][] 
      * @throws DBConsultException 
      */
-    LinkedList<String> verListaPostulados(final int idUsuario) throws DBConsultException;
+    String[][] verListaPostulados(final int idUsuario) throws DBConsultException;
 
 } // Proyecto
