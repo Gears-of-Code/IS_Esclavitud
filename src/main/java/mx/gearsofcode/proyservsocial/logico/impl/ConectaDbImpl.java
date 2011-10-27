@@ -235,7 +235,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * [8] -> maximo Participantes 
      * [9] -> Descripcion del problema
      */
-    public ResultSet verDetalleProyectoDb(final int idProyecto) {
+    public ResultSet verDetallesProyectoDb(final int idProyecto) {
         
         String query = "SELECT DISTINCT *"
                 + "FROM proyectos, areasconocimiento, proyac, carreras, proycarr, usuarios "
@@ -569,6 +569,24 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
             System.out.println(sqlex.getMessage());
         }
         return resultset;
+    }
+    
+    public void modificarEstadoAlumno(final int idAlumno, final boolean estadoAlumno) 
+            throws DBModificationException{
+        
+        int estado = 0;
+        if (estadoAlumno)
+            estado = 1;
+        
+        String query = "UPDATE alumno SET estado =  " + estado +" WHERE id_u = "+ idAlumno +";";
+        
+        try{
+            if (statement.executeUpdate(query) == 0)
+                throw new DBModificationException();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    
     }
 
     /**
