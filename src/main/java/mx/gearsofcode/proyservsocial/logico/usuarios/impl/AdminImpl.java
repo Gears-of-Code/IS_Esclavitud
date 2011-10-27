@@ -46,6 +46,9 @@ public class AdminImpl extends UsuarioRegistradoImpl implements Admin {
 
     /**
      * <!-- begin-user-doc -->
+     * Método que se manda llamar cuando un Administrador de Sistema pulsa aceptar, luego 
+     * de haber seleccionado dentro de una lista a los responsables de proyecto que desea
+     * autorizar.
      * <!-- end-user-doc -->
      * @throws DBModificationException 
      * @generated NOT
@@ -57,9 +60,10 @@ public class AdminImpl extends UsuarioRegistradoImpl implements Admin {
 
     /**
      * <!-- begin-user-doc -->
+     * Método que se utiliza para dejar constancia de que un alumno ha sido autorizado en un proyecto.
      * <!-- end-user-doc -->
      * @throws DBModificationException 
-     * @generated
+     * @generated NOT
      */
     public void actualizaEstadoAlumno(final int studentID, boolean studentState) throws DBModificationException {
         ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
@@ -70,9 +74,10 @@ public class AdminImpl extends UsuarioRegistradoImpl implements Admin {
 
     /**
      * <!-- begin-user-doc -->
+     * Método que se utiliza para actualizar al alumno autorizado en un proyecto dado.
      * <!-- end-user-doc -->
      * @throws DBModificationException 
-     * @generated
+     * @generated NOT
      */
     public void autorizarAlumnoProyecto(final int studentID, final int proyectID) throws DBModificationException {
         ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();

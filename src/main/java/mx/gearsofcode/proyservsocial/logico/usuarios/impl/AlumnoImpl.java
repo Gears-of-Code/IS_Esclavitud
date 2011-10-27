@@ -192,10 +192,16 @@ public class AlumnoImpl extends UsuarioRegistradoImpl implements Alumno {
      * @generated NOT
      */
     public void postularseAProyecto(int proyectID) throws DBModificationException {
-        ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
-        conexion.postularAProyectoDb(proyectID, this.id);
+        if(!this.estado){
+            ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
+            conexion.postularAProyectoDb(proyectID, this.id);
+        }else{
+            // No se hace nada puesto que el alumno ya estaba autorizado en otro proyecto.
+        }
     }
 
+    /* Comienzan métodos auto-generados. */
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
