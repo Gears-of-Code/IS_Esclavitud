@@ -286,7 +286,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                 throw new DBCreationException();
              
 
-            int id_p = statement.executeQuery("SELESCT LAST_INSERT_ID();").getInt(1);
+            int id_p = statement.executeQuery("SELECT LAST_INSERT_ID();").getInt(1);
 
             // Areas
             update = "INSERT INTO proyac (id_p,id_ac) VALUES";
