@@ -700,33 +700,33 @@ UsuarioRegistrado {
             id_resp = ((Integer)(queryResult.getInt("id_u")));
             capMax = ((Integer)(queryResult.getInt("maxParticipantes")));
 
-            int tamano = queryResult.getFetchSize();
-            carreraProy = new int[tamano];  // Se desperdicia memoria a lo tonto pero 
-            areaDeConocimiento = new int [tamano];  // seguro entran los resultados.
-            carreraProy[0] = queryResult.getInt("carreras");
-            areaDeConocimiento[0] = queryResult.getInt("areasconocimiento");
+ //           int tamano = queryResult.getFetchSize();
+//            carreraProy = new int[tamano];  // Se desperdicia memoria a lo tonto pero 
+ //           areaDeConocimiento = new int [tamano];  // seguro entran los resultados.
+            LinkedList<Integer> tmpCareer, tmpKnow;
+            tmpCareer = new LinkedList<Integer>();
+            tmpKnow = new LinkedList<Integer>();
+            tmpCareer.add(queryResult.getInt("carreras.nombre"));
+            tmpKnow.add(queryResult.getInt("areasconocimiento.nombre"));
 
             while (queryResult.next()) {
-                int posCarr = 1;
-                int posArea = 1;
-                int carrera = queryResult.getInt("carreras");
-                int areaCon = queryResult.getInt("areasconocimiento");
-                
-                for (int elem : carreraProy) {
-                    if (elem == carrera ) {
-                        carreraProy[posCarr] = elem;
-                        posCarr++;
-                    }
-                }
-                
-                for (int elem : areaDeConocimiento) {
-                    if (elem == areaCon) {
-                        areaDeConocimiento[posArea] = elem;
-                        posArea++;
-                    }
-                }
+                tmpCareer.add(queryResult.getInt("carreras.nombre"));
+                tmpKnow.add(queryResult.getInt("areasconocimiento.nombre"));
             }
 
+            carreraProy = new int [tmpCareer.size()];
+            areaDeConocimiento = new int [tmpKnow.size()];
+            int arrayIndex = 0;
+            for(int carrera: tmpCareer){
+                carreraProy[arrayIndex] = carrera;
+                arrayIndex++;
+            }
+            arrayIndex = 0;
+            for(int carrera: tmpKnow){
+                areaDeConocimiento[arrayIndex] = carrera;
+                arrayIndex++;
+            }
+            
             unProyecto.setNombre(nomProy);
             unProyecto.setDescripcion(descrProy);
             unProyecto.setDireccion(dirProy);
