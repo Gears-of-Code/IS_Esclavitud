@@ -289,7 +289,7 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
         nuevoProyecto.setCarreras(carreraProy);
         conexion = new LogicoFactoryImpl().createConectaDb();
         try {
-            conexion.proponerProyectoDBb(nuevoProyecto);
+            conexion.proponerProyectoDb(nuevoProyecto);
             //TODO: Check it works
         } catch (DBCreationException e) {
             // TODO Auto-generated catch block

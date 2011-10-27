@@ -16,7 +16,10 @@ import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
+import mx.gearsofcode.proyservsocial.logico.proyectos.impl.ProyectosFactoryImpl;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -51,9 +54,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @generated
  */
 public class UsuarioRegistradoImpl extends EObjectImpl implements
-        UsuarioRegistrado {
-    
-    
+UsuarioRegistrado {
+
+
     /**
      * The default value of the '{@link #getId() <em>Id</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -203,7 +206,7 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      * @ordered
      */
     protected Sesion sesion;
-    
+
     /**
      * Se declara un elemento tipo ConectaDb.
      * Clase ConectaDb contiene los metodos de conexion a la base de datos.
@@ -438,24 +441,24 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case UsuariosPackage.USUARIO_REGISTRADO__ID:
-            return getId();
-        case UsuariosPackage.USUARIO_REGISTRADO__USERNAME:
-            return getUsername();
-        case UsuariosPackage.USUARIO_REGISTRADO__CONTRASEÑA:
-            return getContraseña();
-        case UsuariosPackage.USUARIO_REGISTRADO__TIPO:
-            return getTipo();
-        case UsuariosPackage.USUARIO_REGISTRADO__NOMBRE:
-            return getNombre();
-        case UsuariosPackage.USUARIO_REGISTRADO__TELEFONO:
-            return getTelefono();
-        case UsuariosPackage.USUARIO_REGISTRADO__EMAIL:
-            return getEmail();
-        case UsuariosPackage.USUARIO_REGISTRADO__SESION:
-            if (resolve)
-                return getSesion();
-            return basicGetSesion();
+            case UsuariosPackage.USUARIO_REGISTRADO__ID:
+                return getId();
+            case UsuariosPackage.USUARIO_REGISTRADO__USERNAME:
+                return getUsername();
+            case UsuariosPackage.USUARIO_REGISTRADO__CONTRASEÑA:
+                return getContraseña();
+            case UsuariosPackage.USUARIO_REGISTRADO__TIPO:
+                return getTipo();
+            case UsuariosPackage.USUARIO_REGISTRADO__NOMBRE:
+                return getNombre();
+            case UsuariosPackage.USUARIO_REGISTRADO__TELEFONO:
+                return getTelefono();
+            case UsuariosPackage.USUARIO_REGISTRADO__EMAIL:
+                return getEmail();
+            case UsuariosPackage.USUARIO_REGISTRADO__SESION:
+                if (resolve)
+                    return getSesion();
+                return basicGetSesion();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -468,30 +471,30 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case UsuariosPackage.USUARIO_REGISTRADO__ID:
-            setId((Integer) newValue);
-            return;
-        case UsuariosPackage.USUARIO_REGISTRADO__USERNAME:
-            setUsername((String) newValue);
-            return;
-        case UsuariosPackage.USUARIO_REGISTRADO__CONTRASEÑA:
-            setContraseña((String) newValue);
-            return;
-        case UsuariosPackage.USUARIO_REGISTRADO__TIPO:
-            setTipo((Integer) newValue);
-            return;
-        case UsuariosPackage.USUARIO_REGISTRADO__NOMBRE:
-            setNombre((String) newValue);
-            return;
-        case UsuariosPackage.USUARIO_REGISTRADO__TELEFONO:
-            setTelefono((String) newValue);
-            return;
-        case UsuariosPackage.USUARIO_REGISTRADO__EMAIL:
-            setEmail((String) newValue);
-            return;
-        case UsuariosPackage.USUARIO_REGISTRADO__SESION:
-            setSesion((Sesion) newValue);
-            return;
+            case UsuariosPackage.USUARIO_REGISTRADO__ID:
+                setId((Integer) newValue);
+                return;
+            case UsuariosPackage.USUARIO_REGISTRADO__USERNAME:
+                setUsername((String) newValue);
+                return;
+            case UsuariosPackage.USUARIO_REGISTRADO__CONTRASEÑA:
+                setContraseña((String) newValue);
+                return;
+            case UsuariosPackage.USUARIO_REGISTRADO__TIPO:
+                setTipo((Integer) newValue);
+                return;
+            case UsuariosPackage.USUARIO_REGISTRADO__NOMBRE:
+                setNombre((String) newValue);
+                return;
+            case UsuariosPackage.USUARIO_REGISTRADO__TELEFONO:
+                setTelefono((String) newValue);
+                return;
+            case UsuariosPackage.USUARIO_REGISTRADO__EMAIL:
+                setEmail((String) newValue);
+                return;
+            case UsuariosPackage.USUARIO_REGISTRADO__SESION:
+                setSesion((Sesion) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -504,30 +507,30 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case UsuariosPackage.USUARIO_REGISTRADO__ID:
-            setId(ID_EDEFAULT);
-            return;
-        case UsuariosPackage.USUARIO_REGISTRADO__USERNAME:
-            setUsername(USERNAME_EDEFAULT);
-            return;
-        case UsuariosPackage.USUARIO_REGISTRADO__CONTRASEÑA:
-            setContraseña(CONTRASEÑA_EDEFAULT);
-            return;
-        case UsuariosPackage.USUARIO_REGISTRADO__TIPO:
-            setTipo(TIPO_EDEFAULT);
-            return;
-        case UsuariosPackage.USUARIO_REGISTRADO__NOMBRE:
-            setNombre(NOMBRE_EDEFAULT);
-            return;
-        case UsuariosPackage.USUARIO_REGISTRADO__TELEFONO:
-            setTelefono(TELEFONO_EDEFAULT);
-            return;
-        case UsuariosPackage.USUARIO_REGISTRADO__EMAIL:
-            setEmail(EMAIL_EDEFAULT);
-            return;
-        case UsuariosPackage.USUARIO_REGISTRADO__SESION:
-            setSesion((Sesion) null);
-            return;
+            case UsuariosPackage.USUARIO_REGISTRADO__ID:
+                setId(ID_EDEFAULT);
+                return;
+            case UsuariosPackage.USUARIO_REGISTRADO__USERNAME:
+                setUsername(USERNAME_EDEFAULT);
+                return;
+            case UsuariosPackage.USUARIO_REGISTRADO__CONTRASEÑA:
+                setContraseña(CONTRASEÑA_EDEFAULT);
+                return;
+            case UsuariosPackage.USUARIO_REGISTRADO__TIPO:
+                setTipo(TIPO_EDEFAULT);
+                return;
+            case UsuariosPackage.USUARIO_REGISTRADO__NOMBRE:
+                setNombre(NOMBRE_EDEFAULT);
+                return;
+            case UsuariosPackage.USUARIO_REGISTRADO__TELEFONO:
+                setTelefono(TELEFONO_EDEFAULT);
+                return;
+            case UsuariosPackage.USUARIO_REGISTRADO__EMAIL:
+                setEmail(EMAIL_EDEFAULT);
+                return;
+            case UsuariosPackage.USUARIO_REGISTRADO__SESION:
+                setSesion((Sesion) null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -540,27 +543,27 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case UsuariosPackage.USUARIO_REGISTRADO__ID:
-            return id != ID_EDEFAULT;
-        case UsuariosPackage.USUARIO_REGISTRADO__USERNAME:
-            return USERNAME_EDEFAULT == null ? username != null
-                    : !USERNAME_EDEFAULT.equals(username);
-        case UsuariosPackage.USUARIO_REGISTRADO__CONTRASEÑA:
-            return CONTRASEÑA_EDEFAULT == null ? contraseña != null
-                    : !CONTRASEÑA_EDEFAULT.equals(contraseña);
-        case UsuariosPackage.USUARIO_REGISTRADO__TIPO:
-            return tipo != TIPO_EDEFAULT;
-        case UsuariosPackage.USUARIO_REGISTRADO__NOMBRE:
-            return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT
-                    .equals(nombre);
-        case UsuariosPackage.USUARIO_REGISTRADO__TELEFONO:
-            return TELEFONO_EDEFAULT == null ? telefono != null
-                    : !TELEFONO_EDEFAULT.equals(telefono);
-        case UsuariosPackage.USUARIO_REGISTRADO__EMAIL:
-            return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT
-                    .equals(email);
-        case UsuariosPackage.USUARIO_REGISTRADO__SESION:
-            return sesion != null;
+            case UsuariosPackage.USUARIO_REGISTRADO__ID:
+                return id != ID_EDEFAULT;
+            case UsuariosPackage.USUARIO_REGISTRADO__USERNAME:
+                return USERNAME_EDEFAULT == null ? username != null
+                : !USERNAME_EDEFAULT.equals(username);
+            case UsuariosPackage.USUARIO_REGISTRADO__CONTRASEÑA:
+                return CONTRASEÑA_EDEFAULT == null ? contraseña != null
+                : !CONTRASEÑA_EDEFAULT.equals(contraseña);
+            case UsuariosPackage.USUARIO_REGISTRADO__TIPO:
+                return tipo != TIPO_EDEFAULT;
+            case UsuariosPackage.USUARIO_REGISTRADO__NOMBRE:
+                return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT
+                .equals(nombre);
+            case UsuariosPackage.USUARIO_REGISTRADO__TELEFONO:
+                return TELEFONO_EDEFAULT == null ? telefono != null
+                : !TELEFONO_EDEFAULT.equals(telefono);
+            case UsuariosPackage.USUARIO_REGISTRADO__EMAIL:
+                return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT
+                .equals(email);
+            case UsuariosPackage.USUARIO_REGISTRADO__SESION:
+                return sesion != null;
         }
         return super.eIsSet(featureID);
     }
@@ -613,19 +616,19 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      * @throws DBConsultException 
      */
     public String[][] verProyectos() throws DBConsultException {
-        
+
         String[][] bloqueProyectos = null;        
         conexion = new LogicoFactoryImpl().createConectaDb();
         LinkedList<String[]> queryResult = conexion.verProyectosDb(tipo, id);
-        
+
         int pos = 0;
         int numProy = queryResult.size();
-            
+
         // String[] bloqueproyectos contiene ["id","Nombre"]
         // Nota anterior para saber en que orden esta la informacion (Capa de Interfaz)
 
         bloqueProyectos = new String[numProy][2];
-        
+
         for (String[] proy : queryResult) {
             bloqueProyectos[pos] = proy;
             pos++;
@@ -633,7 +636,7 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
 
         return bloqueProyectos;
     }
-    
+
     /**
      * Llama a la base de datos y obtiene una vista reducida o filtada de
      * los proyectos dependiendo del caso de usuario que este realizando
@@ -642,27 +645,27 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
      * @throws DBConsultException
      */
     public String[][] verMisProyectos() throws DBConsultException {
-        
+
         String[][] bloqueProyectos = null;
         conexion = new LogicoFactoryImpl().createConectaDb();
         LinkedList<String[]> queryResult = conexion.verMisProyectosDb(tipo, id); //Tipo de usuario y id de usuario.
-        
+
         int pos = 0;
         int misProy = queryResult.size();        
-            
+
         // String[] bloqueproyectos contiene ["id","Nombre"]
         // Nota anterior para saber en que orden esta la informacion (Capa de Interfaz)
-        
+
         bloqueProyectos = new String[misProy][2];
-        
+
         for (String[] unProy : bloqueProyectos) {
             bloqueProyectos[pos] = unProy;
             pos++;
         }
-        
+
         return bloqueProyectos;
     }
-    
+
     /**
      * Llama a la base de datos para obtener los datos detallados de un
      * proyecto y se los despliega al usuario.
@@ -672,11 +675,47 @@ public class UsuarioRegistradoImpl extends EObjectImpl implements
     public Proyecto verDetallesProyecto(final int idProyect) throws DBConsultException {
         Proyecto unProyecto = null;
         conexion = new LogicoFactoryImpl().createConectaDb();
-        String[] queryResult = conexion.verDetallesProyectoDb(idProyect);
-        
+        ResultSet queryResult = conexion.verDetallesProyectoDb(idProyect);
+        Proyecto nuevoProyecto = new ProyectosFactoryImpl().createProyecto();
+        /*[1] -> nombre  responsable
+        [2] -> nombre  proyectos
+        [3] -> areas de conocimientos
+        [4] -> carreras
+        [5] -> email del poyecto
+        [6] -> telefono del poyecto 
+        [7] -> direccion del poyecto
+        [8] -> maximo Participantes 
+        [9] -> Descripcion del problema
+         */
+        String nomProy, descrProy,dirProy,mailProy;
+        int [] areaDeConocimiento, carreraProy; 
+        int capMax,id_resp,telProy;
+        try{
+            carreraProy= (int [])(queryResult.getObject(""));//TODO: get this out.
+            areaDeConocimiento = (int [])(queryResult.getObject(""));//TODO: get this out.
+            nomProy = (String)(queryResult.getObject("nombre"));
+            descrProy = (String)(queryResult.getObject("descripcion"));
+            dirProy = (String)(queryResult.getObject("direccion"));
+            mailProy = (String)(queryResult.getObject("email"));
+            telProy = ((Integer)(queryResult.getObject("telefono")));
+            id_resp = ((Integer)(queryResult.getObject("id_u")));
+            capMax = ((Integer)(queryResult.getObject("maxParticipantes")));
+
+            nuevoProyecto.setNombre(nomProy);
+            nuevoProyecto.setDescripcion(descrProy);
+            nuevoProyecto.setDireccion(dirProy);
+            nuevoProyecto.setEmail(mailProy);
+            nuevoProyecto.setTelefono(telProy);
+            nuevoProyecto.setMaxParticipantes(capMax);
+            nuevoProyecto.setResponsable(id_resp);
+            nuevoProyecto.setAreaConocimiento(areaDeConocimiento);
+            nuevoProyecto.setCarreras(carreraProy);
+        }catch(SQLException dbException){
+            //TODO: do something meaningful with this exception
+        }
         //TODO: Check return from ConectaDb might be a ResultSet instead of String[]
         // Check documentation of ResultSet in that case else pass the object or do something.
-        
+
         return unProyecto;
     }
 
