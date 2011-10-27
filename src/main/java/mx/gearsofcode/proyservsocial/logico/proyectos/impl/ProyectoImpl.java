@@ -69,6 +69,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * </p>
  */
 public class ProyectoImpl extends EObjectImpl implements Proyecto {
+    
+    final static int ALUMNO_ID = 2;
+    final static int ADMINISTRADOR_ID = 0;
+    final static int RESPONSABLE_ID =1;
+    
     /**
      * Valor por defecto del atributo '{@link #getId() <em>Id</em>}'.
      * 
@@ -197,7 +202,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * @generated
      * @ordered
      */
-    protected static final CarreraProyecto CARRERA_EDEFAULT = CarreraProyecto.MATEMATICAS;
+    protected static final int[] CARRERA_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getCarrera() <em>Carrera</em>}'
@@ -207,7 +212,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * @generated
      * @ordered
      */
-    protected CarreraProyecto carrera = CARRERA_EDEFAULT;
+    protected int[] carrera = CARRERA_EDEFAULT;
 
     /**
      * Valor por defecto del atributo '{@link #getMaxParticipante()
@@ -458,7 +463,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @generated
      */
-    public CarreraProyecto getCarrera() {
+    public int[] getCarreras() {
         return carrera;
     }
 
@@ -467,9 +472,9 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * 
      * @generated
      */
-    public void setCarrera(CarreraProyecto newCarrera) {
-        CarreraProyecto oldCarrera = carrera;
-        carrera = newCarrera == null ? CARRERA_EDEFAULT : newCarrera;
+    public void setCarreras(int [] newCarrera) {
+        int[] oldCarrera = carrera;
+        carrera = (int[]) (newCarrera == null ? CARRERA_EDEFAULT : newCarrera);
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
                     ProyectosPackage.PROYECTO__CARRERA, oldCarrera, carrera));
@@ -478,14 +483,14 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     /**
      * {@inheritDoc}
      */
-    public int getMaxParticipante() {
+    public int getMaxParticipantes() {
         return maxParticipante;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void setMaxParticipante(int newMaxParticipante) {
+    public void setMaxParticipantes(int newMaxParticipante) {
         int oldMaxParticipante = maxParticipante;
         maxParticipante = newMaxParticipante;
         if (eNotificationRequired())
@@ -600,7 +605,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     public String[][] verListaPostulados(final int idUsuario) throws DBConsultException { //TODO: Revisar lo que regresa y que si este armando el array correcto.
         
         String [][] bloqueResultado = null;
-        if (idUsuario != TipoUsuario.ALUMNO_VALUE) {//esto supongo es un dos o algo asi. 
+        if (idUsuario != ALUMNO_ID) {//se fijó el valor ALUMNO_ID como 2; están al principio de ésta clase y son final static
             
             conexion = new LogicoFactoryImpl().createConectaDb();
             LinkedList<String[]> queryResult = conexion.verPostuladosDb(id);
@@ -645,9 +650,9 @@ public Object eGet(int featureID, boolean resolve, boolean coreType) {
         case ProyectosPackage.PROYECTO__DIRECCION:
             return getDireccion();
         case ProyectosPackage.PROYECTO__CARRERA:
-            return getCarrera();
+            return getCarreras();
         case ProyectosPackage.PROYECTO__MAX_PARTICIPANTE:
-            return getMaxParticipante();
+            return getMaxParticipantes();
         case ProyectosPackage.PROYECTO__DESCRIPCION:
             return getDescripcion();
         case ProyectosPackage.PROYECTO__ESTADO:
@@ -686,10 +691,10 @@ public void eSet(int featureID, Object newValue) {
             setDireccion((String) newValue);
             return;
         case ProyectosPackage.PROYECTO__CARRERA:
-            setCarrera((CarreraProyecto) newValue);
+            setCarreras((int []) newValue);
             return;
         case ProyectosPackage.PROYECTO__MAX_PARTICIPANTE:
-            setMaxParticipante((Integer) newValue);
+            setMaxParticipantes((Integer) newValue);
             return;
         case ProyectosPackage.PROYECTO__DESCRIPCION:
             setDescripcion((String) newValue);
@@ -731,10 +736,10 @@ public void eUnset(int featureID) {
             setDireccion(DIRECCION_EDEFAULT);
             return;
         case ProyectosPackage.PROYECTO__CARRERA:
-            setCarrera(CARRERA_EDEFAULT);
+            setCarreras(CARRERA_EDEFAULT);
             return;
         case ProyectosPackage.PROYECTO__MAX_PARTICIPANTE:
-            setMaxParticipante(MAX_PARTICIPANTE_EDEFAULT);
+            setMaxParticipantes(MAX_PARTICIPANTE_EDEFAULT);
             return;
         case ProyectosPackage.PROYECTO__DESCRIPCION:
             setDescripcion(DESCRIPCION_EDEFAULT);
