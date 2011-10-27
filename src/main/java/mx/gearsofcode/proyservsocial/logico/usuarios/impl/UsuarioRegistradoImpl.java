@@ -673,10 +673,10 @@ UsuarioRegistrado {
      * @param idProyecto Un identificador de algun proyecto.
      */
     public Proyecto verDetallesProyecto(final int idProyect) throws DBConsultException {
-        Proyecto unProyecto = null;
+        
         conexion = new LogicoFactoryImpl().createConectaDb();
         ResultSet queryResult = conexion.verDetallesProyectoDb(idProyect);
-        Proyecto nuevoProyecto = new ProyectosFactoryImpl().createProyecto();
+        Proyecto unProyecto = new ProyectosFactoryImpl().createProyecto();
         /*[1] -> nombre  responsable
         [2] -> nombre  proyectos
         [3] -> areas de conocimientos
@@ -688,28 +688,56 @@ UsuarioRegistrado {
         [9] -> Descripcion del problema
          */
         String nomProy, descrProy,dirProy,mailProy;
-        int [] areaDeConocimiento, carreraProy; 
+        int [] areaDeConocimiento = null; 
+        int[] carreraProy = null; 
         int capMax,id_resp,telProy;
-        try{
-            carreraProy= (int [])(queryResult.getObject("carreras"));//TODO: check this out.
-            areaDeConocimiento = (int [])(queryResult.getObject("areasconocimiento"));//TODO: check this out.
-            nomProy = (String)(queryResult.getObject("nombre"));
-            descrProy = (String)(queryResult.getObject("descripcion"));
-            dirProy = (String)(queryResult.getObject("direccion"));
-            mailProy = (String)(queryResult.getObject("email"));
-            telProy = ((Integer)(queryResult.getObject("telefono")));
-            id_resp = ((Integer)(queryResult.getObject("id_u")));
-            capMax = ((Integer)(queryResult.getObject("maxParticipantes")));
+        try {
+            nomProy = queryResult.getString("nombre");
+            descrProy = (String)(queryResult.getString("descripcion"));
+            dirProy = (String)(queryResult.getString("direccion"));
+            mailProy = (String)(queryResult.getString("email"));
+            telProy = ((Integer)(queryResult.getInt("telefono")));
+            id_resp = ((Integer)(queryResult.getInt("id_u")));
+            capMax = ((Integer)(queryResult.getInt("maxParticipantes")));
 
-            nuevoProyecto.setNombre(nomProy);
-            nuevoProyecto.setDescripcion(descrProy);
-            nuevoProyecto.setDireccion(dirProy);
-            nuevoProyecto.setEmail(mailProy);
-            nuevoProyecto.setTelefono(telProy);
-            nuevoProyecto.setMaxParticipantes(capMax);
-            nuevoProyecto.setResponsable(id_resp);
-            nuevoProyecto.setAreaConocimiento(areaDeConocimiento);
-            nuevoProyecto.setCarreras(carreraProy);
+            int tamano = queryResult.getFetchSize();
+            carreraProy = new int[tamano];  // Se desperdicia memoria a lo tonto pero 
+            areaDeConocimiento = new int [tamano];  // seguro entran los resultados.
+            carreraProy[0] = queryResult.getInt("carreras");
+            areaDeConocimiento[0] = queryResult.getInt("areasconocimiento");
+
+            while (queryResult.next()) {
+                int posCarr = 1;
+                int posArea = 1;
+                int carrera = queryResult.getInt("carreras");
+                int areaCon = queryResult.getInt("areasconocimiento");
+                
+                for (int elem : carreraProy) {
+                    if (elem == carrera ) {
+                        carreraProy[posCarr] = elem;
+                        posCarr++;
+                    }
+                }
+                
+                for (int elem : areaDeConocimiento) {
+                    if (elem == areaCon) {
+                        areaDeConocimiento[posArea] = elem;
+                        posArea++;
+                    }
+                }
+            }
+
+            unProyecto.setNombre(nomProy);
+            unProyecto.setDescripcion(descrProy);
+            unProyecto.setDireccion(dirProy);
+            unProyecto.setEmail(mailProy);
+            unProyecto.setTelefono(telProy);
+            unProyecto.setMaxParticipantes(capMax);
+            unProyecto.setResponsable(id_resp);
+            unProyecto.setAreaConocimiento(areaDeConocimiento);
+            unProyecto.setCarreras(carreraProy);
+            
+
         }catch(SQLException dbException){
             //TODO: do something meaningful with this exception
             DBConsultException e = new DBConsultException();
