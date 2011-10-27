@@ -59,6 +59,11 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     private static String user = "root";
     private static String password = "enrique";
     
+    final private int AUTOPRO = 1;
+    final private int NOAUTOPRO = 0;
+    final private int NOAUTOALUM = 0;
+    final private int AUTOALUM = 1;
+    
     private static ResultSet resultset = null;
 
     protected ConectaDbImpl() {
@@ -101,7 +106,12 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         return connect;
     }
 
-    /**
+    /** nombre         | id_c | id_ac |
++----------------+------+-------+
+| Limpien Platos |    4 |     4 |
+| Limpien Platos |    3 |     4 |
++----------------+------+-------+
+
      * Metodo que cierra la conexion a la Db
      */
     private static void cerrarBase(Connection c, Statement s) {
@@ -238,9 +248,13 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      */
     public ResultSet verDetallesProyectoDb(final int idProyecto) {
         
-        String query = "SELECT DISTINCT *"
-                + "FROM proyectos, areasconocimiento, proyac, carreras, proycarr, usuarios "
-                + "WHERE id_p = " + idProyecto + ";";
+        String query = 
+                "SELECT DISTINCT proyectos.*, "+
+                " proycarr.id_c, proyac.id_ac  " +
+                " FROM proyectos,proycarr,proyac  " +
+                " WHERE proyectos.id_p = " + idProyecto +
+                " AND proycarr.id_p = " + idProyecto +
+                " AND proyac.id_p = " + idProyecto + ";";
         try{
             resultset = statement.executeQuery(query);
         }catch(SQLException e){
