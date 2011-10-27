@@ -691,8 +691,8 @@ UsuarioRegistrado {
         int [] areaDeConocimiento, carreraProy; 
         int capMax,id_resp,telProy;
         try{
-            carreraProy= (int [])(queryResult.getObject(""));//TODO: get this out.
-            areaDeConocimiento = (int [])(queryResult.getObject(""));//TODO: get this out.
+            carreraProy= (int [])(queryResult.getObject("carreras"));//TODO: check this out.
+            areaDeConocimiento = (int [])(queryResult.getObject("areasconocimiento"));//TODO: check this out.
             nomProy = (String)(queryResult.getObject("nombre"));
             descrProy = (String)(queryResult.getObject("descripcion"));
             dirProy = (String)(queryResult.getObject("direccion"));

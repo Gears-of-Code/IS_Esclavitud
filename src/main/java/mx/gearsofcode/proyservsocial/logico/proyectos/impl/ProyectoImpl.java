@@ -531,7 +531,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
         //    status = "En autorizacion";
         //}
         //return status;
-        return estado;
+        return estado;//Yo digo que está bien el boolean.
     }
 
     /**
@@ -558,13 +558,13 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * @throws DBModificationException 
      */
     public void autorizarProyecto(final int idAdmin) throws DBModificationException {
-        if (idAdmin == 0) { // <------------Esto no me gusta, se aceptan cambios.
+        if (idAdmin == ADMINISTRADOR_ID) { // <------------Esto no me gusta, se aceptan cambios.
             if (!estado) { // Revisa que el proyecto no este autorizado.
                 setEstado(true);
                 conexion.autorizarProyectoDb(id);
             }
         } else {
-
+            
         }
         // TODO: implement this method
         throw new UnsupportedOperationException();
@@ -579,7 +579,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      *            con el tipo del administrador.
      */
     public void rechazarProyecto(final int idAdmin) {
-        if (idAdmin == 0) { // <------------Esto no me gusta, se aceptan cambios.
+        if (idAdmin == ADMINISTRADOR_ID) { // <------------Esto no me gusta, se aceptan cambios.
             if (!estado) { // Revisa que el proyecto no este autorizado.
                 try {
                     conexion.rechazarProyectoDb(id);
