@@ -21,6 +21,8 @@ import mx.gearsofcode.proyservsocial.logico.proyectos.impl.ProyectosFactoryImpl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.Set;
+import java.util.LinkedHashSet;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -703,12 +705,10 @@ UsuarioRegistrado {
             id_resp = ((Integer)(queryResult.getInt("id_u")));
             capMax = ((Integer)(queryResult.getInt("maxParticipantes")));
 
- //           int tamano = queryResult.getFetchSize();
-//            carreraProy = new int[tamano];  // Se desperdicia memoria a lo tonto pero
- //           areaDeConocimiento = new int [tamano];  // seguro entran los resultados.
-            LinkedList<Integer> tmpCareer, tmpKnow;
-            tmpCareer = new LinkedList<Integer>();
-            tmpKnow = new LinkedList<Integer>();
+            LinkedHashSet<Integer> tmpCareer, tmpKnow;
+            tmpCareer = new LinkedHashSet<Integer>();
+            tmpKnow = new LinkedHashSet<Integer>();
+
             tmpCareer.add(queryResult.getInt("carreras.nombre"));
             tmpKnow.add(queryResult.getInt("areasconocimiento.nombre"));
 
@@ -719,15 +719,17 @@ UsuarioRegistrado {
 
             carreraProy = new int [tmpCareer.size()];
             areaDeConocimiento = new int [tmpKnow.size()];
-            int arrayIndex = 0;
-            for(int carrera: tmpCareer){
-                carreraProy[arrayIndex] = carrera;
-                arrayIndex++;
+
+            int carIndex = 0;
+            for (int carrera : tmpCareer) {
+                carreraProy[carIndex] = carrera;
+                carIndex++;
             }
-            arrayIndex = 0;
-            for(int carrera: tmpKnow){
-                areaDeConocimiento[arrayIndex] = carrera;
-                arrayIndex++;
+
+            int areaIndex = 0;
+            for (int area : tmpKnow) {
+                areaDeConocimiento[areaIndex] = area;
+                areaIndex++;
             }
 
             unProyecto.setNombre(nomProy);
@@ -746,8 +748,6 @@ UsuarioRegistrado {
             DBConsultException e = new DBConsultException();
             throw e ;
         }
-        //TODO: Check return from ConectaDb might be a ResultSet instead of String[]
-        // Check documentation of ResultSet in that case else pass the object or do something.
 
         return unProyecto;
     }
