@@ -49,8 +49,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * @generated
      */
 
-    // variables para conexion
-
+    // Variables para conexion
     private static Connection connect;
     private static Statement statement;
     private static String driver = "com.mysql.jdbc.Driver";
@@ -59,23 +58,55 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     private static String user = "gearsofc_ssocial";
     private static String password = "gearsofwar";
     
+    // Variables para estados de los proyectos y usuarios
     final private int AUTOPRO = 1;
     final private int NOAUTOPRO = 0;
     final private int NOAUTOALUM = 0;
     final private int AUTOALUM = 1;
     
     private static ResultSet resultset = null;
+    
+    /**
+     * Constructor que crea una conección a la base de datos y un statement
+     * para ejecutar queries y updates.
+     */
+    public ConectaDbImpl() throws DBCreationException {
+        try{
+        connect = cargarBase();
+        statement = connect.createStatement();
+        }catch(Exception e){
+            throw new DBCreationException();
+        }
 
-    protected ConectaDbImpl() {
-//    protected ConectaDbImpl() throws DBCreationException {
-        super();
-//        try{
-//        connect = cargarBase();
-//        statement = connect.createStatement();
-//        }catch(Exception e){
-//            throw new DBCreationException();
-//        }
-
+    }
+    
+    /**
+     * Constructor que crea una conección con la base de datos segun los
+     * parametros proporcionados. Además de un statement
+     * para ejecutar queries y updates.
+     * @param usuario Nombre del usuario en la base de datos.
+     * @param password Passwor del usuario en la base de datos.
+     * @param nombre_db Nombre de la base de datos.
+     * @param url Direccion de la base de datos (como lo indica JDBC).
+     * @throws DBCreationException Se lanza si existe un error al conectarse con la
+     * base de datos.
+     */
+    // ¿¿¿¿¿¿¿ESTE CONSTRUCTOR COMO PARA QUE LO NECESITAMOS???????.
+    public ConectaDbImpl(   String usuario, 
+                            String password, 
+                            String nombre_db,
+                            String url) throws DBCreationException{
+        this.user = usuario;
+        this.password = password;
+        this.dbName = nombre_db;
+        this.url = url;
+        
+        try{
+            connect = cargarBase();
+            statement = connect.createStatement();
+        }catch(Exception e){
+            throw new DBCreationException();
+        }
     }
 
     /**
@@ -89,15 +120,15 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     }
 
     /**
-     * Metodo que abre la conexion a la Db  
+     * Metodo que abre la conexion a la Base de Datos. Utiliza los atributos
+     * de la clase como datos para conectarse.
      */
-    private static Connection cargarBase() {
+    private Connection cargarBase() {
         try {
             Class.forName(driver);
             connect = DriverManager.getConnection(url + dbName, user,
                     password);
             System.out.println("Conexión a base de datos OK");
-
         } catch (ClassNotFoundException ex) {
             System.out.println("Error cargando el Driver MySQL JDBC");
         } catch (SQLException ex) {
@@ -106,13 +137,10 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         return connect;
     }
 
-    /** nombre         | id_c | id_ac |
-+----------------+------+-------+
-| Limpien Platos |    4 |     4 |
-| Limpien Platos |    3 |     4 |
-+----------------+------+-------+
-
-     * Metodo que cierra la conexion a la Db
+    /**
+     * Metodo que cierra la conexion a la base de datos
+     * @param c Coneccion a la base de datos.
+     * @param s Statement para realizar consultas a la base de datos.
      */
     private static void cerrarBase(Connection c, Statement s) {
         try {
@@ -126,21 +154,31 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     }
 
     /**
-     * Metodo que muestra proyectos autorizados dependiendo del usuario
+     * Metodo que muestra proyectos autorizados dependiendo del tipo de usuario.
+     * @param idUsuario Identificador de un usuario en la base de datos.
+     * @return Regresa una lista ligada de arreglos de Cadenas con el siguiente formato:<br>
+     * { [id_del_proyecto1,nombre_del_proyecto1], ...}
      */
 
     public LinkedList<String[]> 
-        verProyectosDb(final int tipoUsuario,  int idUsuario)
+        verProyectosDb(final int idUsuario)
     {
 
         final int ADMI = 0;
         final int RESP = 1;
         final int ALUM = 2;
+        
+        int tipoUsuario = -1;
         LinkedList<String[]> listaDeProyectos = new LinkedList<String[]>();
 
         String query = "";
 
         try {
+            
+            query = "SELECT tipo FROM usuarios WHERE  id_u = " +idUsuario + ";";
+            resultset = statement.executeQuery(query);
+            resultset.next(); // Movemos el apuntador a la primera fila. 
+            tipoUsuario = resultset.getInt(0);
             
             switch(tipoUsuario) {
     

@@ -31,4 +31,14 @@
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.pde.PluginNature</nature>
 	</natures>
+	<variableList>
+		<variable>
+			<name>esclavitud</name>
+			<value>file:/home/ubuntu/git/IS_Esclavitud/src/main/java/mx/gearsofcode/proyservsocial</value>
+		</variable>
+		<variable>
+			<name>esclavitus2</name>
+			<value>file:/home/ubuntu/git/IS_Esclavitud/src/main</value>
+		</variable>
+	</variableList>
 </projectDescription>
