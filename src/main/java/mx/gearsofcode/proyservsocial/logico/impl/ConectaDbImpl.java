@@ -175,11 +175,12 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         String query = "";
 
         try {
-            
-            query = "SELECT tipo FROM usuarios WHERE  id_u = " +idUsuario + ";";
-            resultset = statement.executeQuery(query);
-            resultset.next(); // Movemos el apuntador a la primera fila. 
-            tipoUsuario = resultset.getInt(0);
+// Con solo el id del usuario podemos saber el tipo de este. De esta manera,
+// evitamos que un usuario tenga un tipo que no.
+//            query = "SELECT tipo FROM usuarios WHERE  id_u = " +idUsuario + ";";
+//            resultset = statement.executeQuery(query);
+//            resultset.next(); // Movemos el apuntador a la primera fila. 
+//            tipoUsuario = resultset.getInt(0);
             
             switch(tipoUsuario) {
     

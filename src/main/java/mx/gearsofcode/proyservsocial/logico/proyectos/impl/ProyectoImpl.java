@@ -283,10 +283,10 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *Victor's modification;
      * @generated
      */
-    protected ProyectoImpl() {
+    public ProyectoImpl() {
         super();
     }
 
