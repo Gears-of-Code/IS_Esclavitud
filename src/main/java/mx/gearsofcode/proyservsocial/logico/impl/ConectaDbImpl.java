@@ -56,8 +56,8 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     private static String driver = "com.mysql.jdbc.Driver";
     private static String url = "jdbc:mysql://localhost:3306/";
     private static String dbName = "gearsofc_ssocial";
-    private static String user = "root";
-    private static String password = "enrique";
+    private static String user = "gearsofc_ssocial";
+    private static String password = "gearsofwar";
     
     final private int AUTOPRO = 1;
     final private int NOAUTOPRO = 0;

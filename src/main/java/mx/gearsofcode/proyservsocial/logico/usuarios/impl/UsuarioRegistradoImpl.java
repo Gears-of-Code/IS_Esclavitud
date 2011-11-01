@@ -625,7 +625,7 @@ UsuarioRegistrado {
         // String[] bloqueproyectos contiene ["id","Nombre"]
         // Nota anterior para saber en que orden esta la informacion (Capa de Interfaz)
 
-        String[][] bloqueProyectos = armaArreglo(queryResult);
+        String[][] bloqueProyectos = armaArregloDeLista(queryResult);
 
         return bloqueProyectos;
     }
@@ -645,7 +645,7 @@ UsuarioRegistrado {
         // String[] bloqueproyectos contiene ["id","Nombre"]
         // Nota anterior para saber en que orden esta la informacion (Capa de Interfaz)
 
-        String[][] bloqueProyectos = armaArreglo(queryResult);
+        String[][] bloqueProyectos = armaArregloDeLista(queryResult);
 
         return bloqueProyectos;
     }
@@ -654,7 +654,7 @@ UsuarioRegistrado {
      * Funcion auxiliar que construye un arreglo bidimensional
      * a partir de una lista ligada.
      */
-    private String[][] armaArreglo(final LinkedList<String[]> queryResults) {
+    private String[][] armaArregloDeLista(final LinkedList<String[]> queryResults) {
 
         int pos = 0;
         int misProy = queryResults.size();
@@ -717,20 +717,8 @@ UsuarioRegistrado {
                 tmpKnow.add(queryResult.getInt("areasconocimiento.nombre"));
             }
 
-            carreraProy = new int [tmpCareer.size()];
-            areaDeConocimiento = new int [tmpKnow.size()];
-
-            int carIndex = 0;
-            for (int carrera : tmpCareer) {
-                carreraProy[carIndex] = carrera;
-                carIndex++;
-            }
-
-            int areaIndex = 0;
-            for (int area : tmpKnow) {
-                areaDeConocimiento[areaIndex] = area;
-                areaIndex++;
-            }
+            carreraProy = armaArregloDeSet(tmpCareer);
+            areaDeConocimiento = armaArregloDeSet(tmpKnow);
 
             unProyecto.setNombre(nomProy);
             unProyecto.setDescripcion(descrProy);
@@ -750,6 +738,26 @@ UsuarioRegistrado {
         }
 
         return unProyecto;
+    }
+
+    /**
+     * Funcion auxiliar que construye un arreglo bidimensional
+     * a partir de una lista ligada.
+     */
+    private int[] armaArregloDeSet(final LinkedHashSet<Integer> queryResults) {
+
+        int pos = 0;
+        int misProy = queryResults.size();
+
+        // int[] bloque contiene ["id"]
+	int[] bloque = new int[misProy];
+
+        for (int elem : queryResults) {
+            bloque[pos] = elem;
+            pos++;
+        }
+
+	return bloque;
     }
 
 } //UsuarioRegistradoImpl
