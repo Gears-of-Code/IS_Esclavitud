@@ -37,6 +37,18 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface UsuarioRegistrado extends EObject {
+    
+    /**
+     * Constantes para los tipos de usuarios segun lo especificado en la base de datos.
+     * 
+     * Nota: Las constantes esta colocadas a proposito en este orden
+     * para resaltal la diferencia con la base de datos.
+     */
+    
+    public static int ADMINISTRADOR = 0;
+    public static int RESPONSABLE = 2;
+    public static int ALUMNO = 1;
+    
     /**
      * Returns the value of the '<em><b>Id</b></em>' attribute.
      * The default value is <code>"-1"</code>.

@@ -158,6 +158,8 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
 
     /**
      * Metodo que muestra proyectos autorizados dependiendo del tipo de usuario.
+     * @param tipoUsuario Una de las 3 constantes definidas en la interfaz UsuarioRegistrado.
+     * Cualquier otro valor, provocara una lista vacia. 
      * @param idUsuario Identificador de un usuario en la base de datos.
      * @return Regresa una lista ligada de arreglos de Cadenas con el siguiente formato:<br>
      * { [id_del_proyecto1,nombre_del_proyecto1], ...}
