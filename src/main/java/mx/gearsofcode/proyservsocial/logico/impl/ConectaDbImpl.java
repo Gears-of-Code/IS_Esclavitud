@@ -51,13 +51,15 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
 
     // variables para conexion
 
-    private static Connection connect;
-    private static Statement statement;
-    private static String driver = "com.mysql.jdbc.Driver";
-    private static String url = "jdbc:mysql://localhost:3306/";
-    private static String dbName = "gearsofc_ssocial";
-    private static String user = "root";
-    private static String password = "enrique";
+    private Connection connect;
+    private Statement statement;
+    private String driver = "com.mysql.jdbc.Driver";
+    private String url = "jdbc:mysql://localhost:3306/";
+    private String dbName = "gearsofc_ssocial";
+    private String user = "root";
+    private String password = "123456";
+    
+    // variables para estados de los proyectos y usuarios
     
     final private int AUTOPRO = 1;
     final private int NOAUTOPRO = 0;
@@ -65,17 +67,45 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     final private int AUTOALUM = 1;
     
     private static ResultSet resultset = null;
+    
+    /**
+     * Constructor que crea una conección a la base de datos y un statement
+     * para ejecutar queries y updates.
+     */
+    public ConectaDbImpl() throws DBCreationException {
+        try{
+        connect = cargarBase();
+        statement = connect.createStatement();
+        }catch(Exception e){
+            throw new DBCreationException();
+        }
 
-    protected ConectaDbImpl() {
-//    protected ConectaDbImpl() throws DBCreationException {
-        super();
-//        try{
-//        connect = cargarBase();
-//        statement = connect.createStatement();
-//        }catch(Exception e){
-//            throw new DBCreationException();
-//        }
-
+    }
+    
+    /**
+     * Constructor que crea una conección con la base de datos segun los
+     * parametros proporcionados. Además de un statement
+     * para ejecutar queries y updates.
+     * @param usuario Nombre del usuario en la base de datos.
+     * @param password Passwor del usuario en la base de datos.
+     * @param nombre_db Nombre de la base de datos.
+     * @param url Direccion de la base de datos (como lo indica JDBC).
+     */
+    public ConectaDbImpl(   String usuario, 
+                            String password, 
+                            String nombre_db,
+                            String url) throws DBCreationException{
+        this.user = usuario;
+        this.password = password;
+        this.dbName = nombre_db;
+        this.url = url;
+        
+        try{
+            connect = cargarBase();
+            statement = connect.createStatement();
+        }catch(Exception e){
+            throw new DBCreationException();
+        }
     }
 
     /**
@@ -91,13 +121,12 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     /**
      * Metodo que abre la conexion a la Db  
      */
-    private static Connection cargarBase() {
+    private Connection cargarBase() {
         try {
             Class.forName(driver);
             connect = DriverManager.getConnection(url + dbName, user,
                     password);
             System.out.println("Conexión a base de datos OK");
-
         } catch (ClassNotFoundException ex) {
             System.out.println("Error cargando el Driver MySQL JDBC");
         } catch (SQLException ex) {
