@@ -159,26 +159,27 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * @return Regresa una lista ligada de arreglos de Cadenas con el siguiente formato:<br>
      * { [id_del_proyecto1,nombre_del_proyecto1], ...}
      */
-
-    public LinkedList<String[]> 
-        verProyectosDb(final int idUsuario)
-    {
+    // El tipo de usuario ya lo tienes. Te lo pasa la clase de usuarioRegistrado que llama este metodo.
+    // ¿para que lo quieres volver a sacar de la base de datos? 
+    // public LinkedList<String[]> 
+    //     verProyectosDb (final int idUsuario) {
+    public LinkedList<String[]> verProyectosDb(final int tipoUsuario,  int idUsuario) {
 
         final int ADMI = 0;
         final int RESP = 1;
         final int ALUM = 2;
         
-        int tipoUsuario = -1;
+        //int tipoUsuario = -1;
         LinkedList<String[]> listaDeProyectos = new LinkedList<String[]>();
 
         String query = "";
 
         try {
             
-            query = "SELECT tipo FROM usuarios WHERE  id_u = " +idUsuario + ";";
-            resultset = statement.executeQuery(query);
-            resultset.next(); // Movemos el apuntador a la primera fila. 
-            tipoUsuario = resultset.getInt(0);
+            // query = "SELECT tipo FROM usuarios WHERE  id_u = " +idUsuario + ";";
+            // resultset = statement.executeQuery(query);
+            // resultset.next(); // Movemos el apuntador a la primera fila. 
+            // tipoUsuario = resultset.getInt(0);
             
             switch(tipoUsuario) {
     

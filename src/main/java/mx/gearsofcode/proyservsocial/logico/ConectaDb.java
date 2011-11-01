@@ -1,5 +1,4 @@
 /**
-
  * <copyright>
  * </copyright>
  *
@@ -36,7 +35,8 @@ public interface ConectaDb extends EObject {
      * @model
      * @generated
      */
-    LinkedList<String[]> verProyectosDb(final int idUsuario) throws DBConsultException;
+    LinkedList<String[]> verProyectosDb(final int tipoUsuario, final int idUsuario) throws DBConsultException;
+    //    LinkedList<String[]> verProyectosDb(final int idUsuario) throws DBConsultException;
 
     /**
      * <!-- begin-user-doc -->
