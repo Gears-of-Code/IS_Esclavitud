@@ -49,18 +49,16 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * @generated
      */
 
-    // variables para conexion
-
-    private Connection connect;
-    private Statement statement;
-    private String driver = "com.mysql.jdbc.Driver";
-    private String url = "jdbc:mysql://localhost:3306/";
-    private String dbName = "gearsofc_ssocial";
-    private String user = "root";
-    private String password = "123456";
+    // Variables para conexion
+    private static Connection connect;
+    private static Statement statement;
+    private static String driver = "com.mysql.jdbc.Driver";
+    private static String url = "jdbc:mysql://localhost:3306/";
+    private static String dbName = "gearsofc_ssocial";
+    private static String user = "gearsofc_ssocial";
+    private static String password = "gearsofwar";
     
-    // variables para estados de los proyectos y usuarios
-    
+    // Variables para estados de los proyectos y usuarios
     final private int AUTOPRO = 1;
     final private int NOAUTOPRO = 0;
     final private int NOAUTOALUM = 0;
@@ -93,6 +91,10 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * @throws DBCreationException Se lanza si existe un error al conectarse con la
      * base de datos.
      */
+    // ¿¿¿¿¿¿¿ESTE CONSTRUCTOR COMO PARA QUE LO NECESITAMOS???????.
+    // Yo lo pense porque, cuando subamos el proyecto al servidor, tendremos que
+    // cambiar varios datos. Y si modificamos las variables del proyecto
+    // tendremos que compilar y empaquetar de nuevo.
     public ConectaDbImpl(   String usuario, 
                             String password, 
                             String nombre_db,
@@ -160,27 +162,17 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * @return Regresa una lista ligada de arreglos de Cadenas con el siguiente formato:<br>
      * { [id_del_proyecto1,nombre_del_proyecto1], ...}
      */
-
-    public LinkedList<String[]> 
-        verProyectosDb(final int idUsuario)
-    {
+    public LinkedList<String[]> verProyectosDb(final int tipoUsuario,  int idUsuario) {
 
         final int ADMI = 0;
         final int RESP = 1;
         final int ALUM = 2;
-        
-        int tipoUsuario = -1;
+
         LinkedList<String[]> listaDeProyectos = new LinkedList<String[]>();
 
         String query = "";
 
         try {
-// Con solo el id del usuario podemos saber el tipo de este. De esta manera,
-// evitamos que un usuario tenga un tipo que no.
-//            query = "SELECT tipo FROM usuarios WHERE  id_u = " +idUsuario + ";";
-//            resultset = statement.executeQuery(query);
-//            resultset.next(); // Movemos el apuntador a la primera fila. 
-//            tipoUsuario = resultset.getInt(0);
             
             switch(tipoUsuario) {
     

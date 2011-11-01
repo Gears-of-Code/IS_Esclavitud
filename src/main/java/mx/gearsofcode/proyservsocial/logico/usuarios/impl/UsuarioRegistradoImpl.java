@@ -21,6 +21,8 @@ import mx.gearsofcode.proyservsocial.logico.proyectos.impl.ProyectosFactoryImpl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.Set;
+import java.util.LinkedHashSet;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -613,26 +615,17 @@ UsuarioRegistrado {
      * Llama a la base de datos para obtener y listar todos los proyectos
      * que se encuentran disponibles para el usuario.
      *
-     * @throws DBConsultException 
+     * @throws DBConsultException
      */
     public String[][] verProyectos() throws DBConsultException {
 
-        String[][] bloqueProyectos = null;        
         conexion = new LogicoFactoryImpl().createConectaDb();
         LinkedList<String[]> queryResult = conexion.verProyectosDb(tipo, id);
-
-        int pos = 0;
-        int numProy = queryResult.size();
 
         // String[] bloqueproyectos contiene ["id","Nombre"]
         // Nota anterior para saber en que orden esta la informacion (Capa de Interfaz)
 
-        bloqueProyectos = new String[numProy][2];
-
-        for (String[] proy : queryResult) {
-            bloqueProyectos[pos] = proy;
-            pos++;
-        }
+        String[][] bloqueProyectos = armaArregloDeLista(queryResult);
 
         return bloqueProyectos;
     }
@@ -641,55 +634,67 @@ UsuarioRegistrado {
      * Llama a la base de datos y obtiene una vista reducida o filtada de
      * los proyectos dependiendo del caso de usuario que este realizando
      * la consulta.
-     * 
+     *
      * @throws DBConsultException
      */
     public String[][] verMisProyectos() throws DBConsultException {
 
-        String[][] bloqueProyectos = null;
         conexion = new LogicoFactoryImpl().createConectaDb();
         LinkedList<String[]> queryResult = conexion.verMisProyectosDb(tipo, id); //Tipo de usuario y id de usuario.
-
-        int pos = 0;
-        int misProy = queryResult.size();        
 
         // String[] bloqueproyectos contiene ["id","Nombre"]
         // Nota anterior para saber en que orden esta la informacion (Capa de Interfaz)
 
-        bloqueProyectos = new String[misProy][2];
-
-        for (String[] unProy : bloqueProyectos) {
-            bloqueProyectos[pos] = unProy;
-            pos++;
-        }
+        String[][] bloqueProyectos = armaArregloDeLista(queryResult);
 
         return bloqueProyectos;
     }
 
     /**
+     * Funcion auxiliar que construye un arreglo bidimensional
+     * a partir de una lista ligada.
+     */
+    private String[][] armaArregloDeLista(final LinkedList<String[]> queryResults) {
+
+        int pos = 0;
+        int misProy = queryResults.size();
+
+        // String[] bloqueproyectos contiene ["id","Nombre"]
+	String [][] bloque = new String[misProy][2];
+
+        for (String[] unProy : queryResults) {
+            bloque[pos] = unProy;
+            pos++;
+        }
+
+	return bloque;
+    }
+
+    /**
      * Llama a la base de datos para obtener los datos detallados de un
      * proyecto y se los despliega al usuario.
-     * 
+     *
      * @param idProyecto Un identificador de algun proyecto.
      */
     public Proyecto verDetallesProyecto(final int idProyect) throws DBConsultException {
-        
+
         conexion = new LogicoFactoryImpl().createConectaDb();
         ResultSet queryResult = conexion.verDetallesProyectoDb(idProyect);
         Proyecto unProyecto = new ProyectosFactoryImpl().createProyecto();
-        /*[1] -> nombre  responsable
-        [2] -> nombre  proyectos
-        [3] -> areas de conocimientos
-        [4] -> carreras
-        [5] -> email del poyecto
-        [6] -> telefono del poyecto 
-        [7] -> direccion del poyecto
-        [8] -> maximo Participantes 
-        [9] -> Descripcion del problema
+        /*
+	  [1] -> nombre  responsable
+	  [2] -> nombre  proyectos
+	  [3] -> areas de conocimientos
+	  [4] -> carreras
+	  [5] -> email del poyecto
+	  [6] -> telefono del poyecto
+	  [7] -> direccion del poyecto
+	  [8] -> maximo Participantes
+	  [9] -> Descripcion del problema
          */
         String nomProy, descrProy,dirProy,mailProy;
-        int [] areaDeConocimiento = null; 
-        int[] carreraProy = null; 
+        int [] areaDeConocimiento = null;
+        int[] carreraProy = null;
         int capMax,id_resp,telProy;
         try {
             nomProy = queryResult.getString("nombre");
@@ -700,32 +705,20 @@ UsuarioRegistrado {
             id_resp = ((Integer)(queryResult.getInt("id_u")));
             capMax = ((Integer)(queryResult.getInt("maxParticipantes")));
 
-            int tamano = queryResult.getFetchSize();
-            carreraProy = new int[tamano];  // Se desperdicia memoria a lo tonto pero 
-            areaDeConocimiento = new int [tamano];  // seguro entran los resultados.
-            carreraProy[0] = queryResult.getInt("carreras");
-            areaDeConocimiento[0] = queryResult.getInt("areasconocimiento");
+            LinkedHashSet<Integer> tmpCareer, tmpKnow;
+            tmpCareer = new LinkedHashSet<Integer>();
+            tmpKnow = new LinkedHashSet<Integer>();
+
+            tmpCareer.add(queryResult.getInt("carreras.nombre"));
+            tmpKnow.add(queryResult.getInt("areasconocimiento.nombre"));
 
             while (queryResult.next()) {
-                int posCarr = 1;
-                int posArea = 1;
-                int carrera = queryResult.getInt("carreras");
-                int areaCon = queryResult.getInt("areasconocimiento");
-                
-                for (int elem : carreraProy) {
-                    if (elem == carrera ) {
-                        carreraProy[posCarr] = elem;
-                        posCarr++;
-                    }
-                }
-                
-                for (int elem : areaDeConocimiento) {
-                    if (elem == areaCon) {
-                        areaDeConocimiento[posArea] = elem;
-                        posArea++;
-                    }
-                }
+                tmpCareer.add(queryResult.getInt("carreras.nombre"));
+                tmpKnow.add(queryResult.getInt("areasconocimiento.nombre"));
             }
+
+            carreraProy = armaArregloDeSet(tmpCareer);
+            areaDeConocimiento = armaArregloDeSet(tmpKnow);
 
             unProyecto.setNombre(nomProy);
             unProyecto.setDescripcion(descrProy);
@@ -736,17 +729,35 @@ UsuarioRegistrado {
             unProyecto.setResponsable(id_resp);
             unProyecto.setAreaConocimiento(areaDeConocimiento);
             unProyecto.setCarreras(carreraProy);
-            
+
 
         }catch(SQLException dbException){
             //TODO: do something meaningful with this exception
             DBConsultException e = new DBConsultException();
             throw e ;
         }
-        //TODO: Check return from ConectaDb might be a ResultSet instead of String[]
-        // Check documentation of ResultSet in that case else pass the object or do something.
 
         return unProyecto;
+    }
+
+    /**
+     * Funcion auxiliar que construye un arreglo bidimensional
+     * a partir de una lista ligada.
+     */
+    private int[] armaArregloDeSet(final LinkedHashSet<Integer> queryResults) {
+
+        int pos = 0;
+        int misProy = queryResults.size();
+
+        // int[] bloque contiene ["id"]
+	int[] bloque = new int[misProy];
+
+        for (int elem : queryResults) {
+            bloque[pos] = elem;
+            pos++;
+        }
+
+	return bloque;
     }
 
 } //UsuarioRegistradoImpl
