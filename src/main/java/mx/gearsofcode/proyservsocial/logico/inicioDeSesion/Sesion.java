@@ -12,20 +12,11 @@ import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Sesion</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link mx.gearsofcode.proyservsocial.logico.inicioDeSesion.Sesion#getUsuario <em>Usuario</em>}</li>
- * </ul>
- * </p>
+ * Representacion de los elementos que la clase '<em><b>Sesion</b></em>'
+ * debe cumplir.
  *
  * @see mx.gearsofcode.proyservsocial.logico.inicioDeSesion.InicioDeSesionPackage#getSesion()
  * @model
- * @generated
  */
 public interface Sesion extends EObject {
     /**
@@ -55,16 +46,17 @@ public interface Sesion extends EObject {
     void setUsuario(UsuarioRegistrado value);
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return 
-     * @throws DBConsultException 
+     * Realiza el proceso de autenticar a un usuario en la base de datos.
+     *
+     * @return UsuarioRegistrado La clase activa de un usuario que ha sido
+     * validado en el sistema por la base de datos.
+     * @throws DBConsultException
      */
-    UsuarioRegistrado autenticar(final String nombreUsuario, final String password) throws DBConsultException;
+    UsuarioRegistrado autenticar(final String nombreUsuario,
+                                 final String password) throws DBConsultException;
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Elimina el objeto del usuario que mando llamar al mentodo.
      */
     void cerrarSesion(final UsuarioRegistrado unUsuario);
 

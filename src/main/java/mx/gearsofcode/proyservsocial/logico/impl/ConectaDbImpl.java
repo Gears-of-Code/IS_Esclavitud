@@ -19,13 +19,14 @@ import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 import mx.gearsofcode.proyservsocial.logico.LogicoPackage;
 
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
+
 import mx.gearsofcode.proyservsocial.logico.usuarios.Responsable;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
-import mx.gearsofcode.proyservsocial.logico.util.*;
+import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario;
 
-import com.mysql.jdbc.exceptions.*;
-import com.mysql.jdbc.util.*;
-import com.mysql.jdbc.*;
+import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
+import mx.gearsofcode.proyservsocial.logico.util.DBCreationException;
+import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -35,21 +36,14 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Conecta Db</b></em>'. <!-- end-user-doc -->
- * <p>
- * </p>
- * 
- * @generated
+ * Clase que se encarga de manejar las conexiones a la base de
+ * datos del proyecto, aqui se hacen todas las sentencias SQL
+ * y se pasan al servidor de la base de datos para procesarlas.
+ *
  */
 public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-
-    // Variables para conexion
+  
+    // Variables para conexion.
     private static Connection connect;
     private static Statement statement;
     private static String driver = "com.mysql.jdbc.Driver";
@@ -57,31 +51,34 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     private static String dbName = "gearsofc_ssocial";
     private static String user = "gearsofc_ssocial";
     private static String password = "gearsofwar";
-    
-    // Variables para estados de los proyectos y usuarios
+
+    // Variables para estados de los proyectos y usuarios.
     final private int NO_AUTO = 0;
     final private int AUTO = 1;
-    
+
+    /**
+     * Variable usada para almacenar los resultados de un query.
+     */
     private static ResultSet resultset = null;
-    
+
     /**
      * Constructor que crea una conección a la base de datos y un statement
      * para ejecutar queries y updates.
      */
     public ConectaDbImpl() throws DBCreationException {
-        try{
-        connect = cargarBase();
-        statement = connect.createStatement();
-        }catch(Exception e){
+        try {
+            connect = cargarBase();
+            statement = connect.createStatement();
+        } catch (Exception e) {
             throw new DBCreationException();
         }
-
     }
-    
+
     /**
      * Constructor que crea una conección con la base de datos segun los
      * parametros proporcionados. Además de un statement
      * para ejecutar queries y updates.
+     *
      * @param usuario Nombre del usuario en la base de datos.
      * @param password Passwor del usuario en la base de datos.
      * @param nombre_db Nombre de la base de datos.
@@ -93,15 +90,15 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     // Yo lo pense porque, cuando subamos el proyecto al servidor, tendremos que
     // cambiar varios datos. Y si modificamos las variables del proyecto
     // tendremos que compilar y empaquetar de nuevo.
-    public ConectaDbImpl(   String usuario, 
-                            String password, 
-                            String nombre_db,
-                            String url) throws DBCreationException{
+    public ConectaDbImpl(String usuario,
+                         String password,
+                         String nombre_db,
+                         String url) throws DBCreationException{
         this.user = usuario;
         this.password = password;
         this.dbName = nombre_db;
         this.url = url;
-        
+
         try{
             connect = cargarBase();
             statement = connect.createStatement();
@@ -112,7 +109,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     @Override
@@ -139,17 +136,18 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     }
 
     /**
-     * Metodo que cierra la conexion a la base de datos
-     * @param c Coneccion a la base de datos.
-     * @param s Statement para realizar consultas a la base de datos.
+     * Metodo que cierra la conexion a la base de datos-
+     *
+     * @param conecta Coneccion a la base de datos.
+     * @param sentencia Statement para realizar consultas a la base de datos.
      */
-    private static void cerrarBase(Connection c, Statement s) {
+    private static void cerrarBase(final Connection conecta, final Statement sentencia) {
         try {
-            if (s != null)
-                s.close();
-            if (c != null)
-                c.close();
-            System.out.println("Conexión a base de datos cerrada");
+            if (sentencia != null)
+                sentencia.close();
+            if (conecta != null)
+                conecta.close();
+            System.out.println ("Conexión a base de datos cerrada");
         } catch (SQLException sqlex) {
         }
     }
@@ -157,7 +155,7 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     /**
      * Metodo que muestra proyectos autorizados dependiendo del tipo de usuario.
      * @param tipoUsuario Una de las 3 constantes definidas en la interfaz UsuarioRegistrado.
-     * Cualquier otro valor, provocara una lista vacia. 
+     * Cualquier otro valor, provocara una lista vacia.
      * @param idUsuario Identificador de un usuario en la base de datos.
      * @return Regresa una lista ligada de arreglos de Cadenas con el siguiente formato:<br>
      * { [id_del_proyecto1,nombre_del_proyecto1], ...}
@@ -169,41 +167,41 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         String query = "";
 
         try {
-            
-            switch(tipoUsuario) {
-    
-                case UsuarioRegistrado.ADMINISTRADOR:
-                    query = "SELECT nombre, id_p " +
-                            "FROM  proyectos " +
-                            "WHERE estado = 1;";
+
+            switch (tipoUsuario) {
+
+                case TipoUsuario.ADMINISTRADOR_VALUE:
+                    query = "SELECT nombre, id_p "
+                        + "FROM  proyectos "
+                        + "WHERE estado = 1;";
                     resultset = statement.executeQuery(query);
                     break;
-    
-                case UsuarioRegistrado.RESPONSABLE:
-                    query = "SELECT nombre, id_p " +
-                            "FROM  proyectos " +
-                            "WHERE estado = 1 AND" +
-                            " id_r ='" + idUsuario + "';";
+
+                case TipoUsuario.RESPONSABLE_VALUE:
+                    query = "SELECT nombre, id_p "
+                        + "FROM  proyectos "
+                        + "WHERE estado = 1 AND"
+                        + " id_r ='" + idUsuario + "';";
                     resultset = statement.executeQuery(query);
                     break;
-    
-                case UsuarioRegistrado.ALUMNO:
-                    query = "SELECT nombre, id_p " +
-                            "FROM  proyectos " +
-                            "WHERE estado = 1;";
+
+                case TipoUsuario.ALUMNO_VALUE:
+                    query = "SELECT nombre, id_p "
+                        + "FROM  proyectos "
+                        + "WHERE estado = 1;";
                     resultset = statement.executeQuery(query);
                     break;
-    
-                default:      
-                    System.out.println("Tipo de usuario no valido");            
+
+                default:
+                    System.out.println("Tipo de usuario no valido");
                     break;
             }
-            
-            listaDeProyectos = getIdxNombre (resultset);
+
+            listaDeProyectos = getIdxNombre(resultset);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
-            cerrarBase(connect,statement);
+            cerrarBase(connect, statement);
         }
         return listaDeProyectos;
     }
@@ -211,30 +209,29 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     /**
      * Este meotdo es tiene codigo redundate con verProyectos. Corregir
      */
-    public LinkedList<String[]> verMisProyectosDb(final int tipoUsuario,final int idUsuario) {
+    public LinkedList<String[]> verMisProyectosDb(final int tipoUsuario, final int idUsuario) {
 
-        
         LinkedList<String[]> listaDeProyectos = new LinkedList<String[]>();
         String query = "";
-        
-        try{
+
+        try {
             connect = cargarBase();
             statement = connect.createStatement();
-            
+
             switch (tipoUsuario) {
-                case UsuarioRegistrado.ADMINISTRADOR:
+                case TipoUsuario.ADMINISTRADOR_VALUE:
                     query = "SELECT nombre, id_p FROM  proyectos WHERE estado = 0;";
                     resultset = statement.executeQuery(query);
                     break;
-    
-                case UsuarioRegistrado.RESPONSABLE:
+
+                case TipoUsuario.RESPONSABLE_VALUE:
                     query = "SELECT nombre, id_p FROM  proyectos "
                             + "WHERE estado = 0 AND" + " id_u =" + idUsuario
                             + ";";
-                    resultset= statement.executeQuery(query);
+                    resultset = statement.executeQuery(query);
                     break;
-    
-                case UsuarioRegistrado.ALUMNO:
+
+                case TipoUsuario.ALUMNO_VALUE:
                     query = "SELECT nombre, proyectos.id_p "
                             + "FROM  proyectos, postulados "
                             + "WHERE postulados.estado = 0 " + "AND id_u = "
@@ -243,96 +240,97 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
                     break;
             }
             listaDeProyectos = getIdxNombre(resultset);
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }finally{
+        } finally {
             cerrarBase(connect, statement);
         }
-        
         return listaDeProyectos;
     }
 
     /**
-     * Se puede agregar una columna tipo BLOB (binary large object b) a la 
+     * Se puede agregar una columna tipo BLOB (binary large object b) a la
      * base de datos para guardar un Proyecto completo. De esta manera
      * podemos regresar un objeto Proyecto, sin hacer el codigo ilegible.
-     * Solo hay que cuidar la integredida de la base de datos, a la hora 
+     * Solo hay que cuidar la integredida de la base de datos, a la hora
      * de actualizar el un proyecto. Sin embargo ningun caso de uso,
      * realiza modificaciones a los proyectos.
      */
     public ResultSet verDetallesProyectoDb(final int idProyecto) {
-        
-        String query = 
-                "SELECT DISTINCT proyectos.*, "+
-                " proycarr.id_c, proyac.id_ac  " +
-                " FROM proyectos,proycarr,proyac  " +
-                " WHERE proyectos.id_p = " + idProyecto +
-                " AND proycarr.id_p = " + idProyecto +
-                " AND proyac.id_p = " + idProyecto + ";";
-        try{
+
+        String query = "SELECT DISTINCT proyectos.*, "
+            + " proycarr.id_c, proyac.id_ac "
+            + " FROM proyectos,proycarr,proyac "
+            + " WHERE proyectos.id_p = " + idProyecto
+            + " AND proycarr.id_p = " + idProyecto
+            + " AND proyac.id_p = " + idProyecto + ";";
+        try {
             resultset = statement.executeQuery(query);
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return resultset;
-    } 
+    }
 
     /**
      * Agrega un proyecto a la tabla Proyectos con un estado NO_AUTORIZADO
      * Tambien agrega entradas a las tablas proycarr y proyac.
+     *
      * @param proy Proyecto que se quiere agregar a la base de datos.
-     * @throws Se lanza una excepcion si ninguna fila en la base de datos es 
+     * @throws Se lanza una excepcion si ninguna fila en la base de datos es
      * afectada, es decir, no se pudo agregar el proyecto.
      */
-    public void proponerProyectoDb(final Proyecto proy) 
-            throws DBCreationException{
-        
+    public void proponerProyectoDb(final Proyecto proy)
+            throws DBCreationException {
+
         try {
 
             int id_u = proy.getId();
             int telefono = proy.getTelefono();
             int maxParticipantes = proy.getMaxParticipantes();
             int [] id_ac = proy.getAreaConocimiento();
-            int[] carreras = proy.getCarreras();    
+            int[] carreras = proy.getCarreras();
             String descripcion = proy.getDescripcion();
             String estado = "0"; // No autorizado.
             String direccion = proy.getDireccion();
             String nombre = proy.getNombre();
             String email = proy.getEmail();
-            
+
             String update = "";
 
             update = "INSERT INTO proyectos (id_u,nombre,email,telefono,direccion,"
-                    + "maxParticipantes,descripcion,estado) VALUES ("
-                    + id_u+ ",'"
-                    + nombre+ "','"
-                    + email+ "',"
-                    + telefono+ ",'"
-                    + direccion+ "',"
-                    + maxParticipantes + ",'"
-                    + descripcion
-                    + "'," + estado + ");";
+                + "maxParticipantes,descripcion,estado) VALUES ("
+                + id_u + ",'"
+                + nombre + "','"
+                + email + "',"
+                + telefono + ",'"
+                + direccion + "',"
+                + maxParticipantes + ",'"
+                + descripcion + "'," 
+                + estado + ");";
 
-            if (statement.executeUpdate(update) == 0)
+            if (statement.executeUpdate(update) == 0) {
                 throw new DBCreationException();
-             
+            } else {
+                int id_p = statement.executeQuery("SELECT LAST_INSERT_ID();").getInt(1);
+                // getInt(1) hace referencia a la primer columna.
 
-            int id_p = statement.executeQuery("SELECT LAST_INSERT_ID();").getInt(1);
+                // Areas
+                update = "INSERT INTO proyac (id_p,id_ac) VALUES";
+                update += getPairValues(id_p, id_ac); 
+                // Regresa el par de valores a agregar a la tabla proyac.
 
-            // Areas
-            update = "INSERT INTO proyac (id_p,id_ac) VALUES";
-            update += getPairValues(id_p, id_ac); // Regresa el par de valores a
-                                                  // agregar al la tabla proyac
+                if (statement.executeUpdate(update) == 0) {
+                    throw new DBCreationException();
+                }
+                // Careers
+                update = "INSERT INTO proycarr (id_p,id_c) VALUES ";
+                update += getPairValues(id_p, carreras);
 
-            if (statement.executeUpdate(update) == 0)
-                throw new DBCreationException();
-
-            // Careers
-            update = "INSERT INTO proycarr (id_p,id_c) VALUES ";
-            update += getPairValues(id_p, carreras);
-
-            if (statement.executeUpdate(update) == 0)
-                throw new DBCreationException();
+                if (statement.executeUpdate(update) == 0) {
+                    throw new DBCreationException();
+                }
+            }
 
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
@@ -343,19 +341,21 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * El administrador autoriza un proyecto. Esto significa que la columna
      * "estado" en la tabla "proyectos" correspondiente al proyecto a autorizar
      * sera cambiado a 1.
+     *
      * @param idProyecto id del proyecto que el administrador desea autorizar.
-     * @throws Se lanza una excepcion si no se puede modificar el 
+     * @throws Se lanza una excepcion si no se puede modificar el
      * estado del proyecto.
      */
-    public void autorizarProyectoDb(final int idProyecto) 
-            throws DBModificationException{
+    public void autorizarProyectoDb(final int idProyecto)
+            throws DBModificationException {
 
         String query = "UPDATE proyectos SET estado = " + AUTO
                 + "WHERE id_p = '" + idProyecto + "';";
 
         try {
-            if (statement.executeUpdate(query) == 0)
+            if (statement.executeUpdate(query) == 0) {
                 throw new DBModificationException();
+            }
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         } finally {
@@ -364,78 +364,82 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     }
 
     /**
-     * El administrador rechaza un proyecto y es eliminado de la db
+     * El administrador rechaza un proyecto y es eliminado de la db.
+     *
      * @param idProyecto id del proyecto que se eliminara de la base de datos.
      * @throws Se lanza una excepcion si no se pudo elimiar el proyecto.
      */
-    public void rechazarProyectoDb(final int idProyecto) 
-            throws DBModificationException{
+    public void rechazarProyectoDb(final int idProyecto)
+            throws DBModificationException {
 
-        String query = "DELETE FROM proyectos "+ 
-                "WHERE id_p = '" + idProyecto + "';";
-        
-        try{
-            if (statement.executeUpdate(query)==0) ;
+        String query = "DELETE FROM proyectos "
+            + "WHERE id_p = '" + idProyecto + "';";
+
+        try {
+            if (statement.executeUpdate(query) == 0) {
                 throw new DBModificationException();
-        }catch(SQLException e){
+            }
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
     /**
      * Agrega un alumno a la lista (tabla) de postulados de un proyecto.
      * Los estados, estadoa (administrador) y estadr (responsable), de un alumno
      * postulado se inicializan en NO_AUOT = 0;
+     *
      * @param idProyecto id del proyecto al cual se quiere postular un alumno.
      * @param idAlumno id del alumno que se quiere postular a un proyecto.
      * @throws Se lanza un excepcion si el si no se puede agregar al usuario
      * a la lista de postulados.
      */
-    public void postularAProyectoDb(final int idProyecto, final int idAlumno) 
-            throws DBModificationException{
+    public void postularAProyectoDb(final int idProyecto, final int idAlumno)
+            throws DBModificationException {
 
-        String query = "INSERT INTO postulados (id_p, id_u, estadoa, estador) VALUES ("+
-                    idProyecto +"," + idAlumno + "," + NO_AUTO +"," + NO_AUTO + ");";
-        
-        try{
-            if(statement.executeUpdate(query) == 0)
+        String query = "INSERT INTO postulados (id_p, id_u, estadoa, estador)"
+            + "VALUES (" + idProyecto + "," + idAlumno + ","
+            + NO_AUTO + "," + NO_AUTO + ");";
+
+        try {
+            if (statement.executeUpdate(query) == 0) {
                 throw new DBModificationException();
-        }catch(SQLException e){
+            }
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
-            
     }
 
 
     /**
      * Regresa una lista de alumnos postulados a un proyecto.
+     *
      * @param idProyecto id del proyecto del cual se quiere cononcer
      * la lista de postulados.
-     * @return Regresa una lista ligada cuyos elemenos son el par ordenado 
+     * @return Regresa una lista ligada cuyos elemenos son el par ordenado
      * de id del usuario y su nombre.
-     * @throws Lanza una excepcion 
+     * @throws Lanza una excepcion
      */
-    public LinkedList<String[]> verPostuladosDb(final int idProyecto) 
+    public LinkedList<String[]> verPostuladosDb(final int idProyecto)
             throws DBConsultException {
 
         String query = "SELECT postulados.id_u,usuarios.nombre "
                 + "FROM  postulados, usuario "
-                + "WHERE postulados.id_p = " + idProyecto  
+                + "WHERE postulados.id_p = " + idProyecto
                 + " AND postulados.id_u = usuario.id_u"
                 + "';";
-        
+
         LinkedList<String[]> listaPos = new LinkedList<String[]>();
 
         try {
             connect = cargarBase();
             statement = connect.createStatement();
             resultset = statement.executeQuery(query);
-            
+
             listaPos = getIdxNombre(resultset);
-            
+
         } catch (SQLException sqlex) {
-            System.out.println(sqlex.getMessage()); 
+            System.out.println(sqlex.getMessage());
         } finally {
             cerrarBase(connect, statement);
         }
@@ -446,86 +450,94 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * El reaponsable de un proyecto acepta un alumno en su proyecto. Por lo cual
      * se cambia el contenido de la columna "estador" a 1 donde el id del usuario
      * y el id de proyecto coicidan con los pasados como parametros.
+     *
      * @param idProyecto id del proyecto en el cual se aceptara al alumno.
      * @param idAlumno id el alumno al cual se acepto en el proyecto.
      * @throws Se lanza una excepcion si no se puede actualizar el estado del
      * alumno en la lista (tabla) de ponstulados.
      */
     public void aceptarAlumnoProyectoDb(final int idProyecto, final int idAlumno)
-            throws DBModificationException{
+            throws DBModificationException {
 
         String query = "UPDATE postulados " + "SET estador = 1 "
                 + "WHERE id_u = '" + idAlumno + "'"
-                + "AND id_p = '"+ idProyecto +";";
-        
-        try{
-            if ( statement.executeUpdate(query) ==  0)
+                + "AND id_p = '" + idProyecto + ";";
+
+        try {
+            if (statement.executeUpdate(query) ==  0) {
                     throw new DBModificationException();
-            if (estadoA(idAlumno) == 1)
-                borrarPostulaciones(idAlumno,idProyecto);
-        }catch(SQLException e){
+            }
+            if (estadoA(idAlumno) == 1) {
+                borrarPostulaciones(idAlumno, idProyecto);
+            }
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
     /**
      * El administrador autoriza a un alumno en un proyecto. Por lo cual
      * se cambia el contenido de la columna "estadoa" a 1 donde el id del usuario
      * y el id de proyecto coicidan con los pasados como parametros.
+     *
      * @param idProyecto id del proyecto en el cual se autorizara al alumno.
      * @param idAlumno id el alumno al cual se autorizara en el proyecto.
      * @throws Se lanza una excepcion si no se puede actualizar el estado del
      * alumno en la lista (tabla) de ponstulados.
      */
-    public void autorizarAlumnoProyecto(final int idAlumno, final int idProyecto) 
-            throws DBModificationException{
-        
+    public void autorizarAlumnoProyecto(final int idAlumno, final int idProyecto)
+            throws DBModificationException {
+
         String query = "UPDATE postulados " + "SET estadoa = 1 "
-                + "WHERE id_u = " + idAlumno 
-                + "AND id_p = '"+ idProyecto +";";
-        
-        try{
-            if ( statement.executeUpdate(query) ==  0)
+                + "WHERE id_u = " + idAlumno
+                + "AND id_p = '" + idProyecto + ";";
+
+        try {
+            if (statement.executeUpdate(query) ==  0) {
                     throw new DBModificationException();
-            if (estadoR(idAlumno) == 1){
+            }
+            if (estadoR(idAlumno) == 1) {
                 borrarPostulaciones(idAlumno, idProyecto);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    
-    
-    /* En este punto, tanto el administrador como el responsable
-     * han autorizado y acepdao respectivamente a un alumno. De aqui
+
+
+    /**
+     * En este punto, tanto el administrador como el responsable
+     * han autorizado y aceptado respectivamente a un alumno. De aqui
      * que se proceda a borrar el todas las postulaciones del alumno
      * excepto en este proyecto cuyo id se pasa como parametro.
      */
-    private void borrarPostulaciones(final int idAlumno, final int idProyecto) 
-        throws DBModificationException, SQLException{
-        
-        String query = "DELETE postulados WHERE id_u = " + idAlumno +
-                " AND id_p != " + idProyecto + ";";
-        if (statement.executeUpdate(query) == 0)
+    private void borrarPostulaciones(final int idAlumno, final int idProyecto)
+        throws DBModificationException, SQLException {
+
+        String query = "DELETE postulados WHERE id_u = " + idAlumno
+            + " AND id_p != " + idProyecto + ";";
+        if (statement.executeUpdate(query) == 0) {
             throw new DBModificationException();
+        }
     }
 
     /**
      * El responsable rechaza (elimina) un alumno de su proycto.
+     *
      * @param idProyecto id del proyecto del cual se quiere rechazar un alumno.
      * @param idAlumno id del alumno que se va a rechazar.
      * @throws Se lanza una excepcion si no se puede eliminar al alumno del proyecto.
      */
-    public void rechazaAlumnoProyectoDb(final int idProyecto, final int idAlumno) 
-        throws DBModificationException
-        {
-        
+    public void rechazaAlumnoProyectoDb(final int idProyecto, final int idAlumno)
+        throws DBModificationException {
+
         String query = "DELETE FROM postulados " + "WHERE id_p = '"
                 + idProyecto + "' AND id_u = '" + idAlumno + "';";
-        
+
         try {
-            if ( statement.executeUpdate(query) == 0)
+            if (statement.executeUpdate(query) == 0) {
                 throw new DBModificationException();
+            }
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         }
@@ -534,49 +546,54 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
 
     /**
      * Agrega un nuevo usuario y un nuevo responsalbe a a la base de datos.
+     *
      * @param repo un objeto Responsble.
      * @throws Se lanza una excepcion si no se puede agregar al responsable.
      */
-    public void registrarDb(final Responsable repo) 
-    throws DBCreationException{
-        
+    public void registrarDb(final Responsable repo)
+        throws DBCreationException {
+
         int id_u = 0;
-        
+
         try {
             String update = insertaUsuario(repo);
 
-            if (statement.executeUpdate(update) == 0)
+            if (statement.executeUpdate(update) == 0) {
                 throw new DBCreationException();
-            
-            id_u = statement.executeQuery("LAST_INSERT_ID()").getInt(1);
-            
-            update = insertaResponsable(repo, id_u);
-            if (statement.executeUpdate(update) == 0)
-                throw new DBCreationException();
-            
+            } else {
+
+                id_u = statement.executeQuery("LAST_INSERT_ID()").getInt(1);
+                update = insertaResponsable(repo, id_u);
+
+                if (statement.executeUpdate(update) == 0) {
+                    throw new DBCreationException();
+                }
+            }
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         }
     }
-    
-    
+
+
 
     /**
      * El adminstrador acepta un responsable. Es decir, cambia el valor de la
      * columna estado en al tabla responsable a 1 (Autorizado).
+     *
      * @param idResponsable id del responsable que sera aceptado.
      * @throws Se lanza un excepcion si no se puede cambiar el estado del
      * responsable.
      */
-    public void aceptarResponsableDb(final int idResponsable) 
-            throws DBModificationException{
+    public void aceptarResponsableDb(final int idResponsable)
+            throws DBModificationException {
 
         String query = "UPDATE responsables SET estado = 1"
                 + " WHERE id_u = '" + idResponsable + "';";
 
         try {
-            if (statement.executeUpdate(query) == 0)
+            if (statement.executeUpdate(query) == 0) {
                 throw new DBModificationException();
+            }
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         }
@@ -586,19 +603,20 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     /**
      * El administrador rechaza un responsable, por lo cual es eliminado de la
      * base de datos.
+     *
      * @param idResponsable id del responsable que se quiere eliminar.
      * @throws Se lanza una excepcion si no se puede eliminar al responsable.
      */
     public void rechazaResponsableDb(final int idResponsable)
-        throws DBModificationException{
-        
-        String query = "DELETE FROM responsables " + "WHERE id_u  = '"
-                + idResponsable + "';";
+        throws DBModificationException {
+
+        String query = "DELETE FROM responsables " 
+            + "WHERE id_u  = '" + idResponsable + "';";
 
         try {
-            if (statement.executeUpdate(query) == 0)
+            if (statement.executeUpdate(query) == 0) {
                 throw new DBModificationException();
-            
+            }
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         }
@@ -606,15 +624,15 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
 
 
     /**
-     * <!-- validar Usuario--> <!-- regresa arreglo de tres enteros |tipo
-     * Usu|id_u|estado| de no existir tipo Usu = "-1"-->
-     * 
+     * regresa arreglo de tres enteros 
+     * |tipoUsu|id_u|estado| de no existir tipo Usu = "-1"
+     *
      */
     public ResultSet validaUsuarioDb(final String nombreUsuario,
-            final String password){
+            final String passwd) {
         String query = "SELECT * " + "FROM usuarios, alumnos,responsables "
                 + "WHERE username = '" + nombreUsuario + "' "
-                + "AND contrasena='" + password + "';";
+                + "AND contrasena='" + passwd + "';";
 
         try {
             resultset = statement.executeQuery(query);
@@ -624,36 +642,39 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         }
         return resultset;
     }
-    
-    public void modificarEstadoAlumno(final int idAlumno, final boolean estadoAlumno) 
-            throws DBModificationException{
-        
+
+    public void modificarEstadoAlumno(final int idAlumno, final boolean estadoAlumno)
+        throws DBModificationException {
+
         int estado = 0;
-        if (estadoAlumno)
+        if (estadoAlumno) {
             estado = 1;
-        
-        String query = "UPDATE alumno SET estado =  " + estado +" WHERE id_u = "+ idAlumno +";";
-        
-        try{
-            if (statement.executeUpdate(query) == 0)
-                throw new DBModificationException();
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
+
+            String query = "UPDATE alumno SET estado =  " + estado
+                + " WHERE id_u = " + idAlumno + ";";
+
+            try {
+                if (statement.executeUpdate(query) == 0) {
+                    throw new DBModificationException();
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
         }
-    
     }
 
     /**
-     * 
+     *
      */
-    private String getPairValues(int id, int[] dataArray){
+    private String getPairValues(final int id, final int[] dataArray) {
 
         String coma = ",";
         String result = "";
-        for (int i = 0; i< dataArray.length; i++){
-            if ( (i+1) == dataArray.length)
+        for (int i = 0; i < dataArray.length; i++) {
+            if ((i + 1) == dataArray.length) {
                 coma = ";";
-            result += "(" +id + "," + dataArray[i] +")" + coma;
+            }
+            result += "(" + id + "," + dataArray[i] + ")" + coma;
         }
         // Hay que separar cada (id,idcar) por una coma
         // por eso no se puede usar esta iteración.
@@ -676,9 +697,9 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         int activado = 0; // No autorizado.
         String update = "INSERT INTO usuarios (username,contrasena,tipo,nombre,"
                 + "telefono,email,activado) VALUES ("
-                + "'" +nombreUsuario + "','" + contrasena + "',"
+                + "'" + nombreUsuario + "','" + contrasena + "',"
                 + tipo + ",'" + nombre + "',"
-                + telefono + ",'" + email + "'," 
+                + telefono + ",'" + email + "',"
                 + activado + ");";
 
         return update;
@@ -690,15 +711,15 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
         String sitioweb = resp.getSitioweb();
         int estado = 0; // No autorizado
 
-        String update = "INSERT INTO responsables (id_u,descripcion,sitioweb,"+
-                "estado) VALUES (" 
-                + idUsuario + ",'" + descripcion + "','" 
+        String update = "INSERT INTO responsables (id_u,descripcion,sitioweb,"
+                + "estado) VALUES ("
+                + idUsuario + ",'" + descripcion + "','"
                 + sitioweb + "'," + estado + ");";
         return update;
     }
-    
+
     /**
-     * Este metodo se utiliza para conseguir una lista de arreglos,  
+     * Este metodo se utiliza para conseguir una lista de arreglos,
      * cada uno con dos entradas. Cada uno de estos vectores,
      * tienen como primer elemento un entero que representa un un id y una
      * cadena que representa, generalmente, un nombre.
@@ -706,47 +727,48 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
      * @return Lista ligada de arreglos de cadenas de tamaño 2.
      * @throws SQLException
      */
-    private LinkedList<String[]> getIdxNombre(ResultSet rs) throws SQLException {
-        
+    private LinkedList<String[]> getIdxNombre(final ResultSet rs) throws SQLException {
+
         LinkedList<String[]> lista = new LinkedList<String[]>();
         String[] idxnombre = null;
-        
+
         while (rs.next()) {
             idxnombre = new String[2];
             idxnombre[0] = Integer.toString(rs.getInt(1));
             idxnombre[1] = rs.getString(2);
             lista.add(idxnombre);
         }
-        
+
         return lista;
     }
-    
-    private int estadoA(int idAlumno) {
-        return estadoAR (idAlumno, "estadoa");
+
+    private int estadoA(final int idAlumno) {
+        return estadoAR(idAlumno, "estadoa");
     }
 
-    private int estadoR(int idAlumno) {
+    private int estadoR(final int idAlumno) {
         return estadoAR(idAlumno, "estador");
     }
-    
-    private int estadoAR(int idAlumno, String AR){
-        
-        String query = "SELECT postulados ("+ AR +") WHERE id_u=" +idAlumno +");";
+
+    private int estadoAR(final int idAlumno, final String AR){
+
+        String query = "SELECT postulados (" + AR + ") "
+            + "WHERE id_u=" + idAlumno + ");";
         int estado = -1;
-        
-        try{
+
+        try {
             resultset = statement.executeQuery(query);
             estado = resultset.getInt(1);
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return estado;
-    
+
     }
 
     /**
-     * Creates a new instance of the specified Ecore class. 
-     * 
+     * Creates a new instance of the specified Ecore class.
+     *
      * @param eClass The Ecore class of the instance to create.
      * @return The new instance.
      * @generated
@@ -756,4 +778,3 @@ public class ConectaDbImpl extends EObjectImpl implements ConectaDb {
     }
 
 } // ConectaDbImpl
-
