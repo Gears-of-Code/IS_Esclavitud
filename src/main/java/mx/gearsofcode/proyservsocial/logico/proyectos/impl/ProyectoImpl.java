@@ -10,11 +10,14 @@ import java.util.LinkedList;
 
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage;
+
 import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
 import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
+
+import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -69,9 +72,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class ProyectoImpl extends EObjectImpl implements Proyecto {
     
-    final static int ALUMNO_ID = 2;
-    final static int ADMINISTRADOR_ID = 0;
-    final static int RESPONSABLE_ID =1;
+    final static int ALUMNO_ID = TipoUsuario.ALUMNO_VALUE;
+    final static int ADMINISTRADOR_ID = TipoUsuario.ADMINISTRADOR_VALUE;
+    final static int RESPONSABLE_ID = TipoUsuario.RESPONSABLE_VALUE;
     
     /**
      * Valor por defecto del atributo '{@link #getId() <em>Id</em>}'.
@@ -279,7 +282,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * Clase que contiene los metodos de conexion a la base de datos. 
      * Aqui se realizan los queries directamente a la base de datos.
      **/
-    private ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
+    private ConectaDb conexion = null;
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -522,15 +525,8 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * Devuelve el estado del proyecto.
      * True = Aceptado o False = En proceso de autorizacion 
      */
-    public boolean getEstado() { //TODO: Revisar la salida ¿boolean o string?.
-        //String status = "";
-        //if (estado) {
-        //    status = "Aprobado";
-        //} else {
-        //    status = "En autorizacion";
-        //}
-        //return status;
-        return estado;//Yo digo que está bien el boolean.
+    public boolean getEstado() {
+        return estado;
     }
 
     /**
@@ -556,17 +552,9 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      *            con el tipo del administrador.
      * @throws DBModificationException 
      */
-    public void autorizarProyecto(final int idAdmin) throws DBModificationException {
-        if (idAdmin == ADMINISTRADOR_ID) {
-            if (!estado) { // Revisa que el proyecto no este autorizado.
-                setEstado(true);
-                conexion.autorizarProyectoDb(id);
-            }
-        } else {
-            
-        }
-        // TODO: implement this method
-        throw new UnsupportedOperationException();
+    public void autorizarProyecto(final int tipoAdmin) throws DBModificationException {
+	boolean aceptado = true;
+	modificaProyecto(tipoAdmin, aceptado);
     }
 
     /**
@@ -577,19 +565,32 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * @param idAdmin El tipo del usuario que llama este metodo, debe coincidir
      *            con el tipo del administrador.
      */
-    public void rechazarProyecto(final int idAdmin) {
-        if (idAdmin == ADMINISTRADOR_ID) {
-            if (!estado) { // Revisa que el proyecto no este autorizado.
-                try {
-                    conexion.rechazarProyectoDb(id);
-                } finally {
-                    throw new UnsupportedOperationException();
-                }
-            } else {
+    public void rechazarProyecto(final int tipoAdmin) {
+	boolean rechazado = false;
+	modificaProyecto(tipoAdmin, rechazado);
+    }
 
+    /**
+     * Metodo auxiliar que se encarga de hacer la llamada 
+     * para autorizar o rechar el proyecto.
+     */
+    private void modificaProyecto(final int tipoAdmin, final boolean estado) {
+
+	if (tipoAdmin == ADMINISTRADOR_ID) {
+            if (!estado) { // Revisa que el proyecto no este autorizado.
+		try {
+		    conexion = new LogicoFactoryImpl().createConectaDb();
+		    if (estado) {
+			setEstado(estado);
+			conexion.autorizarProyectoDb(id);
+		    } else {
+			conexion.rechazarProyectoDb(id);
+		    }
+                } finally {
+                    throw new UnsupportedOperationException();  // Ajuustar laexcepcion.
+                }
             }
         }
-        // TODO: implement this method
     }
 
     /**

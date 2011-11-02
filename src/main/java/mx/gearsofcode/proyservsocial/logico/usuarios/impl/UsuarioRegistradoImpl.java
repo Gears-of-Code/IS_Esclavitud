@@ -709,9 +709,6 @@ UsuarioRegistrado {
             tmpCareer = new LinkedHashSet<Integer>();
             tmpKnow = new LinkedHashSet<Integer>();
 
-            tmpCareer.add(queryResult.getInt("carreras.nombre"));
-            tmpKnow.add(queryResult.getInt("areasconocimiento.nombre"));
-
             while (queryResult.next()) {
                 tmpCareer.add(queryResult.getInt("carreras.nombre"));
                 tmpKnow.add(queryResult.getInt("areasconocimiento.nombre"));
@@ -731,7 +728,7 @@ UsuarioRegistrado {
             unProyecto.setCarreras(carreraProy);
 
 
-        }catch(SQLException dbException){
+        } catch (SQLException dbException) {
             //TODO: do something meaningful with this exception
             DBConsultException e = new DBConsultException();
             throw e ;
