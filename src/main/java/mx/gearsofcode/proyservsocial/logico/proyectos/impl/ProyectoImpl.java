@@ -72,52 +72,52 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * </p>
  */
 public class ProyectoImpl extends EObjectImpl implements Proyecto {
-    
-    final static int ALUMNO_ID = TipoUsuario.ALUMNO_VALUE;
-    final static int ADMINISTRADOR_ID = TipoUsuario.ADMINISTRADOR_VALUE;
-    final static int RESPONSABLE_ID = TipoUsuario.RESPONSABLE_VALUE;
-    
+
+    static final  int ALUMNO_ID = TipoUsuario.ALUMNO_VALUE;
+    static final int ADMINISTRADOR_ID = TipoUsuario.ADMINISTRADOR_VALUE;
+    static final int RESPONSABLE_ID = TipoUsuario.RESPONSABLE_VALUE;
+
     /**
      * Valor por defecto del atributo '{@link #getId() <em>Id</em>}'.
-     * 
+     *
      * @see #getId()
      */
     protected static final int ID_EDEFAULT = -1;
 
     /**
      * Valor almacenado del atributo '{@link #getId() <em>Id</em>}'.
-     * 
+     *
      * @see #getId()
      */
     protected int id = ID_EDEFAULT;
 
     /**
      * Valor por defecto del atributo '{@link #getNombre() <em>Nombre</em>}'.
-     * 
+     *
      * @see #getNombre()
      */
     protected static final String NOMBRE_EDEFAULT = null;
 
     /**
      * Valor almacenado del atributo '{@link #getNombre() <em>Nombre</em>}'.
-     * 
+     *
      * @see #getNombre()
      */
     protected String nombre = NOMBRE_EDEFAULT;
 
     /**
      * Valor por defecto del atributo '{@link #getResponsable()
-     * <em>Id Responsable</em>}'. 
-     * Sera responsable del proyecto, -1 en un proyecto vacio, 
+     * <em>Id Responsable</em>}'.
+     * Sera responsable del proyecto, -1 en un proyecto vacio,
      * se coloca el id del responsable que crea el proyecto.
-     * 
+     *
      * @see #getResponsable()
      */
     protected static final int RESPONSABLE_EDEFAULT = -1;
 
     /**
      * Valor almacenado del atributo '{@link #getResponsable() <em>Responsable</em>}'.
-     * 
+     *
      * @see #getResponsable()
      */
     protected int responsable = RESPONSABLE_EDEFAULT;
@@ -125,22 +125,22 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     /**
      * Valor por defecto del atributo '{@link #getAreaConocimiento()
      * <em>Area Conocimiento</em>}'. No existe en un proyecto nuevo.
-     * 
+     *
      * @see #getAreaConocimiento()
      */
     protected static final String AREA_CONOCIMIENTO_EDEFAULT = null;
 
     /**
      * Valor almacenado del atributo '{@link #getAreaConocimiento() <em>Area Conocimiento</em>}' .
-     * 
+     *
      * @see #getAreaConocimiento()
      */
-    protected int[] areaConocimiento = null;//AREA_CONOCIMIENTO_EDEFAULT;
+    protected int[] areaConocimiento = null;
 
     /**
      * Valor por defecto del atributo '{@link #getEmail() <em>Email</em>}'. No
      * hay direccion de correo en un proyecto vacio.
-     * 
+     *
      * @see #getEmail()
      * @generated
      * @ordered
@@ -150,7 +150,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     /**
      * The cached value of the '{@link #getEmail() <em>Email</em>}' attribute.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @see #getEmail()
      * @generated
      * @ordered
@@ -160,7 +160,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     /**
      * Valor por defecto del atributo '{@link #getTelefono() <em>Telefono</em>}
      * '. No hay telefono en un proyecto nuevo.
-     * 
+     *
      * @see #getTelefono()
      * @generated
      * @ordered
@@ -170,7 +170,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     /**
      * The cached value of the '{@link #getTelefono() <em>Telefono</em>}'
      * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @see #getTelefono()
      * @generated
      * @ordered
@@ -180,7 +180,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     /**
      * The default value of the '{@link #getDireccion() <em>Direccion</em>}'
      * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @see #getDireccion()
      * @generated
      * @ordered
@@ -190,7 +190,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     /**
      * The cached value of the '{@link #getDireccion() <em>Direccion</em>}'
      * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @see #getDireccion()
      * @generated
      * @ordered
@@ -200,7 +200,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     /**
      * The default value of the '{@link #getCarrera() <em>Carrera</em>}'
      * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @see #getCarrera()
      * @generated
      * @ordered
@@ -210,7 +210,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     /**
      * The cached value of the '{@link #getCarrera() <em>Carrera</em>}'
      * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @see #getCarrera()
      * @generated
      * @ordered
@@ -221,7 +221,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * Valor por defecto del atributo '{@link #getMaxParticipante()
      * <em>Max Participante</em>}'. Numero maximo de alumnos que acepta un
      * proyecto vacio.
-     * 
+     *
      * @see #getMaxParticipante()
      * @generated
      * @ordered
@@ -232,7 +232,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * The cached value of the '{@link #getMaxParticipante()
      * <em>Max Participante</em>}' attribute. <!-- begin-user-doc --> <!--
      * end-user-doc -->
-     * 
+     *
      * @see #getMaxParticipante()
      * @generated
      * @ordered
@@ -240,9 +240,9 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected int maxParticipante = MAX_PARTICIPANTE_EDEFAULT;
 
     /**
-     * Valor por defecto del atributo '{@link #getDescripcion()
-     * <em>Descripcion</em>}'. Descripcion del proyecto a realizar.
-     * 
+     * Valor por defecto del atributo '{@link #getDescripcion() <em>Descripcion</em>}'.
+     * Descripcion del proyecto a realizar.
+     *
      * @see #getDescripcion()
      * @generated
      * @ordered
@@ -252,7 +252,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     /**
      * The cached value of the '{@link #getDescripcion() <em>Descripcion</em>}'
      * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @see #getDescripcion()
      * @generated
      * @ordered
@@ -260,9 +260,9 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected String descripcion = DESCRIPCION_EDEFAULT;
 
     /**
-     * Valor por defecto del atributo '{@link #getEstado() <em>Estado</em}'.
+     * Valor por defecto del atributo '{@link #getEstado() <em>Estado</em>}'.
      * Falso implica que aun no ha sido autorizado por el administrador.
-     * 
+     *
      * @see #getEstado()
      * @generated
      * @ordered
@@ -272,7 +272,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     /**
      * The cached value of the '{@link #getEstado() <em>Estado</em>}' attribute.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @see #getEstado()
      * @generated
      * @ordered
@@ -280,7 +280,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     protected boolean estado = ESTADO_EDEFAULT;
 
     /**
-     * Clase que contiene los metodos de conexion a la base de datos. 
+     * Clase que contiene los metodos de conexion a la base de datos.
      * Aqui se realizan los queries directamente a la base de datos.
      **/
     private ConectaDb conexion = null;
@@ -296,7 +296,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     @Override
@@ -306,7 +306,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public int getId() {
@@ -315,7 +315,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public void setId(int newId) {
@@ -328,7 +328,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public String getNombre() {
@@ -337,7 +337,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public void setNombre(String newNombre) {
@@ -350,7 +350,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public int getResponsable() {
@@ -359,7 +359,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public void setResponsable(int newResponsable) {
@@ -373,7 +373,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public int[] getAreaConocimiento() {
@@ -382,7 +382,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public void setAreaConocimiento(int [] newAreaConocimiento) {
@@ -396,7 +396,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public String getEmail() {
@@ -405,7 +405,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public void setEmail(String newEmail) {
@@ -418,7 +418,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public int getTelefono() {
@@ -427,7 +427,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public void setTelefono(int newTelefono) {
@@ -440,7 +440,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public String getDireccion() {
@@ -449,7 +449,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public void setDireccion(String newDireccion) {
@@ -463,7 +463,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public int[] getCarreras() {
@@ -472,7 +472,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated
      */
     public void setCarreras(int [] newCarrera) {
@@ -503,7 +503,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
     }
 
     /**
-     * 
+     *
      * {@inheritDoc}
      */
     public String getDescripcion() {
@@ -524,14 +524,14 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
     /**
      * Devuelve el estado del proyecto.
-     * True = Aceptado o False = En proceso de autorizacion 
+     * True = Aceptado o False = En proceso de autorizacion
      */
     public boolean getEstado() {
         return estado;
     }
 
     /**
-     * Este metodo es llamado exclusivamente por el metodo autorizarProyecto 
+     * Este metodo es llamado exclusivamente por el metodo autorizarProyecto
      * y asi garantizar que un administrador sea el unico que lo puede usar.
      * @param newEstado Debe de recibir True solamente para cambiar el estado
      * a Aceptado.
@@ -548,40 +548,45 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      * Este metodo solo lo ejecuta el administrador. Sirve para autorizar un
      * proyecto, lo cual hace que pase el estado de false -> true. Al cambiar
      * este valor el proceso queda "Aceptado".
-     * 
+     *
      * @param idAdmin El tipo del usuario que llama este metodo, debe coincidir
      *            con el tipo del administrador.
-     * @throws DBModificationException 
+     * @throws DBModificationException
      */
     public void autorizarProyecto(final int tipoAdmin) throws DBModificationException {
-	boolean aceptado = true;
-	modificaProyecto(tipoAdmin, aceptado);
+        boolean aceptado = true;
+        modificaProyecto(tipoAdmin, aceptado);
     }
 
     /**
      * Este metodo solo lo ejecuta el administrador. Sirve para rechazar un
      * proyecto, lo cual hace que el proyecto sea eliminado de la base de datos
      * directamente.
-     * 
+     *
      * @param idAdmin El tipo del usuario que llama este metodo, debe coincidir
      *            con el tipo del administrador.
      */
     public void rechazarProyecto(final int tipoAdmin) {
-	boolean rechazado = false;
-	modificaProyecto(tipoAdmin, rechazado);
+        boolean rechazado = false;
+        modificaProyecto(tipoAdmin, rechazado);
     }
 
     /**
-     * Metodo auxiliar que se encarga de hacer la llamada 
+     * Metodo auxiliar que se encarga de hacer la llamada
      * para autorizar o rechar el proyecto.
+     *
+     * @param tipoAdmin Tipo de usuario debe ser administrador para realizar esta
+     * funcion.
+     * @param estadoProy El estado al cual se pasara este proyecto, puede ser true
+     * que es aceptado o false que es rechazado.
      */
-    private void modificaProyecto(final int tipoAdmin, final boolean estado) {
+    private void modificaProyecto(final int tipoAdmin, final boolean estadoProy) {
 
         if (tipoAdmin == ADMINISTRADOR_ID) {
             if (!estado) { // Revisa que el proyecto no este autorizado.
                 try {
                     conexion = new LogicoFactoryImpl().createConectaDb();
-                    if (estado) {
+                    if (estadoProy) {
                         setEstado(estado);
                         conexion.autorizarProyectoDb(id);
                     } else {
@@ -597,23 +602,23 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
             }
         }
     }
-    
+
     /**
      * Este metodo solo lo ejecutan el administrador y el responsable. Nos
      * muestra la lista de los alumnos que estan postulados a uno de los
      * proyectos.
-     * 
+     *
      * @param idUsuario Valor tipo de usuario, debe coincidir con el de un
      *            administrador o un responsabl.
-     * @throws DBConsultException 
+     * @throws DBConsultException
      */
-    public String[][] verListaPostulados(final int idUsuario) throws DBConsultException { //TODO: Revisar lo que regresa y que si este armando el array correcto.
-        
+    public String[][] verListaPostulados(final int idUsuario) throws DBConsultException { // TODO: Revisar lo que regresa y que si este armando el array correcto.
+
         String [][] bloqueResultado = null;
-        if (idUsuario != ALUMNO_ID) {//se fijó el valor ALUMNO_ID como 2; están al principio de ésta clase y son final static
-            
+        if (idUsuario != ALUMNO_ID) { // Variable final static al inicio de la clase.
+
             LinkedList<String[]> queryResult = null;
-            
+
             try {
                 conexion = new LogicoFactoryImpl().createConectaDb();
                 queryResult = conexion.verPostuladosDb(id);
@@ -624,15 +629,16 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
                 dbe.getCause();
                 dbe.getMessage();
             }
-            
+
             if (queryResult != null) {
                 int pos = 0;
                 int filas = queryResult.size();
-                bloqueResultado = new String[filas][3]; 
-            
+                int colum = queryResult.getFirst().length;
+                bloqueResultado = new String[filas][colum];
+
             // String[] bloqueResultado contiene ["id","Nombre", "Carrera"]
             // Nota anterior para saber en que orden esta la informacion (Capa de Interfaz)
-                        
+
                 for (String[] tupla : queryResult) {
                     bloqueResultado[pos] = tupla;
                     pos++;
@@ -646,7 +652,7 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
 
 /**
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 @Override
@@ -680,7 +686,7 @@ public Object eGet(int featureID, boolean resolve, boolean coreType) {
 
 /**
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 @Override
@@ -725,7 +731,7 @@ public void eSet(int featureID, Object newValue) {
 
 /**
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 @Override
@@ -770,7 +776,7 @@ public void eUnset(int featureID) {
 
 /**
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 @Override
@@ -809,7 +815,7 @@ public boolean eIsSet(int featureID) {
 
 /**
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 @Override
@@ -847,7 +853,7 @@ public String toString() {
 /**
  * Creates a new instance of the specified Ecore class. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
+ *
  * @param eClass The Ecore class of the instance to create.
  * @return The new instance.
  * @generated

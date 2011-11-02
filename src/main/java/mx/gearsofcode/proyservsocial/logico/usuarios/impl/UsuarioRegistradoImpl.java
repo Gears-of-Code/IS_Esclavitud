@@ -22,7 +22,6 @@ import mx.gearsofcode.proyservsocial.logico.proyectos.impl.ProyectosFactoryImpl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import java.util.Set;
 import java.util.LinkedHashSet;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -617,7 +616,7 @@ UsuarioRegistrado {
      * que se encuentran disponibles para el usuario.
      *
      * @throws DBConsultException
-     * @throws DBCreationException 
+     * @throws DBCreationException
      */
     public String[][] verProyectos() throws DBConsultException, DBCreationException {
 
@@ -638,7 +637,7 @@ UsuarioRegistrado {
      * la consulta.
      *
      * @throws DBConsultException
-     * @throws DBCreationException 
+     * @throws DBCreationException
      */
     public String[][] verMisProyectos() throws DBConsultException, DBCreationException {
 
@@ -663,14 +662,14 @@ UsuarioRegistrado {
         int misProy = queryResults.size();
 
         // String[] bloqueproyectos contiene ["id","Nombre"]
-	String [][] bloque = new String[misProy][2];
+        String [][] bloque = new String[misProy][2];
 
         for (String[] unProy : queryResults) {
             bloque[pos] = unProy;
             pos++;
         }
 
-	return bloque;
+        return bloque;
     }
 
     /**
@@ -678,7 +677,7 @@ UsuarioRegistrado {
      * proyecto y se los despliega al usuario.
      *
      * @param idProyecto Un identificador de algun proyecto.
-     * @throws DBCreationException 
+     * @throws DBCreationException
      */
     public Proyecto verDetallesProyecto(final int idProyect) throws DBConsultException, DBCreationException {
 
@@ -686,28 +685,28 @@ UsuarioRegistrado {
         ResultSet queryResult = conexion.verDetallesProyectoDb(idProyect);
         Proyecto unProyecto = new ProyectosFactoryImpl().createProyecto();
         /*
-	  [1] -> nombre  responsable
-	  [2] -> nombre  proyectos
-	  [3] -> areas de conocimientos
-	  [4] -> carreras
-	  [5] -> email del poyecto
-	  [6] -> telefono del poyecto
-	  [7] -> direccion del poyecto
-	  [8] -> maximo Participantes
-	  [9] -> Descripcion del problema
+          [1] -> nombre  responsable
+          [2] -> nombre  proyectos
+          [3] -> areas de conocimientos
+          [4] -> carreras
+          [5] -> email del poyecto
+          [6] -> telefono del poyecto
+          [7] -> direccion del poyecto
+          [8] -> maximo Participantes
+          [9] -> Descripcion del problema
          */
-        String nomProy, descrProy,dirProy,mailProy;
+        String nomProy, descrProy, dirProy, mailProy;
         int [] areaDeConocimiento = null;
         int[] carreraProy = null;
-        int capMax,id_resp,telProy;
+        int capMax, idresp, telProy;
         try {
             nomProy = queryResult.getString("nombre");
-            descrProy = (String)(queryResult.getString("descripcion"));
-            dirProy = (String)(queryResult.getString("direccion"));
-            mailProy = (String)(queryResult.getString("email"));
-            telProy = ((Integer)(queryResult.getInt("telefono")));
-            id_resp = ((Integer)(queryResult.getInt("id_u")));
-            capMax = ((Integer)(queryResult.getInt("maxParticipantes")));
+            descrProy = (String) (queryResult.getString("descripcion"));
+            dirProy = (String) (queryResult.getString("direccion"));
+            mailProy = (String) (queryResult.getString("email"));
+            telProy = ((Integer) (queryResult.getInt("telefono")));
+            idresp = ((Integer) (queryResult.getInt("id_u")));
+            capMax = ((Integer) (queryResult.getInt("maxParticipantes")));
 
             LinkedHashSet<Integer> tmpCareer, tmpKnow;
             tmpCareer = new LinkedHashSet<Integer>();
@@ -727,7 +726,7 @@ UsuarioRegistrado {
             unProyecto.setEmail(mailProy);
             unProyecto.setTelefono(telProy);
             unProyecto.setMaxParticipantes(capMax);
-            unProyecto.setResponsable(id_resp);
+            unProyecto.setResponsable(idresp);
             unProyecto.setAreaConocimiento(areaDeConocimiento);
             unProyecto.setCarreras(carreraProy);
 
@@ -735,7 +734,7 @@ UsuarioRegistrado {
         } catch (SQLException dbException) {
             //TODO: do something meaningful with this exception
             DBConsultException e = new DBConsultException();
-            throw e ;
+            throw e;
         }
 
         return unProyecto;
@@ -751,14 +750,14 @@ UsuarioRegistrado {
         int misProy = queryResults.size();
 
         // int[] bloque contiene ["id"]
-	int[] bloque = new int[misProy];
+        int[] bloque = new int[misProy];
 
         for (int elem : queryResults) {
             bloque[pos] = elem;
             pos++;
         }
 
-	return bloque;
+        return bloque;
     }
 
 } //UsuarioRegistradoImpl
