@@ -9,6 +9,7 @@ package mx.gearsofcode.proyservsocial.logico.usuarios;
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.Sesion;
 import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.TipoUsuario;
 import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
+import mx.gearsofcode.proyservsocial.logico.util.DBCreationException;
 import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 
 import org.eclipse.emf.ecore.EObject;
@@ -265,8 +266,9 @@ public interface UsuarioRegistrado extends EObject {
      * Consulta todos los proyectos a los que un usuario puede acceder.
      * Dependiendo del tipo de usuario los proyectos que se le muestran.
      * @throws DBConsultException 
+     * @throws DBCreationException 
      */
-    String[][] verProyectos() throws DBConsultException;
+    String[][] verProyectos() throws DBConsultException, DBCreationException;
     
     /**
      * Muestra una lista reducida de los proyectos dependiendo de que id y tipo
@@ -276,15 +278,17 @@ public interface UsuarioRegistrado extends EObject {
      * El alumno los proyectos a los que se ha psotulado.
      * 
      * @throws DBConsultException
+     * @throws DBCreationException 
      */
-    String[][] verMisProyectos() throws DBConsultException;
+    String[][] verMisProyectos() throws DBConsultException, DBCreationException;
     
     /**
      * Muestra la informacion detallada de un proyecto en particular.
      * 
      * @param idProyect
      * @throws DBConsultException
+     * @throws DBCreationException 
      */
-    Proyecto verDetallesProyecto(final int idProyect) throws DBConsultException;
+    Proyecto verDetallesProyecto(final int idProyect) throws DBConsultException, DBCreationException;
 
 } // UsuarioRegistrado

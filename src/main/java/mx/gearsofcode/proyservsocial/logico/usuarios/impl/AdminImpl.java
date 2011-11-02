@@ -10,6 +10,7 @@ import mx.gearsofcode.proyservsocial.logico.ConectaDb;
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.usuarios.Admin;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
+import mx.gearsofcode.proyservsocial.logico.util.DBCreationException;
 import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 import org.eclipse.emf.ecore.EClass;
@@ -51,9 +52,10 @@ public class AdminImpl extends UsuarioRegistradoImpl implements Admin {
      * autorizar.
      * <!-- end-user-doc -->
      * @throws DBModificationException 
+     * @throws DBCreationException 
      * @generated NOT
      */
-    public void aceptaResponsable(final int respID) throws DBModificationException {
+    public void aceptaResponsable(final int respID) throws DBModificationException, DBCreationException {
         ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
         conexion.aceptarResponsableDb(respID);
     }
@@ -63,9 +65,10 @@ public class AdminImpl extends UsuarioRegistradoImpl implements Admin {
      * Método que se utiliza para dejar constancia de que un alumno ha sido autorizado en un proyecto.
      * <!-- end-user-doc -->
      * @throws DBModificationException 
+     * @throws DBCreationException 
      * @generated NOT
      */
-    public void actualizaEstadoAlumno(final int studentID, boolean studentState) throws DBModificationException {
+    public void actualizaEstadoAlumno(final int studentID, boolean studentState) throws DBModificationException, DBCreationException {
         ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
         //falta metodo de ConectaDb modificarEstadoAlumno(final int studentID, boolean studentState)
         //se agrega temporalmente.
@@ -77,9 +80,10 @@ public class AdminImpl extends UsuarioRegistradoImpl implements Admin {
      * Método que se utiliza para actualizar al alumno autorizado en un proyecto dado.
      * <!-- end-user-doc -->
      * @throws DBModificationException 
+     * @throws DBCreationException 
      * @generated NOT
      */
-    public void autorizarAlumnoProyecto(final int studentID, final int proyectID) throws DBModificationException {
+    public void autorizarAlumnoProyecto(final int studentID, final int proyectID) throws DBModificationException, DBCreationException {
         ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
         //falta metodo de ConectaDb autorizarAlumnoProyecto(final int studentID, final int proyectID)
         //se agrega temporalmente.

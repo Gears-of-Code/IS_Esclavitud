@@ -12,6 +12,7 @@ import mx.gearsofcode.proyservsocial.logico.proyectos.Proyecto;
 import mx.gearsofcode.proyservsocial.logico.proyectos.ProyectosPackage;
 
 import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
+import mx.gearsofcode.proyservsocial.logico.util.DBCreationException;
 import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
@@ -576,23 +577,27 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
      */
     private void modificaProyecto(final int tipoAdmin, final boolean estado) {
 
-	if (tipoAdmin == ADMINISTRADOR_ID) {
+        if (tipoAdmin == ADMINISTRADOR_ID) {
             if (!estado) { // Revisa que el proyecto no este autorizado.
-		try {
-		    conexion = new LogicoFactoryImpl().createConectaDb();
-		    if (estado) {
-			setEstado(estado);
-			conexion.autorizarProyectoDb(id);
-		    } else {
-			conexion.rechazarProyectoDb(id);
-		    }
-                } finally {
-                    throw new UnsupportedOperationException();  // Ajuustar laexcepcion.
+                try {
+                    conexion = new LogicoFactoryImpl().createConectaDb();
+                    if (estado) {
+                        setEstado(estado);
+                        conexion.autorizarProyectoDb(id);
+                    } else {
+                        conexion.rechazarProyectoDb(id);
+                    }
+                } catch (DBCreationException dbe) {
+                    dbe.getCause();
+                    dbe.getMessage();
+                } catch (DBModificationException dbe) {
+                    dbe.getCause();
+                    dbe.getMessage();
                 }
             }
         }
     }
-
+    
     /**
      * Este metodo solo lo ejecutan el administrador y el responsable. Nos
      * muestra la lista de los alumnos que estan postulados a uno de los
@@ -607,19 +612,32 @@ public class ProyectoImpl extends EObjectImpl implements Proyecto {
         String [][] bloqueResultado = null;
         if (idUsuario != ALUMNO_ID) {//se fijó el valor ALUMNO_ID como 2; están al principio de ésta clase y son final static
             
-            conexion = new LogicoFactoryImpl().createConectaDb();
-            LinkedList<String[]> queryResult = conexion.verPostuladosDb(id);
+            LinkedList<String[]> queryResult = null;
             
-            int pos = 0;
-            int filas = queryResult.size() + pos;
-            bloqueResultado = new String[filas][3]; 
+            try {
+                conexion = new LogicoFactoryImpl().createConectaDb();
+                queryResult = conexion.verPostuladosDb(id);
+            } catch (DBCreationException dbe) {
+                dbe.getCause();
+                dbe.getMessage();
+            } catch (DBConsultException dbe) {
+                dbe.getCause();
+                dbe.getMessage();
+            }
+            
+            if (queryResult != null) {
+                int pos = 0;
+                int filas = queryResult.size();
+                bloqueResultado = new String[filas][3]; 
             
             // String[] bloqueResultado contiene ["id","Nombre", "Carrera"]
             // Nota anterior para saber en que orden esta la informacion (Capa de Interfaz)
                         
-            for (String[] tupla : queryResult) {
-                bloqueResultado[pos] = tupla;
-                pos++;
+                for (String[] tupla : queryResult) {
+                    bloqueResultado[pos] = tupla;
+                    pos++;
+                }
+                // ¿Que pasa si el arreglo regresa null?
             }
         }
         return bloqueResultado;

@@ -15,6 +15,7 @@ import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
 import mx.gearsofcode.proyservsocial.logico.usuarios.impl.UsuariosFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
+import mx.gearsofcode.proyservsocial.logico.util.DBCreationException;
 
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
@@ -157,17 +158,22 @@ public class SesionImpl extends EObjectImpl implements Sesion {
         UsuarioRegistrado inicioUsuario = null;
         ResultSet data = null;
 
-        conexion = new LogicoFactoryImpl().createConectaDb();
-        data = conexion.validaUsuarioDb(nombreUsuario, md5passwd); // Resultados del query.
         String usuarioTipo = "";
-        int idUsuario;
+        int idUsuario = -1;
+        
         try {
+            conexion = new LogicoFactoryImpl().createConectaDb();
+            data = conexion.validaUsuarioDb(nombreUsuario, md5passwd); // Resultados del query.
+
             idUsuario = data.getInt("id_u");
             usuarioTipo = data.getString("tipo"); // Obtengo el tipo de usuario del query.
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
+        } catch (DBCreationException dbe) {
+            dbe.getCause();
+            dbe.toString();
         }
 
         int tipoUsuario = TipoUsuario.valueOf(usuarioTipo).getValue(); // Mapea el tipo de usuario a int.

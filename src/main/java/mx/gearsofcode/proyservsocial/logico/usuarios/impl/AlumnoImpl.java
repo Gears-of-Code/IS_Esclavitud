@@ -11,6 +11,7 @@ import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.usuarios.Alumno;
 import mx.gearsofcode.proyservsocial.logico.usuarios.CarreraAlumno;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
+import mx.gearsofcode.proyservsocial.logico.util.DBCreationException;
 import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -189,9 +190,10 @@ public class AlumnoImpl extends UsuarioRegistradoImpl implements Alumno {
      * <!-- end-user-doc -->
      * @param proyectID ID del proyecto donde se postula el alumno.
      * @throws DBModificationException 
+     * @throws DBCreationException 
      * @generated NOT
      */
-    public void postularseAProyecto(int proyectID) throws DBModificationException {
+    public void postularseAProyecto(int proyectID) throws DBModificationException, DBCreationException {
         if(!this.estado){
             ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
             conexion.postularAProyectoDb(proyectID, this.id);

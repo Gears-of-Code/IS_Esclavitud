@@ -212,9 +212,10 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
      * @param proyectID El ID del proyecto donde se aceptaran los alumnos.
      * @param studentIDs La lista con IDs de los estudiantes a ser aceptados.
      * <!-- end-user-doc -->
+     * @throws DBCreationException 
      * @generated NOT
      */
-    public void aceptaAlumnoProyecto(final int proyectID, int [] studentIDs) throws DBModificationException{
+    public void aceptaAlumnoProyecto(final int proyectID, int [] studentIDs) throws DBModificationException, DBCreationException{
         ConectaDb conexion = new LogicoFactoryImpl().createConectaDb();
         for (int i = 0; i < studentIDs.length; i++) {
             int studentID = studentIDs[i];
@@ -273,10 +274,11 @@ public class ResponsableImpl extends UsuarioRegistradoImpl implements
      * @param capMax Numero maximo de participantes para este proyecto.
      * @param carreraProy A que carreras esta dirigido o se prefieren para este servicio social.
      * @param areaDeConocimiento A que areas de conocimiento esta dirigido el proyecto.
+     * @throws DBCreationException 
      */
     public void proponerProyecto(final String nomProy, final String descrProy, 
             final String dirProy, final String mailProy, final int telProy, 
-            final int capMax, final int[] carreraProy, final int[] areaDeConocimiento) {
+            final int capMax, final int[] carreraProy, final int[] areaDeConocimiento) throws DBCreationException {
         Proyecto nuevoProyecto = new ProyectosFactoryImpl().createProyecto();
         nuevoProyecto.setNombre(nomProy);
         nuevoProyecto.setDescripcion(descrProy);

@@ -11,6 +11,7 @@ import mx.gearsofcode.proyservsocial.logico.inicioDeSesion.Sesion;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuarioRegistrado;
 import mx.gearsofcode.proyservsocial.logico.usuarios.UsuariosPackage;
 import mx.gearsofcode.proyservsocial.logico.util.DBConsultException;
+import mx.gearsofcode.proyservsocial.logico.util.DBCreationException;
 
 import mx.gearsofcode.proyservsocial.logico.impl.LogicoFactoryImpl;
 import mx.gearsofcode.proyservsocial.logico.ConectaDb;
@@ -616,8 +617,9 @@ UsuarioRegistrado {
      * que se encuentran disponibles para el usuario.
      *
      * @throws DBConsultException
+     * @throws DBCreationException 
      */
-    public String[][] verProyectos() throws DBConsultException {
+    public String[][] verProyectos() throws DBConsultException, DBCreationException {
 
         conexion = new LogicoFactoryImpl().createConectaDb();
         LinkedList<String[]> queryResult = conexion.verProyectosDb(tipo, id);
@@ -636,8 +638,9 @@ UsuarioRegistrado {
      * la consulta.
      *
      * @throws DBConsultException
+     * @throws DBCreationException 
      */
-    public String[][] verMisProyectos() throws DBConsultException {
+    public String[][] verMisProyectos() throws DBConsultException, DBCreationException {
 
         conexion = new LogicoFactoryImpl().createConectaDb();
         LinkedList<String[]> queryResult = conexion.verMisProyectosDb(tipo, id); //Tipo de usuario y id de usuario.
@@ -675,8 +678,9 @@ UsuarioRegistrado {
      * proyecto y se los despliega al usuario.
      *
      * @param idProyecto Un identificador de algun proyecto.
+     * @throws DBCreationException 
      */
-    public Proyecto verDetallesProyecto(final int idProyect) throws DBConsultException {
+    public Proyecto verDetallesProyecto(final int idProyect) throws DBConsultException, DBCreationException {
 
         conexion = new LogicoFactoryImpl().createConectaDb();
         ResultSet queryResult = conexion.verDetallesProyectoDb(idProyect);

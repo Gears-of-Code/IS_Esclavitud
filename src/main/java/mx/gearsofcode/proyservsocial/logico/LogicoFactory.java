@@ -6,6 +6,8 @@
  */
 package mx.gearsofcode.proyservsocial.logico;
 
+import mx.gearsofcode.proyservsocial.logico.util.DBCreationException;
+
 import org.eclipse.emf.ecore.EFactory;
 
 /**
@@ -31,9 +33,10 @@ public interface LogicoFactory extends EFactory {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return a new object of class '<em>Conecta Db</em>'.
+     * @throws DBCreationException 
      * @generated
      */
-    ConectaDb createConectaDb();
+    ConectaDb createConectaDb() throws DBCreationException;
 
     /**
      * Returns the package supported by this factory.

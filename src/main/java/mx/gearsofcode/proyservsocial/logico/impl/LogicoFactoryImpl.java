@@ -7,6 +7,7 @@
 package mx.gearsofcode.proyservsocial.logico.impl;
 
 import mx.gearsofcode.proyservsocial.logico.*;
+import mx.gearsofcode.proyservsocial.logico.util.DBCreationException;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -61,7 +62,12 @@ public class LogicoFactoryImpl extends EFactoryImpl implements LogicoFactory {
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
         case LogicoPackage.CONECTA_DB:
-            return createConectaDb();
+                try {
+                    return createConectaDb();
+                } catch (DBCreationException e) {
+                    e.printStackTrace();
+                    e.getCause();
+                }
         default:
             throw new IllegalArgumentException("The class '" + eClass.getName()
                     + "' is not a valid classifier");
@@ -71,9 +77,10 @@ public class LogicoFactoryImpl extends EFactoryImpl implements LogicoFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @throws DBCreationException 
      * @generated
      */
-    public ConectaDb createConectaDb() {
+    public ConectaDb createConectaDb() throws DBCreationException {
         ConectaDbImpl conectaDb = new ConectaDbImpl();
         return conectaDb;
     }

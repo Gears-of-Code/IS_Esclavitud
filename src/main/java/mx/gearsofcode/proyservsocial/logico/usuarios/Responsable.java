@@ -115,10 +115,11 @@ public interface Responsable extends UsuarioRegistrado {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @throws DBModificationException 
+     * @throws DBCreationException 
      * @model
      * @generated
      */
-    void aceptaAlumnoProyecto(int proyectID, int [] studentIDs) throws DBModificationException;
+    void aceptaAlumnoProyecto(int proyectID, int [] studentIDs) throws DBModificationException, DBCreationException;
 
     /**
      * <!-- begin-user-doc -->
@@ -132,11 +133,12 @@ public interface Responsable extends UsuarioRegistrado {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @throws DBCreationException 
      * @model
      * @generated
      */
     void proponerProyecto(final String nomProy, final String descrProy, 
             final String dirProy, final String mailProy, final int telProy, 
-            final int capMax, final int[] carreraProy, final int[] areaDeConocimiento);
+            final int capMax, final int[] carreraProy, final int[] areaDeConocimiento) throws DBCreationException;
 
 } // Responsable

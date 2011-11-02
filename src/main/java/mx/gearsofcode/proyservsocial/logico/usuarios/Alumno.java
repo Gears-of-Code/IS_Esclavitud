@@ -6,6 +6,7 @@
  */
 package mx.gearsofcode.proyservsocial.logico.usuarios;
 
+import mx.gearsofcode.proyservsocial.logico.util.DBCreationException;
 import mx.gearsofcode.proyservsocial.logico.util.DBModificationException;
 
 /**
@@ -114,9 +115,10 @@ public interface Alumno extends UsuarioRegistrado {
      * <!-- begin-user-doc -->a
      * <!-- end-user-doc -->
      * @throws DBModificationException 
+     * @throws DBCreationException 
      * @model
      * @generated
      */
-    void postularseAProyecto(int proyectID) throws DBModificationException ;
+    void postularseAProyecto(int proyectID) throws DBModificationException, DBCreationException ;
 
 } // Alumno
